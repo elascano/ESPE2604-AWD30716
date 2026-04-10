@@ -1,0 +1,249 @@
+/* ============================================
+   ESTILOS DE COMPONENTES REUTILIZABLES
+   ============================================ */
+
+/* ============================================
+   TARJETAS DE LIBROS
+   ============================================ */
+
+.book-card {
+    background: var(--card-bg);
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    height: 100%;
+}
+
+.book-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.book-cover-placeholder {
+    height: 180px;
+    background: linear-gradient(45deg, #e0e7ff, #fae8ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: #818cf8;
+}
+
+/* ============================================
+   TARJETAS DE FORMULARIOS
+   ============================================ */
+
+.form-card {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+/* ============================================
+   INPUTS PERSONALIZADOS
+   ============================================ */
+
+.input-group-text {
+    border: none;
+    background-color: #f3f4f6;
+    border-radius: 15px 0 0 15px;
+}
+
+.form-control {
+    border-radius: 0 15px 15px 0;
+    border: none;
+    background-color: #f3f4f6;
+}
+
+/* ============================================
+   SPINNER / LOADING
+   ============================================ */
+
+.spinner-border {
+    color: #667eea;
+}
+
+.spinner-border-sm {
+    width: 1rem;
+    height: 1rem;
+}
+
+/* ============================================
+   DROPDOWN
+   ============================================ */
+
+.dropdown-menu {
+    border-radius: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.dropdown-item:hover {
+    background-color: #f3f4f6;
+    color: #667eea;
+}
+
+.dropdown-item.active {
+    background-color: var(--primary-gradient);
+    color: white;
+}
+
+/* ============================================
+   MODALES
+   ============================================ */
+
+.modal-content {
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    background: rgba(102, 126, 234, 0.05);
+}
+
+.modal-footer {
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* ============================================
+   ALERTAS
+   ============================================ */
+
+.alert {
+    border-radius: 15px;
+    border: none;
+}
+
+.alert-success {
+    background-color: rgba(16, 185, 129, 0.1);
+    color: #047857;
+}
+
+.alert-danger {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: #991b1b;
+}
+
+.alert-warning {
+    background-color: rgba(245, 158, 11, 0.1);
+    color: #92400e;
+}
+
+.alert-info {
+    background-color: rgba(102, 126, 234, 0.1);
+    color: #3730a3;
+}
+
+/* ============================================
+   TABLAS PERSONALIZADAS
+   ============================================ */
+
+.table-custom {
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+.table-custom tbody tr {
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s;
+}
+
+.table-custom tbody tr:hover {
+    transform: scale(1.01);
+}
+
+.table-custom td {
+    border: none;
+    padding: 15px;
+    vertical-align: middle;
+}
+
+.table-custom td:first-child {
+    border-radius: 10px 0 0 10px;
+}
+
+.table-custom td:last-child {
+    border-radius: 0 10px 10px 0;
+}
+
+.table-custom thead {
+    background: transparent;
+}
+
+.table-custom thead th {
+    border: none;
+    color: #6b7280;
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ============================================
+   AVATARES
+   ============================================ */
+
+.avatar-circle {
+    width: 100px;
+    height: 100px;
+    background: var(--primary-gradient);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    color: white;
+    margin: 0 auto;
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.avatar-sm {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-size: 1rem;
+}
+
+/* ============================================
+   BADGES PERSONALIZADOS
+   ============================================ */
+
+.badge-inline {
+    display: inline-block;
+    padding: 0.4em 0.8em;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+/* ============================================
+   SCROLLBAR PERSONALIZADA
+   ============================================ */
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(102, 126, 234, 0.4);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(102, 126, 234, 0.6);
+}
