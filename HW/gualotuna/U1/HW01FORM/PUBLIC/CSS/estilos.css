@@ -1,0 +1,80 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    margin: 0;
+    padding: 30px;
+    line-height: 1.8;
+    min-height: 100vh;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    margin-top: 15px;
+    font-weight: 600;
+    color: #ffffff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    font-size: 16px;
+}
+
+input[type="text"],
+select,
+textarea {
+    width: 350px;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 25px;
+    font-size: 15px;
+    transition: all 0.4s ease;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+textarea {
+    height: 100px;
+    resize: vertical;
+    border-radius: 15px;
+}
+
+input[type="text"]:focus,select:focus,textarea:focus {
+    outline: none;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+    background-color: #ffffff;
+}
+
+select {
+    background-color: rgba(255, 255, 255, 0.9);
+    cursor: pointer;
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"><path fill="%23666" d="M6 9L1.5 4.5h9z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+}
+
+input[type="radio"],input[type="checkbox"] {
+    margin-right: 12px;
+    margin-left: 8px;
+    transform: scale(1.4);
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+input[type="radio"]:checked,input[type="checkbox"]:checked {
+    accent-color: #ff6b6b;
+}
+
+br {
+    margin-bottom: 15px;
+}
+
+label[for="hombre"],label[for="mujer"],label[for="lunes"],label[for="martes"],label[for="miercoles"],
+label[for="jueves"],label[for="viernes"] {
+    display: inline-block;
+    margin-right: 20px;
+    margin-top: 0;
+    margin-bottom: 0;
+    color: #ffffff;
+    font-weight: 500;
+}
