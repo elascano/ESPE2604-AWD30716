@@ -1,0 +1,231 @@
+/* Variables de color personalizadas */
+:root {
+    --color-background: 255, 255, 255;
+    --color-text: 33, 37, 41;
+    --color-text-white: 255, 255, 255;
+    --color-bar: 52, 58, 64;
+    --color-accent: 52, 152, 219;
+    --color-overlay: 33, 37, 41;
+}
+
+/* Estilos para home standalone */
+.home-container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Estilos para home dinámico en main-content */
+.main-content .home-container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.home-video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.home-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(var(--color-overlay), 0.5);
+    z-index: 2;
+}
+
+.home-content {
+    position: relative;
+    margin-top: 100px;
+    z-index: 3;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.welcome-modal {
+    background: rgba(var(--color-background), 0.95);
+    border-radius: 12px;
+    padding: 60px 40px;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    animation: slideUp 0.8s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.welcome-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: rgba(var(--color-text), 1);
+    margin-bottom: 15px;
+    letter-spacing: -0.5px;
+}
+
+.welcome-subtitle {
+    font-size: 1.1rem;
+    color: rgba(var(--color-text), 0.7);
+    margin-bottom: 0;
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+@media (max-width: 768px) {
+    .home-container {
+        min-height: calc(100vh - 60px);
+        padding-bottom: 60px;
+    }
+
+    .welcome-modal {
+        padding: 40px 30px;
+        max-width: 90%;
+    }
+
+    .welcome-title {
+        font-size: 2rem;
+    }
+
+    .welcome-subtitle {
+        font-size: 1rem;
+        margin-bottom: 0;
+    }
+}
+
+
+@media (max-width: 575.98px) {
+    .home-container {
+        min-height: calc(100vh - 60px);
+        padding-bottom: 60px;
+        padding-top: 10px;
+    }
+
+    .welcome-modal {
+        padding: 35px 25px;
+        max-width: 95%;
+        border-radius: 10px;
+    }
+
+    .welcome-title {
+        font-size: 1.75rem;
+        margin-bottom: 12px;
+    }
+
+    .welcome-subtitle {
+        font-size: 0.95rem;
+        margin-bottom: 0;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .home-container {
+        min-height: calc(100vh - 60px);
+        padding-bottom: 60px;
+    }
+
+    .welcome-modal {
+        padding: 30px 20px;
+        max-width: 100%;
+        border-radius: 8px;
+    }
+
+    .welcome-title {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+        letter-spacing: -0.2px;
+    }
+
+    .welcome-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 0;
+        line-height: 1.5;
+    }
+}
+
+@media (min-width: 992px) {
+    .home-container {
+        min-height: 100vh;
+    }
+
+    .welcome-modal {
+        padding: 70px 50px;
+        max-width: 550px;
+    }
+
+    .welcome-title {
+        font-size: 2.8rem;
+    }
+
+    .welcome-subtitle {
+        font-size: 1.15rem;
+        margin-bottom: 0;
+    }
+}
+
+@media (min-width: 1200px) {
+    .welcome-modal {
+        padding: 80px 60px;
+        max-width: 600px;
+    }
+
+    .welcome-title {
+        font-size: 3rem;
+    }
+
+    .welcome-subtitle {
+        font-size: 1.2rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .welcome-modal {
+        animation: none;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    .welcome-modal {
+        background: rgba(33, 37, 41, 0.95);
+    }
+
+    .welcome-title {
+        color: rgba(var(--color-text-white), 1);
+    }
+
+    .welcome-subtitle {
+        color: rgba(var(--color-text-white), 0.7);
+    }
+}
