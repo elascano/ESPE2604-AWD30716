@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/css/style.css" />
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/29/29302.png" type="image/png" />
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" />
+    <title>Registro de Usuario</title>
+</head>
+
+<body class="bg-dark">
+    <header>
+        <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+            <symbol id="icon-person" viewBox="0 0 16 16">
+                <path
+                    d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z" />
+            </symbol>
+            <symbol id="icon-person-circle" viewBox="0 0 16 16">
+                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                <path fill-rule="evenodd"
+                    d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+            </symbol>
+            <symbol id="icon-envelope" viewBox="0 0 16 16">
+                <path
+                    d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
+            </symbol>
+            <symbol id="icon-lock" viewBox="0 0 16 16">
+                <path
+                    d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z" />
+            </symbol>
+        </svg>
+    </header>
+    <main>
+        <div class="container d-flex justify-content-center align-items-center vh-100">
+            <div class="card shadow-lg border-0"
+                style="max-width: 900px; width: 100%; border-radius: 20px; overflow: hidden;">
+                <div class="row g-0">
+
+                    <div class="col-md-6 p-5 bg-white">
+                        <div class="mb-4">
+                            <h2 class="fw-bold text-dark" style="font-size: 2rem;">Registro de Usuario</h2>
+                        </div>
+
+                        <form action="" method="post" id="formularioRegistroUsuario" class="needs-validation"
+                            novalidate>
+                            <div class="input-custom-group">
+                                <svg class="icon-style">
+                                    <use xlink:href="#icon-person" />
+                                </svg>
+                                <input type="text" class="form-control" name="fullname" placeholder="Julio Ariel"
+                                    id="nombreCompleto" data-validate="nombre_completo" autocomplete="new-name"
+                                    required>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                            
+                            <div class="input-custom-group">
+                                <svg class=" icon-style">
+                                    <use xlink:href="#icon-person" />
+                                </svg>
+                                <input type="text" class="form-control" name="lastname" placeholder="Pérez Gómez"
+                                    id="apellidoCompleto" data-validate="apellido_completo" autocomplete="new-lastname"
+                                    required>
+                                <div class="invalid-feedback"></div>
+                            </div>
+
+                            <div class="input-custom-group ">
+                                <svg class="icon-style">
+                                    <use xlink:href="#icon-envelope" />
+                                </svg>
+                                <input type="email" class="form-control" name="email"
+                                    placeholder="Tu correo electrónico" id="correoElectronico"
+                                    data-validate="correo_electronico" required>
+                                <div class="invalid-feedback"></div>
+                            </div>
+
+                            <div class="input-custom-group">
+                                <svg class="icon-style">
+                                    <use xlink:href="#icon-person-circle" />
+                                </svg>
+                                <input type="text" class="form-control" name="username" placeholder="Nombre de usuario"
+                                    id="nombreUsuario" data-validate="nombre_usuario" autocomplete="new-username"
+                                    required>
+                                <div class="invalid-feedback"></div>
+                            </div>
+
+                            <div class="input-custom-group">
+                                <svg class="icon-style">
+                                    <use xlink:href="#icon-lock" />
+                                </svg>
+                                <input type="password" class="form-control" name="password" placeholder="Contraseña"
+                                    id="contrasena" data-validate="contrasena" autocomplete="new-password" required>
+                                <div class="invalid-feedback"></div>
+                            </div>
+
+                            <div class="input-custom-group ">
+                                <svg class="icon-style">
+                                    <use xlink:href="#icon-lock" />
+                                </svg>
+                                <input type="password" class="form-control" name="confirm_password"
+                                    placeholder="Repite tu contraseña" id="confirmarContrasena"
+                                    data-validate="confirmar_contrasena" autocomplete="new-password" required>
+                                <div class="invalid-feedback"></div>
+                            </div>
+
+                            <div class="mb-4 form-check">
+                                <label class="form-check-label small text-muted" for="terminosCondiciones">
+                                    Yo acepto todas las declaraciones en <a href="#"
+                                        class="text-dark fw-bold text-decoration-underline">Términos de servicio</a>
+                                </label>
+                                <input type="checkbox" class="form-check-input" id="terminosCondiciones" required>
+                                <div class="invalid-feedback"></div>
+                            </div>
+
+                            <div class="d-flex justify-content-between align-items-center p-0">
+                                <button type="submit" class="btn px-5 py-2 rounded-3 fw-bold shadow-sm"
+                                    style="background-color: rgb(78, 194, 108) ; border: none;"
+                                    id="btnRegistrarUsuario">
+                                    Registrarse
+                                </button>
+
+                                <a href="login.html" class="text-muted text-decoration-none fw-bold small">
+                                    Ya soy miembro
+                                </a>
+                            </div>
+
+                        </form>
+                    </div>
+
+                    <div class="col-md-6 p-0 d-none d-md-block">
+                        <div class="h-100 d-flex align-items-center justify-content-center bg-white">
+                            <div class="text-center p-4">
+                                <img src="https://cdn-icons-png.flaticon.com/512/29/29302.png" alt="Workspace"
+                                    class="img-fluid" style="max-width: 80%;">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer></footer>
+    <!-- SweetAlert2 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../public/js/swetalert.js"></script>
+    <script src="../public/js/utils.js"></script>
+    <script src="../public/js/main.js"></script>
+    <script src="../public/js/storage.js"></script>
+    <script src="../public/js/validarEntradaDatos.js"></script>
+    <script src="../public/js/registro.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
