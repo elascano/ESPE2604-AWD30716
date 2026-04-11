@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="./public/css/style.css" />
+	<link rel="stylesheet" href="./public/css/home.css" />
+	<link rel="icon" href="https://cdn-icons-png.flaticon.com/512/29/29302.png" type="image/png" />
+	<link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.css" />
+	<title>Biblioteca Digital</title>
+</head>
+
+<body class="bg-dark">
+	<header>
+		<svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+			<symbol id="openBook" viewBox="0 0 16 16">
+				<path
+					d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783" />
+			</symbol>
+			<symbol id="notificaciones" viewBox="0 0 16 16">
+				<path
+					d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5 5 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901" />
+			</symbol>
+			<symbol id="Home" viewBox="0 0 16 16">
+				<path
+					d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z" />
+			</symbol>
+			<symbol id="speedometer2" viewBox="0 0 16 16">
+				<path
+					d="M8 4a.5.5 0 0 1 .5.5v4.793l2.146 2.147a.5.5 0 0 1-.708.708l-2.147-2.147A.5.5 0 0 1 7.5 9.5V4.5A.5.5 0 0 1 8 4z" />
+				<path
+					d="M3.732 12.683A7 7 0 1 1 12.683 3.73a7 7 0 0 1-8.95 8.95zm1.518-1.518a6 6 0 1 0 8.95-8.95 6 6 0 0 0-8.95 8.95z" />
+			</symbol>
+			<symbol id="table" viewBox="0 0 16 16">
+				<path
+					d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm1 0v3h14V2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1zm14 4H1v7h14V6zm0 8H1v1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-1z" />
+			</symbol>
+			<symbol id="people" viewBox="0 0 16 16">
+				<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+			</symbol>
+			<symbol id="cerrar_seccion" viewBox="0 0 16 16">
+				<path
+					d="M12 1a1 1 0 0 1 1 1v13h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V2a1 1 0 0 1 1-1zm-2 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2" />
+			</symbol>
+			<symbol id="book" viewBox="0 0 16 16">
+				<path fill-rule="evenodd" d="M6 1h6v7a.5.5 0 0 1-.757.429L9 7.083 6.757 8.43A.5.5 0 0 1 6 8z" />
+				<path
+					d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2" />
+				<path
+					d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1z" />
+			</symbol>
+			<symbol id="search" viewBox="0 0 16 16">
+				<path
+					d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+			</symbol>
+			<symbol id="menu" viewBox="0 0 16 16">
+				<line x1="3" y1="12" x2="21" y2="12"></line>
+				<line x1="3" y1="6" x2="21" y2="6"></line>
+				<line x1="3" y1="18" x2="21" y2="18"></line>
+			</symbol>
+		</svg>
+	</header>
+	<nav class="page-navigation">
+		<div class="d-flex flex-column flex-shrink-0 bg-body-tertiary" id="bookshop">
+
+			<ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
+				<li class="nav-item">
+					<a href="./view/home.html" onclick="loadPage(event, this.href)"
+						class="nav-link active py-3 border-bottom rounded-0" aria-current="page"
+						data-bs-toggle="tooltip" data-bs-placement="right" aria-label="Casa"
+						data-bs-original-title="Casa">
+						<svg class="icons bi pe-none" role="img" aria-label="cart">
+							<use xlink:href="#Home"></use>
+						</svg>
+					</a>
+				</li>
+				<!-- <li>
+					<a href="#" class="nav-link py-3 border-bottom rounded-0" data-bs-toggle="tooltip"
+						data-bs-placement="right" aria-label="Dashboard" data-bs-original-title="Dashboard">
+						<svg class="icons bi pe-none" role="img" aria-label="Dashboard">
+							<use xlink:href="#speedometer2"></use>
+						</svg>
+					</a>
+				</li> -->
+				<li>
+					<!-- onclick="loadPage(event, this.href)" -->
+					<a href="./view/agregarLibro.html" 
+					onclick="loadPage(event, this.href)"
+					class="nav-link py-3 border-bottom rounded-0"
+						data-bs-toggle="tooltip" data-bs-placement="right" aria-label="Agregar Libro"
+						data-bs-original-title="Agregar Libro">
+						<svg class="icons bi pe-none" role="img" aria-label="Orders">
+							<use xlink:href="#table"></use>
+						</svg>
+					</a>
+				</li>
+				<li class="nav-item">
+					<!-- href="./view/productosLibreria.html" -->
+					<!-- href="./test/test-productos.html" -->
+					<a href="./view/productosLibreria.html" onclick="loadPage(event, this.href)"
+						class="nav-link py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
+						aria-label="Products" data-bs-original-title="Catálogo de Libros">
+						<svg class="icons bi pe-none" role="img" aria-label="Products">
+							<use xlink:href="#openBook"></use>
+						</svg>
+					</a>
+				</li>
+
+			</ul>
+			<!-- <div class="dropdown border-top">
+				<a href="#"
+					class="d-flex align-items-center justify-content-center p-3 link-body-emphasis text-decoration-none dropdown-toggle"
+					data-bs-toggle="dropdown" aria-expanded="false"> <img
+						src="https://cdn-icons-png.flaticon.com/512/29/29302.png" alt="mdo"
+						class="icons rounded-circle"></a>
+				<ul class="dropdown-menu text-small shadow">
+					<li><a class="dropdown-item" href="#">New project...</a></li>
+					<li><a class="dropdown-item" href="#">Settings</a></li>
+					<li><a class="dropdown-item" href="#">Profile</a></li>
+					<li>
+						<hr class="dropdown-divider">
+					</li>
+					<li><a class="dropdown-item" href="#">Sign out</a></li>
+				</ul>
+			</div> -->
+		</div>
+	</nav>
+	<nav class="navbar navbar-expand navbar-light bg-white topbar shadow-sm fixed-top" id="nav_start">
+		<div class="container-fluid">
+			<!-- Hamburger Button -->
+			<button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggle" type="button">
+				<svg class="icons icon-menu">
+					<use xlink:href="#menu"></use>
+				</svg>
+			</button>
+
+			<!-- Brand -->
+			<a class="navbar-brand fw-bold" href="#">
+				<svg class="icons me-2">
+					<use xlink:href="#book"></use>
+				</svg>
+				Biblioteca Virginia
+			</a>
+
+			<!-- Search Bar -->
+			<form class="search-form d-md-none d-md-flex ms-auto me-3 w-50 d-none" id="searchForm">
+				<div class="input-group">
+					<input class="form-control border-0 bg-light" type="search" placeholder="Buscar" aria-label="Buscar"
+						id="searchInput" />
+					<span class="input-group-text bg-light border-0" id="closeSearch">
+						<svg class="icons text-muted">
+							<use xlink:href="#search"></use>
+						</svg>
+					</span>
+				</div>
+			</form>
+			<!-- Right Side Icons -->
+			<ul class="navbar-nav ms-auto d-flex flex-row align-items-center">
+				<!-- Search Icon (mobile) -->
+				<!-- <li class="nav-item dropdown me-3 d-md-show">
+					<a class="nav-link position-relative" href="#" role="button" id="searchToggle" aria-label="Search"
+						data-bs-toggle="dropdown" data-bs-placement="bottom" data-bs-original-title="Buscar">
+						<svg class="icons">
+							<use xlink:href="#search"></use>
+						</svg>
+					</a>
+				</li> -->
+
+				<!-- Alerts -->
+				<li class="nav-item dropdown me-3">
+					<a class="nav-link position-relative" href="#" role="button" data-bs-toggle="dropdown"
+						data-bs-placement="bottom" aria-label="Notifications" data-bs-original-title="Notificaciones"
+						id="alertsIcon">
+						<svg class="icons">
+							<use xlink:href="#notificaciones"></use>
+						</svg>
+						<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger  "
+							style="font-size: 0.95rem;" id="numero_notificaciones">
+							0
+						</span>
+					</a>
+					<ul class="alertCenter dropdown-menu dropdown-menu-end overflow-auto" id="alertsMenu" style="max-height: 450px;">
+						<li class="dropdown-header">Centro de Alertas</li>
+						<!-- Linea que divide  -->
+						<li>
+							<hr class="dropdown-divider" />
+						</li>
+						<li id="containerAlert">
+							
+							<!-- <a class="dropdown-item" onclick="nuevasAlertas()">me cago en la puta</a>
+							<a class="dropdown-item">asas</a> -->
+						</li>
+					</ul>
+				</li>
+
+				<!-- User Profile -->
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button"
+						data-bs-toggle="dropdown" data-bs-placement="bottom" aria-label="User Account"
+						data-bs-original-title="Usuario" id="userProfile1">
+						<img src="https://cdn-icons-png.flaticon.com/512/29/29302.png" class=" icons me-2" alt="User" />
+					</a>
+					<ul class="dropdown-menu dropdown-menu-end" id="userProfile">
+						<li class="dropdown-header">
+							<div class="fw-bold" id="entradaNombreCompleto"></div>
+							<div class="text-muted small" id="entradaEmail"></div>
+						</li>
+						<li>
+							<hr class="dropdown-divider" />
+						</li>
+						<li>
+							<!-- <a class="dropdown-item" href="#">
+								<svg class="icons me-2">
+									<use xlink:href="#people"></use>
+								</svg>
+								Account
+							</a> -->
+						</li>
+						<li>
+							<a class="dropdown-item" href="view/login.html">
+								<svg class="icons me-2">
+									<use xlink:href="#cerrar_seccion"></use>
+								</svg>
+								Salir
+							</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<main>
+		<div class="main-content"></div>
+	</main>
+
+	<footer></footer>
+	<!-- Cargador de páginas dinámicas -->
+	<script src="./public/js/pageLoader.js"></script>
+	<script src="./public/js/NotificationServices.js"></script>
+	<!-- SweetAlert2 CDN -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script src="./public/js/swetalert.js"></script>
+	<!-- Funciones utilitarias genericas -->
+	<script src="./public/js/utils.js"></script>
+	<script src="./public/js/main.js"></script>
+	<!-- <script src="./public/js/validarEntradaDatos.js"></script> -->
+	<script src="./public/js/storage.js"></script>
+	<script src="./public/js/prueba.js"></script>
+	<script>
+		// Animación de carga
+		window.addEventListener('load', () => {
+			setTimeout(() => {
+				document.body.classList.add('bg-started')
+				document.getElementById('.nav_start').classList.add('')
+			}, 200);
+		});
+		NotificationServices.inicializar();
+	</script>
+	<script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="./public/js/LibraryData.js"></script>
+	<script src="./public/js/prueba.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+	<script src="./public/js/agregarLibro.js"></script>
+	<script src="./public/js/validarCampoLibro.js"></script>
+</body>
+
+</html>
+
+<!-- // ...existing code...
+<script>
+  const mq = window.matchMedia('(max-width: 767.98px)');
+
+  function handleMq(e) {
+    const el = document.getElementById('searchForm'); // o el id que necesites
+    if (!el) return;
+    if (e.matches) {
+      // cuando cumple el media query
+      el.classList.add('d-none');
+    } else {
+      // cuando NO lo cumple
+      el.classList.remove('d-none');
+    }
+  }
+
+  // soporte para navegadores antiguos
+  if (mq.addEventListener) mq.addEventListener('change', handleMq);
+  else mq.addListener(handleMq);
+
+  // llamada inicial
+  handleMq(mq);
+</script> -->

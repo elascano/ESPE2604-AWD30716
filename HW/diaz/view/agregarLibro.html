@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Libro - Biblioteca Virginia</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../public/css/style.css">
+    <link rel="stylesheet" href="../public/css/agregarLibro.css">
+    
+</head>
+<body class="bg-light">
+    
+    <!-- Header -->
+    <div class="page-header">
+        <div class="container">
+            <h1 class="text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-book-fill me-2" viewBox="0 0 16 16">
+                    <path d="M8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783"/>
+                </svg>
+                Agregar Nuevo Libro
+            </h1>
+        </div>
+    </div>
+
+    <!-- Contenedor de alertas -->
+    <div id="alert-container"></div>
+
+    <!-- Formulario -->
+    <div class="container">
+        <div class="form-container">
+            <form id="form-agregar-libro">
+                
+                <!-- Título del Libro -->
+                <div class="mb-3">
+                    <small> Lo que contiene el * es obligatorio</small>
+                    <hr>
+                    <label for="input-titulo" class="form-label">
+                        Título del Libro <span class="text-danger">*</span>
+                    </label>
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        id="input-titulo" 
+                        placeholder="Ej: Cien años de soledad"
+                        required
+                    >
+                    <div class="invalid-feedback">
+                        Por favor ingresa el título del libro.
+                    </div>
+                </div>
+
+                <!-- Autor -->
+                <div class="mb-3">
+                    <label for="input-autor" class="form-label">
+                        Autor <span class="text-danger">*</span>
+                    </label>
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        id="input-autor" 
+                        placeholder="Ej: Gabriel García Márquez"
+                        required
+                    >
+                    <div class="invalid-feedback">
+                        Por favor ingresa el nombre del autor.
+                    </div>
+                </div>
+
+                <!-- Género -->
+                <div class="mb-3">
+                    <label for="input-genero" class="form-label">
+                        Género <span class="text-danger">*</span>
+                    </label>
+                    <select class="form-select" id="input-genero" required>
+                        <option value="">Selecciona un género</option>
+                        <option value="Novela">Novela</option>
+                        <option value="Ciencia">Ciencia</option> 
+                        <option value="Ciencia Ficción">Ciencia Ficción</option>
+                        <option value="Fantasía">Fantasía</option>
+                        <option value="Romance">Romance</option>
+                        <option value="Terror">Terror</option>
+                        <option value="Misterio">Misterio</option>
+                        <option value="Tecnología">Tecnología</option>
+                        <option value="Historia">Historia</option>
+                        <option value="Biografía">Biografía</option>
+                        <option value="Infantil">Infantil</option>
+                        <option value="Poesía">Poesía</option>
+                        <option value="Ensayo">Ensayo</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Por favor selecciona un género.
+                    </div>
+                </div>
+
+                <!-- URL de la Imagen -->
+                <div class="mb-3">
+                    <label for="input-portada" class="form-label">
+                        URL de la Portada <span class="text-danger">*</span>
+                    </label>
+                    <input 
+                        type="url" 
+                        class="form-control" 
+                        id="input-portada" 
+                        placeholder="https://ejemplo.com/imagen.jpg"
+                        required
+                    >
+                    <div class="invalid-feedback">
+                        Por favor ingresa una URL válida para la portada.
+                    </div>
+                    <div class="form-text">
+                        Ingresa la URL completa de la imagen de portada del libro.
+                    </div>
+                    
+                    <!-- Vista previa de la imagen -->
+                    <div id="preview-container" class="text-center d-none">
+                        <img id="preview-image" class="preview-image" alt="Vista previa">
+                    </div>
+                </div>
+
+                <!-- Botones -->
+                <div class="d-flex gap-2 justify-content-end">
+                    <button 
+                        type="button" 
+                        class="btn btn-secondary" 
+                        onclick="window.history.back()"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left me-1" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
+                        </svg>
+                        Cancelar
+                    </button>
+                    <button 
+                        type="submit" 
+                        class="btn btn-primary"
+                        id="btn-guardar"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-save me-1" viewBox="0 0 16 16">
+                            <path d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v7.293l2.646-2.647a.5.5 0 0 1 .708.708l-3.5 3.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L7.5 9.293V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1z"/>
+                        </svg>
+                        Guardar Libro
+                    </button>
+                </div>
+
+            </form>
+
+            <!-- Lista de libros agregados -->
+            <div class="mt-5">
+                <h4 class="mb-3">Libros en la Biblioteca</h4>
+                <div id="lista-libros-agregados" class="list-group">
+                    <!-- Se llenara dinamicamente -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- SweetAlert2 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../public/js/swetalert.js"></script>
+    <script src="../public/js/utils.js"></script>
+    <script src="../public/js/LibraryData.js"></script>
+    <script src="../public/js/NotificationServices.js"> </script>
+    <script src="../public/js/agregarLibro.js"></script>
+    <script src="../public/js/validarCampoLibro.js"></script>
+</body>
+</html>

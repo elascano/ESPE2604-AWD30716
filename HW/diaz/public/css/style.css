@@ -1,0 +1,556 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&family=Roboto:wght@300;400;500;700;900&display=swap');
+
+* {
+    font-family: 'Oswald', sans-serif;
+}
+
+:root {
+    --color-background: 255, 255, 255;
+    --color-text: 33, 37, 41;
+    --color-text-invert: 0, 0, 0;
+    --color-bar: 52, 58, 64;
+    --color-accent: 214, 0, 0;
+    --color-accent-dark: 150, 0, 0;
+}
+
+nav.page-navigation {
+    margin-top: 80px ;
+    min-height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    box-shadow: inset -12px 0 12px -12px rgba(4, 6, 8, 0.48);
+    background: rgba(var(--color-bar), 1);
+    transform: translate(-100%, 0);
+    transition: transform 0.9s 0.3s, background 0.3s ease;
+}
+
+nav.page-navigation>.d-flex,
+nav.page-navigation>div#bookshop {
+    width: 4.5rem;
+    min-height: 100vh;
+}
+
+nav.page-navigation div ul nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    /* gap: 20px; */
+}
+
+nav.page-navigation li {
+    height: 100%;
+    width: 100%;
+}
+
+.icons {
+    box-sizing: border-box;
+    width: 30px;
+    height: 30px;
+}
+
+.input-custom-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+    border-bottom: 2px solid #000000;
+    padding-bottom: 5px;
+    margin-bottom: 1.8rem;
+    transition: border-color 0.3s ease;
+    flex-wrap: wrap;
+}
+
+.input-custom-group:focus-within {
+    border-bottom: 2px solid rgb(78, 194, 108);
+}
+
+/* Cuando hay error: la línea se pone roja */
+.input-custom-group:has(.is-invalid) {
+    border-bottom: 2px solid #dc3545;
+}
+
+/* El input en sí: transparente y sin bordes */
+.input-custom-group input {
+    border: none;
+    background: transparent;
+    outline: none;
+    box-shadow: none !important;
+    padding-left: 10px;
+    color: #495057;
+    font-weight: 500;
+    flex: 1;
+    min-width: 0;
+}
+
+/* Mensaje de error debajo del input, ocupa todo el ancho */
+.input-custom-group .invalid-feedback {
+    position: absolute;
+    top: 40px;
+    width: 100%;
+    font-size: 0.82rem;
+    padding-left: 10px;
+}
+
+/* Color de los iconos */
+.icon-style {
+    fill: #686767;
+    width: 18px;
+    height: 18px;
+}
+
+/* Cuando el input está activo, el icono también se pone azul (opcional) */
+.input-custom-group:focus-within .icon-style {
+    width: 18px;
+    height: 18px;
+    fill: rgb(78, 194, 108);
+}
+
+
+.alertCenter {
+    width: 360px;
+}
+
+/* Si cambio los valores toman animaciones diferentes */
+.bg-started nav.page-navigation {
+    transform: translate(0, 0);
+}
+
+
+.main-content {
+    margin-left: 60px;
+    margin-top: 70px;
+    min-height: calc(100vh - 70px);
+    padding: 20px;
+}
+
+.navbar {
+    height: 80px !important;
+    border: none;
+    background: transparent;
+    font-size: 1.5rem;
+    color: rgba(var(--color-text), 1);
+}
+
+.tooltip .tooltip-inner {
+    color: #fff;
+    padding: .35rem .86rem;
+    border-radius: 10px;
+    font-size: .9rem;
+}
+
+.tooltip.bs-tooltip-bottom .tooltip-arrow::before {
+    border-right-color: #d60000 !important;
+}
+
+.search-form {
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.search-form.show {
+    display: flex !important;
+    animation: slideIn 0.4s ease-out forwards;
+}
+
+.search-form.hide {
+    animation: slideOut 0.3s ease-in forwards;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+        max-width: 0;
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+        max-width: 500px;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+        max-width: 500px;
+    }
+
+    to {
+        opacity: 0;
+        transform: translateX(-20px);
+        max-width: 0;
+    }
+}
+
+.search-form input {
+    transition: all 0.3s ease;
+}
+
+.search-form input:focus {
+    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.25);
+}
+
+/* Mobile search toggle */
+@media (max-width: 991.98px) {
+
+    nav.page-navigation {
+        position: fixed;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 60px;
+        min-height: auto;
+        margin-top: 0;
+        box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.15);
+        background: rgba(var(--color-bar), 1);
+        transform: translate(0, 100%);
+        transition: transform 1s 0.3s, background 0.3s ease;
+        z-index: 100;
+    }
+
+    nav.page-navigation>.d-flex,
+    nav.page-navigation>div#bookshop {
+        width: 100vw;
+        min-height: auto;
+        height: 100%;
+        flex-direction: row !important;
+        align-items: center;
+        justify-content: center;
+    }
+
+    nav.page-navigation ul,
+    nav.page-navigation ul.nav,
+    nav.page-navigation ul.nav-pills {
+        display: flex !important;
+        flex-direction: row !important;
+        /* Forzar horizontal */
+        flex-wrap: nowrap !important;
+        /* Sin salto de línea */
+        align-items: center;
+        justify-content: space-around;
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    nav.page-navigation li,
+    nav.page-navigation li.nav-item {
+        width: auto;
+        height: auto;
+        flex: 1;
+        /* Distribuir espacio igual */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    nav.page-navigation ul a,
+    nav.page-navigation ul a.nav-link {
+        border-bottom: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .icons {
+        width: 25px;
+        height: 25px;
+    }
+
+    .main-content {
+        margin-left: 0;
+        margin-bottom: 80px;
+        padding-bottom: 20px;
+    }
+
+    .bg-started nav.page-navigation {
+        transform: none;
+    }
+
+    .search-form {
+        position: absolute;
+        top: 0px;
+        left: 250px;
+        max-width: 45% !important;
+        margin-top: 22px;
+        background: white;
+        z-index: 100;
+    }
+}
+
+@media (max-width: 768px) {
+
+    nav.page-navigation {
+        position: fixed;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100vw;
+        height: 60px;
+        border-radius: 0;
+        box-shadow: 0 -6px 12px rgba(0, 0, 0, 0.16);
+        transform: translate(0, 100%);
+        transition: transform 1s 0.3s, background 0.3s ease;
+    }
+
+    nav.page-navigation>.d-flex,
+    nav.page-navigation>div#bookshop {
+        width: 100vw;
+        min-height: auto;
+        height: 100%;
+        flex-direction: row !important;
+        align-items: center;
+        justify-content: center;
+    }
+
+    nav.page-navigation ul,
+    nav.page-navigation ul.nav,
+    nav.page-navigation ul.nav-pills {
+        display: flex !important;
+        flex-direction: row !important;
+        /* Forzar horizontal */
+        flex-wrap: nowrap !important;
+        /* Sin salto de línea */
+        align-items: center;
+        justify-content: space-around;
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    nav.page-navigation li,
+    nav.page-navigation li.nav-item {
+        width: auto;
+        height: auto;
+        flex: 1;
+        /* Distribuir espacio igual */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    nav.page-navigation ul a,
+    nav.page-navigation ul a.nav-link {
+        border-bottom: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .icons {
+        width: 24px;
+        height: 24px;
+    }
+
+    .main-content {
+        margin-left: 0;
+        margin-bottom: 80px;
+        padding-bottom: 20px;
+    }
+
+    .bg-started nav.page-navigation {
+        transform: none;
+    }
+
+    .search-form {
+        position: absolute;
+        top: auto;
+        bottom: -60px;
+        /* Arriba de la barra */
+        border-radius: 5px;
+        right: 100px;
+        padding: 10px;
+        background: white;
+        box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+    }
+}
+
+@media (max-width: 575.98px) {
+
+    nav.page-navigation {
+        position: fixed;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 60px;
+        border-radius: 0;
+        box-shadow: 0 -6px 12px rgba(0, 0, 0, 0.16);
+        transform: translate(0, 100%);
+        transition: transform 1s 0.3s, background 0.3s ease;
+    }
+
+    nav.page-navigation>.d-flex,
+    nav.page-navigation>div#bookshop {
+        width: 100vw;
+        min-height: auto;
+        height: 100%;
+        flex-direction: row !important;
+        align-items: center;
+        justify-content: center;
+    }
+
+    nav.page-navigation ul,
+    nav.page-navigation ul.nav,
+    nav.page-navigation ul.nav-pills {
+        display: flex !important;
+        flex-direction: row !important;
+        /* Forzar horizontal */
+        flex-wrap: nowrap !important;
+        /* Sin salto de línea */
+        align-items: center;
+        justify-content: space-around;
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    nav.page-navigation li,
+    nav.page-navigation li.nav-item {
+        width: auto;
+        height: auto;
+        flex: 1;
+        /* Distribuir espacio igual */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    nav.page-navigation ul a,
+    nav.page-navigation ul a.nav-link {
+        border-bottom: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .icons {
+        width: 24px;
+        height: 24px;
+    }
+
+    .main-content {
+        margin-left: 0;
+        margin-bottom: 80px;
+        padding-bottom: 20px;
+    }
+
+    .bg-started nav.page-navigation {
+        transform: none;
+    }
+
+    .search-form {
+        position: absolute;
+        top: auto;
+        bottom: -60px;
+        /* Arriba de la barra */
+        border-radius: 5px;
+        right: 100px;
+        padding: 10px;
+        background: white;
+        box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+    }
+}
+
+@media (max-width: 500px) {
+
+    nav.page-navigation {
+        position: fixed;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100vw;
+        height: 60px;
+        border-radius: 0;
+        box-shadow: 0 -6px 12px rgba(0, 0, 0, 0.16);
+        transform: translate(0, 100%);
+        transition: transform 1s 0.3s, background 0.3s
+    }
+
+    nav.page-navigation>.d-flex,
+    nav.page-navigation>div#bookshop {
+        width: 100vw;
+        min-height: auto;
+        height: 100%;
+        flex-direction: row !important;
+        align-items: center;
+        justify-content: center;
+    }
+
+    nav.page-navigation ul,
+    nav.page-navigation ul.nav,
+    nav.page-navigation ul.nav-pills {
+        display: flex !important;
+        flex-direction: row !important;
+        /* Forzar horizontal */
+        flex-wrap: nowrap !important;
+        /* Sin salto de línea */
+        align-items: center;
+        justify-content: space-around;
+        width: 100vw;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    nav.page-navigation li,
+    nav.page-navigation li.nav-link {
+        flex: 1;
+        /* Distribuir espacio igual */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    nav.page-navigation ul a,
+    nav.page-navigation ul a.nav-link {
+        border-bottom: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .icons {
+        width: 24px;
+        height: 24px;
+    }
+
+    .main-content {
+        margin-left: 0;
+        margin-bottom: 80px;
+        padding-bottom: 20px;
+    }
+
+    .bg-started nav.page-navigation {
+        transform: none;
+    }
+
+    .search-form {
+        position: absolute;
+        top: auto;
+        bottom: -60px;
+        /* Arriba de la barra */
+        border-radius: 5px;
+        right: 100px;
+        padding: 10px;
+        background: white;
+        box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+    }
+}

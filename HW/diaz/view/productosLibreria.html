@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="../public/css/productos.css" />
+		<title>Catálogo de Libros - Biblioteca Digital</title>
+	</head>
+	<body>
+		<main class="productos-container">
+			<!-- Encabezado de productos -->
+			<section class="productos-header">
+				<h1 class="productos-title">Catálogo de Libros</h1>
+				<p class="productos-subtitle">
+					Explora nuestra colección de libros disponibles
+				</p>
+
+				<!-- Filtros de búsqueda -->
+				<div class="filtros-section">
+					<input
+						type="text"
+						id="buscar-libro"
+						class="buscar-input"
+						placeholder="Buscar por título o autor..."
+					/>
+					<select id="filtro-genero" class="filtro-select">
+						<option value="">Todos los géneros</option>
+						<option value="Novela">Novela</option>
+						<option value="Infantil">Infantil</option>
+						<option value="Tecnología">Tecnología</option>
+						<option value="Ciencia">Ciencia</option>
+						<option value="Ciencia">Ciencia Ficción</option>
+						<option value="Ciencia">Fantasía</option>
+						<option value="Ciencia">Romance</option>
+						<option value="Ciencia">Terror</option>
+						<option value="Ciencia">Misterio</option>
+						<option value="Ciencia">Historia</option>
+						<option value="Ciencia">Biografía</option>
+						<option value="Ciencia">Poesía</option>
+						<option value="Ciencia">Ensayo</option>
+						<option value="Ciencia">Otro</option>
+					</select>
+				</div>
+			</section>
+
+			<!-- Grid de libros -->
+			<section class="libros-grid">
+				<div id="libros-container" class="container-libros">
+					<!-- Los libros se cargan aquí dinámicamente -->
+					<div class="loading-spinner" id="loading-spinner">
+						<div class="spinner"></div>
+						<p>Cargando libros...</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- Modal para ver detalles del libro -->
+			<div id="modal-libro" class="modal-libro">
+				<div class="modal-contenido">
+					<button id="cerrar-modal" class="btn-cerrar">
+						&times;
+					</button>
+
+					<div class="modal-body">
+						<div class="modal-portada">
+							<img
+								id="modal-imagen"
+								src=""
+								alt="Portada del libro"
+							/>
+						</div>
+
+						<div class="modal-info">
+							<h2 id="modal-titulo" class="modal-titulo"></h2>
+							<p id="modal-autor" class="modal-autor"></p>
+							<p id="modal-genero" class="modal-genero"></p>
+
+							<div class="modal-estado">
+								<span
+									id="modal-disponibilidad"
+									class="badge"
+								></span>
+							</div>
+
+							<div class="modal-actions">
+								<button
+									id="btn-prestar"
+									class="btn btn-primary btn-accion"
+								>
+									Solicitar Préstamo
+								</button>
+								<button
+									id="btn-devolver"
+									class="btn btn-secondary btn-accion"
+									style="display: none;"
+								>
+									Registrar Devolución
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- SweetAlert2 CDN -->
+			<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+			<script src="../public/js/swetalert.js"></script>
+			<script src="../public/js/LibraryData.js"></script>
+			<script src="../public/js/NotificationServices.js" ></script>
+			<script src="../public/js/productosLibreria.js"></script>
+			<script>
+				// Inicializar ProductosLibreria cuando esta página se carga
+				if (window.ProductosLibreria && typeof window.ProductosLibreria.init === 'function') {
+				    window.ProductosLibreria.init();
+				}
+			</script>
+		</main>
+	</body>
+</html>
