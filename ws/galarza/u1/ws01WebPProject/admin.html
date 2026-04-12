@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel de Administración</title>
+  <meta name="description" content="Panel administrativo con control de usuarios y productos." />
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/admin.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css"
+/>
+<script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+  <link rel="icon" href="https://cdn4.iconfinder.com/data/icons/mii-ui-vol-2/133/gaming-512.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="top-bar">
+      <div class="container">
+        <span>HTMLStore – Panel de Administración</span>
+        <div class="social-links"></div>
+      </div>
+    </div>
+
+    <nav class="main-nav">
+      <div class="container">
+        <div class="nav-left">
+          <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+            <span></span><span></span><span></span>
+          </button>
+
+          <a href="/" class="logo">
+            <img
+              src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEguQWc2AqbMLqUktnw2LSTo4EOCjaVPnjZezxkr3kvhr_jnCu9sTaD1cG2bwosUkZWmghH69q4TiyB-R0oPTo1GJFPl2JhWEbYtFzcAlSYKtMPkoGciYeNwz3wTtcxM5pec26BjCTI6ehQl/s1600/el+control.png"
+              alt="Logo" />
+          </a>
+
+          <ul class="nav-menu">
+            <li><a href="admin.html">Inicio</a></li>
+            <li><a href="#usuarios" id="usuarios-link">Usuarios</a></li>
+            <li><a href="#productos" id="productos-link">Productos</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-right">
+          <div id="login-container">
+            <a href="#" class="login-btn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+              </svg>
+              Iniciar sesión
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="welcome-section" id="bienvenido">
+      <div class="container">
+        <div class="welcome-header">
+          <img src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png" alt="Admin Icon" class="welcome-icon" />
+          <div>
+            <h2>¡Bienvenido al Panel de Administración!</h2>
+            <p class="welcome-subtitle">¡Hola, <strong>Administrador</strong>! Aquí podrás gestionar usuarios, productos
+              y visualizar datos de tu tienda.</p>
+          </div>
+        </div>
+
+        <div class="welcome-cards">
+        </div>
+
+        <div id="auth-modal" class="auth-modal hidden">
+            <div class="auth-modal-content">
+              <span class="auth-close" id="auth-close">&times;</span>
+
+              <!-- Formulario de inicio de sesión (visible al inicio) -->
+              <form id="login-form">
+                <h2 style="margin-bottom: 8px;">Iniciar sesión</h2>
+                <input class="form-input" type="email" placeholder="Correo electrónico" required />
+                <input class="form-input" type="password" placeholder="Contraseña" required />
+                <button type="submit" class="add-to-cart">Entrar</button>
+                <p class="auth-switch">
+                  ¿No tienes cuenta?
+                  <a href="#" id="show-register">Regístrate</a>
+                </p>
+              </form>
+
+              <!-- Formulario de registro (oculto al inicio) -->
+              <form id="register-form" class="oculto">
+                <h2 style="margin-bottom: 8px;">Registrarse</h2>
+                <input class="form-input" type="text" placeholder="Nombre de usuario" required />
+                <input type="email" class="form-input" placeholder="Correo electrónico" required />
+                <input class="form-input" type="password" placeholder="Contraseña" required />
+                <input class="form-input" type="tel" placeholder="Número de teléfono" required />
+                <input class="form-input" type="text" placeholder="Dirección" required />
+                <label for="photo-upload">Subir foto o tomar foto:</label>
+                <div id="camera-row">
+                  <div class="camera-box">
+                    <video id="video" autoplay playsinline></video>
+                  </div>
+                  <div class="preview-box">
+                    <img id="photo-preview" class="hidden" />
+                  </div>
+                </div>
+                <br />
+                <div style="text-align: center; margin-bottom: 1rem">
+                  <button id="take-photo" type="button" class="add-to-cart"
+                    style="width: fit-content; padding: 8px 12px">
+                    📸 Tomar Foto
+                  </button>
+                </div>
+                <input type="file" id="photo-upload" accept="image/*" capture="environment" class="btn-pre" />
+                <button type="submit" class="add-to-cart">Crear cuenta</button>
+                <p class="auth-switch">
+                  ¿Ya tienes cuenta?
+                  <a href="#" id="show-login">Iniciar sesión</a>
+                </p>
+              </form>
+            </div>
+          </div>
+      </div>
+    </section>
+
+
+    <!-- Sección Usuarios -->
+    <section class="users-section" id="usuarios" style="display: none;">
+      <div class="container">
+        <h2>Gestión de Usuarios</h2>
+        <div class="products-grid">
+          <div class="product-card">
+            <div id="usuarios-lista"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- Modal Editar Usuario -->
+    <div id="edit-user-modal" class="modal hidden">
+      <div class="modal-content">
+        <span class="close-modal" id="close-edit-modal">&times;</span>
+        <h3>Editar Usuario</h3>
+        <form id="edit-user-form" class="edit-user-form">
+
+          <div class="photo-section">
+            <label for="edit-user-photo">Foto actual / Cambiar foto</label>
+            <img id="edit-user-photo-preview" src="" alt="Foto usuario" />
+            <input type="file" id="edit-user-photo" class="add-to-cart" accept="image/*" />
+          </div>
+
+          <label>Nombre:</label>
+          <input type="text" name="Nombre" required />
+
+          <label>Email:</label>
+          <input type="email" name="Email" required />
+
+          <label>Teléfono:</label>
+          <input type="tel" name="Telefono" />
+
+          <label>Dirección:</label>
+          <input type="text" name="Direccion" />
+
+          <button type="submit" class="save-btn">Guardar Cambios</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal Editar Producto -->
+    <div id="edit-product-modal" class="modal hidden">
+      <div class="modal-content">
+        <span class="close-modal" id="close-edit-product-modal">&times;</span>
+        <h3>Editar Producto</h3>
+        <form id="edit-product-form" class="edit-user-form">
+
+          <div class="photo-section">
+            <label for="edit-product-photo">Imagen actual / Cambiar imagen</label>
+            <img id="edit-product-photo-preview" src="" alt="Imagen producto"/>
+            <input type="file" id="edit-product-photo" class="add-to-cart" accept="image/*" />
+          </div>
+
+          <label>Nombre:</label>
+          <input class="form-input" type="text" name="nombre" placeholder="Cambiar nombre" required />
+
+          <label>Precio (USD):</label>
+          <input class="form-input" type="number" name="precio" min="0" step="0.01" placeholder="Cambiar precio" required />
+
+          <label>Stock:</label>
+          <input class="form-input" type="number" id="edit-product-stock" name="stock" min="0" step="1" placeholder="Cambiar stock" required />
+
+
+          <label>Categoría:</label>
+          <select id="edit-product-category" class="form-input" name="categoria" required>
+            <option value="">Selecciona</option>
+            <option value="consola">Consola</option>
+            <option value="accesorio">Accesorio</option>
+            <!-- más opciones si necesitas -->
+          </select>
+
+          <button type="submit" class="save-btn">Guardar Cambios</button>
+        </form>
+      </div>
+    </div>
+
+
+    <!-- Modal Agregar Producto -->
+    <div id="add-product-modal" class="modal hidden">
+      <div class="modal-content">
+        <span class="close-modal" id="close-add-product-modal">&times;</span>
+        <h3>Agregar Nuevo Producto</h3>
+        <form id="add-product-form" class="edit-user-form">
+          <div class="photo-section">
+            <label for="add-product-photo">Subir imagen / Tomar foto</label>
+            <img id="add-product-photo-preview" src="" alt="Vista previa"
+              style="max-height: 150px; object-fit: contain;" />
+            <input type="file" class="add-to-cart" id="add-product-photo" accept="image/*" />
+
+            <!-- Botón para usar cámara -->
+            <button type="button" id="open-camera-btn" style="margin-top: 8px;">📷 Usar cámara</button>
+
+            <!-- Contenedor de cámara -->
+            <div id="camera-container" class="hidden" style="margin-top: 10px;">
+              <video id="camera-video" autoplay playsinline
+                style="width: 100%; max-height: 200px; border: 1px solid #ccc; border-radius: 6px;"></video>
+              <button type="button" id="take-photo-btn" style="margin-top: 6px;">📸 Tomar foto</button>
+            </div>
+          </div>
+
+          <label>Nombre del producto:</label>
+          <input class="form-input" type="text" name="nombre" required placeholder="Ingrese nombre de producto"/>
+
+          <label>Precio (USD):</label>
+          <input class="form-input" type="number" name="precio" min="0" step="0.01" required placeholder="Ingrese precio"/>
+
+
+          <label>Stock:</label>
+          <input class="form-input" type="number" name="stock" min="0" step="1" required placeholder="Ingrese stock"/>
+
+          <label>Categoría:</label>
+          <select class="form-input" name="categoria" required>
+            <option value="">Selecciona</option>
+            <option value="consola">Consola</option>
+            <option value="accesorio">Accesorio</option>
+            <!-- más opciones según necesites -->
+          </select>
+
+          <button type="submit" class="save-btn">Agregar Producto</button>
+
+
+
+        </form>
+      </div>
+    </div>
+
+
+
+    <!-- Sección Productos (oculta inicialmente) -->
+    <section class="products-section" id="productos" style="display: none;">
+      <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <h2>Gestión de Productos</h2>
+          <button id="agregar-producto-btn" class="save-btn" style="margin-bottom: 30px;">+ Agregar producto</button>
+        </div>
+        <div id="admin-productos" class="products-grid"></div>
+        <div class="product-card">
+        </div>
+      </div>
+      </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="./main.js"></script>
+  <script src="./assets/js/admin.js"></script>
+</body>
+
+</html>
