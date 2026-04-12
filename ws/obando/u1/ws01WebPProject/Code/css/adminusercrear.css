@@ -1,0 +1,137 @@
+/* Estilos personalizados de validación */
+.formulario__grupo-input {
+    position: relative;
+}
+
+/* Personaliza los bordes en la validación */
+.formulario__input {
+    border: 3px solid transparent; /* Para evitar conflictos con Bootstrap */
+    transition: .3s ease all;
+}
+
+.formulario__input:focus {
+    border: 3px solid #0075FF !important; /* Color del borde al enfocar */
+    outline: none;
+    box-shadow: 3px 0px 30px rgba(163,163,163, 0.4);
+}
+
+/* Oculta el mensaje de error por defecto */
+.formulario__input-error {
+    font-size: 12px;
+    margin-bottom: 0;
+    display: none;
+    color: #bb2929; /* Color de error */
+}
+
+/* Muestra el mensaje de error cuando el input es incorrecto */
+.formulario__input-error-activo {
+    display: block;
+}
+
+/* Ícono de validación */
+.formulario__validacion-estado {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;  /* Ajusta según sea necesario */
+    font-size: 18px; /* Tamaño más grande */
+    z-index: 100;
+    opacity: 0;
+}
+
+/* Color del ícono cuando el input es correcto */
+.formulario__grupo-correcto .formulario__validacion-estado {
+    color: #1ed12d;
+    opacity: 1;
+}
+
+/* Cambios en el color del label cuando hay error */
+.formulario__grupo-incorrecto .form-label {
+    color: #bb2929;
+}
+
+/* Color del ícono de validación cuando hay error */
+.formulario__grupo-incorrecto .formulario__validacion-estado {
+    color: #bb2929;
+    opacity: 1;
+}
+
+/* Borde rojo cuando hay error */
+.formulario__grupo-incorrecto .form-control {
+    border: 3px solid #bb2929 !important;
+}
+
+/* Mensaje de error general */
+.formulario__mensaje {
+    height: 45px;
+    line-height: 45px;
+    background: #F66060;
+    padding: 0 15px;
+    border-radius: 3px;
+    display: none;
+    color: white;
+    text-align: center;
+}
+
+.formulario__mensaje-activo {
+    display: block;
+}
+
+/* Mensaje de éxito */
+.formulario__mensaje-exito {
+    font-size: 14px;
+    color: #119200;
+    display: none;
+}
+
+.formulario__mensaje-exito-activo {
+    display: block;
+}
+
+/* Media queries para responsividad */
+@media screen and (max-width: 800px) {
+    .formulario__btn {
+        width: 100%;
+    }
+}
+
+/* Estilos generales */
+#contenedor {
+    border: 4px inset #ccc;
+    background-color: rgb(233, 227, 217);
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 420px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.textof {
+    font-weight: bold;
+    font-size: 18px;
+    display: block;
+    text-align: left;
+    margin-bottom: 8px;
+}
+
+#mensajeError {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+/* Resaltar campos con borde rojo y fondo ligeramente rosado */
+.invalid-field {
+    border: 2px solid red;  /* Borde rojo */
+    background-color: #f8d7da;  /* Fondo ligeramente rosado */
+}
+
+/* Mensajes de error */
+.invalid-feedback {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+input.error {
+    border: 2px solid red; /* Borde rojo en caso de error */
+    background-color: #fdd; /* Fondo rojo claro */
+}

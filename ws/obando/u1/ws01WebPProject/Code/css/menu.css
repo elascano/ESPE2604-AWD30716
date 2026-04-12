@@ -1,0 +1,30 @@
+.menu {
+    background-color: #87e5e5;
+    font-family: "Quicksand",sans-serif;
+}
+
+.opcion:hover {
+    border-bottom: 1px solid rgb(28, 59, 85);
+}
+
+.menuNav:hover .subNav-menu {
+    display: block;
+    margin-top: 0; 
+}
+
+.active {
+    border-bottom: 1px solid rgb(28, 59, 85);
+}
+body {
+    background-image: url("../imagenes/fondo_servicios.jpg");
+    background-repeat: repeat;
+    background-size: cover;
+}
+
+#contenido {
+    transition: opacity 0.3s ease;
+}
+
+.confUsuario {
+    z-index: 9999;
+}

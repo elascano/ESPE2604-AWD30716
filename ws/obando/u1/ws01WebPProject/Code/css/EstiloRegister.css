@@ -1,0 +1,70 @@
+@charset "utf-8";
+
+:root {
+    --morado: #4a0a77;
+    --moradoOscuro: #310055;
+    --moradoGris: #c8b1e4;
+    --moradoBlanco: #f2ebfb;
+    --moradoRosado: #dc97ff;
+    --fuente: 'Quicksand', sans-serif;
+}
+
+body {
+    font-family: var(--fuente);
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url("../imagenes/fondo.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.contenedor {
+    margin: auto;
+    background-color: var(--moradoBlanco);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    color: var(--moradoOscuro);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.campos {
+    width: 95%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    border-bottom: 1px solid black;
+}
+
+input[type="submit"],
+input[type="reset"] {
+    width: 100%;
+    height: 4vh;
+    cursor: pointer;
+    background-color: var(--morado);
+    color: white;
+    border: none;
+    font-size: 120%;
+    box-shadow: 0 4px 8px var(--moradoOscuro);
+}
+
+input[type="submit"]:hover,
+input[type="reset"]:hover {
+    background-color: var(--moradoRosado);
+    color: var(--moradoOscuro);
+}
+input.error {
+    border: 2px solid red; 
+    background-color: #fdd; 
+  }

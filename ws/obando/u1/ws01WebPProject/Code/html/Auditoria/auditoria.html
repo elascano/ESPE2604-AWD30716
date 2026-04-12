@@ -1,0 +1,56 @@
+
+
+
+<div class="container mt-4">
+        <fieldset class="border p-2 shadow agregar bg-light table-responsive rounded">
+ 
+    
+            <hr>
+
+            <div class="table-responsive">
+            <table id="tablaEgresos" class="table text-center table-striped rounded">
+                <thead>
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Monto</th>
+                    <th scope="col">Tipo</th>
+                    
+                    <th scope="col">Método</th>
+                    <th scope="col">Registrado por</th>
+                    <th scope="col">Código QR</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody id="table-body">
+                  
+                </tbody >
+              </table>
+            <hr>
+            <div class="d-flex">
+                <nav>
+                    <ul class="pagination shadow" id="paginationGasto"></ul>
+                </nav>
+                <div class="mb-3 col-1 mx-3">
+                    <select id="itemsPerPageGasto" class="form-select shadow" onchange="updateItemsPerPageGasto()">
+                        <option value="5" selected>5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                    </select>
+                </div>
+            </div>
+            
+        </div>
+
+
+
+        </fieldset>
+        <div id="codigoQr" class="imagenQr" onclick="cerrarQR()">
+            <span class="cerrarImagen" onclick="cerrarQR()">✖</span>
+            <img id="cargarQr" src="" alt="Imagen">
+        </div>
+</div>
