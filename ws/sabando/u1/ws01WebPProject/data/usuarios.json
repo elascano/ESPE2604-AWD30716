@@ -1,0 +1,33 @@
+[
+  {
+    "id": "u-001",
+    "nombre": "Carlos",
+    "apellido": "Admin",
+    "email": "admin@biblioteca.edu.ec",
+    "username": "adminMaster",
+    "password": "123",
+    "tipo": 0
+  },
+  {
+    "id": "u-002",
+    "nombre": "Renato",
+    "apellido": "Caicedo",
+    "email": "renato@estudiante.edu.ec",
+    "username": "renato.c",
+    "password": "123",
+    "tipo": 1,
+    "listaTransacciones": [],      
+    "notificaciones": []   
+  },
+  {
+    "id": "u-003",
+    "nombre": "Ana",
+    "apellido": "Torres",
+    "email": "ana@estudiante.edu.ec",
+    "username": "ana.t",
+    "password": "123",
+    "tipo": 1,
+    "listaTransacciones": [],
+    "notificaciones": []
+  }
+]
