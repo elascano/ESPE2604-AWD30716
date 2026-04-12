@@ -1,0 +1,918 @@
+<div class="container-fluid">
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Gestión de Casos</h1>
+    <button
+      class="btn btn-sm btn-primary shadow-sm"
+      data-bs-toggle="modal"
+      data-bs-target="#modalAgregar"
+    >
+      <i class="fas fa-plus fa-sm text-white-50"></i> Nuevo Caso
+    </button>
+  </div>
+
+  <div class="row">
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-primary shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div
+                class="text-xs font-weight-bold text-primary text-uppercase mb-1"
+              >
+                Total Casos
+              </div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">12</div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-briefcase fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-danger shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div
+                class="text-xs font-weight-bold text-danger text-uppercase mb-1"
+              >
+                Casos Urgentes
+              </div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">3</div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-exclamation-triangle fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-info shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div
+                class="text-xs font-weight-bold text-info text-uppercase mb-1"
+              >
+                En Progreso
+              </div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">5</div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-spinner fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-success shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div
+                class="text-xs font-weight-bold text-success text-uppercase mb-1"
+              >
+                Completados
+              </div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">4</div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-check-circle fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">
+        Listado de Casos Legales
+      </h6>
+    </div>
+    <div class="card-body">
+      <div class="row mb-3">
+        <div class="col-sm-12 col-md-6">
+          <div class="dataTables_length">
+            <label>
+              Mostrar
+              <select
+                id="entriesSelect"
+                class="form-select form-select-sm d-inline-block w-auto"
+              >
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+              </select>
+              registros
+            </label>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-6">
+          <div class="dataTables_filter text-end">
+            <label>
+              Buscar:
+              <input
+                type="search"
+                id="searchInput"
+                class="form-control form-control-sm d-inline-block w-auto"
+                placeholder=""
+              />
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead class="table-light">
+            <tr>
+              <th>N° Expediente</th>
+              <th>Cliente</th>
+              <th>Demandado</th>
+              <th>Tipo</th>
+              <th>Abogado</th>
+              <th>Próxima Audiencia</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>2025-001-CV</strong></td>
+              <td>María Fernández</td>
+              <td>Pedro Rodríguez</td>
+              <td>Civil</td>
+              <td>Dr. Carlos Méndez</td>
+              <td>
+                2025-11-15
+                <span class="badge badge-urgente bg-danger ms-1">Urgente</span>
+              </td>
+              <td><span class="badge bg-info">En Progreso</span></td>
+              <td>
+                <button
+                  class="btn btn-info btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalVer"
+                >
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button
+                  class="btn btn-warning btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalEditar"
+                >
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button
+                  class="btn btn-danger btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalEliminar"
+                >
+                  <i class="fas fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>2025-002-PN</strong></td>
+              <td>Carlos Martínez</td>
+              <td>Diego Morales</td>
+              <td>Penal</td>
+              <td>Dra. Ana López</td>
+              <td>2025-11-18</td>
+              <td><span class="badge bg-info">En Progreso</span></td>
+              <td>
+                <button
+                  class="btn btn-info btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalVer"
+                >
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button
+                  class="btn btn-warning btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalEditar"
+                >
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button
+                  class="btn btn-danger btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalEliminar"
+                >
+                  <i class="fas fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>2025-003-LB</strong></td>
+              <td>Ana López</td>
+              <td>Empresa XYZ S.A.</td>
+              <td>Laboral</td>
+              <td>Dr. Roberto Silva</td>
+              <td>
+                2025-11-14
+                <span class="badge badge-urgente bg-danger ms-1">Urgente</span>
+              </td>
+              <td><span class="badge bg-warning text-dark">Pendiente</span></td>
+              <td>
+                <button
+                  class="btn btn-info btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalVer"
+                >
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button
+                  class="btn btn-warning btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalEditar"
+                >
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button
+                  class="btn btn-danger btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalEliminar"
+                >
+                  <i class="fas fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>2025-004-FM</strong></td>
+              <td>Roberto Sánchez</td>
+              <td>Patricia Ramírez</td>
+              <td>Familiar</td>
+              <td>Dra. Lucía Torres</td>
+              <td>2025-12-05</td>
+              <td><span class="badge bg-success">Completado</span></td>
+              <td>
+                <button
+                  class="btn btn-info btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalVer"
+                >
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button
+                  class="btn btn-warning btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalEditar"
+                >
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button
+                  class="btn btn-danger btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalEliminar"
+                >
+                  <i class="fas fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>2025-005-AD</strong></td>
+              <td>Diego Torres</td>
+              <td>Municipio de Quito</td>
+              <td>Administrativo</td>
+              <td>Dr. Carlos Méndez</td>
+              <td>2025-11-20</td>
+              <td><span class="badge bg-info">En Progreso</span></td>
+              <td>
+                <button
+                  class="btn btn-info btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalVer"
+                >
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button
+                  class="btn btn-warning btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalEditar"
+                >
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button
+                  class="btn btn-danger btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalEliminar"
+                >
+                  <i class="fas fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>2025-006-CV</strong></td>
+              <td>Sofía Vargas</td>
+              <td>Fernando Castro</td>
+              <td>Civil</td>
+              <td>Dra. Ana López</td>
+              <td>2025-11-22</td>
+              <td><span class="badge bg-warning text-dark">Pendiente</span></td>
+              <td>
+                <button
+                  class="btn btn-info btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalVer"
+                >
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button
+                  class="btn btn-warning btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalEditar"
+                >
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button
+                  class="btn btn-danger btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalEliminar"
+                >
+                  <i class="fas fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>2025-007-MC</strong></td>
+              <td>Gabriela Morales</td>
+              <td>Importadora ABC Ltda.</td>
+              <td>Mercantil</td>
+              <td>Dr. Roberto Silva</td>
+              <td>2025-12-01</td>
+              <td><span class="badge bg-success">Completado</span></td>
+              <td>
+                <button
+                  class="btn btn-info btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalVer"
+                >
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button
+                  class="btn btn-warning btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalEditar"
+                >
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button
+                  class="btn btn-danger btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalEliminar"
+                >
+                  <i class="fas fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>2025-008-LB</strong></td>
+              <td>Andrés Silva</td>
+              <td>Constructora DEF S.A.</td>
+              <td>Laboral</td>
+              <td>Dra. Lucía Torres</td>
+              <td>
+                2025-11-16
+                <span class="badge badge-urgente bg-danger ms-1">Urgente</span>
+              </td>
+              <td><span class="badge bg-info">En Progreso</span></td>
+              <td>
+                <button
+                  class="btn btn-info btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalVer"
+                >
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button
+                  class="btn btn-warning btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalEditar"
+                >
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button
+                  class="btn btn-danger btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalEliminar"
+                >
+                  <i class="fas fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>2025-009-CV</strong></td>
+              <td>Laura Herrera</td>
+              <td>Martín Jiménez</td>
+              <td>Civil</td>
+              <td>Dr. Carlos Méndez</td>
+              <td>2025-11-28</td>
+              <td><span class="badge bg-success">Completado</span></td>
+              <td>
+                <button
+                  class="btn btn-info btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalVer"
+                >
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button
+                  class="btn btn-warning btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalEditar"
+                >
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button
+                  class="btn btn-danger btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalEliminar"
+                >
+                  <i class="fas fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>2025-010-PN</strong></td>
+              <td>Miguel Rojas</td>
+              <td>Esteban Ruiz</td>
+              <td>Penal</td>
+              <td>Dra. Ana López</td>
+              <td>2025-12-10</td>
+              <td><span class="badge bg-info">En Progreso</span></td>
+              <td>
+                <button
+                  class="btn btn-info btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalVer"
+                >
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button
+                  class="btn btn-warning btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalEditar"
+                >
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button
+                  class="btn btn-danger btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalEliminar"
+                >
+                  <i class="fas fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+          <tfoot class="table-light">
+            <tr>
+              <th>N° Expediente</th>
+              <th>Cliente</th>
+              <th>Demandado</th>
+              <th>Tipo</th>
+              <th>Abogado</th>
+              <th>Próxima Audiencia</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-sm-12 col-md-5">
+          <div class="dataTables_info">
+            Mostrando <span id="showingStart">1</span> a
+            <span id="showingEnd">10</span> de
+            <span id="totalEntries">12</span> registros
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-7">
+          <div class="dataTables_paginate">
+            <ul class="pagination justify-content-end mb-0">
+              <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1">Anterior</a>
+              </li>
+              <li class="page-item active">
+                <a class="page-link" href="#">1</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#">2</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#">Siguiente</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalAgregar" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Nuevo Caso Legal</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">N° Expediente</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="2025-XXX-XX"
+                required
+              />
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Tipo de Caso</label>
+              <select class="form-select" required>
+                <option value="">Seleccionar tipo</option>
+                <option value="Civil">Civil</option>
+                <option value="Penal">Penal</option>
+                <option value="Laboral">Laboral</option>
+                <option value="Familiar">Familiar</option>
+                <option value="Administrativo">Administrativo</option>
+                <option value="Mercantil">Mercantil</option>
+                <option value="Constitucional">Constitucional</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Cliente</label>
+              <select class="form-select" required>
+                <option value="">Seleccionar cliente</option>
+                <option value="1">María Fernández</option>
+                <option value="2">Carlos Martínez</option>
+                <option value="3">Ana López</option>
+                <option value="4">Roberto Sánchez</option>
+              </select>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Demandado</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Nombre del demandado"
+                required
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Abogado Asignado</label>
+              <select class="form-select" required>
+                <option value="">Seleccionar abogado</option>
+                <option value="1">Dr. Carlos Méndez</option>
+                <option value="2">Dra. Ana López</option>
+                <option value="3">Dr. Roberto Silva</option>
+                <option value="4">Dra. Lucía Torres</option>
+              </select>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Fecha de Inicio</label>
+              <input type="date" class="form-control" required />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Próxima Audiencia</label>
+              <input type="date" class="form-control" />
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Estado</label>
+              <select class="form-select" required>
+                <option value="Pendiente">Pendiente</option>
+                <option value="En Progreso" selected>En Progreso</option>
+                <option value="Completado">Completado</option>
+              </select>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Documentos</label>
+            <input type="file" class="form-control" multiple />
+            <small class="text-muted"
+              >Puede adjuntar múltiples documentos</small
+            >
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancelar
+        </button>
+        <button type="button" class="btn btn-primary">Guardar Caso</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalEditar" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Editar Caso</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">N° Expediente</label>
+              <input
+                type="text"
+                class="form-control"
+                value="2025-001-CV"
+                readonly
+              />
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Tipo de Caso</label>
+              <select class="form-select">
+                <option value="Civil" selected>Civil</option>
+                <option value="Penal">Penal</option>
+                <option value="Laboral">Laboral</option>
+                <option value="Familiar">Familiar</option>
+                <option value="Administrativo">Administrativo</option>
+                <option value="Mercantil">Mercantil</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Cliente</label>
+              <select class="form-select">
+                <option value="1" selected>María Fernández</option>
+                <option value="2">Carlos Martínez</option>
+                <option value="3">Ana López</option>
+              </select>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Demandado</label>
+              <input type="text" class="form-control" value="Pedro Rodríguez" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Abogado Asignado</label>
+              <select class="form-select">
+                <option value="1" selected>Dr. Carlos Méndez</option>
+                <option value="2">Dra. Ana López</option>
+                <option value="3">Dr. Roberto Silva</option>
+              </select>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Fecha de Inicio</label>
+              <input type="date" class="form-control" value="2025-11-01" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Próxima Audiencia</label>
+              <input type="date" class="form-control" value="2025-11-15" />
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Estado</label>
+              <select class="form-select">
+                <option value="Pendiente">Pendiente</option>
+                <option value="En Progreso" selected>En Progreso</option>
+                <option value="Completado">Completado</option>
+              </select>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancelar
+        </button>
+        <button type="button" class="btn btn-primary">Actualizar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalVer" tabindex="-1">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title">Detalles del Caso Legal</h5>
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="modal"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card mb-3">
+              <div class="card-header bg-light">
+                <strong>Información del Caso</strong>
+              </div>
+              <div class="card-body">
+                <p><strong>N° Expediente:</strong> 2025-001-CV</p>
+                <p><strong>Tipo:</strong> Civil</p>
+                <p>
+                  <strong>Estado:</strong>
+                  <span class="badge bg-info">En Progreso</span>
+                </p>
+                <p><strong>Abogado Asignado:</strong> Dr. Carlos Méndez</p>
+                <hr />
+                <p><strong>Cliente:</strong> María Fernández</p>
+                <p><strong>Demandado:</strong> Pedro Rodríguez</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card mb-3">
+              <div class="card-header bg-light">
+                <strong>Fechas Importantes</strong>
+              </div>
+              <div class="card-body">
+                <p><strong>Fecha de Inicio:</strong> 2025-11-01</p>
+                <p>
+                  <strong>Próxima Audiencia:</strong> 2025-11-15
+                  <span class="badge badge-urgente bg-danger ms-1"
+                    >Urgente</span
+                  >
+                </p>
+                <p><strong>Fecha Estimada de Cierre:</strong> 2026-01-15</p>
+                <hr />
+                <div class="alert alert-warning">
+                  <i class="fas fa-clock"></i> La próxima audiencia es en
+                  <strong>2 días</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mb-3">
+          <div class="card-header bg-light">
+            <strong><i class="fas fa-file-alt"></i> Documentos Adjuntos</strong>
+          </div>
+          <div class="card-body">
+            <div class="list-group">
+              <div
+                class="list-group-item d-flex justify-content-between align-items-center"
+              >
+                <div>
+                  <i class="fas fa-file-pdf text-danger"></i>
+                  <strong class="ms-2">Demanda_Inicial.pdf</strong>
+                  <small class="text-muted ms-2">(1.2 MB)</small>
+                </div>
+                <div>
+                  <span class="badge bg-secondary me-2">2025-11-01</span>
+                  <button class="btn btn-sm btn-outline-primary">
+                    <i class="fas fa-download"></i> Descargar
+                  </button>
+                </div>
+              </div>
+              <div
+                class="list-group-item d-flex justify-content-between align-items-center"
+              >
+                <div>
+                  <i class="fas fa-file-word text-primary"></i>
+                  <strong class="ms-2">Contestacion.docx</strong>
+                  <small class="text-muted ms-2">(450 KB)</small>
+                </div>
+                <div>
+                  <span class="badge bg-secondary me-2">2025-11-05</span>
+                  <button class="btn btn-sm btn-outline-primary">
+                    <i class="fas fa-download"></i> Descargar
+                  </button>
+                </div>
+              </div>
+              <div
+                class="list-group-item d-flex justify-content-between align-items-center"
+              >
+                <div>
+                  <i class="fas fa-file-pdf text-danger"></i>
+                  <strong class="ms-2">Pruebas_Documentales.pdf</strong>
+                  <small class="text-muted ms-2">(3.5 MB)</small>
+                </div>
+                <div>
+                  <span class="badge bg-secondary me-2">2025-11-08</span>
+                  <button class="btn btn-sm btn-outline-primary">
+                    <i class="fas fa-download"></i> Descargar
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="mt-3">
+              <button class="btn btn-sm btn-success">
+                <i class="fas fa-plus"></i> Agregar Documento
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header bg-light">
+            <strong
+              ><i class="fas fa-history"></i> Historial de Actividades</strong
+            >
+          </div>
+          <div class="card-body">
+            <div class="timeline">
+              <div class="mb-3">
+                <span class="badge bg-primary">2025-11-08</span>
+                <strong class="ms-2">Pruebas documentales presentadas</strong>
+                <p class="text-muted mb-0 ms-4 small">
+                  Se adjuntaron las pruebas solicitadas por el juez
+                </p>
+              </div>
+              <div class="mb-3">
+                <span class="badge bg-info">2025-11-05</span>
+                <strong class="ms-2">Contestación de demanda</strong>
+                <p class="text-muted mb-0 ms-4 small">
+                  El demandado presentó su contestación
+                </p>
+              </div>
+              <div class="mb-3">
+                <span class="badge bg-success">2025-11-01</span>
+                <strong class="ms-2">Caso iniciado</strong>
+                <p class="text-muted mb-0 ms-4 small">
+                  Demanda presentada ante el juzgado
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cerrar
+        </button>
+        <button type="button" class="btn btn-primary">
+          <i class="fas fa-file-pdf"></i> Generar Reporte
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalEliminar" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title">Eliminar Caso</h5>
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="modal"
+        ></button>
+      </div>
+      <div class="modal-body text-center">
+        <i class="fas fa-exclamation-triangle fa-4x text-danger mb-3"></i>
+        <p class="lead">¿Está seguro de eliminar este caso?</p>
+        <div class="alert alert-warning">
+          <strong>N° Expediente:</strong> 2025-001-CV<br />
+          <strong>Cliente:</strong> María Fernández<br />
+          <strong>Tipo:</strong> Civil
+        </div>
+        <p class="text-danger small">
+          <i class="fas fa-exclamation-circle"></i>
+          Esta acción eliminará todos los documentos y registros asociados al
+          caso. Esta acción no se puede deshacer.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancelar
+        </button>
+        <button type="button" class="btn btn-danger">
+          <i class="fas fa-trash"></i> Sí, Eliminar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

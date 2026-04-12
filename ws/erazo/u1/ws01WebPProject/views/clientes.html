@@ -1,0 +1,844 @@
+<div class="container-fluid">
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Clientes</h1>
+    <button
+      class="btn btn-sm btn-primary shadow-sm"
+      data-bs-toggle="modal"
+      data-bs-target="#modalAgregar"
+    >
+      <i class="fas fa-plus fa-sm text-white-50"></i> Nuevo Cliente
+    </button>
+  </div>
+
+  <div class="row">
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-primary shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div
+                class="text-xs font-weight-bold text-primary text-uppercase mb-1"
+              >
+                Total Clientes
+              </div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">10</div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-users fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Listado de Clientes</h6>
+    </div>
+    <div class="card-body">
+      <div class="row mb-3">
+        <div class="col-sm-12 col-md-6">
+          <div class="dataTables_length">
+            <label>
+              Mostrar
+              <select
+                id="entriesSelect"
+                class="form-select form-select-sm d-inline-block w-auto"
+              >
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+              </select>
+              registros
+            </label>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-6">
+          <div class="dataTables_filter text-end">
+            <label>
+              Buscar:
+              <input
+                type="search"
+                id="searchInput"
+                class="form-control form-control-sm d-inline-block w-auto"
+                placeholder=""
+              />
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead class="table-light">
+            <tr>
+              <th>ID</th>
+              <th>Cédula</th>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Teléfono</th>
+              <th>Domicilio</th>
+              <th>Correo</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>CS001</strong></td>
+              <td>1724340474</td>
+              <td>Lucas</td>
+              <td>Góngora</td>
+              <td>0995190990</td>
+              <td>Av. Napo y Velasco Ibarra</td>
+              <td>gongoralucas59@gmail.com</td>
+              <td>
+                <button
+                  class="btn btn-info btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalVer"
+                >
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button
+                  class="btn btn-warning btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalEditar"
+                >
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button
+                  class="btn btn-danger btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalEliminar"
+                >
+                  <i class="fas fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>CS002</strong></td>
+              <td>1725461285</td>
+              <td>María</td>
+              <td>Fernández</td>
+              <td>0987654321</td>
+              <td>Calle Principal 123</td>
+              <td>maria.fernandez@email.com</td>
+              <td>
+                <button
+                  class="btn btn-info btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalVer"
+                >
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button
+                  class="btn btn-warning btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalEditar"
+                >
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button
+                  class="btn btn-danger btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalEliminar"
+                >
+                  <i class="fas fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>CS003</strong></td>
+              <td>1726582396</td>
+              <td>Carlos</td>
+              <td>Martínez</td>
+              <td>0976543210</td>
+              <td>Av. Amazonas y Colón</td>
+              <td>carlos.martinez@email.com</td>
+              <td>
+                <button
+                  class="btn btn-info btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalVer"
+                >
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button
+                  class="btn btn-warning btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalEditar"
+                >
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button
+                  class="btn btn-danger btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalEliminar"
+                >
+                  <i class="fas fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>CS004</strong></td>
+              <td>1727693407</td>
+              <td>Ana</td>
+              <td>López</td>
+              <td>0965432109</td>
+              <td>Calle Guayaquil 456</td>
+              <td>ana.lopez@email.com</td>
+              <td>
+                <button
+                  class="btn btn-info btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalVer"
+                >
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button
+                  class="btn btn-warning btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalEditar"
+                >
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button
+                  class="btn btn-danger btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalEliminar"
+                >
+                  <i class="fas fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>CS005</strong></td>
+              <td>1728804518</td>
+              <td>Roberto</td>
+              <td>Sánchez</td>
+              <td>0954321098</td>
+              <td>Av. 6 de Diciembre</td>
+              <td>roberto.sanchez@email.com</td>
+              <td>
+                <button
+                  class="btn btn-info btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalVer"
+                >
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button
+                  class="btn btn-warning btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalEditar"
+                >
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button
+                  class="btn btn-danger btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalEliminar"
+                >
+                  <i class="fas fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>CS006</strong></td>
+              <td>1729915629</td>
+              <td>Patricia</td>
+              <td>Ramírez</td>
+              <td>0943210987</td>
+              <td>Calle Bolívar 789</td>
+              <td>patricia.ramirez@email.com</td>
+              <td>
+                <button
+                  class="btn btn-info btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalVer"
+                >
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button
+                  class="btn btn-warning btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalEditar"
+                >
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button
+                  class="btn btn-danger btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalEliminar"
+                >
+                  <i class="fas fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>CS007</strong></td>
+              <td>1720123456</td>
+              <td>Diego</td>
+              <td>Torres</td>
+              <td>0932109876</td>
+              <td>Av. Occidental 234</td>
+              <td>diego.torres@email.com</td>
+              <td>
+                <button
+                  class="btn btn-info btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalVer"
+                >
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button
+                  class="btn btn-warning btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalEditar"
+                >
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button
+                  class="btn btn-danger btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalEliminar"
+                >
+                  <i class="fas fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>CS008</strong></td>
+              <td>1721234567</td>
+              <td>Sofía</td>
+              <td>Vargas</td>
+              <td>0921098765</td>
+              <td>Calle Oriente 567</td>
+              <td>sofia.vargas@email.com</td>
+              <td>
+                <button
+                  class="btn btn-info btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalVer"
+                >
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button
+                  class="btn btn-warning btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalEditar"
+                >
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button
+                  class="btn btn-danger btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalEliminar"
+                >
+                  <i class="fas fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>CS009</strong></td>
+              <td>1722345678</td>
+              <td>Fernando</td>
+              <td>Castro</td>
+              <td>0910987654</td>
+              <td>Av. Maldonado 890</td>
+              <td>fernando.castro@email.com</td>
+              <td>
+                <button
+                  class="btn btn-info btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalVer"
+                >
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button
+                  class="btn btn-warning btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalEditar"
+                >
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button
+                  class="btn btn-danger btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalEliminar"
+                >
+                  <i class="fas fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>CS010</strong></td>
+              <td>1723456789</td>
+              <td>Gabriela</td>
+              <td>Morales</td>
+              <td>0909876543</td>
+              <td>Calle Los Ríos 321</td>
+              <td>gabriela.morales@email.com</td>
+              <td>
+                <button
+                  class="btn btn-info btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalVer"
+                >
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button
+                  class="btn btn-warning btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalEditar"
+                >
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button
+                  class="btn btn-danger btn-sm rounded-circle"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalEliminar"
+                >
+                  <i class="fas fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+          <tfoot class="table-light">
+            <tr>
+              <th>ID</th>
+              <th>Cédula</th>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Teléfono</th>
+              <th>Domicilio</th>
+              <th>Correo</th>
+              <th>Acciones</th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-sm-12 col-md-5">
+          <div class="dataTables_info">
+            Mostrando <span id="showingStart">1</span> a
+            <span id="showingEnd">10</span> de
+            <span id="totalEntries">10</span> registros
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-7">
+          <div class="dataTables_paginate">
+            <ul class="pagination justify-content-end mb-0">
+              <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1">Anterior</a>
+              </li>
+              <li class="page-item active">
+                <a class="page-link" href="#">1</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#">Siguiente</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalAgregar" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Registrar Nuevo Cliente</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">ID del Cliente</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="CS001"
+                pattern="CS[0-9]{3}"
+                title="Formato: CS001, CS002, etc."
+                required
+                readonly
+                value="CS011"
+              />
+              <div class="invalid-feedback">
+                El ID debe tener el formato CS001, CS002, etc.
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label"
+                >Cédula de Identidad <span class="text-danger">*</span></label
+              >
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Ingrese la cédula de 10 dígitos"
+                pattern="[0-9]{10}"
+                minlength="10"
+                maxlength="10"
+                required
+              />
+              <div class="invalid-feedback">
+                Ingrese una cédula válida de 10 dígitos.
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label"
+                >Nombre <span class="text-danger">*</span></label
+              >
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Ingrese el nombre del cliente"
+                minlength="2"
+                maxlength="50"
+                required
+              />
+              <div class="invalid-feedback">
+                Ingrese el nombre (mínimo 2 caracteres).
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label"
+                >Apellido <span class="text-danger">*</span></label
+              >
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Ingrese el apellido del cliente"
+                minlength="2"
+                maxlength="50"
+                required
+              />
+              <div class="invalid-feedback">
+                Ingrese el apellido (mínimo 2 caracteres).
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label"
+                >Teléfono <span class="text-danger">*</span></label
+              >
+              <input
+                type="tel"
+                class="form-control"
+                placeholder="Ej: 0987654321"
+                pattern="[0-9]{10}"
+                minlength="10"
+                maxlength="10"
+                required
+              />
+              <div class="invalid-feedback">
+                Ingrese un teléfono válido de 10 dígitos.
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label"
+                >Correo Electrónico <span class="text-danger">*</span></label
+              >
+              <input
+                type="email"
+                class="form-control"
+                placeholder="Ej: cliente@email.com"
+                required
+              />
+              <div class="invalid-feedback">
+                Ingrese un correo electrónico válido.
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label"
+              >Domicilio <span class="text-danger">*</span></label
+            >
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Ingrese la dirección completa del cliente"
+              minlength="5"
+              maxlength="200"
+              required
+            />
+            <div class="invalid-feedback">
+              Ingrese el domicilio (mínimo 5 caracteres).
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Observaciones</label>
+            <textarea
+              class="form-control"
+              rows="3"
+              placeholder="Agregue observaciones adicionales (opcional)"
+              maxlength="500"
+            ></textarea>
+            <small class="text-muted">Máximo 500 caracteres.</small>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancelar
+        </button>
+        <button type="submit" class="btn btn-primary">Guardar Cliente</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalEditar" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Editar Cliente</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">ID del Cliente</label>
+              <input type="text" class="form-control" value="CS001" readonly />
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label"
+                >Cédula de Identidad <span class="text-danger">*</span></label
+              >
+              <input
+                type="text"
+                class="form-control"
+                value="1724340474"
+                placeholder="Ingrese la cédula de 10 dígitos"
+                pattern="[0-9]{10}"
+                minlength="10"
+                maxlength="10"
+                required
+              />
+              <div class="invalid-feedback">
+                Ingrese una cédula válida de 10 dígitos.
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label"
+                >Nombre <span class="text-danger">*</span></label
+              >
+              <input
+                type="text"
+                class="form-control"
+                value="Lucas"
+                placeholder="Ingrese el nombre del cliente"
+                minlength="2"
+                maxlength="50"
+                required
+              />
+              <div class="invalid-feedback">
+                Ingrese el nombre (mínimo 2 caracteres).
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label"
+                >Apellido <span class="text-danger">*</span></label
+              >
+              <input
+                type="text"
+                class="form-control"
+                value="Góngora"
+                placeholder="Ingrese el apellido del cliente"
+                minlength="2"
+                maxlength="50"
+                required
+              />
+              <div class="invalid-feedback">
+                Ingrese el apellido (mínimo 2 caracteres).
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label"
+                >Teléfono <span class="text-danger">*</span></label
+              >
+              <input
+                type="tel"
+                class="form-control"
+                value="0995190990"
+                placeholder="Ej: 0987654321"
+                pattern="[0-9]{10}"
+                minlength="10"
+                maxlength="10"
+                required
+              />
+              <div class="invalid-feedback">
+                Ingrese un teléfono válido de 10 dígitos.
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label"
+                >Correo Electrónico <span class="text-danger">*</span></label
+              >
+              <input
+                type="email"
+                class="form-control"
+                value="gongoralucas59@gmail.com"
+                placeholder="Ej: cliente@email.com"
+                required
+              />
+              <div class="invalid-feedback">
+                Ingrese un correo electrónico válido.
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label"
+              >Domicilio <span class="text-danger">*</span></label
+            >
+            <input
+              type="text"
+              class="form-control"
+              value="Av. Napo y Velasco Ibarra"
+              placeholder="Ingrese la dirección completa del cliente"
+              minlength="5"
+              maxlength="200"
+              required
+            />
+            <div class="invalid-feedback">
+              Ingrese el domicilio (mínimo 5 caracteres).
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Observaciones</label>
+            <textarea
+              class="form-control"
+              rows="3"
+              placeholder="Agregue observaciones adicionales (opcional)"
+              maxlength="500"
+            >
+Cliente preferente con más de 5 casos exitosos.</textarea
+            >
+            <small class="text-muted">Máximo 500 caracteres.</small>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancelar
+        </button>
+        <button type="submit" class="btn btn-primary">Actualizar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalVer" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title">Detalles del Cliente</h5>
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="modal"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card mb-3">
+              <div class="card-header bg-light">
+                <strong>Información Personal</strong>
+              </div>
+              <div class="card-body">
+                <p><strong>ID:</strong> CS001</p>
+                <p><strong>Cédula:</strong> 1724340474</p>
+                <p><strong>Nombre Completo:</strong> Lucas Góngora</p>
+                <p><strong>Teléfono:</strong> 0995190990</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card mb-3">
+              <div class="card-header bg-light">
+                <strong>Datos de Contacto</strong>
+              </div>
+              <div class="card-body">
+                <p><strong>Correo:</strong> gongoralucas59@gmail.com</p>
+                <p><strong>Domicilio:</strong> Av. Napo y Velasco Ibarra</p>
+                <p>
+                  <strong>Estado:</strong>
+                  <span class="badge bg-success">Activo</span>
+                </p>
+                <p><strong>Fecha de Registro:</strong> 15/10/2024</p>
+              </div>
+            </div>
+          </div>
+        </div> 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cerrar
+        </button>
+        <button type="button" class="btn btn-primary">
+          <i class="fas fa-file-pdf"></i> Generar Ficha
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalEliminar" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title">Eliminar Cliente</h5>
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="modal"
+        ></button>
+      </div>
+      <div class="modal-body text-center">
+        <i class="fas fa-exclamation-triangle fa-4x text-danger mb-3"></i>
+        <p class="lead">¿Está seguro de eliminar este cliente?</p>
+        <div class="alert alert-warning">
+          <strong>ID:</strong> CS001<br />
+          <strong>Nombre:</strong> Lucas Góngora<br />
+          <strong>Cédula:</strong> 1724340474
+        </div>
+        <p class="text-danger small">
+          <i class="fas fa-exclamation-circle"></i>
+          Esta acción eliminará todos los registros asociados. Esta acción no se
+          puede deshacer.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancelar
+        </button>
+        <button type="button" class="btn btn-danger">
+          <i class="fas fa-trash"></i> Sí, Eliminar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,110 @@
+<section class="container py-5">
+  <div class="text-center mb-4">
+    <h2 class="fw-bold text-white">¿Para quiénes está diseñado?</h2>
+    <p class="text-muted">
+      LEXIA se adapta a distintos perfiles del ámbito legal.
+    </p>
+  </div>
+
+  <div id="carouselUsuarios" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <!-- ITEM 1 -->
+      <div class="carousel-item active">
+        <div class="row justify-content-center">
+          <div class="col-10 col-md-6 col-lg-4">
+            <div class="card shadow border-0 bg-dark">
+              <div class="card-body text-center text-white">
+                <h5 class="fw-bold mb-3">Abogados independientes</h5>
+                <p>
+                  Organiza clientes, audiencias, pagos y documentos desde un
+                  único sistema.
+                </p>
+              </div>
+              <div class="d-flex justify-content-center p-3 card-img">
+                <img
+                  src="/public/imgs/abogadoIndependiente.png"
+                  alt="abogado independiente"
+                  class="w-100 img-fluid"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ITEM 2 -->
+      <div class="carousel-item">
+        <div class="row justify-content-center">
+          <div class="col-10 col-md-6 col-lg-4">
+            <div class="card shadow border-0 bg-dark">
+              <div class="card-body text-center text-white">
+                <h5 class="fw-bold mb-3">Estudios jurídicos</h5>
+                <p>
+                  Gestiona múltiples abogados, casos complejos y flujos
+                  internos.
+                </p>
+              </div>
+              <div class="d-flex justify-content-center p-3 card-img">
+                <img
+                  src="/public/imgs/estudioJuridico.png"
+                  alt="estudio Juridico"
+                  class="w-100 img-fluid"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ITEM 3 -->
+      <div class="carousel-item">
+        <div class="row justify-content-center">
+          <div class="col-10 col-md-6 col-lg-4">
+            <div class="card shadow border-0 bg-dark">
+              <div class="card-body text-center text-white">
+                <h5 class="fw-bold mb-3">Asistentes legales</h5>
+                <p>
+                  Accede rápidamente al estado de procesos y ayuda a organizar
+                  el despacho.
+                </p>
+                <div class="d-flex justify-content-center p-3 card-img">
+                  <img
+                    src="/public/imgs/asistentesLegales.jpg"
+                    alt="asistentes legales"
+                    class="w-100 img-fluid"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#carouselUsuarios"
+      data-bs-slide="prev"
+    >
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#carouselUsuarios"
+      data-bs-slide="next"
+    >
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </div>
+  <div class="d-flex justify-content-center gap-3 mt-2">
+    <a
+      href="/views/contacto.html"
+      class="btn cta-secondary"
+      onclick="cargarViews(event,this.href)"
+      >Dejanos un mensaje</a
+    >
+  </div>
+</section>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>Login</title>
+
+    <!-- Custom fonts for this template-->
+    <link
+      href="/public/vendor/template/startbootstrap-sb-admin-2-gh-pages/vendor/fontawesome-free/css/all.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+      rel="stylesheet"
+    />
+
+    <!-- Custom styles for this template-->
+    <link
+      href="/public/vendor/template/startbootstrap-sb-admin-2-gh-pages/css/sb-admin-2.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body class="bg-gradient-primary d-flex flex-column min-vh-100">
+    <header>
+        <h1 class="text-center text-white mt-5">LEXIA - Legal Expert Information Assistant</h1>
+    </header>
+    <hr class="sidebar-divider my-0" />
+    <main id="content-dinamic-auth" class="flex-fill">
+
+    </main>
+    <footer class="bg-primary text-light py-3 mt-auto ">
+      <div class="container px-5">
+        <div
+          class="row align-items-center justify-content-between flex-column flex-sm-row"
+        >
+          <div class="col-12 text-center">
+            <div class="small m-0">Copyright &copy; LEXIA 2025</div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="/public/vendor/template/startbootstrap-sb-admin-2-gh-pages/vendor/jquery/jquery.min.js"></script>
+    <script src="/public/vendor/bootstrap/bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="/public/vendor/template/startbootstrap-sb-admin-2-gh-pages/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="/public/vendor/template/startbootstrap-sb-admin-2-gh-pages/js/sb-admin-2.min.js"></script>
+    <script>
+        const main = document.getElementById("content-dinamic-auth");
+        function cargarViews (event,url) {
+            event.preventDefault();
+            fetch(url)
+            .then(response => response.text())
+            .then(html => {
+                main.innerHTML = html;
+
+                setTimeout(()=>{
+                    window.scrollTo({
+                        top:0,
+                        behavior:"smooth"
+                    })
+                },50)
+            })
+        }
+
+        cargarViews(new Event("load"),"/views/registro.html")
+    </script>
+  </body>
+</html>

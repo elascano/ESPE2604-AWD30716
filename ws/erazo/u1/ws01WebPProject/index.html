@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LEXIA</title>
+
+    <link
+      rel="stylesheet"
+      href="/public/vendor/bootstrap/bootstrap-5.0.2-dist/css/bootstrap.min.css"
+    />
+
+    <link rel="stylesheet" href="/public/css/styles.css" />
+    <link rel="shortcut icon" href="/public/imgs/ley.png" type="image/x-icon" />
+  </head>
+
+  <body class="body-landing d-flex flex-column min-vh-100">
+    <!-- NAVBAR -->
+    <header class="fixed-top bg-dark shadow-sm">
+      <nav class="navbar navbar-expand-lg navbar-dark container-fluid px-lg-4">
+        <a class="navbar-brand fw-bold cabecera" href="index.html">LEXIA</a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navLinks"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navLinks">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link link" href="/views/inicioLangding.html" onclick="cargarViews(event,this.href)" >Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link link" href="/views/porque.html" onclick="cargarViews(event,this.href)">¿Por qué?</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link link" href="/views/paraQuienes.html" onclick="cargarViews(event,this.href)">¿Para quiénes?</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link link" href="/views/contacto.html" onclick="cargarViews(event,this.href)">Contacto</a>
+            </li>
+          </ul>
+
+          <a href="/pages/auth.html" class="btn cta ms-lg-3 d-none d-lg-block">REGÍSTRATE</a>
+        </div>
+      </nav>
+    </header>
+
+    <!-- PORTADA -->
+    <main class="content-index bg-dark-0 flex-fill" id="content-dinamic-landing" >
+      
+    </main>
+
+    <footer class="bg-dark text-light py-3 mt-auto ">
+      <div class="container px-5">
+        <div
+          class="row align-items-center justify-content-between flex-column flex-sm-row"
+        >
+          <div class="col-12 text-center">
+            <div class="small m-0">Copyright &copy; LEXIA 2025</div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="/public/vendor/bootstrap/bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const main = document.getElementById("content-dinamic-landing");
+        function cargarViews(event,url){
+            event.preventDefault();
+            fetch(url)
+            .then(response => response.text())
+            .then(html=>{
+                main.innerHTML = html;
+
+                setTimeout(() => {
+                    window.scrollTo({
+                        top:0,
+                        behavior:"smooth",
+                    })
+                }, 50);
+
+            })
+        }
+
+        cargarViews(new Event("load"),"/views/inicioLangding.html")
+    </script>
+  </body>
+</html>
