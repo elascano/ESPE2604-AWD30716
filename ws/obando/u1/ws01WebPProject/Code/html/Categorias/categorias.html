@@ -1,0 +1,151 @@
+<dialog id="modalAgregarCategoria" class="agregarIngreso container mt-4 border-0 rounded shadow">
+    <form id="formCategoria" class="p-4 bg-light rounded shadow" enctype="multipart/form-data">
+        <h3 class="titulo">Nueva Categoria</h3>
+        <hr>
+        <div class="row d-flex">
+
+            <div class="campo-contenedor col-md-3 mb-3" id="grupo__ncategoria">
+                <label for="ncategoria" class="form-label">Nombre Categoria:</label>
+                <input type="text" name="ncategoria" id="ncategoria" class="form-control shadow" placeholder="Ingresa un nombre" required>
+                <div class="invalid-feedback">Por favor ingrese el nombre de la categoría.</div>
+            </div>
+
+            <div class="campo-contenedor col-md-3 mb-3" id="grupo__tipo">
+                <label for="tipoCategoria" class="form-label">Tipo Categoria:</label>
+                <select name="tipoCategoria" id="tipoCategoria" class="form-select shadow" required>
+                    <option value="" disabled selected>Tipo</option>
+                    <option value="ingreso">Ingreso</option>
+                    <option value="egreso">Egreso</option>
+                </select>
+                <div class="invalid-feedback">Por favor seleccione un tipo de categoría.</div>
+            </div>
+
+            <div class="campo-contenedor col-md-3 mb-3" id="grupo__imagen">
+                <label for="imagenCategoria" class="form-label">Cargar Imagen Categoria:</label>
+                <input type="file" id="imagenCategoria" name="imagenCategoria" accept="image/*" class="form-control"
+                    required>
+                <div class="invalid-feedback">Por favor cargue una imagen válida.</div>
+            </div>
+            <hr>
+            <div class="row">
+                <button type="button" class="btn botonE col-md-1" onclick="guardarDatosCategoria(event)">Guardar</button>
+                <button type="button" class="btn botonR col-md-1" onclick="cerrarAgregarCategoria()">Cancelar</button>
+            </div>
+            
+
+            <div id="mensajeError" class="text-danger d-none mt-2"></div>
+            <p class="formulario__mensaje-exito text-success" id="formulario__mensaje-exito">Formulario enviado
+                exitosamente!</p>
+        </div>
+    </form>
+
+</dialog>
+
+
+
+
+
+<dialog id="modalActualizarCategoria" class="actualizarIngreso container mt-4 border-0 rounded shadow">
+    <form id="actualizarCategoria" class="p-4 bg-light rounded shadow" enctype="multipart/form-data">
+        <h3 class="titulo">Actualizar Categoria</h3>
+        <hr>
+        <div class="row d-flex">
+            <input type="text" name="ncategoriaid" id="ncategoriaid" class="form-control shadow" hidden>
+            <div class="campo-contenedor col-md-3 mb-3" id="grupo__ncategoria">
+                <label for="ncategoriaA" class="form-label">Nombre Categoria:</label>
+                <input type="text" name="ncategoriaA" id="ncategoriaA" class="form-control shadow" required>
+                <div class="invalid-feedback">Por favor ingrese el nombre de la categoría.</div>
+            </div>
+
+            <div class="campo-contenedor col-md-3 mb-3" id="grupo__tipo">
+                <label for="tipoCategoriaA" class="form-label">Tipo Categoria:</label>
+                <select name="tipoCategoriaA" id="tipoCategoriaA" class="form-select shadow" required>
+                    <option value="" disabled selected>Tipo</option>
+                    <option value="ingreso">Ingreso</option>
+                    <option value="egreso">Egreso</option>
+                </select>
+                <div class="invalid-feedback">Por favor seleccione un tipo de categoría.</div>
+            </div>
+            <div class="campo-contenedor col-md-1 mb-2">
+                <label for="opcionImagenCategoria">Imagen Nueva?</label>
+                <input type="checkbox" id="opcionImagenCategoria" name="opcionImagenCategoria" value="verdadero"
+                    onclick="mostrarCategoriaImagen()">
+
+            </div>
+
+            <div class="campo-contenedor col-md-3 mb-3" style="display: none;" id="CampoImagenCategoria">
+                <label for="imagenCategoria" class="form-label">Cargar Imagen Categoria:</label>
+                <input type="file" id="imagenCategoriaA" name="imagenCategoriaA" accept="image/*" class="form-control">
+                <div class="invalid-feedback">Por favor cargue una imagen válida.</div>
+            </div>
+            <hr>
+            <div class="row">
+                <button type="button" class="btn botonA col-md-1" onclick="actualizarDatosCategoria(event)">Guardar</button>
+                <button type="button" class="btn botonR col-md-1" onclick="cerrarActualizarCategoria()">Cancelar</button>
+            </div>
+            
+            <div id="mensajeError" class="text-danger d-none mt-2"></div>
+            <p class="formulario__mensaje-exito text-success" id="formulario__mensaje-exito">Formulario enviado
+                exitosamente!</p>
+        </div>
+    </form>
+</dialog>
+
+
+
+
+
+
+
+
+
+
+<div class="container mt-4">
+    <fieldset class="border p-2 shadow bg-light rounded">
+        <div class="d-flex">
+            <div class="col">
+                <h3 class="titulo">Categorias de Ingresos y Gastos</h3>
+            </div>
+            <div class="col text-end"><button id="agregar" class="btn bg-info-subtle"
+                    onclick="abrirAgregarCategoria()"><i class="bi bi-plus-circle"></i> Agregar Categoria</button>
+            </div>
+        </div>
+        <hr>
+        <div class="table-responsive">
+            
+            <table id="tablaCategoria" class="table text-center table-striped rounded">
+                <thead>
+                    <tr>
+                        <th scope="col">Nombre</th>
+
+                        <th scope="col">Tipo</th>
+                        <th scope="col">codigoQr</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody id="tablebodyCategoria">
+
+                </tbody>
+            </table>
+            <hr>
+            <div class="d-flex">
+                <nav>
+                    <ul class="pagination shadow" id="paginationCategoria"></ul>
+                </nav>
+                <div class="mb-3 col-1 mx-3">
+                    <select id="itemsPerPageCategoria" class="form-select shadow"
+                        onchange="updateItemsPerPageCategoria()">
+                        <option value="5" selected>5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <div id="codigoQr" class="imagenQr" onclick="cerrarQR()">
+        <span class="cerrarImagen" onclick="cerrarQR()">✖</span>
+        <img id="cargarQr" src="" alt="Imagen">
+    </div>
+</div>

@@ -1,0 +1,15 @@
+.valoresDinero{
+    color: rgba(52, 73, 141, 0.589);
+
+}
+
+.tituloCantidades {
+    font-family: "Quicksand",sans-serif;
+    color:rgba(0, 0, 0, 0.493);
+    font-weight: 500;
+}
+
+.icono {
+    filter: invert(90%) sepia(0%) saturate(10%) brightness(70%);
+}
+

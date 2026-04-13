@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Productos</title>
+    <link href="../../css/admiproduc.css" rel="stylesheet" type="text/css">
+    <link href="../../css/appbar.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div class="Navegacion" >
+        <nav id='menu'>
+      <input type='checkbox' id='responsive-menu' onclick='updatemenu()' ><label></label>
+      <ul>
+        <li ><a href="AdminInicio.html">Inicio</a></li>
+        <li><a class='dropdown-arrow' href="AdminUserAsignar.html">Usuario</a>
+          <ul class='sub-menus'>
+            <li><a href="../../php/Admin/AdminUserLista.php">Asignar Roles</a></li>
+            <li><a href="AdminUserCrear.html">Crear Usuarios</a></li>
+            <li><a href="AdminUserRoles.html">Crear Roles</a></li>
+          </ul>
+        </li>
+        <li><a href="AdminProduc.html">Productos</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+
+    <input type="text" id="productName" placeholder="Nombre del producto">
+    <input type="number" id="stock" placeholder="Stock">
+    <input type="number" id="unitCost" placeholder="Costo unitario">
+    <input type="file" id="imageInput" accept="image/*" onchange="showImage(event)">
+    <button onclick="addItem()">Agregar</button>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Imagen</th>
+                <th>Nombre</th>
+                <th>Stock</th>
+                <th>Costo Unitario</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+        </tbody>
+    </table>
+
+    <script>
+        function showImage(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const image = document.createElement('img');
+                    image.src = e.target.result;
+                    image.alt = 'Imagen importada';
+                    image.style.maxWidth = '100px';
+                    image.style.marginTop = '10px';
+                    document.getElementById('imageContainer').innerHTML = ''; 
+                    document.getElementById('imageContainer').appendChild(image);
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function addItem() {
+            const productName = document.getElementById("productName").value;
+            const stock = document.getElementById("stock").value;
+            const unitCost = document.getElementById("unitCost").value;
+            const imageInput = document.getElementById("imageInput");
+
+            if (!productName || !stock || !unitCost || !imageInput.files.length) {
+                alert("Por favor, completa todos los campos.");
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const tableBody = document.getElementById("tableBody");
+                const row = document.createElement("tr");
+
+                row.innerHTML = `
+                    <td><img src="${e.target.result}" style="max-width: 50px;"></td>
+                    <td>${productName}</td>
+                    <td>${stock}</td>
+                    <td>$${unitCost}</td>
+                    <td><button onclick="deleteRow(this)">Eliminar</button></td>
+                `;
+
+                tableBody.appendChild(row);
+
+                // Limpiar los campos después de agregar el producto
+                document.getElementById("productName").value = "";
+                document.getElementById("stock").value = "";
+                document.getElementById("unitCost").value = "";
+                document.getElementById("imageInput").value = "";
+                document.getElementById("imageContainer").innerHTML = "";
+            };
+
+            reader.readAsDataURL(imageInput.files[0]);
+        }
+
+        function deleteRow(button) {
+            button.parentElement.parentElement.remove();
+        }
+    </script>
+</body>
+</html>

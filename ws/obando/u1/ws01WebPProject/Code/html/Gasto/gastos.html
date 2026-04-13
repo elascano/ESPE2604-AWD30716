@@ -1,0 +1,217 @@
+
+<dialog id="modalAgregargasto" class="container mt-4 border-0 rounded">
+    <form id="registrarEgreso">
+        <fieldset class="border p-2 shadow agregar bg-light">
+            <h3 class="titulo">Nuevo Gasto</h3>
+            <hr>
+            <div class="row px-4">
+                <div class="col-12 col-md-3 d-grid px-md-2">
+                    <div class="row">
+                        <label class="mb-0">Tipo de Gasto*</label>
+                        <select name="tipoEgreso" id="selectTipoEgreso" class="form-control form-select mb-4 shadow" onchange="actualizarFondoQRGasto('modalAgregargasto','selectTipoEgreso')">
+                        </select>
+                    </div>
+
+                    <div class="row">
+                        <label>Método de pago*</label>
+                        <select name="metodoGasto" class="form-control form-select mb-4 shadow">
+                            <option value="">Selecciona un método</option>
+                            <option value="Efectivo">Efectivo</option>
+                            <option value="Transferencia">Transferencia</option>
+                            <option value="Cheque">Cheque</option>
+                            <option value="Paypal">Paypal</option>
+                            
+                        </select>
+                    </div>
+
+                </div>
+                <div class="col-12 col-md-6 col-lg-5 d-grid px-md-2">
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <label>Monto $*</label>
+                            <input name="montoGasto" type="number" step="0.01" min="1" class="form-control mb-3 shadow">
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label>Fecha de Gasto*</label>
+                            <input name="fechaGasto" type="date" class="form-control mb-3 shadow">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label>Descripción*</label>
+                            <input name="descripcionGasto" type="text" class="form-control mb-3 shadow">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-lg-4 text-center">
+                    <label class="text-center">Código QR</label>
+                    <div class="mx-auto bg-black d-flex justify-content-center align-items-center codigo">
+
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <button type="button" class="btn" onclick="guardarDatosEgreso(event)" >Guardar</button>
+            <button type="button" class="btn " onclick="cerrarAgregarGasto()">Cancelar</button>
+        </fieldset>
+    </form>
+
+</dialog>
+
+
+<dialog id="modalActualizarGasto" class="actualizarIngreso container mt-4 border-0 rounded shadow">
+    <form id="actualizarGasto">
+        <fieldset class="border p-2 actualizar bg-light border-0">
+            <h3 class="titulo">Actualizar un Gasto</h3>
+            <input type="text" id="idGasto" name="idGasto" style="display: none;">
+            <hr>
+            <div class="row px-4">
+                <div class="col-12 col-md-3 d-grid px-md-2">
+                    <div class="row">
+                        <label class="mb-0">Tipo de Gasto*</label>
+                        <select name="tipoGastoA" id="selectTipoGastoA" class="form-control form-select mb-4 shadow" onchange="actualizarFondoQRGasto('modalActualizarGasto','selectTipoGastoA')">
+                        </select>
+                    </div>
+
+                    <div class="row">
+                        <label>Método de pago*</label>
+                        <select id="metodoGastoA" name="metodoGastoA" class="form-control form-select mb-4 shadow">
+                            <option value="">Selecciona un método</option>
+                            <option value="Efectivo">Efectivo</option>
+                            <option value="Transferencia">Transferencia</option>
+                            <option value="Cheque">Cheque</option>
+                            <option value="Paypal">Paypal</option>
+                            
+                        </select>
+                    </div>
+
+                </div>
+                <div class="col-12 col-md-6 col-lg-5 d-grid px-md-2">
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <label>Monto $*</label>
+                            <input id="montoGastoA" name="montoGastoA" type="number" step="0.01" min="0.05"
+                                class="form-control mb-3 shadow">
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label>Fecha de Ingreso*</label>
+                            <input id="fechaGastoA" name="fechaGastoA" type="date" class="form-control mb-3 shadow">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label>Descripción*</label>
+                            <input id="descripcionGastoA" name="descripcionGastoA" type="text" class="form-control mb-3 shadow">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-lg-4 text-center">
+                    <label class="text-center">Código QR</label>
+                    <div class="mx-auto bg-black d-flex justify-content-center align-items-center codigo">
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <button type="submit" onclick="actualizarDatosGasto(event)" class="btn botonA">Actualizar</button>
+            <button type="button" class="btn botonR" onclick="cerrarActualizarGasto()">Cancelar</button>
+        </fieldset>
+    </form>
+</dialog>
+
+
+
+
+
+
+
+
+
+<div class="container mt-4">
+        <fieldset class="border p-2 shadow agregar bg-light table-responsive rounded">
+            <div class="d-flex">
+                <div class="col"><h3 class="titulo">Gasto</h3></div>
+                <div class="col text-end"><button id="agregar" class="btn bg-info-subtle" onclick="abrirAgregarGasto()"><i class="bi bi-plus-circle"></i> Agregar Gasto</button></div>                
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-12 col-md-2">
+                    <label>Buscar por tipo</label>
+                    <select id="tipoEgresosConsulta" class="form-control mb-3 form-select" onchange="filtrarDatosGasto()">
+                        <option>Seleccione una opcion</option>
+                    </select>
+                </div>
+                <div class="col-sm-12 col-md-2 mx-0 bg-secondary-subtle rounded-start">
+                    <label>Desde: </label>
+                    <div class="d-flex">
+                        <input type="date" class="form-control me-2" id="fechaInicioGasto" onchange="filtrarDatosGasto()">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-2 bg-secondary-subtle rounded-end">
+                    <label>Hasta: </label>
+                    <div class="d-flex">
+                        <input type="date" class="form-control ms-2" id="fechaFinGasto" onchange="filtrarDatosGasto()">
+                    </div>
+                </div>
+    
+                <div class="col-sm-12 col-md-2 ms-auto">
+                    <label>Estados:</label>
+                    <select id="EstadoConsultaGasto" class="form-control mb-3 form-select" onchange="filtrarDatosGasto()">
+                        <option value="">Seleccione una opcion</option>
+                        <option value="1">Mostrar Completados</option>
+                        <option value="2">Mostrar Anulados</option>
+                        <option value="3">Mostrar Todo</option>
+                    </select>
+                </div>
+            </div>
+    
+            <hr>
+
+            <div class="table-responsive">
+            <table id="tablaEgresos" class="table text-center table-striped rounded">
+                <thead>
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Monto</th>
+                    <th scope="col">Tipo</th>
+                    
+                    <th scope="col">Método</th>
+                    <th scope="col">Registrado por</th>
+                    <th scope="col">Código QR</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody id="table-body">
+                  
+                </tbody >
+              </table>
+            <hr>
+            <div class="d-flex">
+                <nav>
+                    <ul class="pagination shadow" id="paginationGasto"></ul>
+                </nav>
+                <div class="mb-3 col-1 mx-3">
+                    <select id="itemsPerPageGasto" class="form-select shadow" onchange="updateItemsPerPageGasto()">
+                        <option value="5" selected>5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                    </select>
+                </div>
+            </div>
+            
+        </div>
+
+
+
+        </fieldset>
+        <div id="codigoQr" class="imagenQr" onclick="cerrarQR()">
+            <span class="cerrarImagen" onclick="cerrarQR()">✖</span>
+            <img id="cargarQr" src="" alt="Imagen">
+        </div>
+</div>

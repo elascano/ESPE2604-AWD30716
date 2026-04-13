@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="Sistema de Gestión de Biblioteca Digital - Proyecto Final de Desarrollo de Aplicaciones Web Interactivas" />
+    <title>Biblioteca Digital - Sistema de Gestión de Préstamos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="../public/css/app.css" />
+</head>
+
+<body>
+    <div id="notification-container" class="notification-container"></div>
+
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="40" height="40" rx="8" fill="url(#gradient)" />
+                        <path d="M12 10H28V30H12V10Z" stroke="white" stroke-width="2" stroke-linecap="round" />
+                        <path d="M16 15H24M16 20H24M16 25H20" stroke="white" stroke-width="2" stroke-linecap="round" />
+                        <defs>
+                            <linearGradient id="gradient" x1="0" y1="0" x2="40" y2="40">
+                                <stop offset="0%" stop-color="#667eea" />
+                                <stop offset="100%" stop-color="#764ba2" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <h1>Biblioteca Digital</h1>
+                </div>
+                <nav class="nav">
+                    <button class="nav-btn active" data-section="libros">
+                        <span class="icon">📚</span>
+                        Libros
+                    </button>
+                    <button class="nav-btn" data-section="prestamos">
+                        <span class="icon">📖</span>
+                        Préstamos
+                    </button>
+                    <button class="nav-btn" data-section="reservas">
+                        <span class="icon">⏰</span>
+                        Reservas
+                    </button>
+                    <button class="nav-btn" data-section="estadisticas">
+                        <span class="icon">📊</span>
+                        Estadísticas
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <section id="section-libros" class="section active">
+                <div class="section-header">
+                    <h2>Catálogo de Libros</h2>
+                    <button class="btn btn-primary" id="btn-agregar-libro">
+                        <span class="icon">➕</span>
+                        Agregar Libro
+                    </button>
+                </div>
+
+                <div class="search-filters">
+                    <div class="search-box">
+                        <input type="text" id="search-input" placeholder="Buscar por título, autor o género..."
+                            class="search-input" />
+                        <span class="search-icon">🔍</span>
+                    </div>
+                    <div class="filter-group">
+                        <select id="filter-genero" class="filter-select">
+                            <option value="">Todos los géneros</option>
+                            <option value="Ficción">Ficción</option>
+                            <option value="No Ficción">No Ficción</option>
+                            <option value="Ciencia">Ciencia</option>
+                            <option value="Historia">Historia</option>
+                            <option value="Tecnología">Tecnología</option>
+                            <option value="Fantasía">Fantasía</option>
+                        </select>
+                        <select id="filter-disponibilidad" class="filter-select">
+                            <option value="">Todos</option>
+                            <option value="disponible">Disponibles</option>
+                            <option value="prestado">Prestados</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="libros-grid" class="libros-grid"></div>
+            </section>
+
+            <section id="section-prestamos" class="section">
+                <div class="section-header">
+                    <h2>Gestión de Préstamos</h2>
+                    <div class="stats-mini">
+                        <div class="stat-item">
+                            <span class="stat-label">Activos:</span>
+                            <span class="stat-value" id="prestamos-activos">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Vencidos:</span>
+                            <span class="stat-value danger" id="prestamos-vencidos">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="prestamos-container">
+                    <div id="prestamos-list" class="prestamos-list"></div>
+                </div>
+            </section>
+
+            <section id="section-reservas" class="section">
+                <div class="section-header">
+                    <h2>Sistema de Reservas</h2>
+                    <p class="section-description">
+                        Reserva libros que actualmente están prestados
+                    </p>
+                </div>
+
+                <div class="reservas-container">
+                    <div id="reservas-list" class="reservas-list"></div>
+                </div>
+            </section>
+
+            <section id="section-estadisticas" class="section">
+                <div class="section-header">
+                    <h2>Estadísticas del Sistema</h2>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">📚</div>
+                        <div class="stat-info">
+                            <h3>Total de Libros</h3>
+                            <p class="stat-number" id="stat-total-libros">0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">✅</div>
+                        <div class="stat-info">
+                            <h3>Libros Disponibles</h3>
+                            <p class="stat-number" id="stat-disponibles">0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📖</div>
+                        <div class="stat-info">
+                            <h3>Préstamos Activos</h3>
+                            <p class="stat-number" id="stat-prestamos">0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">⏰</div>
+                        <div class="stat-info">
+                            <h3>Reservas Pendientes</h3>
+                            <p class="stat-number" id="stat-reservas">0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <h3>Libros por Género</h3>
+                    <div id="generos-chart" class="generos-chart"></div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <div id="modal-agregar-libro" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Agregar Nuevo Libro</h3>
+                <button class="modal-close" data-modal="modal-agregar-libro">
+                    &times;
+                </button>
+            </div>
+            <form id="form-agregar-libro" class="form">
+                <div class="form-group">
+                    <label for="libro-titulo">Título</label>
+                    <input type="text" id="libro-titulo" required class="form-input" />
+                </div>
+                <div class="form-group">
+                    <label for="libro-autor">Autor</label>
+                    <input type="text" id="libro-autor" required class="form-input" />
+                </div>
+                <div class="form-group">
+                    <label for="libro-genero">Género</label>
+                    <select id="libro-genero" required class="form-input">
+                        <option value="">Seleccionar género</option>
+                        <option value="Ficción">Ficción</option>
+                        <option value="No Ficción">No Ficción</option>
+                        <option value="Ciencia">Ciencia</option>
+                        <option value="Historia">Historia</option>
+                        <option value="Tecnología">Tecnología</option>
+                        <option value="Fantasía">Fantasía</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="libro-descripcion">Descripción</label>
+                    <textarea id="libro-descripcion" rows="3" class="form-input"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" data-modal="modal-agregar-libro">
+                        Cancelar
+                    </button>
+                    <button type="submit" class="btn btn-primary">Agregar Libro</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="modal-prestar-libro" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Realizar Préstamo</h3>
+                <button class="modal-close" data-modal="modal-prestar-libro">
+                    &times;
+                </button>
+            </div>
+            <form id="form-prestar-libro" class="form">
+                <input type="hidden" id="prestamo-libro-id" />
+                <div class="form-group">
+                    <label for="prestamo-usuario">Nombre del Usuario</label>
+                    <input type="text" id="prestamo-usuario" required class="form-input" />
+                </div>
+                <div class="form-group">
+                    <label for="prestamo-dias">Días de préstamo</label>
+                    <input type="number" id="prestamo-dias" value="7" min="1" max="30" required class="form-input" />
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" data-modal="modal-prestar-libro">
+                        Cancelar
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        Confirmar Préstamo
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="modal-reservar-libro" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Reservar Libro</h3>
+                <button class="modal-close" data-modal="modal-reservar-libro">
+                    &times;
+                </button>
+            </div>
+            <form id="form-reservar-libro" class="form">
+                <input type="hidden" id="reserva-libro-id" />
+                <div class="form-group">
+                    <label for="reserva-usuario">Nombre del Usuario</label>
+                    <input type="text" id="reserva-usuario" required class="form-input" />
+                </div>
+                <div class="form-group">
+                    <label for="reserva-email">Email (para notificaciones)</label>
+                    <input type="email" id="reserva-email" required class="form-input" />
+                </div>
+                <div class="alert alert-info">
+                    <strong>ℹ️ Información:</strong> Recibirás una notificación cuando
+                    el libro esté disponible.
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" data-modal="modal-reservar-libro">
+                        Cancelar
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        Confirmar Reserva
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="../public/js/app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,2979 @@
+═══════════════════════════════════════════════════════════════════════════════
+                    DOCUMENTACIÓN TÉCNICA DETALLADA
+          APLICACIÓN WEB DE GESTIÓN DE BIBLIOTECA VIRGINIA
+═══════════════════════════════════════════════════════════════════════════════
+
+PROYECTO: PRY_APP_WEB_BIBLIOTECA
+CURSO: Programación Web (NRC 27811)
+FECHA DE ANÁLISIS: 2 de febrero de 2026
+
+AUTORES:
+- Uriel Andrade
+- Kerly Chuqui
+- Victoria Diaz
+- Yostin Sisalema
+
+═══════════════════════════════════════════════════════════════════════════════
+                         ÍNDICE DE CONTENIDO
+═══════════════════════════════════════════════════════════════════════════════
+
+1. DESCRIPCIÓN GENERAL DEL PROYECTO
+2. ESTRUCTURA DE DIRECTORIOS Y ARCHIVOS
+3. TECNOLOGÍAS UTILIZADAS
+4. ANÁLISIS DETALLADO DE ARCHIVOS HTML
+5. ANÁLISIS DETALLADO DE ARCHIVOS JAVASCRIPT
+6. ANÁLISIS DETALLADO DE ARCHIVOS CSS
+7. FLUJO DE FUNCIONAMIENTO DE LA APLICACIÓN
+8. SISTEMA DE AUTENTICACIÓN Y REGISTRO
+9. GESTIÓN DE DATOS Y PERSISTENCIA
+10. SISTEMA DE NAVEGACIÓN DINÁMICA
+11. CARACTERÍSTICAS Y FUNCIONALIDADES
+12. PATRONES DE DISEÑO IMPLEMENTADOS
+13. CONSIDERACIONES DE SEGURIDAD
+14. POSIBLES MEJORAS Y RECOMENDACIONES
+
+
+═══════════════════════════════════════════════════════════════════════════════
+1. DESCRIPCIÓN GENERAL DEL PROYECTO
+═══════════════════════════════════════════════════════════════════════════════
+
+La Aplicación Web de Biblioteca Virginia es un sistema de gestión bibliotecaria
+desarrollado como proyecto académico. Permite a los usuarios:
+
+- Registrarse e iniciar sesión en el sistema
+- Visualizar un catálogo completo de libros
+- Agregar nuevos libros a la colección
+- Buscar y filtrar libros por título, autor o género
+- Gestionar préstamos y devoluciones de libros
+- Mantener un registro persistente de la información
+
+El sistema utiliza tecnologías web modernas con almacenamiento local (localStorage
+y sessionStorage) para la persistencia de datos, sin necesidad de un backend
+tradicional. La aplicación cuenta con una interfaz responsiva que se adapta a
+diferentes dispositivos.
+
+
+═══════════════════════════════════════════════════════════════════════════════
+2. ESTRUCTURA DE DIRECTORIOS Y ARCHIVOS
+═══════════════════════════════════════════════════════════════════════════════
+
+PRY_APP_WEB_BIBLIOTECA/
+│
+├── index.html                      # Página principal de la aplicación
+├── package.json                    # Configuración de Node.js y dependencias
+├── README.md                       # Documentación básica del proyecto
+│
+├── public/                         # Recursos públicos
+│   ├── css/                        # Hojas de estilo
+│   │   ├── agregarLibro.css       # Estilos para la página de agregar libros
+│   │   ├── home.css               # Estilos para la página de inicio
+│   │   ├── productos.css          # Estilos para el catálogo de libros
+│   │   └── style.css              # Estilos globales de la aplicación
+│   │
+│   ├── img/                        # Imágenes (vacío en este proyecto)
+│   │
+│   ├── js/                         # Scripts JavaScript
+│   │   ├── agregarLibro.js        # Lógica para agregar libros
+│   │   ├── AppEvents.js           # Gestor de eventos de la aplicación
+│   │   ├── LibraryData.js         # Modelo de datos de la biblioteca
+│   │   ├── main.js                # Script principal de la aplicación
+│   │   ├── NotificationServices.js # Sistema de notificaciones
+│   │   ├── pageLoader.js          # Cargador de páginas dinámico
+│   │   ├── productosLibreria.js   # Lógica del catálogo de libros
+│   │   ├── prueba.js              # Archivo de pruebas
+│   │   ├── registroLibros.js      # (No encontrado en la revisión)
+│   │   ├── storage.js             # Manejo de localStorage/sessionStorage
+│   │   ├── utils.js               # Funciones utilitarias generales
+│   │   └── validarEntradaDatos.js # Validaciones de formularios
+│   │
+│   └── video/                      # Videos de la aplicación
+│       └── WhatsApp Video 2026-01-28 at 8.08.37 PM.mp4
+│
+└── view/                           # Vistas HTML de la aplicación
+    ├── agregarLibro.html          # Formulario para agregar libros
+    ├── home.html                  # Página de bienvenida
+    ├── login.html                 # Página de inicio de sesión
+    ├── productosLibreria.html     # Catálogo de libros
+    └── register.html              # Página de registro de usuarios
+
+
+═══════════════════════════════════════════════════════════════════════════════
+3. TECNOLOGÍAS UTILIZADAS
+═══════════════════════════════════════════════════════════════════════════════
+
+FRONTEND:
+---------
+• HTML5: Estructura semántica de las páginas
+• CSS3: Estilos y diseño responsivo
+• JavaScript (ES6+): Lógica de la aplicación
+• Bootstrap 5.3.8: Framework CSS para diseño responsivo
+• Bootstrap Icons: Iconografía SVG
+
+HERRAMIENTAS DE DESARROLLO:
+---------------------------
+• Node.js: Entorno de ejecución para gestión de paquetes
+• npm: Gestor de paquetes
+• Vite 7.3.1: Herramienta de construcción y desarrollo
+
+ALMACENAMIENTO:
+--------------
+• localStorage: Persistencia de datos de usuarios y libros
+• sessionStorage: Gestión de sesiones de usuario
+
+FUENTES:
+--------
+• Google Fonts: Oswald y Roboto
+
+
+═══════════════════════════════════════════════════════════════════════════════
+4. ANÁLISIS DETALLADO DE ARCHIVOS HTML
+═══════════════════════════════════════════════════════════════════════════════
+
+4.1. INDEX.HTML - PÁGINA PRINCIPAL
+───────────────────────────────────
+
+PROPÓSITO:
+Es el punto de entrada de la aplicación. Contiene la estructura principal con
+navegación lateral, barra superior y un contenedor dinámico para cargar páginas.
+
+ESTRUCTURA PRINCIPAL:
+
+1. HEAD:
+   - Meta tags para codificación UTF-8 y viewport responsive
+   - Enlaces a hojas de estilo (style.css, home.css, Bootstrap)
+   - Icono de la página (favicon)
+   - Título: "Biblioteca Digital"
+
+2. HEADER:
+   - Define símbolos SVG reutilizables mediante <symbol>:
+     * cart: Icono de carrito
+     * notificaciones: Icono de campana
+     * Home: Icono de casa
+     * speedometer2: Icono de velocímetro
+     * table: Icono de tabla
+     * grid: Icono de cuadrícula
+     * people: Icono de personas
+     * cerrar_seccion: Icono de puerta (cerrar sesión)
+     * book: Icono de libro
+     * search: Icono de búsqueda
+     * menu: Icono de menú hamburguesa
+
+3. NAVEGACIÓN LATERAL (nav.page-navigation):
+   - Barra lateral fija con animación de deslizamiento
+   - Enlaces con tooltips de Bootstrap:
+     * Inicio (Home)
+     * Dashboard
+     * Agregar Libro
+     * Catálogo de Libros
+   - Utiliza el sistema de carga dinámica con onclick="loadPage(event, this.href)"
+
+4. NAVEGACIÓN SUPERIOR (navbar):
+   - Barra fija en la parte superior
+   - Elementos:
+     * Botón hamburguesa para móviles
+     * Logo "Biblioteca Virginia"
+     * Barra de búsqueda colapsable
+     * Icono de notificaciones con badge de contador
+     * Menú desplegable de usuario con:
+       - Nombre y correo del usuario actual
+       - Enlace a cuenta
+       - Botón de cerrar sesión
+
+5. MAIN:
+   - Contenedor <div class="main-content"></div>
+   - Área dinámica donde se cargan las páginas mediante pageLoader.js
+
+6. SCRIPTS:
+   - pageLoader.js: Carga dinámica de páginas
+   - utils.js: Funciones utilitarias
+   - main.js: Script principal
+   - storage.js: Manejo de almacenamiento
+   - LibraryData.js: Modelo de datos
+   - Bootstrap bundle: Framework JS
+   - Script inline para animación de carga (añade clase 'bg-started')
+
+CARACTERÍSTICAS ESPECIALES:
+• Navegación SPA (Single Page Application) sin recargar la página completa
+• Sistema de tooltips para mejorar la UX
+• Responsive design con colapso de menú en móviles
+• Sistema de notificaciones con contador dinámico
+• Perfil de usuario contextual
+
+
+4.2. VIEW/HOME.HTML - PÁGINA DE INICIO
+───────────────────────────────────────
+
+PROPÓSITO:
+Página de bienvenida con un video de fondo y mensaje de bienvenida.
+
+ESTRUCTURA:
+- Video HTML5 en loop y muted como fondo
+- Overlay oscuro semitransparente sobre el video
+- Modal de bienvenida centrado con:
+  * Título: "Bienvenido a la Biblioteca Digital Virginia"
+  * Subtítulo: "Explora miles de libros y expande tu conocimiento"
+
+CARACTERÍSTICAS:
+• Video responsivo que cubre toda la pantalla
+• Animación de entrada (slideUp) para el modal
+• Diseño minimalista y elegante
+• No requiere interacción del usuario
+
+CSS ASOCIADO: home.css
+
+
+4.3. VIEW/LOGIN.HTML - INICIO DE SESIÓN
+────────────────────────────────────────
+
+PROPÓSITO:
+Página de autenticación para usuarios registrados.
+
+ESTRUCTURA DEL FORMULARIO:
+1. Imagen decorativa (lado izquierdo en desktop)
+2. Formulario de login (lado derecho) con:
+   - Input de nombre de usuario (con icono de persona)
+   - Input de contraseña (con icono de candado)
+   - Checkbox "Recordarme"
+   - Botón "Ingresar"
+
+VALIDACIONES:
+- Validación en tiempo real mediante data-validate="nombreUsuario"
+- Validación de contraseña mediante data-validate="contraseña"
+- Feedback visual con clases .invalid-feedback
+
+ENLACES:
+- Link a página de registro
+- Enlaces decorativos a redes sociales (Facebook, Twitter, Google)
+
+SCRIPTS UTILIZADOS:
+- main.js: Lógica principal
+- storage.js: Recuperar datos de usuarios
+- validarEntradaDatos.js: Validaciones
+- registro.js: Manejo del formulario (nombre confuso, debería ser login.js)
+
+FLUJO DE AUTENTICACIÓN:
+1. Usuario ingresa credenciales
+2. Se validan los campos
+3. Se busca coincidencia en localStorage (usuariosData)
+4. Si es válido, se guarda la sesión en sessionStorage
+5. Redirige a index.html
+
+
+4.4. VIEW/REGISTER.HTML - REGISTRO DE USUARIOS
+───────────────────────────────────────────────
+
+PROPÓSITO:
+Formulario de registro para nuevos usuarios del sistema.
+
+ESTRUCTURA DEL FORMULARIO:
+1. Lado izquierdo (formulario):
+   - Nombre completo (validación: 2 nombres)
+   - Apellido completo (validación: 2 apellidos)
+   - Correo electrónico (validación: formato email)
+   - Nombre de usuario (validación: 3-20 caracteres, alfanumérico)
+   - Contraseña (validación: mínimo 8 caracteres, letra y número)
+   - Confirmar contraseña (validación: coincidencia)
+   - Checkbox de términos y condiciones
+
+2. Lado derecho: Imagen decorativa
+
+VALIDACIONES IMPLEMENTADAS:
+- Nombre completo: Solo letras, sin espacios consecutivos, 2 nombres
+- Apellido completo: Solo letras, sin espacios consecutivos, 2 apellidos
+- Email: Formato válido con un @, sin puntos al inicio/fin, máximo 2 puntos
+- Usuario: Alfanumérico + guión bajo, 3-20 caracteres
+- Contraseña: Mínimo 8 caracteres, al menos una letra y un número
+- Validación de duplicados asíncrona para email y usuario
+
+FLUJO DE REGISTRO:
+1. Usuario llena el formulario
+2. Validación en tiempo real de cada campo
+3. Validación de duplicados antes de enviar
+4. Creación de objeto usuario con función factory
+5. Guardado en localStorage con clave 'usuariosData'
+6. Redirección a login.html
+
+
+4.5. VIEW/AGREGARLIBRO.HTML - AGREGAR LIBROS
+─────────────────────────────────────────────
+
+PROPÓSITO:
+Formulario para que administradores agreguen nuevos libros a la colección.
+
+ESTRUCTURA:
+1. Header decorativo con gradiente morado
+2. Contenedor de alertas (#alert-container)
+3. Formulario con campos:
+   - Título del libro (requerido)
+   - Autor (requerido)
+   - Género (select con 14 opciones: Novela, Ciencia, Ciencia Ficción,
+     Fantasía, Romance, Terror, Misterio, Tecnología, Historia, Biografía,
+     Infantil, Poesía, Ensayo, Otro)
+   - URL de la portada (requerido, tipo url)
+   - Vista previa de la imagen
+   
+4. Botones:
+   - Cancelar (vuelve atrás con window.history.back())
+   - Guardar Libro (submit)
+
+5. Lista de libros agregados:
+   - Muestra todos los libros en la biblioteca
+   - Cada libro tiene:
+     * Número secuencial
+     * Título en negrita
+     * Autor y género
+     * Badge de disponibilidad (verde o amarillo)
+     * Botón de eliminar
+
+FUNCIONALIDADES:
+• Vista previa dinámica de la portada al escribir la URL
+• Validación HTML5 nativa (required, tipo url)
+• Actualización automática de la lista tras agregar/eliminar
+• Contador total de libros
+• Mensajes de confirmación al eliminar
+
+SCRIPTS:
+- utils.js: Funciones auxiliares
+- LibraryData.js: Modelo de datos
+- agregarLibro.js: Lógica del formulario
+
+
+4.6. VIEW/PRODUCTOSLIBRERIA.HTML - CATÁLOGO
+────────────────────────────────────────────
+
+PROPÓSITO:
+Vista del catálogo completo de libros con búsqueda y filtros.
+
+ESTRUCTURA:
+1. Header del catálogo:
+   - Título: "Catálogo de Libros"
+   - Subtítulo descriptivo
+
+2. Sección de filtros:
+   - Input de búsqueda por título o autor
+   - Select para filtrar por género
+
+3. Grid de libros:
+   - Contenedor con id="libros-container"
+   - Spinner de carga mientras se cargan los datos
+   - Tarjetas de libros generadas dinámicamente
+
+4. Modal de detalles:
+   - Botón cerrar (X)
+   - Imagen de portada
+   - Información del libro:
+     * Título
+     * Autor
+     * Género
+     * Estado de disponibilidad
+   - Botones de acción:
+     * "Solicitar Préstamo" (si está disponible)
+     * "Registrar Devolución" (si está prestado)
+
+FUNCIONALIDADES:
+• Búsqueda en tiempo real mientras se escribe
+• Filtrado combinado (búsqueda + género)
+• Click en tarjeta abre modal con detalles
+• Gestión de préstamos/devoluciones desde el modal
+• Actualización automática del estado visual
+• Mensaje cuando no hay resultados
+
+SCRIPTS:
+- LibraryData.js: Fuente de datos
+- productosLibreria.js: Toda la lógica de renderizado y filtrado
+- Script inline: Inicializa ProductosLibreria.init()
+
+
+═══════════════════════════════════════════════════════════════════════════════
+5. ANÁLISIS DETALLADO DE ARCHIVOS JAVASCRIPT
+═══════════════════════════════════════════════════════════════════════════════
+
+5.1. PUBLIC/JS/LIBRARYDATA.JS - MODELO DE DATOS
+────────────────────────────────────────────────
+
+PROPÓSITO:
+Define las clases y estructuras de datos principales de la biblioteca.
+Implementa el patrón Singleton para la gestión centralizada de datos.
+
+CLASE: Libro
+────────────
+Constructor: Libro(titulo, autor, genero, portada)
+
+Propiedades:
+- id: Timestamp único generado con Date.now()
+- titulo: Nombre del libro
+- autor: Nombre del autor
+- genero: Categoría del libro
+- portada: URL de la imagen (placeholder si no se proporciona)
+- disponible: Boolean, true por defecto
+- fechaPrestamo: null o Date, se establece al prestar
+
+Ejemplo de uso:
+  const libro = new Libro("1984", "George Orwell", "Novela", "url.jpg");
+
+
+OBJETO: Biblioteca (Singleton)
+──────────────────────────────
+Propiedades:
+- libros: Array principal de objetos Libro
+- storageKey: 'biblioteca_virginia_data' (clave para localStorage)
+- _initialized: Flag para evitar inicialización múltiple
+
+MÉTODOS:
+
+1. inicializar()
+   - Verifica si hay datos en localStorage
+   - Si existen: los carga y parsea
+   - Si no existen: carga datos de prueba y los guarda
+   - Solo se ejecuta una vez (patrón singleton)
+
+2. guardarDatos()
+   - Convierte el array libros a JSON string
+   - Lo guarda en localStorage con la clave storageKey
+   - Se llama automáticamente después de cada modificación
+
+3. cargarDatosPrueba()
+   - Crea 3 libros de ejemplo:
+     * "Cien años de soledad" - Gabriel G. Márquez (Novela)
+     * "El Principito" - Antoine de Saint-Exupéry (Infantil)
+     * "Clean Code" - Robert C. Martin (Tecnología)
+   - Utiliza agregarLibro() con parámetro guardar=false
+
+4. agregarLibro(nuevoLibro, guardar=true)
+   - Añade un libro al array libros
+   - Si guardar es true, persiste en localStorage
+   - Retorna el libro agregado
+
+5. eliminarLibro(id)
+   - Filtra el array para eliminar el libro con ese id
+   - Compara longitud antes/después para verificar eliminación
+   - Guarda cambios en localStorage
+   - Retorna true si se eliminó, false si no se encontró
+
+6. toggleDisponibilidad(id)
+   - Busca el libro por id
+   - Invierte el valor de libro.disponible
+   - Si se presta: establece fechaPrestamo = new Date()
+   - Si se devuelve: establece fechaPrestamo = null
+   - Guarda cambios y retorna el libro modificado
+
+PATRÓN DE DISEÑO:
+• Singleton: Solo existe una instancia de Biblioteca
+• Module Pattern: Encapsulación de datos y métodos
+• Factory Pattern: La función libro() en main.js actúa como factory
+
+INICIALIZACIÓN AUTOMÁTICA:
+Al final del archivo, se ejecuta:
+  if (window.Biblioteca && !window.Biblioteca._initialized) {
+      window.Biblioteca.inicializar();
+      window.Biblioteca._initialized = true;
+  }
+
+Esto asegura que los datos se carguen automáticamente al incluir el script.
+
+
+5.2. PUBLIC/JS/UTILS.JS - FUNCIONES UTILITARIAS
+────────────────────────────────────────────────
+
+PROPÓSITO:
+Proporciona funciones auxiliares para simplificar operaciones DOM comunes.
+Reduce la verbosidad y mejora la legibilidad del código.
+
+FUNCIONES DE SELECCIÓN:
+────────────────────────
+
+getById(id)
+- Retorna: document.getElementById(id)
+- Uso: const elemento = getById('miId');
+
+getByIds(...ids)
+- Acepta múltiples IDs
+- Retorna un objeto con pares id: elemento
+- Uso: const {form, input} = getByIds('form', 'input');
+
+
+FUNCIONES DE MANIPULACIÓN DE TEXTO:
+────────────────────────────────────
+
+setText(elemento, texto)
+- Establece textContent del elemento
+- Acepta string (id) o elemento DOM
+- Uso: setText('titulo', 'Nuevo Título');
+
+setHTML(elemento, html)
+- Establece innerHTML del elemento
+- PRECAUCIÓN: Vulnerable a XSS si no se sanitiza
+- Uso: setHTML('contenedor', '<p>HTML</p>');
+
+
+FUNCIONES DE VALORES DE INPUTS:
+────────────────────────────────
+
+getValue(elemento)
+- Obtiene el value de un input
+- Retorna string vacío si el elemento no existe
+- Uso: const nombre = getValue('inputNombre');
+
+setValue(elemento, valor)
+- Establece el value de un input
+- Uso: setValue('inputNombre', 'Juan');
+
+
+FUNCIONES DE CLASES CSS:
+─────────────────────────
+
+addClass(elemento, clase)
+- Añade una clase CSS al elemento
+- Uso: addClass('div', 'activo');
+
+removeClass(elemento, clase)
+- Elimina una clase CSS del elemento
+- Uso: removeClass('div', 'activo');
+
+toggleClass(elemento, clase)
+- Alterna una clase CSS (la añade si no existe, la elimina si existe)
+- Uso: toggleClass('menu', 'abierto');
+
+
+FUNCIÓN DE VISIBILIDAD:
+────────────────────────
+
+toggleVisibility(elemento, mostrar)
+- Muestra u oculta un elemento mediante display
+- Si mostrar=true: display=''
+- Si mostrar=false: display='none'
+- Uso: toggleVisibility('modal', true);
+
+
+FUNCIÓN DE EVENTOS:
+────────────────────
+
+onEvent(elemento, evento, callback)
+- Añade un event listener
+- Simplifica addEventListener
+- Uso: onEvent('btnGuardar', 'click', () => alert('Guardado'));
+
+
+FUNCIONES DE MANIPULACIÓN DE DOM:
+──────────────────────────────────
+
+clearChildren(elemento)
+- Elimina todos los hijos de un elemento
+- Uso: clearChildren('lista'); // Vacía la lista
+
+createElement(tag, attrs={}, content='')
+- Crea un elemento HTML
+- Parámetros:
+  * tag: nombre de la etiqueta ('div', 'p', etc.)
+  * attrs: objeto con atributos
+    - 'class' se convierte en className
+    - 'style' se asigna con Object.assign
+    - otros se establecen con setAttribute
+  * content: innerHTML del elemento
+- Retorna el elemento creado
+- Uso: 
+    const div = createElement('div', 
+      {class: 'card', id: 'mi-card'}, 
+      '<p>Contenido</p>'
+    );
+
+
+FUNCIÓN DE ALERTAS:
+────────────────────
+
+mostrarAlerta(mensaje, tipo='info')
+- Crea y muestra una alerta de Bootstrap
+- Tipos: 'info', 'success', 'warning', 'danger'
+- Características:
+  * Se auto-remueve después de 5 segundos
+  * Incluye botón de cierre
+  * Se inserta en #alert-container o al inicio del body
+- Uso: mostrarAlerta('Libro guardado', 'success');
+
+VENTAJAS DE UTILS.JS:
+• Código más limpio y legible
+• Menos repetición
+• Manejo consistente de errores (verifica existencia de elementos)
+• Abstracción de API DOM verbosa
+• Facilita el mantenimiento
+
+
+5.3. PUBLIC/JS/AGREGARLIBRO.JS - AGREGAR LIBROS
+────────────────────────────────────────────────
+
+PROPÓSITO:
+Maneja toda la lógica del formulario de agregar libros, incluyendo validación,
+vista previa de imágenes, guardado y visualización de la lista.
+
+ESTRUCTURA: IIFE (Immediately Invoked Function Expression)
+───────────────────────────────────────────────────────────
+Se envuelve todo en (function(){ ... })() para:
+- Evitar contaminar el scope global
+- Crear un scope privado para las variables
+- Exponer solo las funciones necesarias
+
+VARIABLE PRIVADA: elementos
+───────────────────────────
+Objeto que almacena referencias DOM:
+  elementos = {
+    form: formulario completo,
+    inputTitulo: campo título,
+    inputAutor: campo autor,
+    inputGenero: select género,
+    inputPortada: input URL,
+    previewContainer: div de vista previa,
+    previewImage: img de vista previa,
+    listaLibros: contenedor de libros,
+    btnGuardar: botón submit
+  }
+
+FUNCIÓN: inicializarElementos()
+────────────────────────────────
+- Se ejecuta al cargar el DOM
+- Inicializa todas las referencias usando getById() de utils.js
+- Verifica que window.Biblioteca esté disponible
+- Si no está: muestra error en consola y alerta
+
+FUNCIÓN: configurarEventos()
+────────────────────────────
+Configura los event listeners:
+1. submit del formulario → manejarSubmitFormulario
+2. input de portada → manejarCambioPortada
+
+FUNCIÓN: manejarCambioPortada()
+────────────────────────────────
+Maneja la vista previa de la imagen:
+1. Obtiene la URL del input con getValue()
+2. Si hay URL:
+   - Asigna la URL a previewImage.src
+   - Remueve clase 'd-none' del contenedor (lo hace visible)
+   - Configura onerror para manejar URLs inválidas:
+     * Si falla la carga: oculta preview y muestra alerta
+3. Si no hay URL: oculta el preview
+
+FUNCIÓN: manejarSubmitFormulario(e)
+────────────────────────────────────
+Maneja el envío del formulario:
+1. Previene el comportamiento por defecto (e.preventDefault())
+2. Valida el formulario con checkValidity()
+3. Si no es válido:
+   - Detiene propagación
+   - Añade clase 'was-validated' (estilos Bootstrap)
+   - Retorna sin hacer nada
+4. Si es válido:
+   - Obtiene valores con getValue()
+   - Hace trim() para eliminar espacios
+   - Valida que ningún campo esté vacío
+   - Crea un nuevo objeto Libro
+   - Lo agrega con Biblioteca.agregarLibro()
+   - Muestra alerta de éxito
+   - Limpia el formulario
+   - Actualiza la lista de libros
+
+FUNCIÓN: limpiarFormulario()
+────────────────────────────
+Después de agregar un libro:
+1. Resetea el formulario (elementos.form.reset())
+2. Remueve clase 'was-validated'
+3. Oculta el preview (añade 'd-none')
+4. Pone el foco en el primer campo (inputTitulo)
+
+FUNCIÓN: actualizarListaLibros()
+─────────────────────────────────
+Renderiza la lista completa de libros:
+1. Verifica que existan los elementos necesarios
+2. Limpia el contenedor con clearChildren()
+3. Obtiene el array de libros de Biblioteca.libros
+4. Si no hay libros:
+   - Muestra mensaje informativo
+5. Si hay libros:
+   - Itera con forEach
+   - Crea elemento para cada libro con crearElementoLibro()
+   - Añade al contenedor
+   - Muestra contador total al final
+
+FUNCIÓN: crearElementoLibro(libro, numero)
+───────────────────────────────────────────
+Crea el HTML de un libro para la lista:
+1. Determina el texto y clase del badge según disponibilidad
+2. Crea un div.list-group-item con createElement()
+3. Estructura:
+   - Número y título en negrita
+   - Autor y género en pequeño
+   - Badge de disponibilidad
+   - Botón de eliminar con icono SVG
+4. Añade evento click al botón eliminar
+5. Retorna el elemento creado
+
+FUNCIÓN: eliminarLibro(id, titulo)
+───────────────────────────────────
+Elimina un libro:
+1. Muestra confirmación con confirm()
+2. Si el usuario confirma:
+   - Llama a Biblioteca.eliminarLibro(id)
+   - Si se eliminó exitosamente:
+     * Muestra alerta de éxito
+     * Actualiza la lista
+   - Si falló:
+     * Muestra alerta de error
+
+API PÚBLICA: window.AgregarLibro
+─────────────────────────────────
+Al final del módulo, se expone:
+  window.AgregarLibro = {
+    actualizarListaLibros: actualizarListaLibros
+  };
+Esto permite llamar la actualización desde otros scripts si es necesario.
+
+
+5.4. PUBLIC/JS/PRODUCTOSLIBRERIA.JS - CATÁLOGO
+───────────────────────────────────────────────
+
+PROPÓSITO:
+Gestiona el catálogo de libros: renderizado, búsqueda, filtrado y gestión
+de préstamos. Implementa patrón Module con Singleton.
+
+ESTRUCTURA: IIFE con retorno de API pública
+────────────────────────────────────────────
+var ProductosLibreria = (function() {
+  // Código privado
+  return { init: init }; // API pública
+})();
+
+PATRÓN SINGLETON:
+─────────────────
+Al inicio verifica:
+  if (window.ProductosLibreria) {
+    return window.ProductosLibreria; // Retorna instancia existente
+  }
+Esto evita reinicializar el módulo si ya existe.
+
+VARIABLES PRIVADAS:
+───────────────────
+- librosActuales: Array local de libros (copia de Biblioteca.libros)
+- libroSeleccionado: Referencia al libro del modal abierto
+- elementos: Objeto con referencias DOM:
+  * container: div donde se renderizan las tarjetas
+  * modal: div del modal
+  * loadingSpinner: spinner de carga
+  * buscarInput: input de búsqueda
+  * filtroGenero: select de género
+
+FUNCIÓN: init()
+───────────────
+Función de inicialización pública:
+1. Log de inicio
+2. Obtiene referencias DOM
+3. Log de elementos encontrados (debugging)
+4. Si no existe container: muestra error y retorna
+5. Llama a cargarLibros()
+6. Llama a configurarEventListeners()
+
+FUNCIÓN: cargarLibros()
+───────────────────────
+Simula carga asíncrona de datos:
+1. Log de inicio
+2. Usa setTimeout de 500ms (simula latencia)
+3. Dentro del timeout:
+   - Verifica que exista Biblioteca y Biblioteca.libros
+   - Crea copia del array con spread operator [...array]
+   - Log de cantidad de libros
+   - Llama a renderizarLibros()
+   - Oculta el spinner
+   - Si hay error: muestra mensaje con mostrarError()
+
+FUNCIÓN: configurarEventListeners()
+────────────────────────────────────
+Configura todos los eventos:
+
+1. Búsqueda por texto (input en buscarInput):
+   - Event: 'input'
+   - Handler: filtrarLibros()
+
+2. Filtro por género (change en filtroGenero):
+   - Event: 'change'
+   - Handler: filtrarLibros()
+
+3. Cerrar modal (click en btnCerrar):
+   - Event: 'click'
+   - Handler: cerrarModal()
+
+4. Cerrar modal al hacer click fuera:
+   - Event: 'click' en modal
+   - Verifica que e.target === modal (click en el fondo)
+   - Handler: cerrarModal()
+
+5. Botones de acción del modal:
+   - Usa delegación de eventos en document
+   - Detecta clicks en #btn-prestar → solicitarPrestamo()
+   - Detecta clicks en #btn-devolver → registrarDevolucion()
+
+FUNCIÓN: filtrarLibros()
+────────────────────────
+Aplica filtros combinados:
+1. Obtiene el texto de búsqueda (toLowerCase)
+2. Obtiene el género seleccionado
+3. Filtra librosActuales con filter():
+   - coincideBusqueda: busca en titulo O autor
+   - coincideGenero: verifica género O que no haya filtro
+   - Retorna solo libros que cumplan ambas condiciones
+4. Llama a renderizarLibros() con los resultados filtrados
+
+FUNCIÓN: renderizarLibros(libros)
+──────────────────────────────────
+Renderiza las tarjetas de libros:
+1. Log de cantidad a renderizar
+2. Si no hay libros:
+   - Muestra mensaje "No se encontraron libros"
+   - Retorna
+3. Si hay libros:
+   - Mapea cada libro a HTML con crearTarjetaLibro()
+   - Une todo con join('')
+   - Asigna al innerHTML del container
+   - Añade event listeners a cada tarjeta:
+     * Click en la tarjeta abre el modal
+     * Ignora clicks en botones (.btn-accion)
+     * Obtiene el ID del dataset (data-id)
+     * Llama a abrirModal(libroId)
+
+FUNCIÓN: crearTarjetaLibro(libro)
+──────────────────────────────────
+Genera el HTML de una tarjeta:
+1. Determina clase y texto del badge según disponibilidad
+2. Retorna string HTML con:
+   - div.tarjeta-libro con data-id
+   - div.tarjeta-portada con imagen
+   - div.tarjeta-overlay con botón "Ver Detalles"
+   - div.tarjeta-info con:
+     * Título (h3)
+     * Autor (p)
+     * Género (p)
+     * Badge de disponibilidad
+
+FUNCIÓN: abrirModal(libroId)
+────────────────────────────
+Abre el modal con detalles del libro:
+1. Busca el libro en Biblioteca.libros por id
+2. Si no existe: retorna
+3. Guarda referencia en libroSeleccionado
+4. Llena el modal con información:
+   - Imagen de portada
+   - Título
+   - Autor
+   - Género
+   - Badge de disponibilidad
+5. Configura botones según estado:
+   - Si disponible: muestra btn-prestar, oculta btn-devolver
+   - Si prestado: muestra btn-devolver, oculta btn-prestar
+6. Añade clase 'activo' al modal (lo hace visible)
+
+FUNCIÓN: cerrarModal()
+──────────────────────
+Cierra el modal:
+1. Remueve clase 'activo' del modal
+2. Limpia libroSeleccionado (null)
+
+FUNCIÓN: solicitarPrestamo()
+────────────────────────────
+Gestiona el préstamo de un libro:
+1. Si no hay libroSeleccionado: retorna
+2. Llama a Biblioteca.toggleDisponibilidad(id)
+3. Si se realizó el cambio:
+   - Muestra notificación de éxito
+   - Espera 500ms con setTimeout
+   - Reabre el modal (actualiza info)
+   - Recarga la lista de libros
+
+FUNCIÓN: registrarDevolucion()
+──────────────────────────────
+Gestiona la devolución de un libro:
+1. Lógica idéntica a solicitarPrestamo()
+2. toggleDisponibilidad alterna el estado automáticamente
+
+FUNCIÓN: mostrarNotificacion(mensaje, tipo)
+────────────────────────────────────────────
+Muestra notificaciones:
+1. Si existe NotificationService: lo usa
+2. Si no: usa alert() como fallback
+
+FUNCIÓN: mostrarError()
+───────────────────────
+Muestra mensaje de error en el container:
+- Crea un alert de Bootstrap con clase 'danger'
+- Mensaje: "Error al cargar los libros"
+
+API PÚBLICA:
+────────────
+return {
+  init: init
+};
+
+Solo expone la función init, todo lo demás es privado.
+
+INICIALIZACIÓN:
+───────────────
+En productosLibreria.html hay un script inline que llama:
+  if (window.ProductosLibreria && 
+      typeof window.ProductosLibreria.init === 'function') {
+    window.ProductosLibreria.init();
+  }
+
+
+5.5. PUBLIC/JS/MAIN.JS - SCRIPT PRINCIPAL
+──────────────────────────────────────────
+
+PROPÓSITO:
+Centraliza la lógica principal de la aplicación: gestión de usuarios,
+navegación, sesiones y funcionalidades compartidas.
+
+VARIABLES GLOBALES:
+───────────────────
+- Libros: Array vacío (no se usa en esta versión)
+- usuarios: Array de usuarios registrados
+
+FUNCIONES FACTORY:
+──────────────────
+
+usuario(nombre_completo, apellido_completo, correo_electronico, 
+       nombre_usuario, contrasena)
+- Retorna un objeto usuario con:
+  * Todas las propiedades pasadas
+  * Método informacion(): retorna string descriptivo del usuario
+
+libro(titulo, autor, anio_publicacion, genero)
+- Retorna un objeto libro con:
+  * Todas las propiedades pasadas
+  * Método informacion(): retorna string descriptivo del libro
+- NOTA: Esta función no se usa, se usa la clase Libro de LibraryData.js
+
+FUNCIÓN: inicializar()
+──────────────────────
+Se ejecuta al cargar el DOM:
+- Carga usuarios desde localStorage con cargarDelStorage('usuariosData')
+- Asigna el array al global usuarios
+
+FUNCIÓN: registroUsuario()
+──────────────────────────
+Registra un nuevo usuario:
+1. Obtiene elementos del formulario
+2. Llama a validarBotonUsuario() con todos los campos
+3. Si la validación falla: retorna
+4. Verifica que el checkbox de términos esté marcado
+5. Valida duplicados con validarDuplicados() (asíncrono)
+6. Si hay duplicados: retorna
+7. Crea nuevo usuario con la función factory
+8. Lo añade al array usuarios
+9. Guarda en localStorage con guardarEnStorage()
+10. Redirige a login.html
+11. Muestra mensaje en consola y alert
+
+FUNCIÓN: entradaInicioSesion(usuarioEncontrado, email)
+───────────────────────────────────────────────────────
+Actualiza el header con info del usuario:
+1. Obtiene elementos del DOM:
+   - entradaNombreCompleto
+   - entradaEmail
+2. Extrae el primer nombre y primer apellido con split()
+3. Asigna los valores a textContent
+
+FUNCIÓN: registroIniciarSesion()
+─────────────────────────────────
+Maneja el inicio de sesión:
+1. Obtiene campos de usuario y contraseña
+2. Valida con validarBotonInicioSesion()
+3. Si falla: retorna
+4. Busca coincidencia en usuarios con find():
+   - Compara nombre_usuario Y contraseña
+5. Si encuentra coincidencia:
+   - Guarda sesión con guardarSesionUsuario()
+   - Log en consola
+   - Alert de éxito
+   - Redirige a index.html
+6. Si no encuentra:
+   - Log de error
+   - Alert de credenciales inválidas
+
+FUNCIÓN: manejoCerradura(show)
+──────────────────────────────
+Muestra/oculta el buscador con animación:
+1. Si show es true:
+   - Remueve clases 'd-none' y 'hide'
+   - Añade clase 'show'
+   - Remueve 'd-none' del botón toggle
+   - Después de 300ms: pone foco en el input
+2. Si show es false:
+   - Remueve 'show', añade 'hide'
+   - Añade 'd-none' al toggle
+   - Después de tiempo de animación:
+     * Añade 'd-none' al form
+     * Remueve 'hide'
+
+FUNCIÓN: manejoCerrarAbrirBuscador(searchToggle, searchForm, 
+                                   searchInput, closeSearch)
+────────────────────────────────────────────────────────────
+Configura eventos del buscador:
+1. Click en searchToggle: abre el buscador
+2. Click en closeSearch: cierra el buscador
+3. Click en cualquier parte del documento:
+   - Si el click es fuera del buscador y el toggle
+   - Y el buscador está visible
+   - Entonces: cierra el buscador
+
+FUNCIÓN: manejoItem(show, item)
+────────────────────────────────
+Añade/remueve clase 'show' a un elemento:
+- Usado para dropdowns y menús
+
+FUNCIÓN: manejoCerrarAbrirItem(toggle, item)
+────────────────────────────────────────────
+Configura comportamiento de menú desplegable:
+1. Click en toggle: no hace nada (Bootstrap lo maneja)
+2. Click fuera: si el menú está abierto, lo cierra
+
+FUNCIÓN: activityItems(items, tooltips)
+───────────────────────────────────────
+Gestiona items activos del menú:
+1. Si no hay items: retorna
+2. Para cada item:
+   - Al hacer click:
+     * Remueve 'active' de todos
+     * Añade 'active' al clickeado
+3. Actualiza tooltips según si hay alguno activo
+
+FUNCIÓN: activityMenssage(tooltips)
+────────────────────────────────────
+Inicializa tooltips de Bootstrap:
+- Para cada tooltip:
+  * Al hacer mouseenter:
+    - Si no tiene instancia: la crea
+    - Bootstrap.Tooltip se inicializa solo cuando se necesita
+
+FUNCIÓN: actualizarTooltips(anyActive, tooltips)
+─────────────────────────────────────────────────
+Actualiza estado de tooltips:
+- Si hay algún item activo: oculta tooltips
+- Si no hay activos: inicializa tooltips si es necesario
+
+EVENT LISTENER: DOMContentLoaded
+─────────────────────────────────
+Al cargar el DOM:
+
+1. Llama a inicializar()
+
+2. Configura actividad de menús:
+   - Obtiene todos los nav-link del menú
+   - Llama a activityItems() y activityMenssage()
+
+3. Configura buscador:
+   - Obtiene elementos del buscador
+   - Llama a manejoCerrarAbrirBuscador()
+
+4. Configura menús desplegables:
+   - Alertas
+   - Perfil de usuario
+
+5. Recupera sesión:
+   - Obtiene ID de sessionStorage
+   - Busca usuario en el array
+   - Si encuentra y existe el elemento: muestra info del usuario
+
+6. Configura botones de formularios:
+   - btnRegistrarUsuario: registroUsuario()
+   - btnIniciarSesion: registroIniciarSesion()
+
+
+5.6. PUBLIC/JS/STORAGE.JS - ALMACENAMIENTO
+───────────────────────────────────────────
+
+PROPÓSITO:
+Proporciona funciones para interactuar con localStorage y sessionStorage.
+
+FUNCIÓN: guardarEnStorage(datos, nombreData)
+─────────────────────────────────────────────
+Guarda datos en localStorage:
+1. Verifica el tipo de datos:
+   - Si es 'usuariosData': guarda en esa clave
+   - Si es 'librosData': guarda en esa clave
+2. Convierte el array a JSON string
+3. Lo guarda con localStorage.setItem()
+4. Si datos es undefined: guarda un array vacío
+
+FUNCIÓN: guardarSesionUsuario(nombreData, id)
+──────────────────────────────────────────────
+Guarda el ID del usuario en sessionStorage:
+- Convierte a JSON string
+- Guarda con sessionStorage.setItem()
+
+FUNCIÓN: cargarSesionUsuario(nombreData)
+─────────────────────────────────────────
+Carga el ID del usuario desde sessionStorage:
+1. Obtiene el item con sessionStorage.getItem()
+2. Lo parsea con JSON.parse()
+3. Si no existe o hay error: retorna null
+4. Usa try-catch para manejar errores de parsing
+
+FUNCIÓN: eliminarSesionUsuario(nombreData)
+───────────────────────────────────────────
+Elimina la sesión del usuario:
+- Usa sessionStorage.removeItem()
+- Se llamaría al cerrar sesión (no implementado en el código actual)
+
+FUNCIÓN: cargarDelStorage(nombreData)
+──────────────────────────────────────
+Carga datos desde localStorage:
+1. Obtiene el item con localStorage.getItem()
+2. Si no existe: retorna array vacío
+3. Intenta parsear con JSON.parse()
+4. Verifica que sea un array con Array.isArray()
+5. Si hay error o no es array: retorna array vacío
+6. Usa try-catch para manejar errores
+
+DIFERENCIA ENTRE localStorage y sessionStorage:
+───────────────────────────────────────────────
+- localStorage: Persiste hasta que se borra manualmente
+  * Se usa para: usuarios, libros
+- sessionStorage: Se borra al cerrar la pestaña/ventana
+  * Se usa para: sesión actual del usuario
+
+
+5.7. PUBLIC/JS/VALIDARENTRADAD ATOS.JS - VALIDACIONES
+──────────────────────────────────────────────────────
+
+PROPÓSITO:
+Proporciona validaciones robustas para todos los formularios de la aplicación.
+
+FUNCIÓN: mensajeError(mensaje, elementoId)
+──────────────────────────────────────────
+Muestra error de validación:
+1. Añade clase 'is-invalid' al elemento
+2. Busca el .invalid-tooltip dentro del padre
+3. Asigna el mensaje al tooltip
+
+FUNCIÓN: limpiarError(elemento)
+────────────────────────────────
+Limpia los errores de validación:
+1. Remueve 'is-invalid', añade 'is-valid'
+2. Busca el tooltip y lo vacía
+
+FUNCIÓN: validarNombreCompleto(valor, elemento)
+────────────────────────────────────────────────
+Valida el campo de nombre completo:
+Reglas:
+- No puede estar vacío
+- Solo letras y espacios: /^[a-zA-ZÀ-ÿ\s]+$/
+- Debe tener exactamente 2 nombres (1 espacio)
+- No puede tener espacios consecutivos: /\s{2,}/
+- Longitud entre 3 y 50 caracteres
+
+Proceso:
+1. Cuenta espacios con split(" ").length - 1
+2. Valida cada regla en orden
+3. Si falla alguna: muestra error y retorna false
+4. Si pasa todas: limpia error y retorna true
+
+FUNCIÓN: validarApellidoCompleto(valor, elemento)
+──────────────────────────────────────────────────
+Valida apellidos:
+- Reglas idénticas a validarNombreCompleto
+- Mensaje adaptado: "apellido" en lugar de "nombre"
+
+FUNCIÓN: validarCorreoElectronico(valor, elemento)
+────────────────────────────────────────────────────
+Valida email:
+Reglas:
+- No puede estar vacío
+- Formato básico: /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+- Exactamente un símbolo @
+- El dominio no puede empezar ni terminar con punto
+- Máximo 2 puntos en el dominio
+- No puede tener puntos consecutivos
+
+Proceso:
+1. Valida formato básico con regex
+2. Divide en partes con split('@')
+3. Verifica cantidad de @
+4. Valida puntos en el dominio
+5. Cuenta puntos con match(/\./g)
+6. Verifica puntos consecutivos con /\.{2,}/
+
+FUNCIÓN: validarNombreUsuario(valor, elemento)
+───────────────────────────────────────────────
+Valida username:
+Reglas:
+- No puede estar vacío
+- Solo letras, números y guión bajo
+- Longitud entre 3 y 20 caracteres
+- Regex: /^[a-zA-Z0-9_]{3,20}$/
+
+FUNCIÓN: validarContraseñaLogin(valor, elemento)
+─────────────────────────────────────────────────
+Valida contraseña:
+Reglas:
+- No puede estar vacía
+- Mínimo 8 caracteres
+- Al menos una letra
+- Al menos un número
+- Regex: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
+
+NOTA: Hay código comentado para validar espacios al inicio/fin
+
+FUNCIÓN: validaEntreContraseñas(valor1, valor2, elemento)
+───────────────────────────────────────────────────────────
+Valida confirmación de contraseña:
+Reglas:
+- No puede estar vacía
+- Debe coincidir exactamente con la contraseña original
+
+FUNCIÓN: validarDuplicadoEnTiempoReal(valor, atributo, 
+                                      elemento, usuarios)
+─────────────────────────────────────────────────────────
+Valida que no exista duplicado (async):
+1. Retorna una Promise
+2. Usa setTimeout de 40ms (simula latencia de servidor)
+3. Busca en usuarios con some():
+   - Compara user[atributo] === valor
+4. Si encuentra duplicado: muestra error y retorna false
+5. Si no encuentra: limpia error y retorna true
+6. Si el valor está vacío: retorna true (se valida en otra función)
+
+FUNCIÓN: validarDuplicados(correoElectronico, nombreUsuario, usuarios)
+───────────────────────────────────────────────────────────────────────
+Valida ambos duplicados (async):
+1. Usa await para esperar cada validación
+2. Valida correo electrónico
+3. Valida nombre de usuario
+4. Retorna true solo si ambos son únicos
+
+FUNCIÓN: validarBotonUsuario(nombreCompleto, apellidoCompleto, 
+                             correoElectronico, nombreUsuario, 
+                             contrasena, confirmarContrasena)
+─────────────────────────────────────────────────────────────
+Validación completa del formulario de registro:
+1. Llama a todas las validaciones
+2. Almacena resultado en variables val1-val6
+3. Retorna true solo si todas pasan
+
+FUNCIÓN: validarBotonInicioSesion(correoElectronico, contrasena)
+─────────────────────────────────────────────────────────────────
+Validación del formulario de login:
+1. Valida nombre de usuario
+2. Valida contraseña
+3. Retorna true si ambas pasan
+
+EVENT LISTENER: DOMContentLoaded
+─────────────────────────────────
+Configura validación en tiempo real:
+
+1. Para formulario de login (#formularioLogin):
+   - Event: 'input'
+   - Lee atributo data-validate del campo
+   - Según el valor:
+     * 'correo_electronico': valida email
+     * 'contraseña': valida contraseña
+   - Hace trim() del valor antes de validar
+
+2. Para formulario de registro (#formularioRegistroUsuario):
+   - Event: 'input'
+   - Lee atributo data-validate del campo
+   - Según el valor:
+     * 'nombre_completo': valida nombre
+     * 'apellido_completo': valida apellido
+     * 'correo_electronico': valida email
+     * 'nombre_usuario': valida username
+     * 'contrasena': valida contraseña
+     * 'confirmar_contrasena': valida coincidencia
+   - Hace trim() del valor antes de validar
+
+VENTAJAS DEL SISTEMA DE VALIDACIÓN:
+• Validación en tiempo real (mientras el usuario escribe)
+• Feedback visual inmediato
+• Validaciones robustas con múltiples reglas
+• Prevención de duplicados
+• Mensajes de error específicos y claros
+• Soporta validaciones asíncronas
+
+
+5.8. PUBLIC/JS/NOTIFICATIONSERVICES.JS - NOTIFICACIONES
+────────────────────────────────────────────────────────
+
+PROPÓSITO:
+Servicio de notificaciones y recordatorios para la aplicación.
+
+NOTA: Este archivo usa export default, sugiriendo que fue planeado para
+usar módulos ES6, pero no está implementado así en el HTML.
+
+OBJETO: NotificationService
+───────────────────────────
+
+Propiedad:
+- containerId: 'notification-area' (ID del contenedor)
+
+MÉTODO: mostrarNotificacion(mensaje, tipo='info')
+──────────────────────────────────────────────────
+Muestra una notificación:
+1. Obtiene el contenedor con getElementById
+2. Si no existe: retorna sin hacer nada
+3. Crea un div con clase alert alert-${tipo}
+4. Tipos de Bootstrap: info, success, warning, danger
+5. Asigna el mensaje con innerText
+6. Añade al contenedor
+7. Usa setTimeout para remover después de 3 segundos
+
+MÉTODO: programarRecordatorio(libro, segundos)
+───────────────────────────────────────────────
+Programa un recordatorio futuro:
+1. Log en consola del recordatorio programado
+2. Usa setTimeout con segundos * 1000 (convierte a ms)
+3. Cuando expira:
+   - Muestra notificación tipo 'warning'
+   - Mensaje: "Recordatorio: Debes devolver el libro..."
+
+PROBLEMA: Este módulo no se usa correctamente en el proyecto actual:
+- Se exporta con export default
+- No se importa en ningún HTML
+- window.NotificationService no está definido
+- productosLibreria.js intenta usarlo pero siempre usa alert() como fallback
+
+
+5.9. PUBLIC/JS/APPEVENTS.JS - GESTOR DE EVENTOS
+────────────────────────────────────────────────
+
+PROPÓSITO:
+Coordinador centralizado de eventos de la aplicación.
+
+NOTA: También usa export default y no está integrado correctamente.
+
+OBJETO: AppEvents
+─────────────────
+
+MÉTODO: init()
+──────────────
+Inicializa el gestor de eventos:
+1. Log en consola
+2. Llama a bindSearchEvents()
+3. Llama a bindLoanEvents()
+
+MÉTODO: bindSearchEvents()
+──────────────────────────
+Configura eventos de búsqueda:
+1. Busca elementos #btn-buscar y #input-busqueda
+2. Si existen:
+   - Añade listener al botón
+   - Al hacer click:
+     * Obtiene el valor del input
+     * Log del query
+     * PENDIENTE: Llamar a lógica de búsqueda
+
+MÉTODO: bindLoanEvents()
+────────────────────────
+Configura eventos de préstamo:
+1. Usa delegación de eventos en document
+2. Al hacer click en cualquier parte:
+   - Si el elemento tiene clase 'btn-reservar'
+   - Obtiene el ID del dataset
+   - Llama a manejarReserva()
+
+MÉTODO: manejarReserva(libroId) (async)
+────────────────────────────────────────
+Gestiona una reserva:
+1. Muestra notificación "Procesando reserva..."
+2. Simula espera con Promise y setTimeout (1500ms)
+3. Muestra notificación de éxito
+4. Programa recordatorio para 5 segundos después
+
+ESTADO: Este módulo parece ser una versión preliminar o prototipo que
+no fue completamente integrado en la aplicación final.
+
+
+5.10. PUBLIC/JS/PAGELOADER.JS - CARGADOR DE PÁGINAS
+────────────────────────────────────────────────────
+
+PROPÓSITO:
+Implementa navegación SPA (Single Page Application) cargando páginas
+dinámicamente sin recargar el navegador.
+
+FUNCIÓN: loadPage(event, pageUrl)
+──────────────────────────────────
+Carga una página dinámicamente:
+
+1. Previene comportamiento por defecto (e.preventDefault())
+
+2. Obtiene el contenedor .main-content
+   - Si no existe: muestra error en consola y retorna
+
+3. Muestra spinner de carga:
+   - Asigna HTML con spinner de Bootstrap
+
+4. Hace fetch de la página:
+   - fetch(pageUrl)
+   - Verifica que la respuesta sea OK
+   - Si falla: lanza error con el status
+
+5. Convierte respuesta a texto (.text())
+
+6. Parsea el HTML:
+   - Usa DOMParser para crear un documento
+   - Busca el elemento <main> o <body>
+
+7. Reemplaza contenido:
+   - Asigna innerHTML del elemento encontrado al main-content
+
+8. Carga estilos:
+   - Llama a loadPageStyles(pageUrl, doc)
+
+9. Ejecuta scripts:
+   - Llama a executeScripts() que retorna una Promise
+   - Cuando terminan de cargar:
+     * Si existe ProductosLibreria: lo inicializa
+
+10. Actualiza título:
+    - Llama a updatePageTitle(doc)
+
+11. Manejo de errores:
+    - Si hay error: muestra alert de Bootstrap
+
+FUNCIÓN: loadPageStyles(pageUrl, doc)
+──────────────────────────────────────
+Carga las hojas de estilo de la página:
+
+1. Flag loadedFromDoc = false
+
+2. Si se pasó el documento parseado:
+   - Crea URL base con new URL(pageUrl, window.location.href)
+   - Busca todos los <link rel="stylesheet">
+   - Para cada uno:
+     * Obtiene el href
+     * Resuelve la URL completa
+     * Verifica que no esté ya cargado
+     * Si no está: crea nuevo link y lo añade al head
+   - Marca loadedFromDoc = true
+
+3. Si no se cargaron estilos del documento (fallback):
+   - Extrae nombre de la página del URL
+   - Construye ruta: ./public/css/${pageName}.css
+   - Verifica que no exista
+   - Si no existe: crea link y lo añade al head
+
+FUNCIÓN: executeScripts(element, pageUrl)
+──────────────────────────────────────────
+Ejecuta los scripts de la página cargada:
+
+1. Busca todos los <script> en el elemento
+
+2. Crea array para promesas de carga
+
+3. Calcula URL base si se proporcionó pageUrl
+
+4. Para cada script:
+   
+   A. Si tiene atributo src (script externo):
+      - Resuelve URL completa
+      - Verifica que no esté ya cargado
+      - Si no está:
+        * Crea nuevo script
+        * Crea Promise que se resuelve al cargar
+        * Lo añade al body
+        * Añade Promise al array
+
+   B. Si es inline (sin src):
+      - Crea nuevo script
+      - Copia el innerHTML
+      - Lo añade al body (se ejecuta inmediatamente)
+
+5. Retorna Promise.all(loadPromises)
+   - Espera a que todos los scripts externos terminen de cargar
+
+FUNCIÓN: updatePageTitle(doc)
+─────────────────────────────
+Actualiza el título de la página:
+1. Busca el <title> en el documento parseado
+2. Si existe: lo asigna a document.title
+
+EVENT LISTENER: DOMContentLoaded
+─────────────────────────────────
+Al cargar la página index:
+- Carga automáticamente home.html
+- Pasa un objeto simulado para preventDefault
+
+VENTAJAS DEL SISTEMA:
+• Navegación fluida sin recargas
+• URLs se pueden usar normalmente
+• Los scripts se ejecutan correctamente
+• Los estilos se cargan bajo demanda
+• Evita duplicación de recursos
+• Mejor experiencia de usuario
+
+
+═══════════════════════════════════════════════════════════════════════════════
+6. ANÁLISIS DETALLADO DE ARCHIVOS CSS
+═══════════════════════════════════════════════════════════════════════════════
+
+6.1. PUBLIC/CSS/STYLE.CSS - ESTILOS GLOBALES
+─────────────────────────────────────────────
+
+PROPÓSITO:
+Hoja de estilos principal que define el diseño global de la aplicación.
+
+IMPORTACIÓN DE FUENTES:
+@import url('https://fonts.googleapis.com/css2?family=Oswald...');
+- Oswald: Fuente principal
+- Roboto: Fuente secundaria con pesos 300, 400, 500, 700, 900
+
+RESET Y CONFIGURACIÓN GLOBAL:
+* { font-family: 'Oswald', sans-serif; }
+
+VARIABLES CSS:
+:root {
+  --color-background: 255, 255, 255;      # Fondo blanco
+  --color-text: 33, 37, 41;               # Texto gris oscuro
+  --color-text-invert: 0, 0, 0;           # Texto negro
+  --color-bar: 52, 58, 64;                # Barras gris oscuro
+  --color-accent: 214, 0, 0;              # Acento rojo
+  --color-accent-dark: 150, 0, 0;         # Acento rojo oscuro
+}
+NOTA: Los valores son RGB separados para usar con rgba()
+
+NAVEGACIÓN LATERAL:
+nav.page-navigation {
+  - margin-top: 80px (espacio para navbar superior)
+  - min-height: 100vh (altura completa)
+  - position: fixed (fija en pantalla)
+  - top: 0, left: 0
+  - z-index: 100 (encima del contenido)
+  - box-shadow: sombra interna derecha
+  - background: color de barra
+  - transform: translate(-100%, 0) (oculta por defecto)
+  - transition: animación de 0.9s con delay de 0.3s
+}
+
+Estado activo (.bg-started):
+- transform: translate(0, 0) (visible)
+
+Tamaño del contenedor:
+- width: 4.5rem (72px)
+- min-height: 100vh
+
+ICONOS:
+.icons {
+  - width: 30px
+  - height: 30px
+}
+
+INPUTS PERSONALIZADOS:
+.input-custom-group {
+  - display: flex (icono + input en línea)
+  - border-radius: 6px
+  - border-bottom: 2px solid negro (línea inferior)
+  - padding-bottom: 5px
+  - margin-bottom: 1.5rem
+  - transition: 0.3s para color de borde
+}
+
+Al enfocar (:focus-within):
+- border-bottom: 2px solid rgb(78, 194, 108) (verde)
+- Los iconos también cambian a verde
+
+Inputs dentro:
+- border: none (sin bordes propios)
+- background: transparent
+- outline: none
+- box-shadow: none !important (quita efecto Bootstrap)
+- padding-left: 10px
+- color: #495057
+
+CONTENIDO PRINCIPAL:
+.main-content {
+  - margin-left: 60px (espacio para navbar lateral)
+  - margin-top: 70px (espacio para navbar superior)
+  - min-height: calc(100vh - 70px)
+  - padding: 20px
+}
+
+NAVBAR SUPERIOR:
+.navbar {
+  - height: 80px !important
+  - border: none
+  - background: transparent
+  - font-size: 1.5rem
+}
+
+TOOLTIPS:
+.tooltip .tooltip-inner {
+  - color: blanco
+  - padding: .35rem .86rem
+  - border-radius: 10px
+  - font-size: .9rem
+}
+
+Flecha del tooltip:
+- border-right-color: #d60000 (rojo acento)
+
+BUSCADOR:
+.search-form {
+  - overflow: hidden
+  - transition: cubic-bezier para animación suave
+}
+
+Estados:
+.show: animación slideIn (0.4s)
+.hide: animación slideOut (0.3s)
+
+@keyframes slideIn:
+  from: opacity 0, translateX(-20px), max-width 0
+  to: opacity 1, translateX(0), max-width 500px
+
+@keyframes slideOut:
+  from: opacity 1, translateX(0), max-width 500px
+  to: opacity 0, translateX(-20px), max-width 0
+
+Al enfocar input:
+- box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.25) (brillo azul)
+
+RESPONSIVE - MÓVILES:
+@media (max-width: 991.98px) {
+  nav.page-navigation {
+    - position: fixed
+    - top: auto, bottom: 0 (cambia a barra inferior)
+    - left: 0, right: 0
+    - width: 100%
+    - height: 60px
+    - min-height: auto
+    - margin-top: 0
+    - box-shadow: hacia arriba
+    - transform: translate(0, 100%) (oculta abajo)
+  }
+}
+
+CARACTERÍSTICAS DESTACADAS:
+• Sistema de navegación adaptable (lateral en desktop, inferior en móvil)
+• Animaciones suaves con transiciones CSS
+• Variables CSS para colores consistentes
+• Inputs personalizados con línea inferior animada
+• Sistema de íconos SVG reutilizables
+• Tooltips estilizados
+• Buscador con animación de deslizamiento
+
+
+6.2. PUBLIC/CSS/HOME.CSS - PÁGINA DE INICIO
+────────────────────────────────────────────
+
+PROPÓSITO:
+Estilos específicos para la página de bienvenida con video de fondo.
+
+VARIABLES:
+:root {
+  --color-background: 255, 255, 255;
+  --color-text: 33, 37, 41;
+  --color-text-white: 255, 255, 255;
+  --color-bar: 52, 58, 64;
+  --color-accent: 52, 152, 219;        # Azul (diferente del global)
+  --color-overlay: 33, 37, 41;
+}
+
+CONTENEDOR PRINCIPAL:
+.home-container {
+  - position: relative
+  - width: 100%
+  - min-height: 100vh
+  - display: flex (centra contenido)
+  - align-items: center
+  - justify-content: center
+  - overflow: hidden
+}
+
+Versión dentro de .main-content:
+- Mismos estilos
+- margin: 0, padding: 0
+
+VIDEO DE FONDO:
+.home-video-background {
+  - position: absolute
+  - top: 0, left: 0
+  - width: 100%, height: 100%
+  - object-fit: cover (cubre todo sin distorsionar)
+  - z-index: 1 (debajo del overlay y contenido)
+}
+
+OVERLAY OSCURO:
+.home-overlay {
+  - position: absolute
+  - top: 0, left: 0
+  - width: 100%, height: 100%
+  - background: rgba(var(--color-overlay), 0.5) (50% transparencia)
+  - z-index: 2 (encima del video)
+}
+
+CONTENIDO:
+.home-content {
+  - position: relative
+  - z-index: 3 (encima de todo)
+  - width: 100%, height: 100%
+  - display: flex (centra el modal)
+  - align-items: center
+  - justify-content: center
+  - padding: 20px
+}
+
+MODAL DE BIENVENIDA:
+.welcome-modal {
+  - background: rgba(var(--color-background), 0.95) (casi opaco)
+  - border-radius: 12px
+  - padding: 60px 40px
+  - max-width: 500px
+  - width: 100%
+  - box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3)
+  - text-align: center
+  - animation: slideUp 0.8s ease-out
+}
+
+@keyframes slideUp:
+  from: opacity 0, translateY(30px) (desde abajo)
+  to: opacity 1, translateY(0) (posición normal)
+
+TÍTULO:
+.welcome-title {
+  - font-size: 2.5rem
+  - font-weight: 700 (muy negrita)
+  - color: texto principal
+  - margin-bottom: 15px
+  - letter-spacing: -0.5px (ajuste fino)
+}
+
+SUBTÍTULO:
+.welcome-subtitle {
+  - font-size: 1.1rem
+  - color: texto con 70% opacidad
+  - margin-bottom: 0
+  - line-height: 1.6
+  - font-weight: 400
+}
+
+RESPONSIVE:
+
+@media (max-width: 768px) - Tablets:
+- home-container: min-height: calc(100vh - 60px), padding-bottom: 60px
+- welcome-modal: padding: 40px 30px, max-width: 90%
+- welcome-title: font-size: 2rem
+- welcome-subtitle: font-size: 1rem
+
+@media (max-width: 575.98px) - Móviles pequeños:
+- welcome-modal: padding: 35px 25px, max-width: 95%, border-radius: 10px
+- welcome-title: font-size: 1.75rem, margin-bottom: 12px
+- welcome-subtitle: font-size: 0.95rem
+
+@media (max-width: 480px) - Móviles muy pequeños:
+- welcome-modal: padding: 30px 20px, max-width: 100%, border-radius: 8px
+- welcome-title: font-size: 1.5rem, margin-bottom: 10px
+- welcome-subtitle: font-size: 0.9rem, line-height: 1.5
+
+@media (min-width: 992px) - Desktop:
+- welcome-modal: padding: 70px 50px, max-width: 550px
+- welcome-title: font-size: 2.8rem
+- welcome-subtitle: font-size: 1.15rem
+
+@media (min-width: 1200px) - Pantallas grandes:
+- welcome-modal: padding: 80px 60px, max-width: 600px
+
+CARACTERÍSTICAS:
+• Video HTML5 como fondo fullscreen
+• Overlay para mejorar legibilidad
+• Modal centrado con animación de entrada
+• Diseño totalmente responsive
+• Tipografía escalable según dispositivo
+
+
+6.3. PUBLIC/CSS/AGREGARLIBRO.CSS - AGREGAR LIBROS
+──────────────────────────────────────────────────
+
+PROPÓSITO:
+Estilos específicos para el formulario de agregar libros.
+
+VISTA PREVIA DE IMAGEN:
+.preview-image {
+  - max-width: 200px
+  - max-height: 300px
+  - margin-top: 10px
+  - border-radius: 8px
+  - box-shadow: 0 2px 8px rgba(0,0,0,0.1)
+}
+
+CONTENEDOR DEL FORMULARIO:
+.form-container {
+  - max-width: 600px
+  - margin: 50px auto (centrado)
+  - padding: 30px
+  - background: white
+  - border-radius: 10px
+  - box-shadow: 0 0 20px rgba(0,0,0,0.1)
+}
+
+HEADER:
+.page-header {
+  - background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)
+    (gradiente morado)
+  - color: white
+  - padding: 30px 0
+  - margin-bottom: 30px
+}
+
+CARACTERÍSTICAS:
+• Diseño simple y enfocado
+• Gradiente atractivo en el header
+• Vista previa de imagen con sombra
+• Formulario centrado con padding generoso
+
+
+6.4. PUBLIC/CSS/PRODUCTOS.CSS - CATÁLOGO
+─────────────────────────────────────────
+
+PROPÓSITO:
+Estilos para el catálogo de libros con grid responsivo y modal de detalles.
+
+VARIABLES:
+:root {
+  --color-background: 255, 255, 255;
+  --color-text: 33, 37, 41;
+  --color-text-light: 108, 117, 125;   # Gris claro
+  --color-accent: 52, 152, 219;        # Azul
+  --color-success: 40, 167, 69;        # Verde
+  --color-danger: 220, 53, 69;         # Rojo
+}
+
+CONTENEDOR PRINCIPAL:
+.productos-container {
+  - padding: 20px
+  - max-width: 1400px
+  - margin: 0 auto (centrado)
+}
+
+HEADER DEL CATÁLOGO:
+.productos-header {
+  - margin-bottom: 40px
+  - text-align: center
+}
+
+.productos-title {
+  - font-size: 2.5rem
+  - font-weight: 700
+  - color: texto principal
+  - margin-bottom: 10px
+}
+
+.productos-subtitle {
+  - font-size: 1.1rem
+  - color: texto claro
+  - margin-bottom: 30px
+}
+
+FILTROS:
+.filtros-section {
+  - display: flex
+  - gap: 15px
+  - margin-bottom: 30px
+  - flex-wrap: wrap
+  - justify-content: center
+}
+
+.buscar-input, .filtro-select {
+  - padding: 12px 16px
+  - border: 2px solid rgba(texto, 0.2)
+  - border-radius: 8px
+  - font-size: 1rem
+  - font-family: 'Oswald'
+  - transition: all 0.3s ease
+}
+
+.buscar-input {
+  - flex: 1
+  - min-width: 250px
+  - max-width: 400px
+}
+
+Al enfocar:
+- outline: none
+- border-color: color acento
+- box-shadow: 0 0 0 3px rgba(acento, 0.1)
+
+.filtro-select {
+  - min-width: 200px
+}
+
+GRID DE LIBROS:
+.container-libros {
+  - display: grid
+  - grid-template-columns: repeat(auto-fill, minmax(220px, 1fr))
+    (grid responsivo automático)
+  - gap: 25px
+  - padding: 20px 0
+}
+
+TARJETA DE LIBRO:
+.tarjeta-libro {
+  - background: blanco
+  - border-radius: 12px
+  - overflow: hidden
+  - cursor: pointer
+  - transition: all 0.3s ease
+  - box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1)
+  - border: 1px solid rgba(0, 0, 0, 0.05)
+}
+
+Al hacer hover:
+- transform: translateY(-8px) (sube 8px)
+- box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15) (sombra más grande)
+
+PORTADA:
+.tarjeta-portada {
+  - position: relative
+  - width: 100%
+  - padding-bottom: 150% (ratio 2:3 para portadas de libros)
+  - overflow: hidden
+  - background: rgba(texto, 0.05)
+}
+
+.tarjeta-portada img {
+  - position: absolute
+  - top: 0, left: 0
+  - width: 100%, height: 100%
+  - object-fit: cover
+}
+
+OVERLAY AL HACER HOVER:
+.tarjeta-overlay {
+  - position: absolute
+  - top: 0, left: 0
+  - width: 100%, height: 100%
+  - background: rgba(0, 0, 0, 0.6)
+  - display: flex (centra botón)
+  - align-items: center
+  - justify-content: center
+  - opacity: 0 (invisible por defecto)
+  - transition: opacity 0.3s ease
+}
+
+.tarjeta-libro:hover .tarjeta-overlay {
+  - opacity: 1 (visible al hacer hover)
+}
+
+INFORMACIÓN DE LA TARJETA:
+.tarjeta-info {
+  - padding: 16px
+}
+
+.tarjeta-titulo {
+  - font-size: 1.1rem
+  - font-weight: 600
+  - color: texto
+  - margin: 0 0 6px 0
+  - line-height: 1.3
+  - display: -webkit-box
+  - -webkit-line-clamp: 2 (máximo 2 líneas)
+  - -webkit-box-orient: vertical
+  - overflow: hidden
+}
+
+.tarjeta-autor {
+  - font-size: 0.9rem
+  - color: texto claro
+  - margin: 0 0 4px 0
+  - font-weight: 500
+}
+
+.tarjeta-genero {
+  - font-size: 0.85rem
+  - color: texto claro con 70% opacidad
+  - margin: 0 0 10px 0
+  - font-style: italic
+}
+
+BADGES:
+.badge {
+  - display: inline-block
+  - padding: 6px 12px
+  - font-size: 0.85rem
+  - font-weight: 600
+  - border-radius: 6px
+  - text-align: center
+}
+
+.badge-disponible {
+  - background: rgb(var(--color-success))
+  - color: white
+}
+
+.badge-prestado {
+  - background: rgb(var(--color-danger))
+  - color: white
+}
+
+MODAL:
+.modal-libro {
+  - position: fixed
+  - top: 0, left: 0
+  - width: 100%, height: 100%
+  - background: rgba(0, 0, 0, 0.5) (overlay oscuro)
+  - display: flex (centra contenido)
+  - align-items: center
+  - justify-content: center
+  - z-index: 1000
+  - opacity: 0 (invisible)
+  - pointer-events: none (no recibe eventos)
+  - transition: opacity 0.3s ease
+}
+
+.modal-libro.activo {
+  - opacity: 1
+  - pointer-events: auto
+}
+
+CONTENIDO DEL MODAL:
+.modal-contenido {
+  - background: blanco
+  - border-radius: 16px
+  - max-width: 600px
+  - width: 90%
+  - max-height: 90vh
+  - overflow-y: auto
+  - box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3)
+  - position: relative
+  - animation: slideUp 0.3s ease
+}
+
+@keyframes slideUp (mismo que en home.css)
+
+BOTÓN CERRAR:
+.btn-cerrar {
+  - position: absolute
+  - top: 16px, right: 16px
+  - background: rgba(texto, 0.1)
+  - border: none
+  - color: texto
+  - font-size: 1.8rem
+  - width: 40px, height: 40px
+  - display: flex (centra X)
+  - border-radius: 50% (circular)
+  - cursor: pointer
+  - transition: all 0.2s ease
+  - z-index: 10
+}
+
+Al hacer hover:
+- background: rgba(texto, 0.2)
+- transform: rotate(90deg) (gira)
+
+CUERPO DEL MODAL:
+.modal-body {
+  - display: flex
+  - gap: 30px
+  - padding: 30px
+}
+
+.modal-portada {
+  - flex-shrink: 0 (no se encoge)
+}
+
+.modal-portada img {
+  - width: 200px
+  - border-radius: 12px
+  - box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15)
+}
+
+.modal-info {
+  - flex: 1 (toma el espacio restante)
+}
+
+INFORMACIÓN DEL MODAL:
+.modal-titulo {
+  - font-size: 1.8rem
+  - font-weight: 700
+  - color: texto
+  - margin: 0 0 10px 0
+  - line-height: 1.3
+}
+
+.modal-autor {
+  - font-size: 1.1rem
+  - color: texto claro
+  - margin: 0 0 8px 0
+  - font-weight: 500
+}
+
+.modal-genero {
+  - font-size: 1rem
+  - color: texto claro con 80% opacidad
+}
+
+CARACTERÍSTICAS:
+• Grid responsivo automático
+• Efecto hover en tarjetas (elevación)
+• Overlay con botón al hacer hover
+• Modal elegante con animación
+• Badges de estado con colores semánticos
+• Diseño completamente responsive
+• Truncamiento de texto con line-clamp
+
+
+═══════════════════════════════════════════════════════════════════════════════
+7. FLUJO DE FUNCIONAMIENTO DE LA APLICACIÓN
+═══════════════════════════════════════════════════════════════════════════════
+
+FLUJO GENERAL:
+──────────────
+
+1. INICIO DE LA APLICACIÓN:
+   ├─ Usuario accede a index.html
+   ├─ Se cargan recursos: CSS, Bootstrap, scripts
+   ├─ Se inicializan símbolos SVG en el header
+   ├─ Se renderiza la navegación (lateral y superior)
+   ├─ DOMContentLoaded dispara múltiples inicializaciones:
+   │  ├─ main.js: inicializar() carga usuarios
+   │  ├─ LibraryData.js: Biblioteca.inicializar() carga libros
+   │  ├─ Configuración de eventos de menú y tooltips
+   │  └─ Verificación de sesión activa
+   └─ pageLoader.js carga automáticamente home.html
+
+2. NAVEGACIÓN:
+   ├─ Usuario hace click en un enlace del menú
+   ├─ onclick="loadPage(event, this.href)" intercepta el click
+   ├─ loadPage() hace fetch de la página
+   ├─ Parsea el HTML y extrae el <main>
+   ├─ Inyecta el contenido en .main-content
+   ├─ Carga los CSS específicos de la página
+   ├─ Ejecuta los scripts de la página
+   └─ Inicializa módulos específicos si es necesario
+
+
+═══════════════════════════════════════════════════════════════════════════════
+8. SISTEMA DE AUTENTICACIÓN Y REGISTRO
+═══════════════════════════════════════════════════════════════════════════════
+
+FLUJO DE REGISTRO:
+──────────────────
+
+1. Usuario accede a register.html
+2. Llena el formulario con:
+   - Nombre completo (2 nombres)
+   - Apellido completo (2 apellidos)
+   - Correo electrónico
+   - Nombre de usuario (3-20 caracteres alfanuméricos)
+   - Contraseña (mínimo 8 caracteres, letra y número)
+   - Confirmación de contraseña
+   - Acepta términos y condiciones
+
+3. VALIDACIÓN EN TIEMPO REAL:
+   ├─ Cada campo tiene data-validate
+   ├─ Event listener en 'input'
+   ├─ Según el tipo de campo se llama función específica:
+   │  ├─ validarNombreCompleto()
+   │  ├─ validarApellidoCompleto()
+   │  ├─ validarCorreoElectronico()
+   │  ├─ validarNombreUsuario()
+   │  ├─ validarContraseñaLogin()
+   │  └─ validaEntreContraseñas()
+   └─ Feedback visual: .is-valid o .is-invalid
+
+4. Al hacer click en "Registrarse":
+   ├─ registroUsuario() se ejecuta
+   ├─ Previene submit con e.preventDefault()
+   ├─ Llama a validarBotonUsuario() (todas las validaciones)
+   ├─ Si falla: retorna sin hacer nada
+   ├─ Verifica checkbox de términos
+   ├─ Valida duplicados con validarDuplicados() (asíncrono):
+   │  ├─ Busca email en usuarios
+   │  └─ Busca username en usuarios
+   ├─ Si hay duplicados: retorna y muestra error
+   ├─ Crea objeto usuario con función factory
+   ├─ Añade a array usuarios
+   ├─ Guarda en localStorage ('usuariosData')
+   ├─ Muestra mensaje de éxito
+   └─ Redirige a login.html
+
+FLUJO DE INICIO DE SESIÓN:
+───────────────────────────
+
+1. Usuario accede a login.html
+2. Ingresa:
+   - Nombre de usuario
+   - Contraseña
+
+3. VALIDACIÓN EN TIEMPO REAL:
+   ├─ Campo usuario: validarNombreUsuario()
+   └─ Campo contraseña: validarContraseñaLogin()
+
+4. Al hacer click en "Ingresar":
+   ├─ registroIniciarSesion() se ejecuta
+   ├─ Previene submit
+   ├─ Valida ambos campos con validarBotonInicioSesion()
+   ├─ Si falla: retorna
+   ├─ Busca usuario en array con find():
+   │  └─ Compara nombre_usuario Y contraseña
+   ├─ Si NO encuentra: muestra "Credenciales inválidas"
+   ├─ Si encuentra:
+   │  ├─ Guarda ID en sessionStorage ('currentUserId')
+   │  ├─ Muestra mensaje de éxito
+   │  └─ Redirige a index.html
+   └─ En index.html:
+      ├─ DOMContentLoaded recupera ID de sessionStorage
+      ├─ Busca el usuario completo
+      └─ Llama a entradaInicioSesion() para mostrar nombre en navbar
+
+GESTIÓN DE SESIÓN:
+──────────────────
+
+GUARDAR SESIÓN:
+- Se usa sessionStorage (se borra al cerrar pestaña)
+- Clave: 'currentUserId'
+- Valor: nombre_usuario (como JSON string)
+
+RECUPERAR SESIÓN:
+- En DOMContentLoaded de index.html
+- cargarSesionUsuario('currentUserId')
+- Si existe: busca usuario completo y actualiza UI
+
+CERRAR SESIÓN:
+- Click en "Salir" redirige a login.html
+- sessionStorage se mantiene, pero al cargar login el usuario debe
+  ingresar credenciales nuevamente
+- NOTA: No hay función explícita de logout que limpie sessionStorage
+
+
+═══════════════════════════════════════════════════════════════════════════════
+9. GESTIÓN DE DATOS Y PERSISTENCIA
+═══════════════════════════════════════════════════════════════════════════════
+
+ESTRUCTURA DE DATOS:
+────────────────────
+
+USUARIOS (localStorage: 'usuariosData'):
+[
+  {
+    nombre_completo: "Juan Carlos",
+    apellido_completo: "Pérez Gómez",
+    correo_electronico: "juan@email.com",
+    nombre_usuario: "juanp",
+    contrasena: "Password123"
+  },
+  ...
+]
+
+LIBROS (localStorage: 'biblioteca_virginia_data'):
+[
+  {
+    id: 1706891234567,
+    titulo: "Cien años de soledad",
+    autor: "Gabriel García Márquez",
+    genero: "Novela",
+    portada: "https://...",
+    disponible: true,
+    fechaPrestamo: null
+  },
+  ...
+]
+
+SESIÓN ACTUAL (sessionStorage: 'currentUserId'):
+"juanp"
+
+OPERACIONES CRUD DE LIBROS:
+────────────────────────────
+
+CREATE (Agregar):
+1. Usuario llena formulario en agregarLibro.html
+2. Al hacer submit:
+   - manejarSubmitFormulario() valida datos
+   - Crea nuevo objeto con: new Libro(titulo, autor, genero, portada)
+   - Llama a Biblioteca.agregarLibro(nuevoLibro)
+   - agregarLibro() añade al array y llama a guardarDatos()
+   - guardarDatos() convierte a JSON y guarda en localStorage
+3. Se actualiza la UI automáticamente
+
+READ (Leer):
+1. Al cargar cualquier página que use LibraryData.js:
+   - Biblioteca.inicializar() se ejecuta automáticamente
+   - Intenta localStorage.getItem('biblioteca_virginia_data')
+   - Si existe: lo parsea con JSON.parse() y asigna a this.libros
+   - Si no existe: carga datos de prueba y los guarda
+2. Las páginas acceden a los datos con: Biblioteca.libros
+
+UPDATE (Actualizar - Préstamo/Devolución):
+1. Usuario abre modal de un libro en productosLibreria.html
+2. Click en "Solicitar Préstamo" o "Registrar Devolución":
+   - solicitarPrestamo() o registrarDevolucion() llaman a:
+     toggleDisponibilidad(libroId)
+   - toggleDisponibilidad():
+     * Busca el libro por id con find()
+     * Invierte libro.disponible
+     * Si se presta: fechaPrestamo = new Date()
+     * Si se devuelve: fechaPrestamo = null
+     * Llama a guardarDatos()
+3. Se actualiza localStorage automáticamente
+4. Se recarga la UI
+
+DELETE (Eliminar):
+1. En agregarLibro.html, cada libro tiene botón de eliminar
+2. Click en el botón:
+   - eliminarLibro(id, titulo) muestra confirmación
+   - Si el usuario confirma:
+     * Biblioteca.eliminarLibro(id)
+     * eliminarLibro() filtra el array:
+       this.libros = this.libros.filter(libro => libro.id !== id)
+     * Llama a guardarDatos()
+3. Se actualiza la lista automáticamente
+
+SINCRONIZACIÓN:
+───────────────
+
+PROBLEMA: Si el usuario tiene múltiples pestañas abiertas, los cambios
+en una no se reflejan en la otra hasta recargar.
+
+SOLUCIÓN NO IMPLEMENTADA:
+- Usar evento 'storage' de window para detectar cambios en localStorage
+- Actualizar la UI cuando se detecte un cambio
+
+COPIA DE SEGURIDAD:
+───────────────────
+
+ACTUAL: Los datos solo existen en localStorage del navegador.
+
+RIESGOS:
+- Si el usuario borra el caché: se pierden todos los datos
+- No hay sincronización entre dispositivos
+- No hay recuperación de contraseñas
+
+RECOMENDACIÓN: Implementar backend real con base de datos.
+
+
+═══════════════════════════════════════════════════════════════════════════════
+10. SISTEMA DE NAVEGACIÓN DINÁMICA
+═══════════════════════════════════════════════════════════════════════════════
+
+CONCEPTO: Single Page Application (SPA)
+────────────────────────────────────────
+
+La aplicación funciona como una SPA donde:
+- Solo se carga index.html completamente
+- Las demás páginas se cargan dinámicamente en .main-content
+- No hay recargas completas del navegador
+- La navegación es más rápida y fluida
+
+IMPLEMENTACIÓN:
+───────────────
+
+1. ENLACES CON INTERCEPTOR:
+   <a href="./view/home.html" onclick="loadPage(event, this.href)">
+
+2. FUNCIÓN loadPage():
+   ├─ Previene navegación normal (preventDefault)
+   ├─ Muestra spinner de carga
+   ├─ Hace fetch de la página
+   ├─ Parsea el HTML recibido
+   ├─ Extrae el contenido del <main>
+   ├─ Lo inyecta en .main-content
+   ├─ Carga CSS específicos
+   ├─ Ejecuta scripts específicos
+   └─ Inicializa módulos si es necesario
+
+3. CARGA DE ESTILOS:
+   loadPageStyles() busca <link> en la página y:
+   - Resuelve URLs relativas
+   - Verifica que no estén ya cargados
+   - Los añade al <head>
+   Fallback: carga ./public/css/{nombrePagina}.css
+
+4. EJECUCIÓN DE SCRIPTS:
+   executeScripts() extrae <script> de la página y:
+   A. Scripts externos (con src):
+      - Los carga solo si no existen
+      - Crea Promises para esperar la carga
+      - Los añade al <body>
+   B. Scripts inline:
+      - Los ejecuta inmediatamente
+      - Los añade al <body>
+   Retorna Promise.all() para esperar todos
+
+5. INICIALIZACIÓN ESPECÍFICA:
+   Después de cargar scripts:
+   - Verifica si existe ProductosLibreria
+   - Si existe: llama a init()
+
+VENTAJAS:
+─────────
+• Navegación instantánea sin recargas
+• Mantiene el estado de la aplicación
+• Mejor experiencia de usuario
+• Ahorra ancho de banda
+• Animaciones más fluidas
+
+DESVENTAJAS:
+────────────
+• No actualiza la URL del navegador (no se puede compartir enlaces directos)
+• El botón "atrás" del navegador no funciona correctamente
+• Los scripts se van acumulando en memoria
+
+MEJORAS POSIBLES:
+─────────────────
+• Implementar History API para URLs navegables
+• Limpiar scripts antiguos al cargar nuevos
+• Caché de páginas ya cargadas
+• Transiciones entre páginas
+• Lazy loading de imágenes
+
+
+═══════════════════════════════════════════════════════════════════════════════
+11. CARACTERÍSTICAS Y FUNCIONALIDADES
+═══════════════════════════════════════════════════════════════════════════════
+
+FUNCIONALIDADES IMPLEMENTADAS:
+───────────────────────────────
+
+✓ GESTIÓN DE USUARIOS:
+  - Registro con validaciones robustas
+  - Inicio de sesión
+  - Validación de duplicados
+  - Sesión persistente en sessionStorage
+  - Visualización de información del usuario en navbar
+
+✓ GESTIÓN DE LIBROS:
+  - Agregar nuevos libros
+  - Eliminar libros
+  - Visualizar catálogo completo
+  - Vista previa de portadas
+  - Lista actualizable en tiempo real
+
+✓ BÚSQUEDA Y FILTRADO:
+  - Búsqueda por título o autor (en tiempo real)
+  - Filtrado por género
+  - Filtros combinables
+  - Mensaje cuando no hay resultados
+
+✓ PRÉSTAMOS Y DEVOLUCIONES:
+  - Solicitar préstamo de libros disponibles
+  - Registrar devoluciones
+  - Estado visual del libro (disponible/prestado)
+  - Fecha de préstamo registrada
+
+✓ INTERFAZ DE USUARIO:
+  - Diseño responsivo para móviles, tablets y desktop
+  - Navegación SPA fluida
+  - Animaciones y transiciones CSS
+  - Tooltips informativos
+  - Modales para detalles
+  - Alertas y notificaciones
+  - Iconografía SVG
+  - Vista previa de imágenes
+
+✓ PERSISTENCIA:
+  - Datos guardados en localStorage
+  - Sesión guardada en sessionStorage
+  - Recuperación automática al recargar
+  - Datos de prueba precargados
+
+FUNCIONALIDADES PARCIALES O NO FUNCIONALES:
+────────────────────────────────────────────
+
+⚠ NOTIFICACIONES:
+  - NotificationService existe pero no está integrado
+  - Se usa alert() como fallback
+
+⚠ RECORDATORIOS:
+  - programarRecordatorio() existe pero no se usa
+
+⚠ BÚSQUEDA GLOBAL:
+  - Barra de búsqueda en navbar existe pero no funciona
+  - Solo funciona la búsqueda del catálogo
+
+⚠ DASHBOARD:
+  - Hay enlace en el menú pero no tiene página asociada
+
+⚠ CERRAR SESIÓN:
+  - Redirige a login pero no limpia sessionStorage
+
+⚠ EDITAR LIBROS:
+  - No se puede editar la información de un libro existente
+
+⚠ VALIDACIÓN DE IMÁGENES:
+  - Solo verifica que sea una URL, no valida que sea imagen real
+
+⚠ MANEJO DE ERRORES:
+  - Errores de red no se manejan adecuadamente
+
+FUNCIONALIDADES SUGERIDAS PARA FUTURAS VERSIONES:
+──────────────────────────────────────────────────
+
+□ BACKEND REAL:
+  - Base de datos SQL o NoSQL
+  - API RESTful
+  - Autenticación con tokens (JWT)
+  - Validación en servidor
+
+□ CARACTERÍSTICAS ADICIONALES:
+  - Editar información de libros
+  - Sistema de calificaciones y reseñas
+  - Historial de préstamos por usuario
+  - Renovación de préstamos
+  - Multas por retraso
+  - Reservas anticipadas
+  - Lista de favoritos
+  - Recomendaciones personalizadas
+  - Exportar catálogo (PDF, Excel)
+  - Códigos de barras/QR
+
+□ MEJORAS DE UX:
+  - Modo oscuro
+  - Accesibilidad mejorada (ARIA labels)
+  - Soporte multiidioma
+  - Tutorial de primera vez
+  - Ayuda contextual
+  - Modo sin conexión (PWA)
+
+□ ADMINISTRACIÓN:
+  - Panel de administrador
+  - Estadísticas de uso
+  - Gestión de usuarios
+  - Categorías personalizables
+  - Importación masiva de libros
+  - Copias de seguridad automatizadas
+
+□ SEGURIDAD:
+  - Encriptación de contraseñas
+  - Recuperación de contraseñas
+  - Autenticación de dos factores
+  - Protección contra XSS
+  - Validación de imágenes
+  - Rate limiting
+  - HTTPS obligatorio
+
+
+═══════════════════════════════════════════════════════════════════════════════
+12. PATRONES DE DISEÑO IMPLEMENTADOS
+═══════════════════════════════════════════════════════════════════════════════
+
+SINGLETON:
+──────────
+Ubicación: LibraryData.js (Biblioteca), productosLibreria.js
+
+Implementación:
+- Solo existe una instancia del objeto Biblioteca
+- Se verifica con _initialized flag
+- ProductosLibreria retorna instancia existente si ya existe
+
+Ventajas:
+- Estado centralizado
+- Evita duplicación de datos
+- Facilita acceso global
+
+MODULE PATTERN (Revealing Module):
+───────────────────────────────────
+Ubicación: agregarLibro.js, productosLibreria.js
+
+Implementación:
+(function() {
+  // Variables privadas
+  var elementos = {};
+  
+  // Funciones privadas
+  function init() { ... }
+  
+  // API pública
+  window.AgregarLibro = { actualizarListaLibros: ... };
+})();
+
+Ventajas:
+- Encapsulación de variables y funciones
+- Evita contaminación del scope global
+- API pública clara
+
+FACTORY PATTERN:
+────────────────
+Ubicación: main.js
+
+Implementación:
+const usuario = (nombre, apellido, ...) => {
+  return {
+    nombre,
+    apellido,
+    informacion: function() { ... }
+  };
+};
+
+Ventajas:
+- Creación consistente de objetos
+- Encapsulación de lógica de creación
+- Fácil de extender
+
+OBSERVER PATTERN (parcial):
+───────────────────────────
+Ubicación: validarEntradaDatos.js
+
+Implementación:
+- Event listeners en inputs
+- Validación en tiempo real al escribir
+- Actualización inmediata de UI
+
+DELEGATION PATTERN:
+───────────────────
+Ubicación: productosLibreria.js, main.js
+
+Implementación:
+document.addEventListener('click', (e) => {
+  if (e.target.id === 'btn-prestar') {
+    solicitarPrestamo();
+  }
+});
+
+Ventajas:
+- Un solo listener para múltiples elementos
+- Funciona con elementos dinámicos
+- Mejor rendimiento
+
+UTILITY / HELPER PATTERN:
+─────────────────────────
+Ubicación: utils.js, storage.js
+
+Implementación:
+- Funciones reutilizables
+- Sin estado
+- Propósito único
+
+Ventajas:
+- Código DRY (Don't Repeat Yourself)
+- Más mantenible
+- Fácil de testear
+
+
+═══════════════════════════════════════════════════════════════════════════════
+13. CONSIDERACIONES DE SEGURIDAD
+═══════════════════════════════════════════════════════════════════════════════
+
+VULNERABILIDADES IDENTIFICADAS:
+────────────────────────────────
+
+🔴 CRÍTICAS:
+
+1. CONTRASEÑAS EN TEXTO PLANO:
+   - Las contraseñas se guardan sin encriptar en localStorage
+   - Cualquiera con acceso al navegador puede verlas
+   - SOLUCIÓN: Usar bcrypt o similar para hash de contraseñas
+
+2. NO HAY AUTENTICACIÓN REAL:
+   - El "login" solo verifica datos en localStorage
+   - No hay tokens de sesión
+   - No hay expiración de sesión
+   - SOLUCIÓN: Implementar JWT y backend real
+
+3. INYECCIÓN XSS:
+   - setHTML() e innerHTML se usan sin sanitización
+   - Un usuario malicioso podría inyectar scripts
+   - SOLUCIÓN: Usar textContent o DOMPurify
+
+4. FALTA DE VALIDACIÓN EN CLIENTE:
+   - Las validaciones solo existen en frontend
+   - Se pueden bypass con herramientas de desarrollador
+   - SOLUCIÓN: Validación duplicada en backend
+
+🟡 MODERADAS:
+
+5. DATOS SENSIBLES EXPUESTOS:
+   - localStorage es accesible desde cualquier script
+   - No hay encriptación de datos
+   - SOLUCIÓN: Encriptar datos sensibles
+
+6. NO HAY CONTROL DE ACCESO:
+   - No hay roles (admin, usuario)
+   - Cualquiera puede agregar/eliminar libros
+   - SOLUCIÓN: Sistema de permisos
+
+7. URLS DE IMÁGENES NO VALIDADAS:
+   - Se permiten cualquier URL
+   - Podría usarse para phishing
+   - SOLUCIÓN: Validar dominio o usar upload propio
+
+🟢 MENORES:
+
+8. NO HAY RATE LIMITING:
+   - Se pueden hacer requests ilimitados
+   - Vulnerable a ataques de fuerza bruta
+   - SOLUCIÓN: Implementar throttling
+
+9. NO HAY LOGS DE AUDITORÍA:
+   - No se registra quién hace qué
+   - Dificulta detección de problemas
+   - SOLUCIÓN: Sistema de logging
+
+BUENAS PRÁCTICAS IMPLEMENTADAS:
+────────────────────────────────
+
+✓ Validación de entrada robusta en frontend
+✓ Mensajes de error específicos pero no revelan info sensible
+✓ Uso de sessionStorage para sesión (se borra al cerrar)
+✓ Validación de formato de email
+✓ Requisitos de contraseña (longitud, complejidad)
+✓ Prevención de duplicados de usuario/email
+
+RECOMENDACIONES DE SEGURIDAD:
+──────────────────────────────
+
+PARA AMBIENTE DE PRODUCCIÓN:
+1. Implementar backend con base de datos
+2. Usar HTTPS obligatorio
+3. Implementar CSP (Content Security Policy)
+4. Hash de contraseñas con salt
+5. Tokens de sesión (JWT)
+6. Validación en servidor
+7. Sanitización de inputs
+8. Rate limiting y CAPTCHA
+9. Logs de auditoría
+10. Backups regulares
+11. Actualización de dependencias
+12. Escaneo de vulnerabilidades
+13. Autenticación de dos factores
+14. Política de contraseñas robusta
+15. Expiración de sesiones
+
+PARA EL CONTEXTO ACADÉMICO ACTUAL:
+1. Añadir advertencias de que es solo educativo
+2. Encriptar contraseñas básico (CryptoJS)
+3. Validar URLs de imágenes
+4. Sanitizar innerHTML
+5. Añadir mensaje de términos de uso
+
+
+═══════════════════════════════════════════════════════════════════════════════
+14. POSIBLES MEJORAS Y RECOMENDACIONES
+═══════════════════════════════════════════════════════════════════════════════
+
+CÓDIGO Y ARQUITECTURA:
+──────────────────────
+
+1. MODULARIZACIÓN:
+   - Convertir a módulos ES6 reales (import/export)
+   - Separar lógica de negocio de la UI
+   - Crear servicios independientes
+
+2. GESTIÓN DE ESTADO:
+   - Implementar un store centralizado (similar a Redux)
+   - Observables para cambios de datos
+   - Sincronización entre pestañas
+
+3. MANEJO DE ERRORES:
+   - Try-catch en todas las operaciones críticas
+   - Mensajes de error user-friendly
+   - Logging de errores
+
+4. TESTING:
+   - Unit tests para funciones utilitarias
+   - Integration tests para flujos completos
+   - Tests de validación
+
+5. DOCUMENTACIÓN:
+   - JSDoc en todas las funciones
+   - README más detallado
+   - Guía de contribución
+   - Documentación de API
+
+RENDIMIENTO:
+────────────
+
+1. OPTIMIZACIÓN DE CARGA:
+   - Lazy loading de imágenes
+   - Code splitting
+   - Minificación de JS y CSS
+   - Compresión de assets
+
+2. CACHÉ:
+   - Service Workers
+   - Caché de páginas ya visitadas
+   - Precarga de recursos críticos
+
+3. BUNDLE SIZE:
+   - Tree shaking
+   - Remover Bootstrap completo, usar solo lo necesario
+   - Optimizar imágenes
+
+EXPERIENCIA DE USUARIO:
+────────────────────────
+
+1. FEEDBACK:
+   - Loaders en todas las acciones asíncronas
+   - Confirmaciones visuales de acciones
+   - Deshacer acciones críticas
+
+2. ACCESIBILIDAD:
+   - Navegación por teclado
+   - Lectores de pantalla (ARIA)
+   - Alto contraste
+   - Tamaños de texto ajustables
+
+3. RESPONSIVE:
+   - Mejorar experiencia en tablets
+   - Optimizar para pantallas muy pequeñas
+   - Soporte para landscape en móviles
+
+4. ONBOARDING:
+   - Tutorial interactivo
+   - Tooltips contextuales
+   - Página de ayuda
+
+CARACTERÍSTICAS:
+────────────────
+
+1. BÚSQUEDA AVANZADA:
+   - Búsqueda por múltiples criterios
+   - Búsqueda difusa (fuzzy search)
+   - Sugerencias mientras se escribe
+   - Historial de búsquedas
+
+2. FILTROS:
+   - Múltiples filtros simultáneos
+   - Ordenamiento (título, autor, fecha)
+   - Filtro por disponibilidad
+   - Guardar búsquedas favoritas
+
+3. GESTIÓN DE PRÉSTAMOS:
+   - Límite de libros prestados
+   - Duración de préstamo
+   - Renovaciones
+   - Multas automáticas
+   - Notificaciones de vencimiento
+
+4. ESTADÍSTICAS:
+   - Libros más prestados
+   - Géneros populares
+   - Usuarios más activos
+   - Gráficos visuales
+
+TECNOLOGÍA:
+───────────
+
+1. FRAMEWORK MODERNO:
+   - React, Vue o Svelte para UI reactiva
+   - TypeScript para tipado estático
+   - Vite para build tool (ya tienen)
+
+2. BACKEND:
+   - Node.js + Express
+   - PostgreSQL o MongoDB
+   - Redis para caché
+   - GraphQL como alternativa a REST
+
+3. AUTENTICACIÓN:
+   - Passport.js
+   - OAuth2 (Google, Facebook)
+   - Autenticación de dos factores
+
+4. DEPLOYMENT:
+   - Docker para containerización
+   - CI/CD con GitHub Actions
+   - Hosting: Vercel, Netlify, Heroku
+   - CDN para assets estáticos
+
+MANTENIMIENTO:
+──────────────
+
+1. VERSIONAMIENTO:
+   - Usar Git correctamente con branches
+   - Semantic Versioning
+   - Changelog detallado
+
+2. CODE QUALITY:
+   - ESLint para linting
+   - Prettier para formateo
+   - Husky para pre-commit hooks
+   - Code reviews
+
+3. MONITOREO:
+   - Error tracking (Sentry)
+   - Analytics (Google Analytics)
+   - Performance monitoring
+   - Uptime monitoring
+
+PRÓXIMOS PASOS RECOMENDADOS:
+────────────────────────────
+
+CORTO PLAZO (1-2 semanas):
+1. Arreglar bugs conocidos
+2. Completar funcionalidades iniciadas (NotificationService)
+3. Mejorar manejo de errores
+4. Añadir validación básica de imágenes
+5. Implementar función de logout real
+
+MEDIANO PLAZO (1 mes):
+1. Refactorizar a módulos ES6
+2. Implementar tests básicos
+3. Mejorar documentación del código
+4. Optimizar rendimiento
+5. Añadir más validaciones
+
+LARGO PLAZO (3+ meses):
+1. Migrar a framework moderno (React/Vue)
+2. Implementar backend real
+3. Sistema de roles y permisos
+4. Características avanzadas
+5. Deploy a producción
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                              CONCLUSIONES
+═══════════════════════════════════════════════════════════════════════════════
+
+FORTALEZAS DEL PROYECTO:
+────────────────────────
+
+✓ Arquitectura modular bien organizada
+✓ Separación clara de responsabilidades
+✓ Validaciones robustas en el frontend
+✓ Diseño responsivo y atractivo
+✓ Uso de patrones de diseño modernos
+✓ Código relativamente limpio y legible
+✓ Sistema de navegación SPA fluido
+✓ Persistencia de datos funcional
+✓ Interfaz intuitiva
+
+ÁREAS DE MEJORA:
+────────────────
+
+⚠ Seguridad (contraseñas sin encriptar, falta backend)
+⚠ Algunos módulos no están integrados (NotificationService, AppEvents)
+⚠ Falta de testing
+⚠ No hay manejo robusto de errores
+⚠ Falta documentación inline (JSDoc)
+⚠ URLs no actualizables (History API)
+⚠ Limitaciones de localStorage
+⚠ Funcionalidades incompletas
+
+VALORACIÓN GENERAL:
+───────────────────
+
+Para un proyecto académico, esta aplicación demuestra:
+
+• Comprensión sólida de HTML, CSS y JavaScript
+• Conocimiento de principios de diseño web
+• Capacidad de implementar validaciones complejas
+• Uso apropiado de localStorage y sessionStorage
+• Implementación de patrones de diseño
+• Habilidad para crear interfaces responsivas
+
+El proyecto es funcional, visualmente atractivo y cumple con los
+requisitos básicos de un sistema de gestión bibliotecaria. Sin embargo,
+para ser utilizado en producción, requeriría implementar las mejoras
+de seguridad y funcionalidad mencionadas en este documento.
+
+CALIFICACIÓN ESTIMADA (sobre aspectos técnicos):
+Código: 85/100 - Bien estructurado pero con áreas de mejora
+Diseño: 90/100 - Interfaz atractiva y responsiva
+Funcionalidad: 80/100 - Cumple requisitos pero falta pulir detalles
+Seguridad: 50/100 - Funcional pero no apto para producción
+Documentación: 70/100 - README básico, falta documentación inline
+
+PROMEDIO: 75/100 - Proyecto sólido con margen de mejora
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                           FIN DEL DOCUMENTO
+═══════════════════════════════════════════════════════════════════════════════
+
+Este documento ha sido generado mediante análisis exhaustivo del código fuente.
+Para consultas o aclaraciones sobre el funcionamiento de cualquier componente,
+referirse a las secciones específicas de este manual.
+
+Fecha: 2 de febrero de 2026
+Versión del proyecto analizada: 1.0.0

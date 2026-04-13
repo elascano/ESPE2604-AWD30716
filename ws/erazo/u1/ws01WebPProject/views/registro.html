@@ -1,0 +1,88 @@
+<div class="container">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-xl-10 col-lg-12 col-md-9">
+        <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="p-5">
+                <div class="text-center">
+                  <h1 class="h4 text-gray-900 mb-4">Registro</h1>
+                </div>
+                <form class="user" action="/pages/lexia.html" method="get">
+                  <div class="form-group">
+                    <label for="name"><small>Nombre Completo</small></label>
+                    <input
+                      type="text"
+                      class="form-control form-control-user"
+                      id="name"
+                      name="name"
+                      placeholder="Juan Pérez"
+                      pattern="[A-Za-z ]{3,}"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="email"><small>Correo electrónico</small></label>
+                    <input
+                      type="email"
+                      class="form-control form-control-user"
+                      id="email"
+                      name="email"
+                      aria-describedby="emailHelp"
+                      placeholder="user@gmail.com"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="password"><small>Contraseña</small></label>
+                    <input
+                      type="password"
+                      name="password"
+                      class="form-control form-control-user"
+                      id="password"
+                      placeholder="********"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="password"><small>Repite la contraseña</small></label>
+                    <input
+                      type="password"
+                      name="password"
+                      class="form-control form-control-user"
+                      id="password"
+                      placeholder="********"
+                      required
+                    />
+                  </div>
+            
+                  <button
+                    type="submit"
+                    class="btn btn-primary btn-user btn-block"
+                  >
+                    Registrar
+                  </button>
+                  <hr />
+                </form>
+
+                <div class="text-right">
+                  <span class="small">¿Tienes una cuenta? </span><a class="small" href="/views/login.html" onclick="cargarViews(event,this.href)">Ingresa</a>
+                </div>
+              </div>
+            </div>
+            <div
+              class="col-lg-6 d-none d-lg-block bg-login-image d-flex justify-content-center align-items-center"
+            >
+              <img
+                src="/public/imgs/imgLogin.png"
+                alt="abogacia"
+                class="img-fluid w-100 h-100"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

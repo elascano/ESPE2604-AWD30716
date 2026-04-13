@@ -1,0 +1,56 @@
+@charset "utf-8";
+
+:root {
+  --morado: #CDB4DB;
+  --rosadoClaro: #FFC8DD;
+  --rosado: #FFAFCC;
+  --celeste: #BDE0FE;
+  --azul: #A2D2FF;
+  --verde: #d8f3dc;
+  --amarillo: #fcbf49;
+  --cyan: #15616d;
+  --fuente: 'Quicksand', sans-serif;
+}
+
+body {
+  background: linear-gradient(var(--cyan), var(--azul));
+  background-size: cover;
+  font-family: var(--fuente);
+  color: var(--moradoOscuro);
+}
+
+.bg {
+  background-image: url(../imagenes/fotoLogin.jpg);
+  background-position: center center;
+  background-size: cover;
+}
+
+.iniciar {
+  background-color: var(--cyan);
+}
+
+.mensaje {
+  position: relative;
+  width: 100%;
+  display: inline-block;
+}
+
+.mensajeTexto {
+  visibility: hidden;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  width: 120px;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  right: 0px;
+  z-index: 1;
+}
+
+.mensaje:hover .mensajeTexto {
+  visibility: visible;
+}
+input.error {
+  border: 1px solid red;
+}

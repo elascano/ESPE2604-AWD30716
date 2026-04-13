@@ -1,0 +1,298 @@
+<dialog id="modalAgregarPerfiles" class="container mt-4 border-0 rounded shadow">
+    
+    <form id="perfilForm">
+        <h3 class="titulo">Nuevo Rol</h3>
+        <hr>
+        <div class="row">
+            <div class="mb-3 col-sm-12 col-md-3">
+                <label for="nombreRol" class="form-label">Nombre del Rol:</label>
+                <input type="text" id="nombreRol" class="form-control" required>
+            </div>
+            <div class="mb-3 col-sm-12 col-md-7">
+                <label for="descripcion" class="form-label">Descripción:</label>
+                <input type="text" id="descripcionRol" class="form-control" required>
+            </div>
+        </div>
+
+        <h5>Permisos</h5>
+        <div class="row">
+            <div class="col-md-3">
+                <!-- Permisos para la página de ingresos -->
+                <div class="form-check">
+                    <input class="form-check-input border-black" onclick="controlarCheckbox()" type="checkbox" id="paginaIngresos">
+                    <label class="form-check-label fw-bold fs-5" for="paginaIngresos">Página de Ingresos</label>
+                </div>
+
+                <div class="form-check mx-4">
+                    <input class="form-check-input border-black" onclick="controlarCheckbox()" type="checkbox" id="agregarIngresos">
+                    <label class="form-check-label" for="agregarIngresos">Agregar ingresos</label>
+                </div>
+
+                <div class="form-check mx-4">
+                    <input class="form-check-input border-black" onclick="controlarCheckbox()" type="checkbox" id="anularIngresos">
+                    <label class="form-check-label" for="anularIngresos">Anular/Activar ingresos</label>
+                </div>
+
+                <div class="form-check mx-4">
+                    <input class="form-check-input border-black" onclick="controlarCheckbox()" type="checkbox" id="editarIngresos">
+                    <label class="form-check-label" for="editarIngresos">Editar ingresos</label>
+                </div>
+
+                <!-- Permisos para la página de Reportes -->
+                <div class="form-check">
+                    <input class="form-check-input border-black" type="checkbox" id="generarReportes">
+                    <label class="form-check-label fw-bold" for="generarReportes">Página de reportes</label>
+                </div>
+            </div>
+
+            <div class="col-md-3" >
+                <!-- Permisos para la página de gastos -->
+
+                <div class="form-check">
+                    <input class="form-check-input border-black" onclick="controlarCheckbox()" type="checkbox" id="paginaGastos">
+                    <label class="form-check-label fw-bold fs-5" for="paginaGastos">Página de Gastos</label>
+                </div>
+
+                <div class="form-check mx-4">
+                    <input class="form-check-input border-black" onclick="controlarCheckbox()" type="checkbox" id="agregarGastos">
+                    <label class="form-check-label" for="agregarGastos">Agregar gastos</label>
+                </div>
+
+                <div class="form-check mx-4">
+                    <input class="form-check-input border-black" onclick="controlarCheckbox()" type="checkbox" id="anularGastos">
+                    <label class="form-check-label" for="anularGastos">Anular/Activar gastos</label>
+                </div>
+
+                <div class="form-check mx-4">
+                    <input class="form-check-input border-black" onclick="controlarCheckbox()" type="checkbox" id="editarGastos">
+                    <label class="form-check-label" for="editarGastos">Editar gastos</label>
+                </div>
+            </div>
+            <div class="col-md-3">
+
+                <!-- Permisos para la página de Categorias -->
+
+                <div class="form-check">
+                    <input class="form-check-input border-black" onclick="controlarCheckbox()" type="checkbox" id="paginaCategorias">
+                    <label class="form-check-label fw-bold fs-5" for="paginaCategorias">Página de Categorías</label>
+                </div>
+
+                <div class="form-check mx-4">
+                    <input class="form-check-input border-black" onclick="controlarCheckbox()" type="checkbox" id="agregarCategoria">
+                    <label class="form-check-label" for="agregarCategoria">Agregar categoría</label>
+                </div>
+
+                <div class="form-check mx-4">
+                    <input class="form-check-input border-black" onclick="controlarCheckbox()" type="checkbox" id="editarCategoria">
+                    <label class="form-check-label" for="editarCategoria">Editar categoría</label>
+                </div>
+
+            </div>
+            <div class="col-md-3">
+                <!-- Permisos para la página de Usuarios -->
+
+                <div class="form-check">
+                    <input class="form-check-input border-black"  onclick="controlarCheckbox()" type="checkbox" id="paginaUsuarios">
+                    <label class="form-check-label fw-bold fs-5" for="paginaUsuarios">Página de Usuarios</label>
+                </div>
+
+                <div class="form-check mx-4">
+                    <input class="form-check-input border-black" onclick="controlarCheckbox()" type="checkbox" id="crearUsuarios">
+                    <label class="form-check-label" for="crearUsuarios">Crear usuarios</label>
+                </div>
+
+                <div class="form-check mx-4">
+                    <input class="form-check-input border-black" onclick="controlarCheckbox()" type="checkbox" id="desactivarUsuarios">
+                    <label class="form-check-label" for="desactivarUsuarios">Activar/Desactivar usuarios</label>
+                </div>
+
+                <div class="form-check mx-4">
+                    <input class="form-check-input border-black" onclick="controlarCheckbox()" type="checkbox" id="crearRoles">
+                    <label class="form-check-label" for="crearRoles">Crear Roles</label>
+                </div>
+
+                <div class="form-check mx-4">
+                    <input class="form-check-input border-black" onclick="controlarCheckbox()" type="checkbox" id="paginaAuditoria">
+                    <label class="form-check-label fw-bold fs-5" for="paginaAuditoria">Página Auditoria</label>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <button type="submit" class="btn mt-3 botonE" onclick="guardarPerfilNuevo(event)">Guardar</button>
+        <button type="reset" class="btn mt-3 botonR" onclick="cerrarAgregarPerfil()">Cancelar</button>
+    </form>
+</dialog>
+
+<!-- Modal para actualizar permisos -->
+<dialog id="modalActualizarPerfil" class="container mt-4 border-0 rounded shadow">
+    <form id="perfilFormActualizar">
+        <input type="text" id="idPerfil" class="form-control" style="display: none;" readonly>
+        <h3 class="titulo">Actualizar Rol</h3>
+        <hr>
+        <div class="row">
+            <div class="mb-3 col-sm-12 col-md-3">
+                <label for="nombreRolActualizar" class="form-label">Nombre del Rol:</label>
+                <input type="text" id="nombreRolActualizar" class="form-control" required>
+            </div>
+            <div class="mb-3 col-sm-12 col-md-7">
+                <label for="descripcionRolActualizar" class="form-label">Descripción:</label>
+                <input type="text" id="descripcionRolActualizar" class="form-control" required>
+            </div>
+        </div>
+
+        <h5>Permisos</h5>
+        <div class="row">
+            <div class="col-md-3">
+                <!-- Permisos para la página de ingresos -->
+                <div class="form-check">
+                    <input class="form-check-input border-black" onclick="controlarCheckbox()" type="checkbox" id="paginaIngresosActualizar">
+                    <label class="form-check-label fw-bold fs-5" for="paginaIngresosActualizar">Página de Ingresos</label>
+                </div>
+
+                <div class="form-check mx-4">
+                    <input class="form-check-input border-black" onclick="controlarCheckbox()" type="checkbox" id="agregarIngresosActualizar">
+                    <label class="form-check-label" for="agregarIngresosActualizar">Agregar ingresos</label>
+                </div>
+
+                <div class="form-check mx-4">
+                    <input class="form-check-input border-black" onclick="controlarCheckbox()" type="checkbox" id="anularIngresosActualizar">
+                    <label class="form-check-label" for="anularIngresosActualizar">Anular/Activar ingresos</label>
+                </div>
+
+                <div class="form-check mx-4">
+                    <input class="form-check-input border-black" onclick="controlarCheckbox()" type="checkbox" id="editarIngresosActualizar">
+                    <label class="form-check-label" for="editarIngresosActualizar">Editar ingresos</label>
+                </div>
+
+                <!-- Permisos para la página de Reportes -->
+                <div class="form-check">
+                    <input class="form-check-input border-black" type="checkbox" id="generarReportesActualizar">
+                    <label class="form-check-label fw-bold" for="generarReportesActualizar">Página de reportes</label>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <!-- Permisos para la página de gastos -->
+
+                <div class="form-check">
+                    <input class="form-check-input border-black" onclick="controlarCheckbox()" type="checkbox" id="paginaGastosActualizar">
+                    <label class="form-check-label fw-bold fs-5" for="paginaGastosActualizar">Página de Gastos</label>
+                </div>
+
+                <div class="form-check mx-4">
+                    <input class="form-check-input border-black" onclick="controlarCheckbox()" type="checkbox" id="agregarGastosActualizar">
+                    <label class="form-check-label" for="agregarGastosActualizar">Agregar gastos</label>
+                </div>
+
+                <div class="form-check mx-4">
+                    <input class="form-check-input border-black" onclick="controlarCheckbox()" type="checkbox" id="anularGastosActualizar">
+                    <label class="form-check-label" for="anularGastosActualizar">Anular/Activar gastos</label>
+                </div>
+
+                <div class="form-check mx-4">
+                    <input class="form-check-input border-black" onclick="controlarCheckbox()" type="checkbox" id="editarGastosActualizar">
+                    <label class="form-check-label" for="editarGastosActualizar">Editar gastos</label>
+                </div>
+            </div>
+            <div class="col-md-3">
+
+                <!-- Permisos para la página de Categorias -->
+
+                <div class="form-check">
+                    <input class="form-check-input border-black" onclick="controlarCheckbox()" type="checkbox" id="paginaCategoriasActualizar">
+                    <label class="form-check-label fw-bold fs-5" for="paginaCategoriasActualizar">Página de Categorías</label>
+                </div>
+
+                <div class="form-check mx-4">
+                    <input class="form-check-input border-black" onclick="controlarCheckbox()" type="checkbox" id="agregarCategoriaActualizar">
+                    <label class="form-check-label" for="agregarCategoriaActualizar">Agregar categoría</label>
+                </div>
+
+                <div class="form-check mx-4">
+                    <input class="form-check-input border-black" onclick="controlarCheckbox()" type="checkbox" id="editarCategoriaActualizar">
+                    <label class="form-check-label" for="editarCategoriaActualizar">Editar categoría</label>
+                </div>
+
+            </div>
+            <div class="col-md-3">
+                <!-- Permisos para la página de Usuarios -->
+
+                <div class="form-check">
+                    <input class="form-check-input border-black" onclick="controlarCheckbox()" type="checkbox" id="paginaUsuariosActualizar">
+                    <label class="form-check-label fw-bold fs-5" for="paginaUsuariosActualizar">Página de Usuarios</label>
+                </div>
+
+                <div class="form-check mx-4">
+                    <input class="form-check-input border-black" onclick="controlarCheckbox()" type="checkbox" id="crearUsuariosActualizar">
+                    <label class="form-check-label" for="crearUsuariosActualizar">Crear usuarios</label>
+                </div>
+
+                <div class="form-check mx-4">
+                    <input class="form-check-input border-black" onclick="controlarCheckbox()" type="checkbox" id="desactivarUsuariosActualizar">
+                    <label class="form-check-label" for="desactivarUsuariosActualizar">Activar/Desactivar usuarios</label>
+                </div>
+
+                <div class="form-check mx-4">
+                    <input class="form-check-input border-black" onclick="controlarCheckbox()" type="checkbox" id="crearRolesActualizar">
+                    <label class="form-check-label" for="crearRolesActualizar">Crear Roles</label>
+                </div>
+
+                <div class="form-check mx-4">
+                    <input class="form-check-input border-black" onclick="controlarCheckbox()" type="checkbox" id="paginaAuditoriaActualizar">
+                    <label class="form-check-label fw-bold fs-5" for="paginaAuditoriaActualizar">Página Auditoria</label>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <button type="submit" class="btn mt-3 botonA" onclick="actualizarPerfil(event)">Actualizar</button>
+        <button type="reset" class="btn mt-3 botonR" onclick="cerrarActualizarPerfil()">Cancelar</button>
+    </form>
+</dialog>
+
+
+<!-- Modal para ver permisos -->
+<div class="modal fade" id="modalVerPermisos" tabindex="-1" aria-labelledby="modalVerPermisosLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalVerPermisosLabel">Permisos del Rol</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+                <div id="listaPermisos">
+                    <!-- Aquí se cargan los permisos -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<fieldset class="border p-2 shadow agregar bg-light rounded">
+    <div class="d-flex">
+        <div class="col">
+            <h3 class="titulo">Gestión de Roles</h3>
+        </div>
+        <div class="col text-end"><button id="agregar" class="btn bg-info-subtle" onclick="abrirAgregarPerfil()"><i
+                    class="bi bi-plus-circle"></i> Agregar Rol</button></div>
+    </div>
+    <hr>
+    <div class="table-responsive">
+        <table id="tablaPerfiles" class="table text-center table-striped rounded">
+            <thead>
+                <tr>
+                    <th scope="col">Nombre del Rol</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Permisos</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody id="perfilTableBody">
+                <!-- Aquí se cargaran los registros -->
+            </tbody>
+        </table>
+    </div>
+</fieldset>

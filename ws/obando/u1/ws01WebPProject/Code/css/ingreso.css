@@ -1,0 +1,189 @@
+body {
+    background-image: url("../imagenes/fondo_servicios.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.titulo {
+    font-family: "Quicksand",sans-serif;
+}
+
+.codigo {
+    width: 150px; 
+    height: 150px;
+    background-image: url("../imagenes/codigoQR.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.qr{
+    width: 25px; 
+    height: 25px;
+    background-image: url("../imagenes/codigoQR.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.botonE:hover {
+    background-color: rgb(135, 211, 169);
+}
+
+.botonA:hover {
+    background-color: rgb(210, 211, 135);
+}
+
+.botonR:hover {
+    background-color: rgb(211, 135, 135);
+}
+
+
+#modalAgregarPerfiles, #modalActualizarPerfil,#modalAgregarCategoria, #modalActualizarCategoria{
+    position: fixed;
+    top: 0; 
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    width: 90%;
+    animation: bajar 0.5s ease-out forwards;
+    padding: 20px;
+    box-sizing: border-box; 
+    z-index: 9999; 
+}
+
+
+#modalAgregar, #modalActualizar{
+    position: fixed;
+    top: 0; 
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    animation: bajar 0.5s ease-out forwards;
+    width: 90%; 
+    padding: 20px;
+    box-sizing: border-box; 
+    z-index: 1000; 
+}
+
+#modalAgregarPerfiles::backdrop, #modalActualizarPerfil::backdrop, #modalAgregarCategoria::backdrop, #modalActualizarCategoria::backdrop {
+    animation: oscurecer 0.5s ease-out forwards;
+}
+
+
+#modalAgregar::backdrop, #modalActualizar::backdrop {
+    background-color: rgba(0, 0, 0, 0.55);
+    animation: oscurecer 0.5s ease-out forwards;
+}
+
+@keyframes bajar {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-50px); 
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0); 
+    }
+}
+
+@keyframes subir {
+    from {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-50px); 
+    }
+}
+
+@keyframes oscurecer {
+    from {
+        background-color: rgba(0, 0, 0, 0); /* Fondo transparente al principio */
+    }
+    to {
+        background-color: rgba(0, 0, 0, 0.55); /* Fondo oscuro al final */
+    }
+}
+
+.botonQr {
+    cursor: pointer;
+}
+
+.imagenQr {
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); 
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.imagenQr img {
+    max-width: 80%;
+    max-height: 80%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+
+.cerrarImagen {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 25px;
+    color: white;
+    cursor: pointer;
+}
+
+.tooltip-descripcion {
+    position: relative;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Si el texto es largo, pone "..." */
+    max-width: 130px; /* Ajusta el ancho máximo de la celda */
+    display: inline-block;
+}
+
+.tooltip-descripcion:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    background: rgba(0, 0, 0, 0.9);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    white-space: normal;
+    max-width: 300px; /* Ajusta el tamaño del tooltip */
+    top: 100%; /* Asegura que se muestre debajo */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999; /* Mayor prioridad sobre otros elementos */
+    opacity: 1;
+    visibility: visible;
+}
+
+.tooltip-descripcion:hover::before {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-bottom-color: rgba(0, 0, 0, 0.9); /* Flecha del tooltip */
+    z-index: 9999;
+}
+
+/* Estilo para los iconos que actúan como botones */
+.icono-boton {
+    cursor: pointer; /* Cambia el cursor a pointer */
+    transition: opacity 0.3s ease; /* Transición suave para el cambio de opacidad */
+}
+
+/* Efecto cuando el mouse pasa por encima del icono */
+.icono-boton:hover {
+    opacity: 0.7; /* Hace que el icono se vea más claro al pasar por encima */
+}

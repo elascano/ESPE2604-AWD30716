@@ -1,0 +1,81 @@
+<div class="container">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-xl-10 col-lg-12 col-md-9">
+      <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+          <div class="row">
+            <div
+              class="col-lg-6 d-none d-lg-block bg-login-image d-flex justify-content-center align-items-center"
+            >
+              <img
+                src="/public/imgs/imgLogin.png"
+                alt="abogacia"
+                class="img-fluid w-100 h-100"
+              />
+            </div>
+            <div class="col-lg-6">
+              <div class="p-5">
+                <div class="text-center">
+                  <h1 class="h4 text-gray-900 mb-4">Inicio de Sesión</h1>
+                </div>
+                <form class="user" action="/pages/lexia.html" method="get">
+                  <div class="form-group">
+                    <label for="email"><small>Correo electrónico</small></label>
+                    <input
+                      type="email"
+                      class="form-control form-control-user"
+                      id="email"
+                      name="email"
+                      aria-describedby="emailHelp"
+                      placeholder="user@gmail.com"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="password"><small>Contraseña</small></label>
+                    <input
+                      type="password"
+                      name="password"
+                      class="form-control form-control-user"
+                      id="password"
+                      placeholder="********"
+                      required
+                    />
+                  </div>
+                  <div class="text-right">
+                    <a class="small" href="forgot-password.html"
+                      >Forgot Password?</a
+                    >
+                  </div>
+                  <div class="form-group">
+                    <div class="custom-control custom-checkbox small">
+                      <input
+                        type="checkbox"
+                        class="custom-control-input"
+                        id="customCheck"
+                      />
+                      <label class="custom-control-label" for="customCheck"
+                        >Remember Me</label
+                      >
+                    </div>
+                  </div>
+                  <button
+                    type="submit"
+                    class="btn btn-primary btn-user btn-block"
+                  >
+                    Ingresar
+                  </button>
+                  <hr />
+                </form>
+
+                <div class="text-right">
+                  <span class="small">¿No tienes una cuenta? </span><a class="small" href="/views/registro.html" onclick="cargarViews(event,this.href)">Crear cuenta</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,2 +1,0 @@
-# EDITABLE
-Assignment 1

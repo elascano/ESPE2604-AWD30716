@@ -1,0 +1,50 @@
+<div class="container mt-4">
+    <fieldset class="border p-2 shadow agregar bg-light rounded">
+        <div class="d-flex">
+            <div class="col-12 bg-info-subtle">
+                <h2 class="text-dark text-center">Información personal</h2>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <input type="text" id="IdUser" style="display: none;">
+            <div class="mb-3 col-sm-12 col-md-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombreP" value="Juan">
+            </div>
+            <div class="mb-3 col-sm-12 col-md-3">
+                <label for="apellido" class="form-label">Apellido</label>
+                <input type="text" class="form-control" id="apellidoP" value="Pérez" >
+            </div>
+            <div class="mb-3 col-sm-12 col-md-3">
+                <label for="correo" class="form-label">Correo</label>
+                <input type="email" class="form-control" id="correoP" value="juan.perez@example.com" >
+            </div>
+            <div class="mb-3 col-sm-12 col-md-3">
+                <label for="cedula" class="form-label">Cédula</label>
+                <input type="text" class="form-control" id="cedulaP" value="1234567890" >
+            </div>
+        </div>
+    
+        <hr>
+        <h4 >Cambiar Contraseña <i class="bi bi-key-fill"></i></h4>
+        <hr>
+        <div class="row">
+            <div class="mb-3 col-sm-12 col-md-3">
+                <label for="oldPassword" class="form-label">Contraseña Antigua</label>
+                <input type="password" class="form-control" id="oldPassword" placeholder="*********">
+            </div>
+            <div class="mb-3 col-sm-12 col-md-3">
+                <label for="newPassword" class="form-label">Nueva Contraseña</label>
+                <input type="password" class="form-control" id="newPassword" placeholder="Ingresa la nueva contraseña">
+            </div>
+            <div class="mb-3 col-sm-12 col-md-3">
+                <label for="repeatNewPassword" class="form-label">Repetir Nueva Contraseña</label>
+                <input type="password" class="form-control" id="repeatNewPassword" placeholder="Repite la nueva contraseña">
+            </div>
+        </div>
+        
+
+        <button type="submit" class="btn btn-primary" onclick="actualizarUsuario()">Guardar Cambios</button>
+    </fieldset>
+</div>

@@ -1,0 +1,168 @@
+.cabecera {
+  color: rgb(184, 160, 10);
+  font-weight: bold;
+}
+
+
+
+.link {
+  font-weight: bold;
+}
+
+.link:hover {
+  color: rgb(184, 160, 10) !important;
+}
+
+.link:active {
+  color: rgb(184, 160, 10) !important;
+
+}
+
+.content-index {
+  padding-top: 50px;
+}
+
+.portada {
+  height: calc(100vh - 70px);
+  overflow: hidden;
+}
+
+.portada-texto h1,
+.portada-texto h3 {
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+}
+
+.cta {
+  background-color: #ffc107;
+  color: #000;
+  font-weight: bold;
+}
+
+.cta:hover {
+  background-color: #ffca2c;
+  color: #000;
+}
+
+.cta-secondary {
+  background-color: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+  font-weight: bold;
+}
+
+.cta-secondary:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+.bg-dark-0 {
+  background-color: black;
+}
+
+.ajustar {
+  aspect-ratio: 763 / 360;
+  width: 100%;
+
+}
+
+.body-landing {
+  background-color: black;
+}
+
+.bg-lawyer {
+  background-color: #cea52b;
+}
+
+
+
+/* Dashboard */
+
+.kpi-card {
+  border: 1px solid #cce5ff;
+  /* Color de borde similar al azul claro */
+  background-color: #e6f3ff;
+  /* Fondo similar al azul claro */
+  color: #155724;
+  padding: 20px;
+  margin-bottom: 20px;
+
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 68, 0.15) !important;
+}
+
+.kpi-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #3f6595;
+  margin-bottom: 5px;
+}
+
+.kpi-value {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #2c3e50;
+  /* Color de texto oscuro */
+}
+
+.alerta-urgente {
+  color: #dc3545;
+  /* Rojo de Bootstrap */
+  font-weight: bold;
+}
+
+.alerta-importante {
+  color: #ffc107;
+  /* Amarillo de Bootstrap */
+  font-weight: bold;
+}
+
+.circle-rojo {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #dc3545;
+  margin-right: 5px;
+}
+
+.circle-amarillo {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #ffc107;
+  margin-right: 5px;
+}
+
+/* registros */
+
+.dataTables_wrapper .dataTables_length select {
+  padding: 4px;
+  margin: 0 5px;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+  margin-left: 5px;
+  padding: 4px;
+}
+
+.pagination .page-link {
+  padding: 6px 12px;
+}
+
+.badge-urgente {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
+}

@@ -1,0 +1,205 @@
+<dialog id="modalAgregar" class="agregarIngreso container mt-4 border-0 rounded shadow">
+    <form id="registrarIngreso">
+        <fieldset class="border p-2 agregar bg-light border-0">
+            <h3 class="titulo">Nuevo Ingreso</h3>
+            <hr>
+            <div class="row px-4">
+                <div class="col-12 col-md-3 d-grid px-md-2">
+                    <div class="row">
+                        <label class="mb-0">Tipo de ingreso*</label>
+                        <select name="tipoIngreso" id="selectTipo" class="form-control form-select mb-4 shadow" onchange="actualizarFondoQRIngreso('modalAgregar','selectTipo')">
+                        </select>
+                    </div>
+
+                    <div class="row">
+                        <label>Método de pago*</label>
+                        <select name="metodoIngreso" class="form-control form-select mb-4 shadow">
+                            <option value="">Selecciona un método</option>
+                            <option value="Efectivo">Efectivo</option>
+                            <option value="Transferencia">Transferencia</option>
+                            <option value="Cheque">Cheque</option>
+                            <option value="Paypal">Paypal</option>
+                            <option value="DeUna">DeUna</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="col-12 col-md-6 col-lg-5 d-grid px-md-2">
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <label>Monto $*</label>
+                            <input name="montoIngreso" type="number" step="0.01" min="0.05"
+                                class="form-control mb-3 shadow">
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label>Fecha de Ingreso*</label>
+                            <input name="fechaIngreso" type="date" class="form-control mb-3 shadow">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label>Descripción*</label>
+                            <input name="descripcionIngreso" type="text" class="form-control mb-3 shadow">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-lg-4 text-center">
+                    <label class="text-center">Código QR</label>
+                    <div class="mx-auto bg-black d-flex justify-content-center align-items-center codigo">
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <button type="submit" onclick="guardarDatos(event)" class="btn botonE">Guardar</button>
+            <button type="button" class="btn botonR" onclick="cerrarAgregarIngreso()">Cancelar</button>
+        </fieldset>
+    </form>
+</dialog>
+
+
+<dialog id="modalActualizar" class="actualizarIngreso container mt-4 border-0 rounded shadow">
+    <form id="actualizarIngreso">
+        <fieldset class="border p-2 actualizar bg-light border-0">
+            <h3 class="titulo">Actualizar un ingreso</h3>
+            <input type="text" id="idIngreso" name="idIngreso" style="display: none;">
+            <hr>
+            <div class="row px-4">
+                <div class="col-12 col-md-3 d-grid px-md-2">
+                    <div class="row">
+                        <label class="mb-0">Tipo de ingreso*</label>
+                        <select name="tipoIngresoA" id="selectTipoA" class="form-control form-select mb-4 shadow" onchange="actualizarFondoQRIngreso('modalActualizar', 'selectTipoA')">
+                        </select>
+                    </div>
+
+                    <div class="row">
+                        <label>Método de pago*</label>
+                        <select id="metodoIngresoA" name="metodoIngresoA" class="form-control form-select mb-4 shadow">
+                            <option value="">Selecciona un método</option>
+                            <option value="Efectivo">Efectivo</option>
+                            <option value="Transferencia">Transferencia</option>
+                            <option value="Cheque">Cheque</option>
+                            <option value="Paypal">Paypal</option>
+                            <option value="DeUna">DeUna</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="col-12 col-md-6 col-lg-5 d-grid px-md-2">
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <label>Monto $*</label>
+                            <input id="montoIngresoA" name="montoIngresoA" type="number" step="0.01" min="0.05"
+                                class="form-control mb-3 shadow">
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label>Fecha de Ingreso*</label>
+                            <input id="fechaIngresoA" name="fechaIngresoA" type="date" class="form-control mb-3 shadow">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label>Descripción*</label>
+                            <input id="descripcionIngresoA" name="descripcionIngresoA" type="text" class="form-control mb-3 shadow">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-lg-4 text-center">
+                    <label class="text-center">Código QR</label>
+                    <div class="mx-auto bg-black d-flex justify-content-center align-items-center codigo">
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <button type="submit" onclick="actualizarDatos(event)" class="btn botonA">Actualizar</button>
+            <button type="button" class="btn botonR" onclick="cerrarActualizarIngreso()">Cancelar</button>
+        </fieldset>
+    </form>
+</dialog>
+
+<div class="container mt-4">
+    <fieldset class="border p-2 shadow agregar bg-light rounded">
+        <div class="d-flex">
+            <div class="col">
+                <h3 class="titulo">Ingresos</h3>
+            </div>
+            <div class="col text-end"><button id="agregar" class="btn bg-info-subtle" onclick="abrirAgregarIngreso()"><i
+                        class="bi bi-plus-circle"></i> Agregar Ingreso</button></div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-sm-12 col-md-2">
+                <label>Buscar por tipo</label>
+                <select id="tipoIngresoConsulta" class="form-control mb-3 form-select" onchange="filtrarDatos()">
+                    <option>Seleccione una opcion</option>
+                </select>
+            </div>
+            <div class="col-sm-12 col-md-2 mx-0 bg-secondary-subtle rounded-start">
+                <label>Desde: </label>
+                <div class="d-flex">
+                    <input type="date" class="form-control me-2" id="fechaInicio" onchange="filtrarDatos()">
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-2 bg-secondary-subtle rounded-end">
+                <label>Hasta: </label>
+                <div class="d-flex">
+                    <input type="date" class="form-control ms-2" id="fechaFin" onchange="filtrarDatos()">
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-2 ms-auto">
+                <label>Estados:</label>
+                <select id="EstadoConsulta" class="form-control mb-3 form-select" onchange="filtrarDatos()">
+                    <option value="">Seleccione una opcion</option>
+                    <option value="1">Mostrar Completados</option>
+                    <option value="2">Mostrar Anulados</option>
+                    <option value="3">Mostrar Todo</option>
+                </select>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="table-responsive">
+            <table id="tablaIngresos" class="table text-center table-striped rounded">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">Monto</th>
+                        <th scope="col">Tipo</th>
+                        <th scope="col">Método</th>
+                        <th scope="col">Registrado por</th>
+                        <th scope="col">Código QR</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    <!-- Aquí se cargaran los registros -->
+                </tbody>
+            </table>
+            <hr>
+            <div class="d-flex">
+                <nav>
+                    <ul class="pagination shadow" id="pagination"></ul>
+                </nav>
+                <div class="mb-3 col-1 mx-3">
+                    <select id="itemsPerPage" class="form-select shadow" onchange="updateItemsPerPage()">
+                        <option value="5" selected>5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+    </fieldset>
+    <div id="codigoQr" class="imagenQr" onclick="cerrarQR()">
+        <span class="cerrarImagen" onclick="cerrarQR()">✖</span>
+        <img id="cargarQr" src="" alt="Imagen">
+    </div>
+</div>
