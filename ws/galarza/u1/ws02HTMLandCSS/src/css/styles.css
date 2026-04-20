@@ -1,0 +1,167 @@
+/* 1. RESET Y BASE */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f0f8ff; /* Blanco azulado */
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Para que el footer siempre esté abajo */
+}
+
+/* 2. NAVBAR CON ANIMACIÓN */
+.navbar {
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    color: #0099ff;
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s;
+}
+
+/* Animación de línea subrayada en CSS */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: #0099ff;
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #0099ff;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* 3. CARRUSEL (Estructura visual rápida) */
+.carousel {
+    width: 100%;
+    overflow: hidden;
+    background: #e1f5fe;
+}
+
+.carousel-container {
+    display: flex;
+    width: 300%; /* Para 3 imágenes */
+    animation: slide 12s infinite ease-in-out;
+}
+
+.carousel-img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+@keyframes slide {
+    0% { transform: translateX(0); }
+    30% { transform: translateX(0); }
+    33% { transform: translateX(-33.33%); }
+    63% { transform: translateX(-33.33%); }
+    66% { transform: translateX(-66.66%); }
+    96% { transform: translateX(-66.66%); }
+    100% { transform: translateX(0); }
+}
+
+/* 4. TARJETAS */
+.cards-section {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 50px 5%;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 153, 255, 0.1);
+    flex: 1;
+    min-width: 280px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    border-top: 4px solid #0099ff;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card h3 {
+    color: #007acc;
+    margin-bottom: 15px;
+}
+
+/* 5. BOTONES DE ACCIÓN */
+.actions-section {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 30px;
+}
+
+.btn-redirect {
+    text-decoration: none;
+    background-color: #0099ff;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-weight: bold;
+    transition: all 0.3s;
+    border: 2px solid #0099ff;
+}
+
+.btn-redirect:hover {
+    background-color: white;
+    color: #0099ff;
+}
+
+/* 6. FOOTER PEGADO AL FINAL */
+.main-footer {
+    margin-top: auto; /* Empuja el footer al fondo */
+    background-color: #ffffff;
+    padding: 20px;
+    text-align: center;
+    border-top: 1px solid #e1f5fe;
+}
+
+.copy-text {
+    font-size: 0.9rem;
+    color: #777;
+    margin: 5px 0;
+}
