@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>American Latin Class | Mockup</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="brand-mark">ALC</span>
+      <div>
+        <strong>American Latin Class</strong>
+        <small>Sistema multi-sede</small>
+      </div>
+    </div>
+
+    <nav class="menu" aria-label="Menu principal">
+      <a href="#dashboard" class="active">Dashboard</a>
+      <a href="#alumnos">Alumnos</a>
+      <a href="#mensualidades">Mensualidades</a>
+      <a href="#asistencia">Asistencia</a>
+      <a href="#finanzas">Finanzas</a>
+      <a href="#agencia">Agencia</a>
+    </nav>
+  </aside>
+
+  <main class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Panel operativo</p>
+        <h1>Control diario de sedes</h1>
+      </div>
+
+      <label class="field compact">
+        <span>Sede</span>
+        <select id="branchSelect">
+          <option value="todas">Todas las sedes</option>
+          <option value="Matriz">Matriz</option>
+          <option value="Norte">Norte</option>
+          <option value="Quitumbe">Quitumbe</option>
+          <option value="Conocoto">Conocoto</option>
+          <option value="Tumbaco">Tumbaco</option>
+        </select>
+      </label>
+    </header>
+
+    <section class="overview" id="dashboard">
+      <article class="photo-panel">
+        <img
+          src="https://images.unsplash.com/photo-1773020678326-623004d8aa62?auto=format&fit=crop&fm=jpg&q=70&w=900"
+          alt="Entrada de una escuela de danza"
+        >
+        <div>
+          <p class="eyebrow">Resumen de hoy</p>
+          <h2 id="branchTitle">Todas las sedes</h2>
+          <p>Seguimiento simple para alumnos activos, caja, cartera y asistencia.</p>
+        </div>
+      </article>
+
+      <div class="kpi-grid">
+        <article class="kpi">
+          <span>Alumnos activos</span>
+          <strong id="activeStudents">248</strong>
+          <small>Meta mensual: 270</small>
+        </article>
+        <article class="kpi">
+          <span>Caja de hoy</span>
+          <strong id="cashToday">$1,460</strong>
+          <small>Ingresos registrados</small>
+        </article>
+        <article class="kpi">
+          <span>Cartera vencida</span>
+          <strong id="latePayments">32</strong>
+          <small>Mensualidades pendientes</small>
+        </article>
+        <article class="kpi">
+          <span>Asistencia</span>
+          <strong id="attendanceRate">84%</strong>
+          <small>Promedio del dia</small>
+        </article>
+      </div>
+    </section>
+
+    <section class="content-grid">
+      <article class="panel wide" id="alumnos">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Alumnos y cartera</p>
+            <h2>Listado rapido</h2>
+          </div>
+          <input id="studentSearch" type="search" placeholder="Buscar alumno">
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Alumno</th>
+                <th>Sede</th>
+                <th>Clase</th>
+                <th>Pago</th>
+                <th>Asistencia</th>
+              </tr>
+            </thead>
+            <tbody id="studentsTable">
+              <tr data-branch="Matriz">
+                <td>Camila Rojas</td>
+                <td>Matriz</td>
+                <td>Salsa inicial</td>
+                <td><span class="status ok">Al dia</span></td>
+                <td>Presente</td>
+              </tr>
+              <tr data-branch="Norte">
+                <td>Mateo Vera</td>
+                <td>Norte</td>
+                <td>Bachata 2</td>
+                <td><span class="status warning">Atrasado</span></td>
+                <td>Pendiente</td>
+              </tr>
+              <tr data-branch="Quitumbe">
+                <td>Valeria Paz</td>
+                <td>Quitumbe</td>
+                <td>Urbano teens</td>
+                <td><span class="status info">Beca</span></td>
+                <td>Presente</td>
+              </tr>
+              <tr data-branch="Conocoto">
+                <td>Julian Mena</td>
+                <td>Conocoto</td>
+                <td>Salsa intermedio</td>
+                <td><span class="status ok">Al dia</span></td>
+                <td>Ausente</td>
+              </tr>
+              <tr data-branch="Tumbaco">
+                <td>Daniela Arias</td>
+                <td>Tumbaco</td>
+                <td>Bachata inicial</td>
+                <td><span class="status warning">Atrasado</span></td>
+                <td>Presente</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <article class="panel" id="mensualidades">
+        <p class="eyebrow">Nuevo registro</p>
+        <h2>Pago de mensualidad</h2>
+
+        <form id="paymentForm" class="form">
+          <label class="field">
+            <span>Alumno</span>
+            <input type="text" id="studentName" placeholder="Nombre del alumno" required>
+          </label>
+
+          <label class="field">
+            <span>Sede</span>
+            <select id="paymentBranch">
+              <option>Matriz</option>
+              <option>Norte</option>
+              <option>Quitumbe</option>
+              <option>Conocoto</option>
+              <option>Tumbaco</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>Monto</span>
+            <input type="number" id="paymentAmount" placeholder="45" min="1" required>
+          </label>
+
+          <button type="submit">Registrar pago</button>
+          <p id="formMessage" class="message" aria-live="polite"></p>
+        </form>
+      </article>
+
+      <article class="panel" id="asistencia">
+        <p class="eyebrow">Asistencia</p>
+        <h2>Clases de hoy</h2>
+
+        <ul class="session-list">
+          <li>
+            <span>Salsa inicial</span>
+            <strong>18:00</strong>
+          </li>
+          <li>
+            <span>Bachata 2</span>
+            <strong>19:00</strong>
+          </li>
+          <li>
+            <span>Urbano teens</span>
+            <strong>20:00</strong>
+          </li>
+        </ul>
+
+        <button id="attendanceButton" type="button" class="secondary">Validar asistencia QR</button>
+        <p id="attendanceMessage" class="message" aria-live="polite"></p>
+      </article>
+
+      <article class="panel" id="finanzas">
+        <p class="eyebrow">Finanzas</p>
+        <h2>Caja por sede</h2>
+
+        <div class="progress-row">
+          <span>Matriz</span>
+          <div class="bar"><span style="width: 82%"></span></div>
+          <strong>$520</strong>
+        </div>
+        <div class="progress-row">
+          <span>Norte</span>
+          <div class="bar"><span style="width: 66%"></span></div>
+          <strong>$410</strong>
+        </div>
+        <div class="progress-row">
+          <span>Quitumbe</span>
+          <div class="bar"><span style="width: 48%"></span></div>
+          <strong>$300</strong>
+        </div>
+      </article>
+
+      <article class="panel" id="agencia">
+        <p class="eyebrow">Agencia</p>
+        <h2>Contratos activos</h2>
+        <div class="contract">
+          <strong>Evento corporativo</strong>
+          <span>Cliente: Andina Group</span>
+          <span>Estado: cobro pendiente</span>
+        </div>
+        <div class="contract">
+          <strong>Show privado</strong>
+          <span>Cliente: Hotel Sol</span>
+          <span>Estado: liquidado</span>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <script src="../script/app.js"></script>
+</body>
+</html>
