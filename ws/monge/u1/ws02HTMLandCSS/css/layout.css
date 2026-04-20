@@ -1,0 +1,22 @@
+.header {
+    display: flex;
+    align-items: center;
+    background: black;
+    padding: 10px;
+}
+
+.logo {
+    width: 60px;
+    margin-right: 10px;
+}
+
+.main-opciones {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+.contenido {
+    padding: 20px;
+}
