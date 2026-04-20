@@ -11,11 +11,6 @@
     transition: 0.3s;
 }
 
-.card:hover {
-    background: #f5c518;
-    color: black;
-}
-
 input, textarea, button {
     display: block;
     width: 100%;
