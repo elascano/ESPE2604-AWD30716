@@ -1,0 +1,116 @@
+body {
+    background-color: #e0f7fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+}
+
+nav {
+    background-color: #00838f;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 10px;
+}
+
+nav a:hover {
+    background-color: #00b4cc;
+    border-radius: 4px;
+}
+
+nav strong mark {
+    background-color: #80deea;
+    color: #004d40;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+h1 {
+    color: #006064;
+}
+
+form {
+    background-color: #ffffff;
+    border: 2px solid #80deea;
+    border-radius: 10px;
+    padding: 25px;
+    max-width: 600px;
+    margin: 20px auto;
+    box-shadow: 0px 4px 10px rgba(0, 131, 143, 0.2);
+    text-align: left;
+}
+
+fieldset {
+    border: 1px solid #4dd0e1;
+    border-radius: 6px;
+    padding: 15px;
+    background-color: #f9fdfd;
+}
+
+legend {
+    color: #00838f;
+    font-weight: bold;
+    padding: 0 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+input[type="time"],
+select,
+textarea {
+    width: calc(100% - 10px);
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #b2ebf2;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #00acc1;
+    box-shadow: 0 0 5px rgba(0, 172, 193, 0.5);
+}
+
+button[type="submit"] {
+    background-color: #00acc1;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+button[type="submit"]:hover {
+    background-color: #00838f;
+}
+
+button[type="reset"] {
+    background-color: #e0f2f1;
+    color: #006064;
+    border: 1px solid #00acc1;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1em;
+    margin-left: 10px;
+}
+
+button[type="reset"]:hover {
+    background-color: #b2ebf2;
+}
+
+footer {
+    color: #00838f;
+}
