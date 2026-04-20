@@ -1,0 +1,10 @@
+body {
+    font-family: Arial;
+    margin: 0;
+    background: #111;
+    color: white;
+}
+
+h1, h2 {
+    color: #f5c518;
+}
