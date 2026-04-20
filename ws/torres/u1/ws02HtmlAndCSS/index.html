@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Biblioteca de danza</title>
+    <link rel="stylesheet" href="/06Code/public/css/styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Biblioteca de estilos y movimientos</h1>
+    </header>
+
+    <main>
+      <section>
+        <h2>Estilos</h2>
+        <div class="cards">
+          <article>
+            <h3>Hip Hop</h3>
+            <p>Estilo urbano basado en groove, energia y musicalidad.</p>
+          </article>
+          <article>
+            <h3>House</h3>
+            <p>Estilo urbano con footwork rapido y movimiento continuo.</p>
+          </article>
+          <article>
+            <h3>Salsa</h3>
+            <p>Baile social con paso base, conexion y ritmo latino.</p>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <h2>Movimientos</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Movimiento</th>
+              <th>Estilo</th>
+              <th>Dificultad</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>The Shuffle</td>
+              <td>House</td>
+              <td>Principiante</td>
+            </tr>
+            <tr>
+              <td>The Jack</td>
+              <td>House</td>
+              <td>Principiante</td>
+            </tr>
+            <tr>
+              <td>Baby Freeze</td>
+              <td>Breaking</td>
+              <td>Intermedio</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>Cargar contenido</h2>
+        <form>
+          <label>
+            Nombre del estilo
+            <input type="text" placeholder="Ej: Hip Hop" />
+          </label>
+
+          <label>
+            Nombre del movimiento
+            <input type="text" placeholder="Ej: The Shuffle" />
+          </label>
+
+          <label>
+            Dificultad
+            <select>
+              <option>Principiante</option>
+              <option>Intermedio</option>
+              <option>Avanzado</option>
+            </select>
+          </label>
+
+          <label>
+            Descripcion
+            <textarea rows="4" placeholder="Escribe una descripcion breve."></textarea>
+          </label>
+
+          <button type="submit">Guardar</button>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+    </footer>
+  </body>
+</html>
