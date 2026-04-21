@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pacientes Registrados</title>
+    <link rel="stylesheet" href="../public/css/forms.css">
+</head>
+<body>
+
+<header>
+    <h1>Pacientes Registrados - Fábula Dental</h1>
+</header>
+
+<main class="form-container">
+    <div class="form-card">
+        <h2>Listado de pacientes</h2>
+
+        <div class="table-wrap">
+            <table class="records-table" id="patientTable">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Cédula</th>
+                        <th>Nacimiento</th>
+                        <th>Teléfono</th>
+                        <th>Correo</th>
+                        <th>Género</th>
+                        <th>Motivo</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+        <p class="empty-state" id="patientEmpty">No hay pacientes registrados.</p>
+
+        <div class="actions-row">
+            <a href="./patient.html" class="btn btn-secondary">Volver al formulario</a>
+            <a href="/" class="btn btn-primary">Ir al inicio</a>
+        </div>
+    </div>
+</main>
+
+<script>
+    const tableBody = document.querySelector("#patientTable tbody");
+    const emptyState = document.getElementById("patientEmpty");
+
+    async function loadPatients() {
+        try {
+            const response = await fetch("/api/patients");
+            const records = await response.json();
+
+            if (!response.ok) {
+                throw new Error(records.message || "No se pudieron cargar los pacientes.");
+            }
+
+            if (records.length === 0) {
+                document.getElementById("patientTable").style.display = "none";
+                emptyState.style.display = "block";
+                return;
+            }
+
+            emptyState.style.display = "none";
+            records.forEach((item) => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${item.nombre}</td>
+                    <td>${item.cedula}</td>
+                    <td>${item.fecha}</td>
+                    <td>${item.telefono}</td>
+                    <td>${item.correo}</td>
+                    <td>${item.genero}</td>
+                    <td>${item.motivo}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        } catch (error) {
+            emptyState.textContent = error.message;
+            emptyState.style.display = "block";
+            document.getElementById("patientTable").style.display = "none";
+        }
+    }
+
+    loadPatients();
+</script>
+
+</body>
+</html>
