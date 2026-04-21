@@ -1,4 +1,4 @@
-import config from "./utils/config.json" with { type: "json" };
+import config from "../../utils/config.json" with { type: "json" };
 
 
 var loginStatus = false;
