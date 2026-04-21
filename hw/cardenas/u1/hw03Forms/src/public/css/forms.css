@@ -103,6 +103,56 @@ header h1 {
     color: #ffffff;
 }
 
+.btn-secondary {
+    background-color: #005f7f;
+    color: #ffffff;
+}
+
+.btn-secondary:hover {
+    background-color: #004861;
+    color: #ffffff;
+}
+
+.actions-row {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.table-wrap {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.records-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.records-table th,
+.records-table td {
+    border: 1px solid #d9e2ec;
+    padding: 10px;
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+.records-table th {
+    background-color: #eaf7fb;
+    color: #004861;
+}
+
+.records-table tbody tr:nth-child(even) {
+    background-color: #f8fbfd;
+}
+
+.empty-state {
+    text-align: center;
+    color: #5b6770;
+    margin-top: 12px;
+}
+
 @media (max-width: 600px) {
     .form-grid {
         grid-template-columns: 1fr;
