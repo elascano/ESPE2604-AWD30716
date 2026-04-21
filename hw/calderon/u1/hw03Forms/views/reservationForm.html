@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../public/css/styleForms.css">
+    <link rel="stylesheet" href="../public/css/style_menu.css">
+    <title>Reservaciones</title>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">LOGO</div>
+    <div class="separator"></div>
+    <nav>
+        <a href="../index.html">Main</a>
+        <a href="menu.html">Menu</a>
+        <a href="#">about us</a>
+        <a href="#">locations</a>
+        <a href="#">log In</a>
+        <a href="#">counter</a>
+    </nav>
+</header>
+
+<div id="contenido-spa" class="form-container">
+
+    <div class="form-box">
+        <h1>Nueva Reservación</h1>
+
+        <form method="post" action="php/reservation/insert.php">
+
+            <fieldset class="form-section">
+                <legend>DATOS DEL CLIENTE</legend>
+
+                <div class="form-group">
+                    <label>Nombres:</label>
+                    <input type="text" name="first_name" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Apellidos:</label>
+                    <input type="text" name="last_name" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Teléfono:</label>
+                    <input type="text" name="phone" maxlength="10" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Correo:</label>
+                    <input type="email" name="email">
+                </div>
+
+            </fieldset>
+
+            <fieldset class="form-section">
+                <legend>DATOS DE LA RESERVACIÓN</legend>
+
+                <div class="form-group">
+                    <label>Fecha:</label>
+                    <input type="date" name="reservation_date" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Hora:</label>
+                    <input type="time" name="reservation_time" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Personas:</label>
+                    <input type="number" name="guests" min="1" max="20" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Mesa:</label>
+                    <select name="table_number">
+                        <option value="">Seleccionar</option>
+                        <option value="1">Mesa 1</option>
+                        <option value="2">Mesa 2</option>
+                        <option value="3">Mesa 3</option>
+                        <option value="4">Mesa 4</option>
+                        <option value="5">Mesa 5</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Observaciones:</label>
+                    <input type="text" name="comments">
+                </div>
+
+            </fieldset>
+
+            <div class="form-actions">
+                <input type="submit" value="Reservar" class="btn btn-primary">
+
+                <button type="button" class="btn btn-danger">
+                    Cancelar
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>
