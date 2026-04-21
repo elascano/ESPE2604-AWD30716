@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>American Latin Class | Mensualidades</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-copy">
+      <h1>Mensualidades y cartera</h1>
+      <p>
+        Registro simple de pagos, periodos, recibos y estado financiero.
+        Esta vista prepara la informacion que luego alimentara caja y cartera.
+      </p>
+    </div>
+    <img
+      src="https://images.unsplash.com/photo-1773020678326-623004d8aa62?auto=format&fit=crop&fm=jpg&q=70&w=900"
+      alt="Entrada de una escuela de danza"
+    >
+  </header>
+
+  <main class="page">
+    <nav class="page-nav" aria-label="Formularios del sistema">
+      <a href="alumnos.html">Alumnos</a>
+      <a href="mensualidades.html" class="active" aria-current="page">Mensualidades</a>
+      <a href="asistencia.html">Asistencia</a>
+    </nav>
+
+    <section class="branch-guide" aria-label="Colores por sede">
+      <span class="branch-pill matriz">Matriz</span>
+      <span class="branch-pill norte">Norte</span>
+      <span class="branch-pill quitumbe">Quitumbe</span>
+      <span class="branch-pill tumbaco">Tumbaco</span>
+      <span class="branch-pill conocoto">Conocoto</span>
+    </section>
+
+    <section class="module">
+      <div class="module-header">
+        <div>
+          <p class="eyebrow">Formulario</p>
+          <h2>Nuevo pago</h2>
+        </div>
+        <span class="module-code">RF-019 a RF-029</span>
+      </div>
+
+      <form class="form-grid" id="paymentForm">
+        <label>
+          Alumno
+          <input type="text" id="paymentStudent" placeholder="Daniela Arias" required>
+        </label>
+
+        <label>
+          Sede
+          <select id="paymentBranch">
+            <option>Matriz</option>
+            <option>Norte</option>
+            <option>Quitumbe</option>
+            <option>Tumbaco</option>
+            <option>Conocoto</option>
+          </select>
+        </label>
+
+        <label>
+          Periodo
+          <input type="month" id="paymentPeriod" required>
+        </label>
+
+        <label>
+          Monto
+          <input type="number" id="paymentAmount" min="1" placeholder="45" required>
+        </label>
+
+        <label>
+          Estado de pago
+          <select id="paymentStatus">
+            <option>Al dia</option>
+            <option>Atrasado</option>
+            <option>Becado/Convenio</option>
+          </select>
+        </label>
+
+        <label>
+          Recibo
+          <input type="text" id="paymentReceipt" placeholder="REC-001" required>
+        </label>
+
+        <button type="submit">Registrar pago</button>
+      </form>
+      <p id="paymentMessage" class="notice" aria-live="polite"></p>
+
+      <div class="table-area">
+        <table>
+          <thead>
+            <tr>
+              <th>Alumno</th>
+              <th>Sede</th>
+              <th>Periodo</th>
+              <th>Monto</th>
+              <th>Estado</th>
+              <th>Recibo</th>
+            </tr>
+          </thead>
+          <tbody id="paymentsTable"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="../script/supabase-config.js"></script>
+  <script src="../script/app.js"></script>
+</body>
+</html>
