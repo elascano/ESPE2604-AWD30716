@@ -13,90 +13,90 @@
     <div class="logo">LOGO</div>
     <div class="separator"></div>
     <nav>
-        <a href="../index.html">Main</a>
-        <a href="menu.html">Menu</a>
-        <a href="#">about us</a>
-        <a href="#">locations</a>
-        <a href="registerForm.html">log In</a>
-        <a href="reservationForm.html">reservations</a>
-        <a href="satisfactionForm.html">satisfaction surveys</a>
+        <a href="../index.html">HOME</a>
+        <a href="./menu.html">MENU</a>
+        <a href="#">ABOUT US</a>
+        <a href="#">LOCATIONS</a>
+        <a href="./registerForm.html">LOG IN</a>
+        <a href="./reservationForm.html">RESERVATIONS</a>
+        <a href="./satisfactionForm.html">SATISFACTION SURVEYS</a>
     </nav>
 </header>
 
 <div id="contenido-spa" class="form-container">
 
     <div class="form-box">
-        <h1>Nueva Reservación</h1>
+        <h1>New Reservation</h1>
 
         <form id="reservationForm" onsubmit="handleReservation(event)">
 
             <fieldset class="form-section">
-                <legend>DATOS DEL CLIENTE</legend>
+                <legend>CLIENT DATA</legend>
 
                 <div class="form-group">
-                    <label>Nombres:</label>
+                    <label>Names:</label>
                     <input type="text" name="first_name" required>
                 </div>
 
                 <div class="form-group">
-                    <label>Apellidos:</label>
+                    <label>Surnames:</label>
                     <input type="text" name="last_name" required>
                 </div>
 
                 <div class="form-group">
-                    <label>Teléfono:</label>
+                    <label>Phone:</label>
                     <input type="text" name="phone" maxlength="10" required>
                 </div>
 
                 <div class="form-group">
-                    <label>Correo:</label>
+                    <label>Email:</label>
                     <input type="email" name="email">
                 </div>
 
             </fieldset>
 
             <fieldset class="form-section">
-                <legend>DATOS DE LA RESERVACIÓN</legend>
+                <legend>RESERVATION DETAILS</legend>
 
                 <div class="form-group">
-                    <label>Fecha:</label>
+                    <label>Date:</label>
                     <input type="date" name="reservation_date" required>
                 </div>
 
                 <div class="form-group">
-                    <label>Hora:</label>
+                    <label>Time:</label>
                     <input type="time" name="reservation_time" required>
                 </div>
 
                 <div class="form-group">
-                    <label>Personas:</label>
+                    <label>Guests:</label>
                     <input type="number" name="guests" min="1" max="20" required>
                 </div>
 
                 <div class="form-group">
-                    <label>Mesa:</label>
+                    <label>Table:</label>
                     <select name="table_number">
-                        <option value="">Seleccionar</option>
-                        <option value="1">Mesa 1</option>
-                        <option value="2">Mesa 2</option>
-                        <option value="3">Mesa 3</option>
-                        <option value="4">Mesa 4</option>
-                        <option value="5">Mesa 5</option>
+                        <option value="">Select</option>
+                        <option value="1">Table 1</option>
+                        <option value="2">Table 2</option>
+                        <option value="3">Table 3</option>
+                        <option value="4">Table 4</option>
+                        <option value="5">Table 5</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label>Observaciones:</label>
+                    <label>Observations:</label>
                     <input type="text" name="comments">
                 </div>
 
             </fieldset>
 
             <div class="form-actions">
-                <input type="submit" value="Reservar" class="btn btn-primary">
+                <input type="submit" value="Reserve" class="btn btn-primary">
 
                 <button type="button" class="btn btn-danger">
-                    Cancelar
+                    Cancel
                 </button>
             </div>
 

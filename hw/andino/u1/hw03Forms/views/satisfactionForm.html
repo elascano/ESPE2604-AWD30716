@@ -13,107 +13,107 @@
     <div class="logo">LOGO</div>
     <div class="separator"></div>
     <nav>
-        <a href="../index.html">Main</a>
-        <a href="menu.html">Menu</a>
-        <a href="#">about us</a>
-        <a href="#">locations</a>
-        <a href="registerForm.html">log In</a>
-        <a href="reservationForm.html">reservations</a>
-        <a href="satisfactionForm.html">satisfaction surveys</a>
+        <a href="../index.html">HOME</a>
+        <a href="./menu.html">MENU</a>
+        <a href="#">ABOUT US</a>
+        <a href="#">LOCATIONS</a>
+        <a href="./registerForm.html">LOG IN</a>
+        <a href="./reservationForm.html">RESERVATIONS</a>
+        <a href="./satisfactionForm.html">SATISFACTION SURVEYS</a>
     </nav>
 </header>
 
 <div id="contenido-spa" class="form-container">
 
     <div class="form-box">
-        <h1>Encuesta de Satisfacción</h1>
+        <h1>Customer Satisfaction Survey</h1>
 
         <form id="surveyForm" onsubmit="handleSurvey(event)">
 
             <fieldset class="form-section">
-                <legend>DATOS DEL CLIENTE</legend>
+                <legend>CLIENT DATA</legend>
 
                 <div class="form-group">
-                    <label>Nombres:</label>
+                    <label>Names:</label>
                     <input type="text" name="first_name" required>
                 </div>
 
                 <div class="form-group">
-                    <label>Apellidos:</label>
+                    <label>Surnames:</label>
                     <input type="text" name="last_name">
                 </div>
 
                 <div class="form-group">
-                    <label>Correo:</label>
+                    <label>Email:</label>
                     <input type="email" name="email">
                 </div>
 
                 <div class="form-group">
-                    <label>Fecha de visita:</label>
+                    <label>Visit Date:</label>
                     <input type="date" name="visit_date" required>
                 </div>
             </fieldset>
 
             <fieldset class="form-section">
-                <legend>EVALUACIÓN</legend>
+                <legend>EVALUATION</legend>
 
                 <div class="form-group">
-                    <label>Calidad de comida:</label>
+                    <label>Food Quality:</label>
                     <select name="food_quality" required>
-                        <option value="">Seleccionar</option>
-                        <option value="5">Excelente</option>
-                        <option value="4">Muy Buena</option>
-                        <option value="3">Buena</option>
+                        <option value="">Select</option>
+                        <option value="5">Excellent</option>
+                        <option value="4">Very Good</option>
+                        <option value="3">Good</option>
                         <option value="2">Regular</option>
-                        <option value="1">Mala</option>
+                        <option value="1">Bad</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label>Atención:</label>
+                    <label>Service Quality:</label>
                     <select name="service_quality" required>
-                        <option value="">Seleccionar</option>
-                        <option value="5">Excelente</option>
-                        <option value="4">Muy Buena</option>
-                        <option value="3">Buena</option>
+                        <option value="">Select</option>
+                        <option value="5">Excellent</option>
+                        <option value="4">Very Good</option>
+                        <option value="3">Good</option>
                         <option value="2">Regular</option>
-                        <option value="1">Mala</option>
+                        <option value="1">Bad</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label>Limpieza:</label>
+                    <label>Cleanliness:</label>
                     <select name="cleanliness" required>
-                        <option value="">Seleccionar</option>
-                        <option value="5">Excelente</option>
-                        <option value="4">Muy Buena</option>
-                        <option value="3">Buena</option>
+                        <option value="">Select</option>
+                        <option value="5">Excellent</option>
+                        <option value="4">Very Good</option>
+                        <option value="3">Good</option>
                         <option value="2">Regular</option>
-                        <option value="1">Mala</option>
+                        <option value="1">Bad</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label>¿Nos recomendaría?</label>
+                    <label>Would you recommend us?</label>
                     <select name="recommendation" required>
-                        <option value="">Seleccionar</option>
-                        <option value="yes">Sí</option>
+                        <option value="">Select</option>
+                        <option value="yes">Yes</option>
                         <option value="no">No</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label>Comentarios:</label>
+                    <label>Comments:</label>
                     <input type="text" name="comments">
                 </div>
 
             </fieldset>
 
             <div class="form-actions">
-                <input type="submit" value="Enviar" class="btn btn-primary">
+                <input type="submit" value="Submit" class="btn btn-primary">
 
                 <button type="button" class="btn btn-danger">
-                    Cancelar
+                    Cancel
                 </button>
             </div>
 
