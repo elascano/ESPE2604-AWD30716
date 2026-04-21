@@ -1,12 +1,11 @@
 body{
     background-color: darkgrey;
 }
-/* Contenedor general */
+
 .form-container {
     padding: 30px;
 }
 
-/* Caja del formulario */
 .form-box {
     max-width: 600px;
     margin: auto;
@@ -16,13 +15,11 @@ body{
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-/* Título */
 .form-box h1 {
     text-align: center;
     margin-bottom: 20px;
 }
 
-/* Secciones */
 .form-section {
     border: 1px solid #ddd;
     padding: 15px;
@@ -30,38 +27,32 @@ body{
     border-radius: 5px;
 }
 
-/* Grupo de inputs */
 .form-group {
     margin-bottom: 15px;
     display: flex;
     flex-direction: column;
 }
 
-/* Labels */
 .form-group label {
     margin-bottom: 5px;
     font-weight: bold;
 }
 
-/* Inputs */
 .form-group input {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
-/* Input readonly */
 .readonly {
     background-color: #eee;
 }
 
-/* Botones */
 .form-actions {
     text-align: center;
     margin-top: 20px;
 }
 
-/* Estilo base botón */
 .btn {
     padding: 10px 20px;
     border: none;
@@ -71,19 +62,21 @@ body{
     font-size: 14px;
 }
 
-/* Botón primario */
 .btn-primary {
     background-color: #2196F3;
     color: white;
 }
 
-/* Botón peligro */
 .btn-danger {
     background-color: #f44336;
     color: white;
 }
 
-/* Hover */
 .btn:hover {
     opacity: 0.9;
+}
+
+.error-text {
+    color: red;
+    font-size: 12px;
 }
