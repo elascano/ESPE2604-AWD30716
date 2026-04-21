@@ -1,10 +1,12 @@
+import config from "./utils/config.json" with { type: "json" };
+
 
 var loginStatus = false;
 var user = {name: "", email: "", password: ""};
 
 const login = document.getElementById("login");
-const API_URL = "https://pjdbftkrbrguiulkhnpk.supabase.co/rest/v1/users";
-const API_KEY = "sb_publishable_3IMsmLFBE-QL0WCjjtg4bA_Arkp3RjZ";
+const API_URL = config.API_URL;
+const API_KEY = config.API_KEY;
 
 login.addEventListener("submit", function(event) {
     event.preventDefault();
@@ -50,3 +52,4 @@ async function getUser(user){
         return null;
     }        
 }
+
