@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>American Latin Class | Mensualidades</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="../index.html" aria-label="American Latin Class">
+      <span class="brand-mark">ALC</span>
+      <span class="brand-copy">
+        <strong>American Latin Class</strong>
+        <small>Panel academico</small>
+      </span>
+    </a>
+
+    <nav class="top-nav" aria-label="Menu principal">
+      <a href="../index.html">Inicio</a>
+      <a href="alumnos.html">Alumnos</a>
+      <a href="mensualidades.html" class="active" aria-current="page">Mensualidades</a>
+      <a href="asistencia.html">Asistencia</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <section class="view-title">
+      <div>
+        <p class="eyebrow">Formulario</p>
+        <h1>Mensualidades y cartera</h1>
+        <p>Registro de pagos, periodos, recibos y estado financiero por alumno.</p>
+      </div>
+      <span class="module-code">RF-019 a RF-029</span>
+    </section>
+
+    <section class="branch-guide" aria-label="Colores por sede">
+      <span class="branch-pill matriz">Matriz</span>
+      <span class="branch-pill norte">Norte</span>
+      <span class="branch-pill quitumbe">Quitumbe</span>
+      <span class="branch-pill tumbaco">Tumbaco</span>
+      <span class="branch-pill conocoto">Conocoto</span>
+    </section>
+
+    <section class="workspace-grid">
+      <section class="module form-panel">
+        <div class="module-header">
+          <div>
+            <p class="eyebrow">Captura</p>
+            <h2>Nuevo pago</h2>
+          </div>
+        </div>
+
+        <form class="form-grid form-stack" id="paymentForm">
+          <label class="full-field">
+            <span>Alumno</span>
+            <input type="text" id="paymentStudent" placeholder="Daniela Arias" required>
+          </label>
+
+          <div class="field-pair">
+            <label>
+              <span>Sede</span>
+              <select id="paymentBranch">
+                <option>Matriz</option>
+                <option>Norte</option>
+                <option>Quitumbe</option>
+                <option>Tumbaco</option>
+                <option>Conocoto</option>
+              </select>
+            </label>
+
+            <label>
+              <span>Periodo</span>
+              <input type="month" id="paymentPeriod" required>
+            </label>
+          </div>
+
+          <div class="field-pair">
+            <label>
+              <span>Monto</span>
+              <input type="number" id="paymentAmount" min="1" placeholder="45" required>
+            </label>
+
+            <label>
+              <span>Estado de pago</span>
+              <select id="paymentStatus">
+                <option>Al dia</option>
+                <option>Atrasado</option>
+                <option>Becado/Convenio</option>
+              </select>
+            </label>
+          </div>
+
+          <label class="full-field">
+            <span>Recibo</span>
+            <input type="text" id="paymentReceipt" placeholder="REC-001" required>
+          </label>
+
+          <button type="submit" class="primary-action">Registrar pago</button>
+        </form>
+        <p id="paymentMessage" class="notice" aria-live="polite"></p>
+      </section>
+
+      <section class="module records-panel">
+        <div class="module-header">
+          <div>
+            <p class="eyebrow">Listado</p>
+            <h2>Pagos registrados</h2>
+          </div>
+          <span class="module-code">Supabase</span>
+        </div>
+
+        <div class="table-area">
+          <table>
+            <thead>
+              <tr>
+                <th>Alumno</th>
+                <th>Sede</th>
+                <th>Periodo</th>
+                <th>Monto</th>
+                <th>Estado</th>
+                <th>Recibo</th>
+              </tr>
+            </thead>
+            <tbody id="paymentsTable"></tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="../script/supabase-config.js"></script>
+  <script src="../script/app.js"></script>
+</body>
+</html>
