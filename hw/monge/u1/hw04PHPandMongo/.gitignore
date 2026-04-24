@@ -1,0 +1,11 @@
+vendor/
+*.log
+.DS_Store
+.env
+.vscode/
+.idea/
+desktop.ini
+*.tmp
+*.swp
+*.pem
+composer.lock

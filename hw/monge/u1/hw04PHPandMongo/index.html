@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+
+    <link rel="stylesheet" href="public/css/forms.css">
+</head>
+<body>
+
+    <div class="container">
+        <form id="form" class="form">
+
+            <h2>Registro</h2>
+
+            <div class="form-group">
+                <label>Nombre</label>
+                <input type="text" name="name" placeholder="Ingresa tu nombre" required>
+            </div>
+
+            <div class="form-group">
+                <label>Correo</label>
+                <input type="email" name="email" placeholder="Ingresa tu correo" required>
+            </div>
+
+            <div class="form-group">
+                <label>Edad</label>
+                <input type="number" name="age" placeholder="Edad" required>
+            </div>
+
+            <button type="submit">Enviar</button>
+
+        </form>
+    </div>
+
+    <script src="public/js/conection.js"></script>
+</body>
+</html>

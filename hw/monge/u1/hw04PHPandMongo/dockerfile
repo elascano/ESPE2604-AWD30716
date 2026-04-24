@@ -1,0 +1,19 @@
+FROM php:8.2-apache
+
+# Instalar dependencias necesarias
+RUN apt-get update && apt-get install -y \
+    libssl-dev pkg-config unzip git \
+    && pecl install mongodb \
+    && docker-php-ext-enable mongodb
+
+# Instalar Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# Copiar todo el proyecto
+COPY . /var/www/html/
+
+# Permisos
+RUN chown -R www-data:www-data /var/www/html
+
+# Habilitar Apache
+RUN a2enmod rewrite
