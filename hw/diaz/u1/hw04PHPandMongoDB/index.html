@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Registration</title>
+    <link rel="stylesheet" href="./public/css/styless.css">
+</head>
+<body>
+
+<h2>Student Registration Form</h2>
+
+<form action="./src/save_student.php" method="POST">
+
+    <label>Full Name:</label>
+    <input 
+        type="text" 
+        name="fullName"
+        placeholder="Victoria Diaz"
+        required
+        minlength="3"
+        
+    >
+
+    <label>Email:</label>
+    <input 
+        type="email" 
+        name="email"
+        placeholder="example@espe.edu.ec"
+        required
+    >
+
+    <label>Age:</label>
+    <input 
+        type="number" 
+        name="age"
+        placeholder="18"
+        required
+        min="16"
+        max="100"
+    >
+    <label>Student coding prefer: </label>
+    <input 
+        type="text"
+        placeholder="Javascript" 
+        name="studentCodingPrefer" 
+        required
+        >
+
+    <button type="submit">Register Student</button>
+
+</form>
+
+<footer>
+    <p>© 2026 Student Registration System</p>
+</footer>
+
+</body>
+</html>
