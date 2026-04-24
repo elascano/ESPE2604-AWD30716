@@ -1,0 +1,26 @@
+# Credenciales
+credenciales de mongo.txt
+.env
+.env.local
+
+# Dependencias
+vendor/
+node_modules/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Cache
+.cache/
+temp/
