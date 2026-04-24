@@ -1,2 +1,0 @@
-# EDITABLE
-Workshop 1

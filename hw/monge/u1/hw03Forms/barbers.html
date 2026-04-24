@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Crear Barbero</title>
+    <link rel="stylesheet" href="./css/forms.css">
+</head>
+<body>
+
+<div class="header">
+    <img src="https://tse1.mm.bing.net/th/id/OIP.XNhrKkDEh7IS8BD6hQEOpQHaGL?rs=1&pid=ImgDetMain&o=7&rm=3"
+            alt="Logo Barbería" width="100">
+    <h1 style="color:white;">Panel de Administración</h1>
+</div>
+
+<div class="content">
+    <h2>Crear Nuevo Barbero</h2>
+
+    <form action="guardar_barbero.php" method="POST">
+        <div class="main-options">
+
+            <div>
+                <label>Nombre</label>
+                <input type="text" name="nombre" required>
+            </div>
+
+            <div>
+                <label>Apellido</label>
+                <input type="text" name="apellido" required>
+            </div>
+
+            <div>
+                <label>Teléfono</label>
+                <input type="tel" name="telefono" required>
+            </div>
+
+            <div>
+                <label>Email</label>
+                <input type="email" name="email" required>
+            </div>
+
+            <div>
+                <label>Especialidad</label>
+                <input type="text" name="especialidad">
+            </div>
+
+            <div>
+                <label>Años de experiencia</label>
+                <input type="number" name="experiencia">
+            </div>
+
+            <div>
+                <label>Horario inicio</label>
+                <input type="time" name="horario_inicio" required>
+            </div>
+
+            <div>
+                <label>Horario fin</label>
+                <input type="time" name="horario_fin" required>
+            </div>
+
+            <div>
+                <label>Estado</label>
+                <select name="estado">
+                    <option value="activo">Activo</option>
+                    <option value="inactivo">Inactivo</option>
+                </select>
+            </div>
+
+        </div>
+
+        <button type="submit">Guardar Barbero</button>
+    </form>
+</div>
+
+</body>
+</html>

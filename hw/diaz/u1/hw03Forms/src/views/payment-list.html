@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagos Registrados</title>
+    <link rel="stylesheet" href="../public/css/forms.css">
+</head>
+<body>
+
+<header>
+    <h1>Pagos Registrados - Fábula Dental</h1>
+</header>
+
+<main class="form-container">
+    <div class="form-card">
+        <h2>Listado de pagos</h2>
+
+        <div class="table-wrap">
+            <table class="records-table" id="paymentTable">
+                <thead>
+                    <tr>
+                        <th>Cédula Paciente</th>
+                        <th>Monto ($)</th>
+                        <th>Fecha</th>
+                        <th>Método</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+        <p class="empty-state" id="paymentEmpty">No hay pagos registrados.</p>
+
+        <div class="actions-row">
+            <a href="./payment-form.html" class="btn btn-secondary">Volver al formulario</a>
+            <a href="/" class="btn btn-primary">Ir al inicio</a>
+        </div>
+    </div>
+</main>
+
+<script>
+    const tableBody = document.querySelector("#paymentTable tbody");
+    const emptyState = document.getElementById("paymentEmpty");
+
+    async function loadPayments() {
+        try {
+            const response = await fetch("/api/payments");
+            const records = await response.json();
+
+            if (!response.ok) {
+                throw new Error(records.message || "No se pudieron cargar los pagos.");
+            }
+
+            if (records.length === 0) {
+                document.getElementById("paymentTable").style.display = "none";
+                emptyState.style.display = "block";
+                return;
+            }
+
+            emptyState.style.display = "none";
+            records.forEach((item) => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${item.patientId}</td>
+                    <td>${item.paymentAmount}</td>
+                    <td>${item.paymentDate}</td>
+                    <td>${item.paymentMethod}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        } catch (error) {
+            emptyState.textContent = error.message;
+            emptyState.style.display = "block";
+            document.getElementById("paymentTable").style.display = "none";
+        }
+    }
+
+    loadPayments();
+</script>
+
+</body>
+</html>
