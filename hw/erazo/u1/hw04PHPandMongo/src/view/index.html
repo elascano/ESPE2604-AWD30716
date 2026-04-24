@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Customer</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <main class="page">
+        <section class="form-box">
+            <h1>Register Customer</h1>
+           
+            <form class="registry-form" action="../controller/addtophp.php" method="POST" novalidate>
+                <label class="field">
+                    <span>Name</span>
+                    <input type="text" name="name" id="name" placeholder="Isaac Erazo" autocomplete="name" required>
+                </label>
+                <label class="field">
+                    <span>Email</span>
+                    <input type="email" name="email" id="email" placeholder="isaac@gmail.com" autocomplete="email" required>
+                </label>
+                <label class="field">
+                    <span>Age</span>
+                    <input type="number" name="age" id="age" placeholder="22" min="1" max="120" required>
+                </label>
+                <button type="submit">Upload</button>
+            </form>
+        </section>
+    </main>
+    <script src="../model/script.js"></script>
+</body>
+</html>
