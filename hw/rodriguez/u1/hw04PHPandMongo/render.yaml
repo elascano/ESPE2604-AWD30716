@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: hw04PHPandMongo
+    runtime: docker
+    dockerContext: .
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: MONGODB_URI
+        sync: false
