@@ -2,7 +2,7 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$client = new MongoDB\Client("mongodb+srv://root123:root123@clusterglobal.wtz0nut.mongodb.net/?appName=ClusterGlobal");
+$client = new MongoDB\Client("mongodb+srv://oop:oop@cluster0.9knxc.mongodb.net/?appName=Cluster0");
 
 $collection = $client->students->Customer;
 
