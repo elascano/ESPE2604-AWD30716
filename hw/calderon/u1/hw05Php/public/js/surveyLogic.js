@@ -18,7 +18,7 @@ async function handleSurvey(event) {
     };
 
     try {
-        const response = await fetch('../backend/survey.php', {
+        const response = await fetch('/backend/survey.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

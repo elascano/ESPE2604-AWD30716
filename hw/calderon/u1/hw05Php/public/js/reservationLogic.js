@@ -20,7 +20,7 @@ async function handleReservation(event) {
     };
 
     try {
-        const response = await fetch('../backend/reservation.php', {
+        const response = await fetch('/backend/reservation.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

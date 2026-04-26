@@ -87,7 +87,7 @@ async function submitToBackend(form) {
         phone_number: formData.get('phone')
     };
 
-    const response = await fetch('../backend/register.php', {
+    const response = await fetch('/backend/register.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(userData)
