@@ -11,13 +11,13 @@
 
 <body>
     <header>
-        <h1>Clínica Dental: Fábula Dental </h1>
+        <h1>Clínica Dental: Fábula Dental</h1>
     </header>
     <main>
         <div>
             <div>
                 <div class="card">
-                    
+                    <!-- <img src="..." class="card-img-top" alt="no founded"> -->
                     <div class="card-body">
                         <h5 class="card-title">Mi perfil</h5>
                         <p class="card-text">Administrar mis datos.</p>
@@ -27,7 +27,7 @@
             </div>
 
             <div class="card">
-                
+                <!-- <img src="..." class="card-img-top" alt="no founded"> -->
                 <div class="card-body">
                     <h5 class="card-title">Inventario</h5>
                     <p class="card-text">Administrar el inventario de medicinas.</p>
@@ -37,7 +37,7 @@
 
             <div>
                 <div class="card">
-                    
+                    <!-- <img src="..." class="card-img-top" alt="no founded"> -->
                     <div class="card-body">
                         <h5 class="card-title">Pagos</h5>
                         <p class="card-text">Registrar nuevos pagos.</p>
@@ -49,7 +49,7 @@
 
             <div>
                 <div class="card">
-                    
+                    <!-- <img src="..." class="card-img-top" alt="no founded"> -->
                     <div class="card-body">
                         <h5 class="card-title">Pacientes</h5>
                         <p class="card-text">Administrar información de pacientes.</p>
@@ -61,7 +61,7 @@
 
             <div>
                 <div class="card">
-                    
+                    <!-- <img src="..." class="card-img-top" alt="no founded"> -->
                     <div class="card-body">
                         <h5 class="card-title">Tratamientos</h5>
                         <p class="card-text">Ver tratamientos.</p>
@@ -72,7 +72,7 @@
 
             <div>
                 <div class="card">
-                    
+                    <!-- <img src="..." class="card-img-top" alt="no founded"> -->  
                     <div class="card-body">
                         <h5 class="card-title">Insumos</h5>
                         <p class="card-text">Administrar el inventario de insumos.</p>
