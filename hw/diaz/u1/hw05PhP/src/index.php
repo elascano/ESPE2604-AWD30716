@@ -11,7 +11,7 @@
 
 <body>
     <header>
-        <h1>Clínica Dental: Fábula Dental</h1>
+        <h1>Clínica Dental: Fábula Dental </h1>
     </header>
     <main>
         <div>
