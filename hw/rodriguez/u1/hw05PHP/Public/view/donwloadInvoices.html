@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Invoices</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <div class="form-container">
+        <form action="">
+            <table border="2">
+                <tr>
+                    <th>
+                        <label for="fromDate">Select the beginning date:</label>
+                    </th>
+                    <th>
+                        <label for="toDate">Select the ending date:</label>
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="date" name="fromDate" id="fromDate">
+                    </td>
+                    <td>
+                        <input type="date" name="toDate" id="toDate">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <label for="downloadRoute">Select the download route:</label>
+                        <input type="text" name="downloadRoute" id="downloadRoute">
+                    </td>
+                </tr>
+            </table>
+
+            <button type="submit">Download</button>
+        </form>
+    </div>
+
+</body>
+
+</html>
