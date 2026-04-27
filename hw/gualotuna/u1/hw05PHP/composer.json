@@ -1,9 +1,0 @@
-{
-    "name": "sersalud/clinica",
-    "description": "SER SALUD Clinical Management",
-    "require": {
-        "php": ">=8.0",
-        "ext-pdo_pgsql": "*",
-        "ext-pgsql": "*"
-    }
-}
