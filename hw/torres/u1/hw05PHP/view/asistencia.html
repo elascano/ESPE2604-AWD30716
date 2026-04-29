@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>American Latin Class | Asistencia</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="../index.html" aria-label="American Latin Class">
+      <span class="brand-mark">ALC</span>
+      <span class="brand-copy">
+        <strong>American Latin Class</strong>
+        <small>Panel academico</small>
+      </span>
+    </a>
+
+    <nav class="top-nav" aria-label="Menu principal">
+      <a href="../index.html">Inicio</a>
+      <a href="alumnos.html">Alumnos</a>
+      <a href="mensualidades.html">Mensualidades</a>
+      <a href="asistencia.html" class="active" aria-current="page">Asistencia</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <section class="view-title">
+      <div>
+        <p class="eyebrow">Formulario</p>
+        <h1>Asistencia con evidencia</h1>
+        <p>Control de asistencia por fecha, sede, clase, profesor y alumno.</p>
+      </div>
+      <span class="module-code">RF-030 a RF-037</span>
+    </section>
+
+    <section class="branch-guide" aria-label="Colores por sede">
+      <span class="branch-pill matriz">Matriz</span>
+      <span class="branch-pill norte">Norte</span>
+      <span class="branch-pill quitumbe">Quitumbe</span>
+      <span class="branch-pill tumbaco">Tumbaco</span>
+      <span class="branch-pill conocoto">Conocoto</span>
+    </section>
+
+    <section class="workspace-grid">
+      <section class="module form-panel">
+        <div class="module-header">
+          <div>
+            <p class="eyebrow">Captura</p>
+            <h2>Nueva asistencia</h2>
+          </div>
+        </div>
+
+        <form class="form-grid form-stack" id="attendanceForm">
+          <div class="field-pair">
+            <label>
+              <span>Fecha</span>
+              <input type="date" id="attendanceDate" required>
+            </label>
+
+            <label>
+              <span>Sede</span>
+              <select id="attendanceBranch">
+                <option>Matriz</option>
+                <option>Norte</option>
+                <option>Quitumbe</option>
+                <option>Tumbaco</option>
+                <option>Conocoto</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="field-pair">
+            <label>
+              <span>Clase</span>
+              <input type="text" id="attendanceClass" placeholder="Bachata inicial" required>
+            </label>
+
+            <label>
+              <span>Profesor</span>
+              <input type="text" id="attendanceTeacher" placeholder="Andrea Molina" required>
+            </label>
+          </div>
+
+          <label class="full-field">
+            <span>Alumno</span>
+            <input type="text" id="attendanceStudent" placeholder="Julian Mena" required>
+          </label>
+
+          <label class="full-field">
+            <span>Estado</span>
+            <select id="attendanceStatus">
+              <option>Presente</option>
+              <option>Ausente</option>
+              <option>Tarde</option>
+              <option>Justificado</option>
+            </select>
+          </label>
+
+          <button type="submit" class="primary-action">Registrar asistencia</button>
+        </form>
+        <p id="attendanceMessage" class="notice" aria-live="polite"></p>
+      </section>
+
+      <section class="module records-panel">
+        <div class="module-header">
+          <div>
+            <p class="eyebrow">Listado</p>
+            <h2>Asistencias registradas</h2>
+          </div>
+          <span class="module-code">Supabase</span>
+        </div>
+
+        <div class="table-area">
+          <table>
+            <thead>
+              <tr>
+                <th>Fecha</th>
+                <th>Sede</th>
+                <th>Clase</th>
+                <th>Profesor</th>
+                <th>Alumno</th>
+                <th>Estado</th>
+                <th>Evidencia</th>
+              </tr>
+            </thead>
+            <tbody id="attendanceTable"></tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="../script/supabase-config.js"></script>
+  <script src="../script/app.js"></script>
+</body>
+</html>

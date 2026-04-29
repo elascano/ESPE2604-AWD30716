@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú del Restaurante</title>
+	<link rel="stylesheet" href="../public/css/style_menu.css">
+</head>
+<body>
+
+    <div class="main-container">
+        
+        <header>
+            <div class="logo">LOGO</div>
+            <nav>
+                <a href="../index.php">HOME</a>
+                <a href="menu.php">MENU</a>
+                <a href="#">ABOUT US</a>
+                <a href="#">LOCATIONS</a>
+                <a href="registerForm.php">LOG IN</a>
+                <a href="reservationForm.php">RESERVATIONS</a>
+                <a href="satisfactionForm.php">SATISFACTION SURVEYS</a>
+            </nav>
+        </header>
+
+        <h1 class="page-title">Our Menu</h1>
+
+        <section class="menu-section">
+            <h2 class="section-title">Entrance</h2>
+            <div class="dishes-grid">
+                
+                <article class="dish-card">
+                    <div class="dish-header">
+                        <span>Name Product</span>
+                        <span class="dish-price">Price</span>
+                    </div>
+                    <p class="dish-description">Description</p>
+                </article>
+
+                <article class="dish-card">
+                    <div class="dish-header">
+                        <span>Name Product</span>
+                        <span class="dish-price">Price</span>
+                    </div>
+                    <p class="dish-description">Description</p>
+                </article>
+
+            </div>
+        </section>
+
+        <section class="menu-section">
+            <h2 class="section-title">Main dishes</h2>
+            <div class="dishes-grid">
+                
+                <article class="dish-card">
+                    <div class="dish-header">
+                        <span>Name Product</span>
+                        <span class="dish-price">Price</span>
+                    </div>
+                    <p class="dish-description">Description</p>
+                </article>
+
+                <article class="dish-card">
+                    <div class="dish-header">
+                        <span>Name Product</span>
+                        <span class="dish-price">Price</span>
+                    </div>
+                    <p class="dish-description">Description</p>
+                </article>
+
+                <article class="dish-card">
+                    <div class="dish-header">
+                        <span>Name Product</span>
+                        <span class="dish-price">Price</span>
+                    </div>
+                    <p class="dish-description">Description</p>
+                </article>
+
+            </div>
+        </section>
+
+        <section class="menu-section">
+            <h2 class="section-title">Drinks</h2>
+            <div class="dishes-grid">
+                
+                <article class="dish-card">
+                    <div class="dish-header">
+                        <span>Name Product</span>
+                        <span class="dish-price">Price</span>
+                    </div>
+                    <p class="dish-description">Description</p>
+                </article>
+
+                <article class="dish-card">
+                    <div class="dish-header">
+                        <span>Name Product</span>
+                        <span class="dish-price">Price</span>
+                    </div>
+                    <p class="dish-description">Description</p>
+                </article>
+
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>

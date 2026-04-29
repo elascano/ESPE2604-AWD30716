@@ -1,0 +1,122 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Segoe UI', sans-serif;
+    background: #0c0c0c;
+    color: white;
+    padding-top: 80px;
+}
+
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(10px);
+}
+
+.logo{
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #c59d5f;
+}
+
+nav{
+    display: flex;
+    gap: 20px;
+}
+
+nav a{
+    text-decoration: none;
+    color: white;
+    padding: 8px 15px;
+    position: relative;
+    transition: 0.3s;
+}
+
+nav a::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0%;
+    height: 2px;
+    background: #c59d5f;
+    transition: 0.3s;
+}
+
+nav a:hover::after{
+    width: 100%;
+}
+
+.main-container{
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.page-title{
+    text-align: center;
+    margin: 40px 0;
+    font-size: 2.5rem;
+    letter-spacing: 3px;
+    color: #c59d5f;
+}
+
+.menu-section{
+    margin-bottom: 50px;
+}
+
+.section-title{
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    border-left: 4px solid #c59d5f;
+    padding-left: 10px;
+}
+
+.dishes-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+    gap: 25px;
+}
+
+.dish-card{
+    background: #1a1a1a;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: 0.3s;
+}
+
+.dish-card:hover{
+    transform: translateY(-5px);
+    border-color: #c59d5f;
+}
+
+.dish-header{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.dish-price{
+    color: #c59d5f;
+}
+
+.dish-description{
+    font-size: 0.9rem;
+    color: #ccc;
+}

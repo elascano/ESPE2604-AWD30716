@@ -1,0 +1,13 @@
+{
+    "require": {
+        "mongodb/mongodb": "^1.16" 
+    },
+    "config": {
+        "platform": {
+            "ext-mongodb": "2.1.4"
+        },
+        "allow-plugins": {
+            "kylekatarnls/update-helper": true
+        }
+    }
+}
