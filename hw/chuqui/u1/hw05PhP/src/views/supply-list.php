@@ -6,30 +6,30 @@ $collection = $client->FabulDentalDB->supplies;
 $records = $collection->find();
 ?>
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Insumos Registrados</title>
+    <title>Registered Supplies - Fábula Dental</title>
     <link rel="stylesheet" href="../public/css/forms.css">
 </head>
 <body>
 <header>
-    <h1>Insumos Registrados - Fábula Dental</h1>
+    <h1>Registered Supplies - Fábula Dental</h1>
 </header>
 <main class="form-container">
     <div class="form-card">
-        <h2>Listado de insumos</h2>
+        <h2>Supply List</h2>
         <div class="table-wrap">
             <table class="records-table">
                 <thead>
                     <tr>
-                        <th>Producto</th>
-                        <th>Código</th>
-                        <th>Cantidad Inicial</th>
-                        <th>Costo Unitario ($)</th>
-                        <th>Fecha Compra</th>
-                        <th>Fecha Caducidad</th>
+                        <th>Product</th>
+                        <th>Code</th>
+                        <th>Initial Quantity</th>
+                        <th>Unit Cost ($)</th>
+                        <th>Purchase Date</th>
+                        <th>Expiration Date</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -47,8 +47,8 @@ $records = $collection->find();
             </table>
         </div>
         <div class="actions-row">
-            <a href="./supply-form.php" class="btn btn-secondary">Volver al formulario</a>
-            <a href="../index.php" class="btn btn-primary">Ir al inicio</a>
+            <a href="./supply-form.php" class="btn btn-secondary">Back to Form</a>
+            <a href="../index.php" class="btn btn-primary">Go to Home</a>
         </div>
     </div>
 </main>

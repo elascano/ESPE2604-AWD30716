@@ -22,7 +22,7 @@ try {
         ];
 
         $result = $collection->insertOne($data);
-        
+
         if ($result->getInsertedCount() > 0) {
             header('Location: views/success.php?type=patient');
         } else {

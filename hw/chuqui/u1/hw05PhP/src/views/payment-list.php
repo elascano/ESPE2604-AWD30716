@@ -6,30 +6,30 @@ $collection = $client->FabulDentalDB->payments;
 $records = $collection->find();
 ?>
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pagos Registrados</title>
+    <title>Registered Payments - Fábula Dental</title>
     <link rel="stylesheet" href="../public/css/forms.css">
 </head>
 
 <body>
     <header>
-        <h1>Pagos Registrados - Fábula Dental</h1>
+        <h1>Registered Payments - Fábula Dental</h1>
     </header>
     <main class="form-container">
         <div class="form-card">
-            <h2>Listado de pagos</h2>
+            <h2>Payment List</h2>
             <div class="table-wrap">
                 <table class="records-table">
                     <thead>
                         <tr>
-                            <th>Cédula Paciente</th>
-                            <th>Monto ($)</th>
-                            <th>Fecha</th>
-                            <th>Método</th>
+                            <th>Patient ID</th>
+                            <th>Amount ($)</th>
+                            <th>Date</th>
+                            <th>Method</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -45,8 +45,8 @@ $records = $collection->find();
                 </table>
             </div>
             <div class="actions-row">
-                <a href="./payment-form.php" class="btn btn-secondary">Volver al formulario</a>
-                <a href="../index.php" class="btn btn-primary">Ir al inicio</a>
+                <a href="./payment-form.php" class="btn btn-secondary">Back to Form</a>
+                <a href="../index.php" class="btn btn-primary">Go to Home</a>
             </div>
         </div>
     </main>

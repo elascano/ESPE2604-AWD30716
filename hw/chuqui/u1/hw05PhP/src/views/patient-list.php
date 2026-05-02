@@ -6,31 +6,31 @@ $collection = $client->FabulDentalDB->patients;
 $records = $collection->find();
 ?>
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pacientes Registrados</title>
+    <title>Registered Patients - Fábula Dental</title>
     <link rel="stylesheet" href="../public/css/forms.css">
 </head>
 <body>
 <header>
-    <h1>Pacientes Registrados - Fábula Dental</h1>
+    <h1>Registered Patients - Fábula Dental</h1>
 </header>
 <main class="form-container">
     <div class="form-card">
-        <h2>Listado de pacientes</h2>
+        <h2>Patient List</h2>
         <div class="table-wrap">
             <table class="records-table">
                 <thead>
                     <tr>
-                        <th>Nombre</th>
-                        <th>Cédula</th>
-                        <th>Nacimiento</th>
-                        <th>Teléfono</th>
-                        <th>Correo</th>
-                        <th>Género</th>
-                        <th>Motivo</th>
+                        <th>Name</th>
+                        <th>ID Card</th>
+                        <th>Date of Birth</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Gender</th>
+                        <th>Reason for Visit</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -49,8 +49,8 @@ $records = $collection->find();
             </table>
         </div>
         <div class="actions-row">
-            <a href="./patient-form.php" class="btn btn-secondary">Volver al formulario</a>
-            <a href="../index.php" class="btn btn-primary">Ir al inicio</a>
+            <a href="./patient-form.php" class="btn btn-secondary">Back to Form</a>
+            <a href="../index.php" class="btn btn-primary">Go to Home</a>
         </div>
     </div>
 </main>
