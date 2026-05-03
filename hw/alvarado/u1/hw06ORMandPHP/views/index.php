@@ -82,9 +82,9 @@
 
                 <div class="form-actions">
                     <button type="submit" class="btn btn-primary">Create Record</button>
-                    <button type="button" onclick="window.history.back()" class="btn btn-danger">
-                        Discard Changes
-                    </button>
+                    <button type="reset" class="btn btn-danger">
+						Discard Changes
+					</button>
                 </div>
             </form>
         </div>

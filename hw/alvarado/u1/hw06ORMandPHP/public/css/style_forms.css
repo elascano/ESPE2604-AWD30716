@@ -12,6 +12,37 @@ body{
 	align-content: center;
 }
 
+.form-container header {
+    text-align: center;
+    margin-bottom: 40px; 
+}
+
+.form-container header h1 {
+    color: #c59d5f;
+    font-size: 2.5rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.form-container header p {
+    color: #888; 
+    font-size: 1.1rem;
+    margin-top: 10px;
+    letter-spacing: 1px;
+}
+
+.form-container header::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 1px;
+    background: #c59d5f;
+    margin: 20px auto 0;
+    opacity: 0.6;
+}
+
 .form-box{
     width: 100%;
     max-width: 500px;

@@ -18,6 +18,34 @@ function calculateAge() {
     }
 }
 
+function validateBirthDate() {
+    const birthDateInput = document.getElementById("birth_date");
+    const idError = document.getElementById("idError"); 
+    
+    if (birthDateInput && birthDateInput.value) {
+        const birthDate = new Date(birthDateInput.value);
+        const today = new Date();
+        const minDate = new Date();
+        minDate.setFullYear(today.getFullYear() - 120); 
+
+        // 1. Validar que no sea una fecha futura
+        if (birthDate > today) {
+            alert("The date of birth cannot be in the future.");
+            birthDateInput.classList.add("error"); 
+            return false;
+        }
+
+        if (birthDate < minDate) {
+            alert("Please enter a valid year.");
+            return false;
+        }
+
+        birthDateInput.classList.remove("error");
+        return true;
+    }
+    return false;
+}
+
 function validateEcuadorianID(id) {
     if (!/^\d{10}$/.test(id)) return false;
 
@@ -132,6 +160,20 @@ document.addEventListener("DOMContentLoaded", () => {
         birthInput.addEventListener("change", calculateAge);
     }
 
+});
+
+const dobField = document.getElementById("birth_date");
+
+dobField.addEventListener("input", function() {
+    if (this.value.length >= 10) { 
+        calculateAge(); 
+    }
+});
+
+dobField.addEventListener("blur", function() {
+    if (this.value !== "") {
+        validateBirthDate();
+    }
 });
 
 if (result.success) {
