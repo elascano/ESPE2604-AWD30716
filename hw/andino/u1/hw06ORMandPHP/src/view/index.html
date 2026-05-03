@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Customer Form</title>
+	<link rel="stylesheet" href="../public/css/styleForm.css">
+</head>
+<body>
+	<nav class="navbar">
+        <div class="navbar__container">
+            <span class="navbar__logo">Customer System</span>
+            <ul class="navbar__menu">
+                <li><a href="index.html" class="active">Add Customer</a></li>
+				<li><a href="../controller/viewCustomers.php">View Customers</a></li>
+            </ul>
+        </div>
+    </nav>
+	
+	<main class="page">
+		<section class="card">
+			<div class="card__header">
+				<h1>Customer Registration with ORM</h1>
+				<p class="subtitle">Student registration form with database integration</p>
+			</div>
+
+			<form class="customer-form" action="../controller/addCustomer.php" method="POST">
+				<div class="field">
+					<label for="names">Names</label>
+					<input type="text" id="names" name="names" placeholder="e.g. Nelson David" minlength="4" maxlength="30" required>
+				</div>
+
+				<div class="field">
+					<label for="surnames">Surnames</label>
+					<input type="text" id="surnames" name="surnames" placeholder="e.g. Andino Martinez" minlength="4" maxlength="30" required>
+				</div>
+
+				<div class="field">
+					<label for="birth_date">Birth Date</label>
+					<input type="date" id="birth_date" name="birth_date" required>
+				</div>
+
+				<div class="field">
+					<label for="age">Age</label>
+					<input type="number" id="age" name="age" min="0" max="120" placeholder="18" readonly>
+				</div>
+
+				<div class="field field--full">
+					<label for="email">Email</label>
+					<input type="email" id="email" name="email" placeholder="e.g. nandi@gmail.com" required>
+				</div>
+
+				<div class="field field--full">
+					<label for="cellphone">Cellphone</label>
+					<input type="tel" id="cellphone" name="cellphone" placeholder="e.g. 0991234567" pattern="[0-9]{10}" required>
+				</div>
+
+				<div class="actions field--full">
+					<button type="reset" class="button button--ghost">Clear</button>
+					<button type="submit" class="button button--primary">Save Customer</button>
+				</div>
+			</form>
+		</section>
+		<footer class="site-footer">All rights reserved ESPE - Nelson Andino</footer>
+	</main>
+	<script src="../public/js/ageValidator.js"></script>
+</body>
+</html>
