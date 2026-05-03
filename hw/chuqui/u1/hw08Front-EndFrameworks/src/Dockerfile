@@ -22,6 +22,9 @@ COPY . /var/www/html/
 # Set working directory
 WORKDIR /var/www/html
 
+# Remove any existing vendor directory to ensure a clean install
+RUN rm -rf vendor
+
 # Install PHP dependencies using Composer
 RUN composer install --no-dev --optimize-autoloader
 
