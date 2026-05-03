@@ -1,0 +1,171 @@
+body{
+    font-family: 'Segoe UI', sans-serif;
+    background: #0c0c0c;
+    color: white;
+    padding-top: 80px;
+}
+
+.form-container{
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+	align-content: center;
+}
+
+.form-box{
+    width: 100%;
+    max-width: 500px;
+    background: #1a1a1a;
+    padding: 30px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.form-box h1{
+    text-align: center;
+    margin-bottom: 25px;
+    color: #c59d5f;
+    letter-spacing: 2px;
+}
+
+.form-section{
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+.form-section legend{
+    color: #c59d5f;
+    padding: 0 10px;
+}
+
+.form-group{
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label{
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+.form-group input{
+    padding: 10px;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 5px;
+    background: #0c0c0c;
+    color: white;
+    outline: none;
+    transition: 0.3s;
+}
+
+.form-group input:focus{
+    border-color: #c59d5f;
+}
+
+.readonly{
+    background: #111;
+}
+
+.form-actions{
+    text-align: center;
+    margin-top: 20px;
+}
+
+.btn{
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+    font-size: 14px;
+    border: 1px solid #c59d5f;
+    background: transparent;
+    color: #c59d5f;
+    transition: 0.3s;
+}
+
+.btn:hover{
+    background: #c59d5f;
+    color: black;
+}
+
+.error-text{
+    color: #ff6b6b;
+    font-size: 12px;
+}
+
+.tabs{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.tab{
+    padding: 10px 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+    cursor: pointer;
+    border-radius: 5px;
+    background: #1a1a1a;
+    color: #ccc;
+    transition: 0.3s;
+}
+
+.tab:hover{
+    border-color: #c59d5f;
+    color: #c59d5f;
+}
+
+.tab.active{
+    background: #c59d5f;
+    color: black;
+}
+
+.tab-content{
+    display: none;
+}
+
+.tab-content.active{
+    display: block;
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: #1a1a1a;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+table th{
+    background: #c59d5f;
+    color: black;
+    padding: 12px;
+}
+
+table td{
+    padding: 10px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    text-align: center;
+    color: #ccc;
+}
+
+table tr:hover{
+    background: rgba(255,255,255,0.03);
+}
+
+#tableTab{
+    background: #1a1a1a;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+#formTab.active{
+    display: flex;
+    justify-content: center;
+}
