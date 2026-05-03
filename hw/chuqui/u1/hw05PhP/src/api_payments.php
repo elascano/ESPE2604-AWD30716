@@ -9,10 +9,13 @@ try {
     $collection = $db->payments;
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        require_once 'models/Payment.php';
-        
-        $payment = new Payment($_POST);
-        $data = $payment->toArray();
+        $data = [
+            'patientId' => $_POST['patientId'] ?? '',
+            'paymentAmount' => (float) ($_POST['paymentAmount'] ?? 0),
+            'paymentMethod' => $_POST['paymentMethod'] ?? '',
+            'paymentDate' => $_POST['paymentDate'] ?? '',
+            'creado_en' => new MongoDB\BSON\UTCDateTime()
+        ];
         
         $result = $collection->insertOne($data);
         

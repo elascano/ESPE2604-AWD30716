@@ -10,10 +10,16 @@ try {
     $collection = $db->patients;
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        require_once 'models/Patient.php';
-        
-        $patient = new Patient($_POST);
-        $data = $patient->toArray();
+        $data = [
+            'nombre' => $_POST['nombre'] ?? '',
+            'cedula' => $_POST['cedula'] ?? '',
+            'fecha' => $_POST['fecha'] ?? '',
+            'telefono' => $_POST['telefono'] ?? '',
+            'correo' => $_POST['correo'] ?? '',
+            'genero' => $_POST['genero'] ?? '',
+            'motivo' => $_POST['motivo'] ?? '',
+            'creado_en' => new MongoDB\BSON\UTCDateTime()
+        ];
 
         $result = $collection->insertOne($data);
 

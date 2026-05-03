@@ -9,16 +9,27 @@ try {
     $collection = $db->supplies;
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        require_once 'models/Supply.php';
-        
-        $supply = new Supply($_POST);
+        $rawQuantity = trim((string) ($_POST['productInitialQuantity'] ?? ''));
+        $validatedQuantity = filter_var(
+            $rawQuantity,
+            FILTER_VALIDATE_INT,
+            ['options' => ['min_range' => 1]]
+        );
 
-        if (!$supply->isValidQuantity()) {
+        if ($validatedQuantity === false) {
             header('Location: views/error.php?type=supply');
             exit;
         }
 
-        $data = $supply->toArray();
+        $data = [
+            'productName' => $_POST['productName'] ?? '',
+            'productCode' => $_POST['productCode'] ?? '',
+            'productInitialQuantity' => $validatedQuantity,
+            'productUnitCost' => (float) ($_POST['productUnitCost'] ?? 0),
+            'productPurchaseDate' => $_POST['productPurchaseDate'] ?? '',
+            'productExpirationDate' => $_POST['productExpirationDate'] ?? '',
+            'creado_en' => new MongoDB\BSON\UTCDateTime()
+        ];
 
         $result = $collection->insertOne($data);
 
