@@ -1,0 +1,13 @@
+Issue Type,Summary,Description,Epic Name,Parent,Priority,Story Points,Labels
+Epic,Public Landing and Enrollment,"Build the public information page and enrollment intake flow.",ALC-F1,,High,8,american-latin-class
+Task,Build landing page sections,"Create public sections for academy value, levels, branches, and contact information.",,Public Landing and Enrollment,High,3,frontend
+Task,Create enrollment form,"Create form fields for applicant data, preferred branch, level, guardian data, and comments.",,Public Landing and Enrollment,High,3,frontend
+Task,Store pending enrollment requests,"Save enrollment requests in Supabase or local demo storage and show confirmation feedback.",,Public Landing and Enrollment,High,2,database
+Epic,Student Scholarship and Attendance Control,"Manage students, scholarship levels, teacher planning, and attendance.",ALC-F2,,High,13,american-latin-class
+Task,Model student level and scholarship,"Support B1, B2, 0%, 50%, 75%, and 100% scholarship classification.",,Student Scholarship and Attendance Control,High,3,database
+Task,Register student attendance,"Create attendance flow with date, branch, level, status, and evidence code.",,Student Scholarship and Attendance Control,High,5,frontend
+Task,Register teacher planning and attendance,"Create class plan submission and teacher attendance records for branch director review.",,Student Scholarship and Attendance Control,Medium,5,backend
+Epic,Branch Finance and Professional Dancer Agency,"Track branch finance and B2 professional dancer events.",ALC-F3,,High,13,american-latin-class
+Task,Create branch finance summary,"Register income, expenses, matrix share, and net monthly result.",,Branch Finance and Professional Dancer Agency,High,5,finance
+Task,Register professional events,"Create event records for B2 dancers with client, date, type, amount, and payment status.",,Branch Finance and Professional Dancer Agency,Medium,3,agency
+Task,Calculate dancer settlement,"Calculate gross payment, deductions, penalties, and final net amount to pay each dancer.",,Branch Finance and Professional Dancer Agency,High,5,agency

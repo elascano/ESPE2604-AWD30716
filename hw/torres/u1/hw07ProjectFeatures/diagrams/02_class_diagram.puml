@@ -1,0 +1,348 @@
+@startuml
+' ============================================================
+' American Latin Class - Class Diagram
+' Recommended renderer: PlantUML
+' Optimized as a clean academic class diagram.
+' ============================================================
+
+title American Latin Class - Class Diagram
+
+top to bottom direction
+skinparam shadowing false
+skinparam backgroundColor white
+skinparam linetype ortho
+skinparam packageStyle rectangle
+skinparam classAttributeIconSize 0
+
+skinparam class {
+  BackgroundColor #FFFFFF
+  BorderColor #1F3A5F
+  HeaderBackgroundColor #EAF1F8
+  FontColor #111827
+  FontName "Times New Roman"
+}
+
+skinparam package {
+  BorderColor #1F3A5F
+  BackgroundColor #F9FBFD
+  FontColor #111827
+  FontName "Times New Roman"
+}
+
+' ============================================================
+' Security and access control
+' ============================================================
+
+package "Security and Access Control" {
+  class Role {
+    +id
+    +name
+    +description
+  }
+
+  class Permission {
+    +id
+    +code
+    +description
+  }
+
+  class User {
+    +id
+    +fullName
+    +email
+    +phone
+    +passwordHash
+    +status
+    +roleId
+  }
+
+  class AuditLog {
+    +id
+    +userId
+    +action
+    +entityName
+    +entityId
+    +createdAt
+  }
+
+  Role "1" -- "0..*" User
+  Role "0..*" -- "0..*" Permission
+  User "1" -- "0..*" AuditLog
+}
+
+' ============================================================
+' Branch administration
+' ============================================================
+
+package "Branch Administration" {
+  class Branch {
+    +id
+    +name
+    +address
+    +contactPhone
+    +isMainBranch
+    +matrixSharePercent
+    +status
+  }
+
+  class BranchAssignment {
+    +id
+    +branchId
+    +userId
+    +assignmentRole
+    +isAuthorized
+    +startDate
+    +endDate
+  }
+
+  class Notice {
+    +id
+    +branchId
+    +createdBy
+    +title
+    +message
+    +target
+    +publishedAt
+  }
+
+  Branch "1" -- "0..*" BranchAssignment
+  User "1" -- "0..*" BranchAssignment
+  Branch "1" -- "0..*" Notice
+}
+
+' ============================================================
+' Academic management
+' ============================================================
+
+package "Academic Management" {
+  class EnrollmentRequest {
+    +id
+    +preferredBranchId
+    +studentName
+    +contactEmail
+    +contactPhone
+    +preferredLevel
+    +guardianName
+    +guardianPhone
+    +guardianEmail
+    +comments
+    +status
+    +createdAt
+  }
+
+  class Student {
+    +id
+    +branchId
+    +fullName
+    +level
+    +scholarship
+    +status
+    +phone
+    +email
+    +guardianName
+    +guardianPhone
+    +guardianEmail
+  }
+
+  class Parent {
+    +id
+    +userId
+    +fullName
+    +phone
+    +email
+  }
+
+  class StudentParent {
+    +studentId
+    +parentId
+    +relationship
+    +isPrimaryGuardian
+  }
+
+  class StudentPayment {
+    +id
+    +studentId
+    +period
+    +baseAmount
+    +scholarshipDiscount
+    +finalAmount
+    +status
+    +receiptUrl
+  }
+
+  Branch "1" -- "0..*" EnrollmentRequest
+  Branch "1" -- "0..*" Student
+  EnrollmentRequest "0..1" .. "0..1" Student : converted to
+  Student "1" -- "0..*" StudentPayment
+  Student "1" -- "0..*" StudentParent
+  Parent "1" -- "0..*" StudentParent
+}
+
+' ============================================================
+' Teacher management and attendance
+' ============================================================
+
+package "Teacher Management and Attendance" {
+  class Teacher {
+    +id
+    +userId
+    +branchId
+    +fullName
+    +phone
+    +email
+    +status
+  }
+
+  class ClassPlan {
+    +id
+    +branchId
+    +teacherId
+    +month
+    +level
+    +objective
+    +activities
+    +submittedAt
+    +status
+  }
+
+  class StudentAttendance {
+    +id
+    +branchId
+    +studentId
+    +recordedByTeacherId
+    +attendanceDate
+    +status
+    +evidenceCode
+    +notes
+  }
+
+  class TeacherAttendance {
+    +id
+    +branchId
+    +teacherId
+    +recordedByUserId
+    +attendanceDate
+    +status
+    +evidenceCode
+    +notes
+  }
+
+  class TeacherFollowUp {
+    +id
+    +teacherId
+    +teacherAttendanceId
+    +createdBy
+    +followUpType
+    +description
+    +amountPenalty
+    +createdAt
+  }
+
+  Branch "1" -- "0..*" Teacher
+  Teacher "1" -- "0..*" ClassPlan
+  Branch "1" -- "0..*" ClassPlan
+  Student "1" -- "0..*" StudentAttendance
+  Teacher "0..1" -- "0..*" StudentAttendance
+  Teacher "1" -- "0..*" TeacherAttendance
+  TeacherAttendance "1" -- "0..*" TeacherFollowUp
+  Teacher "1" -- "0..*" TeacherFollowUp
+}
+
+' ============================================================
+' Finance
+' ============================================================
+
+package "Finance" {
+  class FinancialTransaction {
+    +id
+    +branchId
+    +createdBy
+    +type
+    +concept
+    +amount
+    +transactionDate
+    +evidenceUrl
+  }
+
+  class BranchMonthlyReport {
+    +id
+    +branchId
+    +month
+    +studentCount
+    +opportunityCount
+    +eventCount
+    +competitionCount
+    +incomeTotal
+    +expenseTotal
+    +matrixShare
+    +netResult
+  }
+
+  class EmergencyReserve {
+    +id
+    +mainBranchId
+    +period
+    +amount
+    +policyNotes
+  }
+
+  Branch "1" -- "0..*" FinancialTransaction
+  Branch "1" -- "0..*" BranchMonthlyReport
+  BranchMonthlyReport "1" .. "0..*" FinancialTransaction : summarizes
+  Branch "1 main" -- "0..*" EmergencyReserve
+}
+
+' ============================================================
+' Professional dancer agency
+' ============================================================
+
+package "Professional Dancer Agency" {
+  class ProfessionalCandidate {
+    +id
+    +studentId
+    +branchId
+    +status
+    +registeredAt
+  }
+
+  class ProfessionalEvent {
+    +id
+    +branchId
+    +createdBy
+    +clientName
+    +eventType
+    +eventDate
+    +totalAmount
+    +paymentStatus
+    +status
+  }
+
+  class EventDancerAssignment {
+    +id
+    +professionalEventId
+    +professionalCandidateId
+    +grossAmount
+    +deductionAmount
+    +penaltyAmount
+    +finalAmount
+  }
+
+  Student "1 B2" -- "0..1" ProfessionalCandidate
+  Branch "1" -- "0..*" ProfessionalCandidate
+  Branch "1" -- "0..*" ProfessionalEvent
+  ProfessionalEvent "1" -- "1..*" EventDancerAssignment
+  ProfessionalCandidate "1" -- "0..*" EventDancerAssignment
+}
+
+' ============================================================
+' Layout hints.
+' These invisible links help PlantUML keep the packages ordered.
+' ============================================================
+
+Role -[hidden]right- Branch
+Branch -[hidden]down- EnrollmentRequest
+EnrollmentRequest -[hidden]right- Teacher
+Teacher -[hidden]down- FinancialTransaction
+FinancialTransaction -[hidden]right- ProfessionalCandidate
+
+@enduml
