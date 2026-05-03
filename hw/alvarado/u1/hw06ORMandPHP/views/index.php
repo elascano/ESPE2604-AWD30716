@@ -12,8 +12,8 @@
 <div class="form-container">
 
     <header>
-        <h1>User Management Portal</h1>
-        <p>Manage employee records and registration database.</p>
+        <h1>User Portal</h1>
+        <p>Employee records and registration database.</p>
     </header>
 
     <nav class="tabs" role="tablist">
