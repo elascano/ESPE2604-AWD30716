@@ -16,6 +16,38 @@ try {
         exit;
     }
 
+    if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
+        header('Content-Type: application/json');
+        $input = json_decode(file_get_contents('php://input'), true);
+        $id = $input['id'] ?? null;
+        if ($id) {
+            $result = $collection->deleteOne(['_id' => new MongoDB\BSON\ObjectId($id)]);
+            echo json_encode(['success' => $result->getDeletedCount() > 0]);
+        } else {
+            echo json_encode(['success' => false, 'error' => 'No ID provided']);
+        }
+        exit;
+    }
+
+    if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
+        header('Content-Type: application/json');
+        $input = json_decode(file_get_contents('php://input'), true);
+        $id = $input['id'] ?? null;
+        if ($id) {
+            unset($input['id']);
+            unset($input['_id']);
+            unset($input['isEditing']); // remove frontend flag
+            $result = $collection->updateOne(
+                ['_id' => new MongoDB\BSON\ObjectId($id)],
+                ['$set' => $input]
+            );
+            echo json_encode(['success' => true]);
+        } else {
+            echo json_encode(['success' => false, 'error' => 'No ID provided']);
+        }
+        exit;
+    }
+
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         require_once 'models/Patient.php';
         
