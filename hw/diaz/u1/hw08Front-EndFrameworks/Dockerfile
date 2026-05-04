@@ -1,6 +1,9 @@
 FROM php:8.2-apache
 
-RUN pecl install mongodb \
+RUN apt-get update && apt-get install -y \
+    libssl-dev \
+    pkg-config \
+    && pecl install mongodb \
     && docker-php-ext-enable mongodb
 
 COPY . /var/www/html/
