@@ -1,0 +1,89 @@
+
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  background-color: #00ADEF;
+  color: white;
+}
+
+header img {
+  max-width: 120px;
+  height: auto;
+}
+
+header nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  margin-left: 20px;
+  transition: color 0.3s;
+}
+
+header nav a:hover {
+  color: #FFD700;
+}
+
+section {
+  padding: 50px 50px 30px 50px;
+}
+
+section h1, section h2 {
+  color: #005f7f;
+  margin-bottom: 20px;
+}
+
+section p {
+  color: #333;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+
+section img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 20px auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 30px 0;
+  font-size: 1rem;
+}
+
+table th, table td {
+  border: 1px solid #00ADEF;
+  padding: 12px 15px;
+  text-align: left;
+}
+
+table th {
+  background-color: #00ADEF;
+  color: white;
+}
+
+table tr:nth-child(even) {
+  background-color: #f0f8ff;
+}
+
+table tr:hover {
+  background-color: #e6f7ff;
+}
+
+
+footer {
+  background-color: #00ADEF;
+  color: white;
+  text-align: center;
+  padding: 25px 50px;
+  margin-top: 40px;
+}
