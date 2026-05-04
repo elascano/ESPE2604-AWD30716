@@ -1,0 +1,222 @@
+.app-shell {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+.hero-section {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: end;
+  margin-bottom: 24px;
+}
+
+.hero-section h1 {
+  max-width: 760px;
+  margin: 10px 0 12px;
+  color: #16313a;
+  font-size: clamp(36px, 6vw, 64px);
+  line-height: 1;
+}
+
+.hero-section p {
+  max-width: 650px;
+  margin: 0;
+  color: #52656c;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.eyebrow,
+.section-heading span,
+.summary-panel span {
+  color: #0e7490;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.summary-panel,
+.appointment-form,
+.appointments-panel {
+  border: 1px solid #d7e7e8;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 24px 60px rgba(35, 74, 78, 0.1);
+}
+
+.summary-panel {
+  min-width: 210px;
+  padding: 22px;
+}
+
+.summary-panel strong {
+  display: block;
+  margin-top: 8px;
+  color: #16313a;
+  font-size: 48px;
+  line-height: 1;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 360px minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.appointment-form,
+.appointments-panel {
+  padding: 22px;
+}
+
+.section-heading {
+  margin-bottom: 18px;
+}
+
+.section-heading h2 {
+  margin: 6px 0 0;
+  color: #16313a;
+  font-size: 22px;
+}
+
+.form-grid {
+  display: grid;
+  gap: 14px;
+}
+
+label {
+  display: grid;
+  gap: 7px;
+  color: #314c54;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+input,
+select {
+  width: 100%;
+  border: 1px solid #cfe0e2;
+  border-radius: 6px;
+  padding: 11px 12px;
+  color: #17333c;
+  background: #fbfefe;
+  font: inherit;
+  box-sizing: border-box;
+}
+
+input:focus,
+select:focus {
+  border-color: #0e7490;
+  outline: 3px solid rgba(14, 116, 144, 0.16);
+}
+
+button {
+  width: 100%;
+  margin-top: 18px;
+  border: 0;
+  border-radius: 6px;
+  padding: 13px 16px;
+  color: #ffffff;
+  background: #0f766e;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: progress;
+  opacity: 0.72;
+}
+
+.notification {
+  margin-bottom: 24px;
+  border-radius: 8px;
+  padding: 14px 16px;
+  font-weight: 800;
+}
+
+.notification.success {
+  color: #14532d;
+  background: #dcfce7;
+}
+
+.notification.error {
+  color: #7f1d1d;
+  background: #fee2e2;
+}
+
+.table-shell {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  min-width: 920px;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border-bottom: 1px solid #e3eeee;
+  padding: 14px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+th {
+  color: #607980;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+td {
+  color: #223d45;
+  font-size: 14px;
+}
+
+.status-pill {
+  display: inline-flex;
+  border-radius: 999px;
+  padding: 5px 10px;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.status-pill.scheduled {
+  background: #2563eb;
+}
+
+.status-pill.confirmed {
+  background: #0f766e;
+}
+
+.status-pill.completed {
+  background: #6d5bd0;
+}
+
+.status-pill.cancelled {
+  background: #b91c1c;
+}
+
+.empty-state {
+  border: 1px dashed #aac7cc;
+  border-radius: 8px;
+  padding: 36px;
+  color: #52656c;
+  text-align: center;
+}
+
+@media (max-width: 920px) {
+  .hero-section,
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .summary-panel {
+    min-width: 0;
+  }
+}
