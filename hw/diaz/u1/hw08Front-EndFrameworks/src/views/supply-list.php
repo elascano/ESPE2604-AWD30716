@@ -89,7 +89,7 @@ createApp({
     methods: {
         async load() {
             try {
-                const res = await fetch("../api_supplies.php");
+                const res = await fetch("/api_supplies.php");
                 if (!res.ok) {
                     console.error("Error fetching supplies:", res.status);
                     return;
