@@ -87,8 +87,21 @@ createApp({
 
     methods: {
         async load() {
-            const res = await fetch("../api_payments.php");
-            this.payments = await res.json();
+            try {
+                const res = await fetch("../api_payments.php");
+                if (!res.ok) {
+                    console.error("Error fetching payments:", res.status);
+                    return;
+                }
+                const data = await res.json();
+                if (Array.isArray(data)) {
+                    this.payments = data;
+                } else if (data.error) {
+                    console.error("API Error:", data.error);
+                }
+            } catch (error) {
+                console.error("Failed to load payments:", error);
+            }
         }
     },
 

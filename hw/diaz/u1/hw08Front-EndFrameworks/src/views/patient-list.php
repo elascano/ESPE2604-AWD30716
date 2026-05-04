@@ -92,8 +92,21 @@ createApp({
 
     methods: {
         async load() {
-            const res = await fetch("../api_patients.php");
-            this.pacientes = await res.json();
+            try {
+                const res = await fetch("../api_patients.php");
+                if (!res.ok) {
+                    console.error("Error fetching patients:", res.status);
+                    return;
+                }
+                const data = await res.json();
+                if (Array.isArray(data)) {
+                    this.pacientes = data;
+                } else if (data.error) {
+                    console.error("API Error:", data.error);
+                }
+            } catch (error) {
+                console.error("Failed to load patients:", error);
+            }
         }
     },
 
