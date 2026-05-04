@@ -6,10 +6,7 @@
 body {
     margin: 0;
     min-height: 100vh;
-    background-image: url("../img/beautiful-shining-stars-night-sky.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-color: #f4f4f4;
     color: #222;
 }
 
