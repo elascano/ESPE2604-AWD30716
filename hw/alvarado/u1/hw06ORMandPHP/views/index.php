@@ -57,7 +57,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="birth_date">Date of Birth:</label>
+                        <label for="birth_date">Birthdate:</label>
                         <input type="date" name="birth_date" id="birth_date" required>
                     </div>
 
