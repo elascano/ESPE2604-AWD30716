@@ -36,7 +36,7 @@
   align-items: center;
   justify-content: center;
   z-index: 9999;
-  /* Muy por encima del carrito y cualquier otra capa */
+  /* Muy por encima del carrito y cualquier otra capa para enfasis*/
 }
 
 .confirm-modal.hidden {

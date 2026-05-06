@@ -1,0 +1,199 @@
+@import url('styleForm.css');
+
+.card--wide {
+  width: min(1180px, 96%);
+  padding: 40px 40px 34px;
+  position: relative;
+  overflow: hidden;
+}
+
+.card--wide::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(197, 121, 56, 0.08), transparent 38%, rgba(109, 60, 28, 0.14));
+  pointer-events: none;
+}
+
+.card__header {
+  position: relative;
+  z-index: 1;
+}
+
+.card__header h1 {
+  margin: 0;
+  font-size: clamp(2rem, 3vw, 2.7rem);
+  letter-spacing: -0.03em;
+}
+
+.subtitle {
+  margin: 12px 0 0;
+  color: var(--text-dim);
+}
+
+.table-responsive,
+.table-container {
+  width: 100%;
+  margin-top: 2rem;
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: 390px;
+  position: relative;
+  z-index: 1;
+}
+
+.customer-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+  text-align: left;
+}
+
+.customer-table th {
+  padding: 12px 20px;
+  color: var(--accent-honey);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 700;
+  border-bottom: 1px solid var(--field-border);
+  position: sticky;
+  top: 0;
+  background: rgba(15, 15, 15, 0.98);
+  backdrop-filter: blur(8px);
+  z-index: 2;
+}
+
+.customer-table td {
+  padding: 18px 20px;
+  background: rgba(255, 255, 255, 0.015);
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  border-top: 1px solid var(--card-border);
+  border-bottom: 1px solid var(--card-border);
+  vertical-align: middle;
+}
+
+.customer-table td:first-child {
+  border-left: 1px solid var(--card-border);
+  border-top-left-radius: 14px;
+  border-bottom-left-radius: 14px;
+}
+
+.customer-table td:last-child {
+  border-right: 1px solid var(--card-border);
+  border-top-right-radius: 14px;
+  border-bottom-right-radius: 14px;
+}
+
+.customer-table tr:hover td {
+  background: rgba(255, 255, 255, 0.055);
+  color: var(--text-main);
+  transform: translateY(-1px);
+  transition: all 0.2s ease;
+}
+
+.table-responsive::-webkit-scrollbar,
+.table-container::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.table-responsive::-webkit-scrollbar-track,
+.table-container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 999px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb,
+.table-container::-webkit-scrollbar-thumb {
+  background: rgba(197, 121, 56, 0.55);
+  border-radius: 999px;
+  border: 2px solid rgba(15, 15, 15, 0.98);
+}
+
+.table-responsive::-webkit-scrollbar-thumb:hover,
+.table-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(197, 121, 56, 0.85);
+}
+
+.actions-cell,
+.table-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.inline-form {
+  margin: 0;
+}
+
+.btn-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 88px;
+  min-height: 38px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 0.78rem;
+  letter-spacing: 0.03em;
+  border: 1px solid transparent;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.btn-edit {
+  color: #9cd2ff;
+  background: rgba(52, 152, 219, 0.12);
+  border-color: rgba(52, 152, 219, 0.26);
+}
+
+.btn-edit:hover {
+  transform: translateY(-1px);
+  background: #3498db;
+  color: white;
+  box-shadow: 0 10px 24px rgba(52, 152, 219, 0.28);
+}
+
+.btn-delete {
+  appearance: none;
+  background: rgba(231, 76, 60, 0.1);
+  color: #ff9a8f;
+  border: 1px solid rgba(231, 76, 60, 0.3);
+  cursor: pointer;
+}
+
+.btn-delete:hover {
+  transform: translateY(-1px);
+  background: #e74c3c;
+  color: white;
+  box-shadow: 0 10px 24px rgba(231, 76, 60, 0.3);
+}
+
+@media (max-width: 860px) {
+  .card--wide {
+    padding: 28px 20px 24px;
+  }
+
+  .actions-cell,
+  .table-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-action {
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .customer-table th,
+  .customer-table td {
+    padding: 14px 14px;
+  }
+
+  .card__header h1 {
+    font-size: 1.7rem;
+  }
+}

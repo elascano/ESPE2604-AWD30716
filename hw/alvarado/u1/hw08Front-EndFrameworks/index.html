@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Customers</title>
+
+  <!-- Vue -->
+  <script src="https://unpkg.com/vue@3"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+<div id="app" class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <h2>Customer Manager</h2>
+    <button class="btn-primary" @click="mostrarFormulario = true">+ Add Customer</button>
+  </div>
+
+  <!-- Tabla -->
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>ID Number</th>
+          <th>Email</th>
+          <th>Birthdate</th>
+          <th>Age</th>
+          <th>Phone</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr v-for="user in usuarios" :key="user.id">
+          <td>{{ user.first_name || '-' }}</td>
+          <td>{{ user.last_name || '-' }}</td>
+          <td>{{ user.identification_number || '-' }}</td>
+          <td>{{ user.email || '-' }}</td>
+          <td>{{ user.birthdate || '-' }}</td>
+          <td>{{ user.age || '-' }}</td>
+          <td>{{ user.phone_number || '-' }}</td>
+          <td>
+            <button class="btn-edit" @click="editar(user)">✏️</button>
+            <button class="btn-delete" @click="eliminar(user.id)">🗑️</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" v-if="mostrarFormulario">
+    <div class="modal-content">
+
+      <h3>{{ editando ? 'Edit Customer' : 'New Customer' }}</h3>
+
+      <input v-model="form.first_name" placeholder="First Name">
+      <input v-model="form.last_name" placeholder="Last Name">
+      <input v-model="form.identification_number" placeholder="ID Number" maxlength="10">
+      <input v-model="form.email" type="email" placeholder="Email">
+      <input v-model="form.birthdate" type="date" @change="updateAge">
+      <input v-model="form.age" type="number" placeholder="Age" readonly>
+      <input v-model="form.phone_number" placeholder="Phone Number">
+
+      <div class="modal-buttons">
+        <button class="btn-primary" @click="guardar">Save</button>
+        <button class="btn-cancel" @click="cancelar">Cancel</button>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script type="module" src="js/app.js"></script>
+
+</body>
+</html>

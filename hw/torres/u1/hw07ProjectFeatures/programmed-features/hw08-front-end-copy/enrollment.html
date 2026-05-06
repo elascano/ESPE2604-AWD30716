@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inscripcion | American Latin Class</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="American Latin Class">
+      <span class="brand-mark">ALC</span>
+      <span>
+        <strong>American Latin Class</strong>
+        <small>Escuela de danza</small>
+      </span>
+    </a>
+
+    <nav class="main-nav" aria-label="Navegacion principal">
+      <a href="index.html">Inicio</a>
+      <a href="enrollment.html" aria-current="page">Inscripcion</a>
+      <a href="login.html">Portal</a>
+    </nav>
+  </header>
+
+  <main class="page-shell">
+    <section class="page-heading">
+      <p class="eyebrow">Solicitud publica</p>
+      <h1>Formulario de inscripcion</h1>
+      <p>
+        Esta solicitud queda registrada para revision administrativa antes de
+        activar al estudiante dentro de una sede.
+      </p>
+    </section>
+
+    <section class="section narrow">
+      <form class="panel form-grid" id="enrollmentForm">
+        <label>
+          <span>Nombre completo</span>
+          <input id="enrollName" type="text" placeholder="Camila Rojas" required>
+        </label>
+        <label>
+          <span>Correo</span>
+          <input id="enrollEmail" type="email" placeholder="estudiante@correo.com" required>
+        </label>
+        <label>
+          <span>Telefono</span>
+          <input id="enrollPhone" type="tel" placeholder="0990000000" required>
+        </label>
+        <label>
+          <span>Sede preferida</span>
+          <select id="enrollBranch"></select>
+        </label>
+        <label>
+          <span>Nivel</span>
+          <select id="enrollLevel">
+            <option value="B1">B1 - Basico intermedio</option>
+            <option value="B2">B2 - Intermedio avanzado</option>
+          </select>
+        </label>
+        <label>
+          <span>Beca o convenio</span>
+          <select id="enrollScholarship">
+            <option value="0">Sin beca</option>
+            <option value="50">50%</option>
+            <option value="75">75%</option>
+            <option value="100">100%</option>
+          </select>
+        </label>
+        <label>
+          <span>Representante</span>
+          <input id="enrollGuardian" type="text" placeholder="Nombre del padre o madre">
+        </label>
+        <label>
+          <span>Telefono representante</span>
+          <input id="enrollGuardianPhone" type="tel" placeholder="0991112222">
+        </label>
+        <label class="full">
+          <span>Comentario</span>
+          <textarea id="enrollNotes" rows="3" placeholder="Horario, experiencia previa o consulta"></textarea>
+        </label>
+        <button class="button primary full" type="submit">Enviar solicitud</button>
+        <p class="notice full" id="enrollmentMessage" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>American Latin Class</span>
+    <a href="login.html">Portal interno</a>
+  </footer>
+
+  <script src="script/supabase-client.js"></script>
+  <script src="script/app.js"></script>
+</body>
+</html>

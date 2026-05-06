@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  // Elementos del modal
+  // Elementos del modal principal
   const addProductBtn = document.getElementById("agregar-producto-btn");
   const addProductModal = document.getElementById("add-product-modal");
   const closeAddProductModal = document.getElementById("close-add-product-modal");

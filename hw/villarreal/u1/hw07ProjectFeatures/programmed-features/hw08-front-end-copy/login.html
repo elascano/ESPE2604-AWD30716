@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal | American Latin Class</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="American Latin Class">
+      <span class="brand-mark">ALC</span>
+      <span>
+        <strong>American Latin Class</strong>
+        <small>Escuela de danza</small>
+      </span>
+    </a>
+
+    <nav class="main-nav" aria-label="Navegacion principal">
+      <a href="index.html">Inicio</a>
+      <a href="enrollment.html">Inscripcion</a>
+      <a href="login.html" aria-current="page">Portal</a>
+    </nav>
+  </header>
+
+  <main class="login-page">
+    <section class="login-panel">
+      <p class="eyebrow">Acceso interno</p>
+      <h1>Iniciar sesion</h1>
+      <form class="form-stack" id="loginForm">
+        <label>
+          <span>Correo</span>
+          <input id="loginEmail" type="email" placeholder="usuario@americanlatinclass.com" required>
+        </label>
+        <label>
+          <span>Contrasena</span>
+          <input id="loginPassword" type="password" placeholder="********" required>
+        </label>
+        <button class="button primary" type="submit">Entrar</button>
+        <p class="notice" id="loginMessage" aria-live="polite"></p>
+      </form>
+
+      <div class="demo-access" aria-label="Accesos de prueba">
+        <button type="button" data-demo-login="teacher">Profesor</button>
+        <button type="button" data-demo-login="student">Alumno</button>
+        <button type="button" data-demo-login="director">Director</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="script/app.js"></script>
+</body>
+</html>

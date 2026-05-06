@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | American Latin Class</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header app-header">
+    <a class="brand" href="index.html" aria-label="American Latin Class">
+      <span class="brand-mark">ALC</span>
+      <span>
+        <strong>American Latin Class</strong>
+        <small id="sessionRole">Portal interno</small>
+      </span>
+    </a>
+
+    <nav class="main-nav" aria-label="Navegacion principal">
+      <a href="index.html">Inicio</a>
+      <a href="enrollment.html">Inscripcion</a>
+      <button class="nav-button" id="logoutButton" type="button">Salir</button>
+    </nav>
+  </header>
+
+  <main class="dashboard-shell">
+    <aside class="sidebar">
+      <p class="eyebrow">Sesion</p>
+      <h1 id="dashboardTitle">Dashboard</h1>
+      <p id="sessionName" class="muted"></p>
+      <nav class="module-nav" id="moduleNav" aria-label="Modulos"></nav>
+    </aside>
+
+    <section class="dashboard-content">
+      <section class="module-view" id="moduleOverview">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Resumen</p>
+            <h2>Estado general</h2>
+          </div>
+          <button class="icon-button" id="resetDemo" type="button">Reset</button>
+        </div>
+        <div class="snapshot">
+          <article>
+            <span class="metric" id="totalStudents">0</span>
+            <p>Estudiantes</p>
+          </article>
+          <article>
+            <span class="metric" id="b2Students">0</span>
+            <p>B2</p>
+          </article>
+          <article>
+            <span class="metric" id="scholarshipStudents">0</span>
+            <p>Becados</p>
+          </article>
+          <article>
+            <span class="metric" id="reserveAmount">$0</span>
+            <p>Reserva matriz</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="module-view" id="moduleStudents">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Alumnos</p>
+            <h2>Niveles y becas</h2>
+          </div>
+        </div>
+        <div class="panel table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Sede</th>
+                <th>Nivel</th>
+                <th>Beca</th>
+                <th>Estado</th>
+              </tr>
+            </thead>
+            <tbody id="studentsTable"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="module-view" id="moduleStudentProfile">
+        <p class="eyebrow">Mi avance</p>
+        <h2>Panel del alumno</h2>
+        <div class="profile-grid" id="studentProfile"></div>
+      </section>
+
+      <section class="module-view" id="moduleClassPlan">
+        <p class="eyebrow">Profesores</p>
+        <h2>Planificacion mensual</h2>
+        <form class="panel form-stack" id="classPlanForm">
+          <label>
+            <span>Profesor</span>
+            <input id="planTeacher" type="text" placeholder="Andrea Molina" required>
+          </label>
+          <label>
+            <span>Mes</span>
+            <input id="planMonth" type="month" required>
+          </label>
+          <label>
+            <span>Nivel</span>
+            <select id="planLevel">
+              <option>B1</option>
+              <option>B2</option>
+            </select>
+          </label>
+          <label>
+            <span>Objetivo</span>
+            <input id="planObjective" type="text" placeholder="Mejorar tecnica y musicalidad" required>
+          </label>
+          <label>
+            <span>Actividades</span>
+            <textarea id="planActivities" rows="4" placeholder="Calentamiento, tecnica, secuencia y retroalimentacion" required></textarea>
+          </label>
+          <button class="button primary" type="submit">Enviar plan</button>
+          <p class="notice" id="planMessage" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="module-view" id="moduleAttendance">
+        <p class="eyebrow">Asistencia</p>
+        <h2>Registro diario</h2>
+        <form class="panel form-grid" id="attendanceForm">
+          <label>
+            <span>Tipo</span>
+            <select id="attendanceType">
+              <option value="student">Alumno</option>
+              <option value="teacher">Profesor</option>
+            </select>
+          </label>
+          <label>
+            <span>Nombre</span>
+            <input id="attendanceName" type="text" placeholder="Mateo Vera" required>
+          </label>
+          <label>
+            <span>Fecha</span>
+            <input id="attendanceDate" type="date" required>
+          </label>
+          <label>
+            <span>Estado</span>
+            <select id="attendanceStatus">
+              <option value="present">Presente</option>
+              <option value="absent">Ausente</option>
+              <option value="late">Atraso</option>
+              <option value="excused">Justificado</option>
+            </select>
+          </label>
+          <button class="button primary full" type="submit">Registrar asistencia</button>
+          <p class="notice full" id="attendanceMessage" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="module-view" id="moduleFinance">
+        <p class="eyebrow">Direccion</p>
+        <h2>Resultados de sede</h2>
+        <form class="panel inline-form" id="financeForm">
+          <label>
+            <span>Sede</span>
+            <select id="financeBranch"></select>
+          </label>
+          <label>
+            <span>Ingresos</span>
+            <input id="financeIncome" type="number" min="0" value="1200" required>
+          </label>
+          <label>
+            <span>Gastos</span>
+            <input id="financeExpenses" type="number" min="0" value="450" required>
+          </label>
+          <label>
+            <span>% matriz</span>
+            <input id="financeShare" type="number" min="0" max="100" value="15" required>
+          </label>
+          <button class="button primary" type="submit">Guardar</button>
+        </form>
+        <div class="panel table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Sede</th>
+                <th>Ingresos</th>
+                <th>Gastos</th>
+                <th>Matriz</th>
+                <th>Neto</th>
+              </tr>
+            </thead>
+            <tbody id="financeTable"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="module-view" id="moduleAgency">
+        <p class="eyebrow">B2 profesional</p>
+        <h2>Eventos y liquidaciones</h2>
+        <div class="dashboard-grid">
+          <form class="panel form-stack" id="eventForm">
+            <label>
+              <span>Cliente</span>
+              <input id="eventClient" type="text" placeholder="Hotel Sol" required>
+            </label>
+            <label>
+              <span>Tipo de evento</span>
+              <input id="eventType" type="text" placeholder="Show para boda" required>
+            </label>
+            <label>
+              <span>Fecha</span>
+              <input id="eventDate" type="date" required>
+            </label>
+            <label>
+              <span>Bailarin B2</span>
+              <input id="eventDancer" type="text" placeholder="Valeria Paz" required>
+            </label>
+            <label>
+              <span>Valor</span>
+              <input id="eventAmount" type="number" min="0" value="160" required>
+            </label>
+            <label>
+              <span>Descuento</span>
+              <input id="eventDeduction" type="number" min="0" value="0" required>
+            </label>
+            <button class="button primary" type="submit">Registrar evento</button>
+            <p class="notice" id="eventMessage" aria-live="polite"></p>
+          </form>
+          <section class="panel">
+            <h3>Liquidacion</h3>
+            <div id="settlementList" class="settlement-list"></div>
+          </section>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="script/supabase-client.js"></script>
+  <script src="script/app.js"></script>
+</body>
+</html>
