@@ -110,7 +110,7 @@ async function createUser(e) {
         const response = await fetch(API_URL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ action: 'create_user', name, email })
+            body: JSON.stringify({ action: 'create_bank', name, email })
         });
         const data = await response.json();
         
