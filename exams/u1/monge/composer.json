@@ -1,0 +1,12 @@
+{
+    "require": {
+        "illuminate/database": "^11.0",
+        "ramsey/uuid": "^4.0",
+        "vlucas/phpdotenv": "^5.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Models\\": "models/"
+        }
+    }
+}
