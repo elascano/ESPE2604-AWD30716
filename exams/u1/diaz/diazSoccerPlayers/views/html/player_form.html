@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Pacientes | Fábula Dental</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/user-views.css">
+    <link rel="stylesheet" href="../css/forms.css">
+</head>
+
+<body class="bg-light">
+    <header class="bg-primary text-white shadow-sm">
+        <h1 class="m-0 text-center py-3">Player register</h1>
+    </header>
+
+    <main class="form-container">
+        <div class="form-card shadow-sm">
+            <h2 class="text-primary fw-bold mb-4">Player Data</h2>
+
+            <form action="../../controllers/player-controller.php" method="POST" id="playerForm">
+                <input type="hidden" name="action" value="create">
+                <div class="form-grid">
+
+                    <div class="input-group">
+                        <label for="fullName">Full name</label>
+                        <input type="text" id="fullName" name="fullName" required minlength="3" placeholder="Ej: Juan Perez">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="team">Enter the name team</label>
+                        <input type="text" id="fullName" name="fullName" required minlength="3" placeholder="Ej: Barcelona">
+                    </div>
+
+
+                    <div class="input-group">
+                        <label for="playerID">dni</label>
+                        <input type="text" id="playerID" name="playerID" required pattern="[0-9]{10}" placeholder="1727095414">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="birthday">birthday</label>
+                        <input type="date" id="birthday" name="birthday" min="1900-01-01" max="2026-05-05" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="phone">phone number</label>
+                        <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}" placeholder="0991234567">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="gender">gender</label>
+                        <select id="gender" name="gender" required>
+                            <option value="">Selection</option>
+                            <option value="femenino">Female</option>
+                            <option value="masculino">Male</option>
+                            <option value="otro">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="legalRepresentative">email</label>
+                        <input type="text" id="legalRepresentative" name="legalRepresentative" placeholder="example@player.ec">
+                    </div>
+
+                    <div class="input-group full-width">
+                        <label for="reasonForConsultation">nationality</label>
+                        <input type="text" id="reasonForConsultation" name="reasonForConsultation" required minlength="5" placeholder="Ej: Ecuadorian">
+                    </div>
+
+                    <div class="full-width mt-3">
+                        <button type="submit" class="btn btn-primary w-100 fw-bold">Store Player</button>
+                    </div>
+
+                    <div class="full-width d-flex gap-2 mt-2">
+                        <a href="../php/player-list.php" class="btn btn-secondary flex-grow-1">View Player List</a>
+                        <a href="./dentist.html" class="btn btn-secondary flex-grow-1">Go to panel</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <script src="../js/player-validation.js"></script>
+</body>
+
+</html>

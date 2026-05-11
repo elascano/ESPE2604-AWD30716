@@ -1,0 +1,29 @@
+{
+  "name": "ws02htmlandcss",
+  "version": "1.0.0",
+  "description": "Este proyecto contiene dependencias tanto de backend (PHP) como de frontend (JavaScript/Node.js). Sigue estos pasos para instalar todo lo necesario y poder ejecutar el proyecto de manera local.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "bootstrap": "^5.3.8",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "mongodb": "^7.2.0",
+    "mongoose": "^9.5.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrescardenase77-web/Fabula-Dental-Managment.git"
+  },
+  "bugs": {
+    "url": "https://github.com/andrescardenase77-web/Fabula-Dental-Managment/issues"
+  },
+  "homepage": "https://github.com/andrescardenase77-web/Fabula-Dental-Managment#readme"
+}
