@@ -1,5 +1,5 @@
 {
     "require": {
-        "mongodb/mongodb": "^2.2"
+        "illuminate/database": "^12.58"
     }
 }
