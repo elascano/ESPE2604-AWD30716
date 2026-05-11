@@ -16,7 +16,6 @@ body {
     padding: 0;
 }
 
-/* Navbar Style */
 .navbar {
     background-color: var(--navbar-bg);
     padding: 1rem 0;
