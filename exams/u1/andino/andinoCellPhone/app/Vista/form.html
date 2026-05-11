@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Add CellPhone</title>
+    <link rel="stylesheet" href="../../public/css/index.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar__container">
+            <span class="navbar__logo">Cellphone System</span>
+            <ul class="navbar__menu">
+                <li><a href="../Controller/viewCellPhones.php">View Cellphones</a></li>
+				<li><a href="./form.html" class="active">Add CellPhone</a></li>
+            </ul>
+        </div>
+    </nav>
+    <h1>Add New CellPhone</h1>
+    <form action="../Controller/addCellPhone.php" method="POST">
+        <div>
+            <label>Brand:</label>
+            <input type="text" name="brand" required>
+        </div>
+        <div>
+            <label>Model:</label>
+            <input type="text" name="model" required>
+        </div>
+        <div>
+            <label>Price:</label>
+            <input type="number" step="0.01" name="price" placeholder="Ej: 799.99" required>
+        </div>
+        <div>
+            <label>Screen (inches):</label>
+            <input type="number" step="0.1" name="screen" placeholder="Ej: 6.1" required>
+        </div>
+        <div>
+            <label>RAM (GB):</label>
+            <input type="number" name="ram" placeholder="Ej: 8" required>
+        </div>
+        <div>
+            <label>Storage (GB):</label>
+            <input type="number" name="storage" placeholder="Ej: 128" required>
+        </div>
+        <div>
+            <label>Camera (MP):</label>
+            <input type="text" name="camera" placeholder="Ej: 50MP" required>
+        </div>
+        <div>
+            <label>Battery (mAh):</label>
+            <input type="number" name="battery" placeholder="Ej: 4500" required>
+        </div>
+        <button type="submit">Save Cellphone</button>
+    </form>
+</body>
+</html>
