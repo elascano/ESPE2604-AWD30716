@@ -33,7 +33,7 @@ async function loadProfessors() {
         }
 
         professors.forEach(prof => {
-            const bonusHtml = calculateBonus(prof.hireDate, prof.salary);
+            const bonusHtml = calculateBonus(prof.hiredate, prof.salary);
 
             const tr = document.createElement('tr');
             tr.innerHTML = `
@@ -41,7 +41,8 @@ async function loadProfessors() {
                 <td>${prof.fullname}</td>
                 <td>${prof.department}</td>
                 <td>${prof.email}</td>
-                <td>${prof.hireDate}</td>
+                <td>${prof.hiredate}</td>
+                <td>${prof.salary}</td>
                 <td>${bonusHtml}</td>
             `;
             tbody.appendChild(tr);

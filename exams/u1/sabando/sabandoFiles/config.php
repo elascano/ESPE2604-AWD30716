@@ -1,24 +1,34 @@
 <?php
 
-$host = '';
-$db   = '';
-$user = '';
-$pass = '';
-$port = '';
+require_once __DIR__ . '/vendor/autoload.php';
 
-$dsn = "pgsql:host=$host;port=$port;dbname=$db;";
-$options = [
-    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    PDO::ATTR_EMULATE_PREPARES   => false,
-];
+use Illuminate\Database\Capsule\Manager as Capsule;
+
+$capsule = new Capsule;
+
+$capsule->addConnection([
+    'driver'    => '',
+    'host'      => '',
+    'database'  => '',
+    'username'  => '',
+    'password'  => '',
+    'port'      => '',
+    'charset'   => '',
+    'prefix'    => '',
+    'schema'    => '',
+]);
+
+$capsule->setAsGlobal();
+
+$capsule->bootEloquent();
 
 try {
-    $pdo = new PDO($dsn, $user, $pass, $options);
-} catch (\PDOException $e) {
+    $capsule->getConnection()->getPdo();
+} catch (\Exception $e) {
     http_response_code(500);
     header('Content-Type: application/json');
     echo json_encode(['error' => 'Connection failed: ' . $e->getMessage()]);
     exit;
 }
+
 ?>

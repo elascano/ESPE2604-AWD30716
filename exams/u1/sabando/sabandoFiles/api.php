@@ -10,10 +10,9 @@ $method = $_SERVER['REQUEST_METHOD'];
 
 if ($method === 'GET') {
     try {
-        $stmt = $pdo->query('SELECT * FROM professors ORDER BY id DESC');
-        $professors = $stmt->fetchAll();
+        $professors = Professor::orderBy('id', 'desc')->get();
         echo json_encode($professors);
-    } catch (\PDOException $e) {
+    } catch (\Exception $e) {
         http_response_code(500);
         echo json_encode(['error' => $e->getMessage()]);
     }
@@ -26,25 +25,23 @@ if ($method === 'GET') {
         exit;
     }
 
-    $sql = "INSERT INTO professors (fullName, age, email, phone, salary, department, hireDate, officeLocation) 
-            VALUES (:fullName, :age, :email, :phone, :salary, :department, :hireDate, :officeLocation)";
-    
     try {
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([
-            'fullName' => $data['fullName'],
+        $professorData = [
+            'fullname' => $data['fullName'],
             'age' => $data['age'],
             'email' => $data['email'],
             'phone' => $data['phone'] ?? null,
             'salary' => $data['salary'],
             'department' => $data['department'],
-            'hireDate' => $data['hireDate'],
-            'officeLocation' => $data['officeLocation'] ?? null
-        ]);
+            'hiredate' => $data['hireDate'], 
+            'officelocation' => $data['officeLocation'] ?? null
+        ];
+
+        Professor::create($professorData);
         
         http_response_code(201);
-        echo json_encode(['message' => 'Professor created successfully']);
-    } catch (\PDOException $e) {
+        echo json_encode(['message' => 'Professor created successfully via ORM!']);
+    } catch (\Exception $e) {
         http_response_code(500);
         echo json_encode(['error' => $e->getMessage()]);
     }

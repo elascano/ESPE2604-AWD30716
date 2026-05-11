@@ -6,16 +6,16 @@ class Professor extends Model
 {
     protected $table = 'professors';
 
+    public $timestamps = false;
+
     protected $fillable = [
-        'fullName',
+        'fullname',
         'age',
         'email',
         'phone',
         'salary',
         'department',
-        'hireDate',
-        'officeLocation',
+        'hiredate',
+        'officelocation',
     ];
-
-    public $timestamps = false;
 }
