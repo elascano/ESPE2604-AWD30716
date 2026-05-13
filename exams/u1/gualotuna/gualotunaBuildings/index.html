@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BuildingVault — Company X Asset Registry</title>
+  <meta name="description" content="Manage Company X building portfolio: insert, search, and analyze properties powered by MongoDB Atlas." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="public/css/style.css" />
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon">🏢</span>
+        <span class="logo-text">BuildingVault</span>
+        <span class="logo-sub">Gualotuna's Building</span>
+      </div>
+      <nav class="tabs" role="tablist">
+        <button id="tab-insert" class="tab active" role="tab" aria-selected="true" onclick="switchTab('insert')">Insert</button>
+        <button id="tab-find"   class="tab"        role="tab" aria-selected="false" onclick="switchTab('find')">Find by ID</button>
+        <button id="tab-all"    class="tab"        role="tab" aria-selected="false" onclick="switchTab('all')">All Buildings</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+
+    <section id="panel-insert" class="panel active">
+      <div class="panel-header">
+        <h1>Register New Building</h1>
+        <p>Fill in the details to add a building to the MongoDB Atlas database.</p>
+      </div>
+
+      <form id="form-insert" class="form-grid" onsubmit="insertBuilding(event)">
+        <div class="field">
+          <label for="name">Building Name</label>
+          <input id="name" type="text" placeholder="e.g. Central Tower" required />
+        </div>
+        <div class="field">
+          <label for="address">Address</label>
+          <input id="address" type="text" placeholder="e.g. Av. Amazonas 123, Quito" required />
+        </div>
+        <div class="field">
+          <label for="floors">Number of Floors</label>
+          <input id="floors" type="number" min="1" placeholder="e.g. 12" required />
+        </div>
+        <div class="field">
+          <label for="area_sqm">Total Area (m²)</label>
+          <input id="area_sqm" type="number" min="1" step="0.01" placeholder="e.g. 4500" required />
+        </div>
+        <div class="field">
+          <label for="type">Building Type</label>
+          <select id="type" required>
+            <option value="" disabled selected>Select type</option>
+            <option value="residential">Residential</option>
+            <option value="commercial">Commercial</option>
+            <option value="industrial">Industrial</option>
+            <option value="mixed">Mixed Use</option>
+            <option value="institutional">Institutional</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="year_built">Year Built</label>
+          <input id="year_built" type="number" min="1800" max="2026" placeholder="e.g. 2005" required />
+        </div>
+        <div class="field">
+          <label for="owner">Owner</label>
+          <input id="owner" type="text" placeholder="e.g. Clear Minds Consultores" required />
+        </div>
+        <div class="field">
+          <label for="status">Status</label>
+          <select id="status" required>
+            <option value="" disabled selected>Select status</option>
+            <option value="active">Active</option>
+            <option value="under_construction">Under Construction</option>
+            <option value="renovating">Renovating</option>
+            <option value="abandoned">Abandoned</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="value_usd">Property Value (USD)</label>
+          <input id="value_usd" type="number" min="0" step="0.01" placeholder="e.g. 2500000" required />
+        </div>
+        <div class="field">
+          <label for="material">Primary Material</label>
+          <select id="material" required>
+            <option value="" disabled selected>Select material</option>
+            <option value="concrete">Reinforced Concrete</option>
+            <option value="steel">Steel Frame</option>
+            <option value="wood">Wood</option>
+            <option value="masonry">Masonry</option>
+            <option value="glass">Glass & Steel</option>
+          </select>
+        </div>
+
+        <div class="field field-full">
+          <div id="computed-preview" class="computed-box hidden">
+            <h3>📊 Live Computations</h3>
+            <div class="computed-grid">
+              <div class="computed-item">
+                <span class="c-label">Building Age</span>
+                <span class="c-value" id="c-age">—</span>
+              </div>
+              <div class="computed-item">
+                <span class="c-label">Price per m²</span>
+                <span class="c-value" id="c-price-sqm">—</span>
+              </div>
+              <div class="computed-item">
+                <span class="c-label">Avg. Floor Area</span>
+                <span class="c-value" id="c-floor-avg">—</span>
+              </div>
+              <div class="computed-item">
+                <span class="c-label">Value Category</span>
+                <span class="c-value" id="c-category">—</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="field field-full">
+          <button id="btn-insert" type="submit" class="btn-primary">
+            <span class="btn-icon">+</span> Insert Building
+          </button>
+        </div>
+      </form>
+
+      <div id="insert-result" class="result-box hidden"></div>
+    </section>
+
+    <section id="panel-find" class="panel">
+      <div class="panel-header">
+        <h2>Find Building by ID</h2>
+        <p>Enter the MongoDB ObjectId to retrieve a specific building record.</p>
+      </div>
+      <div class="search-row">
+        <input id="find-id" type="text" placeholder="e.g. 6641f2a3c4e5b1d8a9f00001" />
+        <button id="btn-find" class="btn-primary" onclick="findBuilding()">Search</button>
+      </div>
+      <div id="find-result" class="result-box hidden"></div>
+    </section>
+
+    <section id="panel-all" class="panel">
+      <div class="panel-header">
+        <h2>All Buildings</h2>
+        <p>Full list of registered buildings sorted alphabetically.</p>
+      </div>
+      <div class="toolbar">
+        <button id="btn-load-all" class="btn-primary" onclick="loadAll()">🔄 Load / Refresh</button>
+        <span id="all-count" class="count-badge hidden"></span>
+      </div>
+      <div id="all-result" class="table-wrapper hidden"></div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>BuildingVault &copy; 2026 · Company X · MongoDB Atlas · PHP ORM</p>
+  </footer>
+
+  <script src="public/js/app.js"></script>
+</body>
+</html>
