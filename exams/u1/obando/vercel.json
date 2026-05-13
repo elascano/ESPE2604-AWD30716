@@ -1,0 +1,47 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/index.php",
+      "use": "vercel-php@0.7.4"
+    },
+    {
+      "src": "views/index.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "views/listado.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "css/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/index.php"
+    },
+    {
+      "src": "/listado",
+      "dest": "/views/listado.html"
+    },
+    {
+      "src": "/listado.html",
+      "dest": "/views/listado.html"
+    },
+    {
+      "src": "/",
+      "dest": "/views/index.html"
+    },
+    {
+      "src": "/index.html",
+      "dest": "/views/index.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
+  ]
+}
