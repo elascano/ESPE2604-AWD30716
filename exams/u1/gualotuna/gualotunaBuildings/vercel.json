@@ -1,0 +1,8 @@
+{
+  "outputDirectory": "public",
+  "functions": {
+    "api/buildings.php": {
+      "runtime": "vercel-php@0.7.2"
+    }
+  }
+}

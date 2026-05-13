@@ -1,0 +1,20 @@
+{
+    "name": "rodriguez/student-management-backend",
+    "description": "Student Management System Backend — OOP + MongoDB",
+    "type": "project",
+    "require": {
+        "php": ">=8.1",
+        "mongodb/mongodb": "^1.16",
+        "vlucas/phpdotenv": "^5.6",
+        "doctrine/mongodb-odm": "^2.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Config\\": "config/",
+            "Models\\": "models/",
+            "Repositories\\": "repositories/",
+            "Services\\": "services/",
+            "Controllers\\": "controllers/"
+        }
+    }
+}

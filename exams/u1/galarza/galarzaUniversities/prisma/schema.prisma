@@ -1,0 +1,24 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model University {
+  university_id        Int     @id @default(autoincrement())
+  university_name      String
+  rector_name          String
+  university_type      String
+  foundation_year      Int
+  total_degree_courses Int
+  mission              String
+  vision               String
+  national_ranking     Int
+}
