@@ -1,0 +1,44 @@
+services:
+  app:
+    build:
+      context: .
+    container_name: songcloud-app
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      APP_NAME: "SongCloud MVC ORM"
+      APP_ENV: local
+      APP_URL: http://localhost:8000
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_DATABASE: songcloud_db
+      DB_USERNAME: songcloud_user
+      DB_PASSWORD: songcloud_password
+      DB_CHARSET: utf8mb4
+    ports:
+      - "8000:80"
+    restart: unless-stopped
+
+  db:
+    image: mariadb:11.4
+    container_name: songcloud-db
+    environment:
+      MARIADB_ROOT_PASSWORD: songcloud_root_password
+      MARIADB_DATABASE: songcloud_db
+      MARIADB_USER: songcloud_user
+      MARIADB_PASSWORD: songcloud_password
+    healthcheck:
+      test: ["CMD-SHELL", "healthcheck.sh --connect --innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+    volumes:
+      - songcloud_db_data:/var/lib/mysql
+      - ./database/migrations.sql:/docker-entrypoint-initdb.d/01-migrations.sql:ro
+      - ./database/seed.sql:/docker-entrypoint-initdb.d/02-seed.sql:ro
+    restart: unless-stopped
+
+volumes:
+  songcloud_db_data:
