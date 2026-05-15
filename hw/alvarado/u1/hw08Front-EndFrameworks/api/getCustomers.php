@@ -20,5 +20,4 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, [
 $response = curl_exec($ch);
 curl_close($ch);
 
-// 🔄 Devolver directamente lo que responde Supabase
 echo $response;

@@ -6,7 +6,6 @@ $data = json_decode(file_get_contents("php://input"), true);
 $url = "https://aokspgkcmwopqapytejd.supabase.co/rest/v1/customers";
 $apiKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFva3NwZ2tjbXdvcHFhcHl0ZWpkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc3NzMxMDAsImV4cCI6MjA5MzM0OTEwMH0.xFwKepbjISQhv2j6fzjbolVlCwr9UaH6S96mQCOUHfs";
 
-// 🔥 DATOS A INSERTAR
 $payload = json_encode([
     "first_name" => $data["first_name"],
     "last_name" => $data["last_name"],
@@ -17,7 +16,6 @@ $payload = json_encode([
     "phone_number" => $data["phone_number"]
 ]);
 
-// 📡 PETICIÓN HTTP
 $ch = curl_init($url);
 
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
