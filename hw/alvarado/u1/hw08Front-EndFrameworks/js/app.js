@@ -40,7 +40,7 @@ createApp({
 
       let data = { ...this.form };
 
-      // 🔥 evitar enviar id cuando se crea
+  
       if (!this.editando) {
         delete data.id;
       }
