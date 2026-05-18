@@ -1,0 +1,69 @@
+# .gitignore - Archivos a ignorar en versionado Git
+
+# Artifacts binarios
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio cache/options
+.vs/
+.vscode/
+
+# Visual Studio Code
+*.code-workspace
+
+# Resharper
+.idea/
+*.sln.iml
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Rider
+.idea/
+*.sln.iml
+
+# Mac crap
+.DS_Store
+
+# NuGet
+*.nupkg
+*.snupkg
+*.nuget.props
+*.nuget.targets
+
+# Publishing
+PublishProfiles/
+*.publish.xml
+*.publishproj
+
+# Entity Framework
+migrations/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Docker
+docker-compose.override.yml
+
+# IDE
+.idea
+*.sublime-project
+*.sublime-workspace
+
+# OS
+Thumbs.db
+
+# Node
+node_modules/
+dist/
+
+# Build outputs
+build/
+publish/
