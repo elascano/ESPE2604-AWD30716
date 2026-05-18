@@ -3,6 +3,9 @@
 require_once __DIR__ . '/../../vendor/autoload.php';
 
 use App\Controller\TruckController;
+use App\Database;
+
+Database::boot();
 
 header('Content-Type: application/json; charset=utf-8');
 header('Access-Control-Allow-Origin: *');
