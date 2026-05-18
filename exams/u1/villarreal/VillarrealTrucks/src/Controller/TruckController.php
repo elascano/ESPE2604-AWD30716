@@ -8,20 +8,23 @@ class TruckController
 {
     public function index(): void
     {
-        $trucks = Truck::findAll();
+        $trucks = Truck::orderBy('id', 'desc')->get();
+
         $this->json([
-            'count'  => count($trucks),
-            'trucks' => array_map(fn($t) => $t->toArray(), $trucks),
+            'count'  => $trucks->count(),
+            'trucks' => $trucks->toArray(),
         ]);
     }
 
     public function show(int $id): void
     {
-        $truck = Truck::findById($id);
+        $truck = Truck::find($id);
+
         if (!$truck) {
             $this->error(404, 'Truck not found');
             return;
         }
+
         $this->json($truck->toArray());
     }
 
@@ -29,6 +32,7 @@ class TruckController
     {
         $query  = trim($query);
         $trucks = Truck::search($query);
+
         $this->json([
             'count'  => count($trucks),
             'query'  => $query,
@@ -43,7 +47,7 @@ class TruckController
             return;
         }
 
-        $truck = new Truck($input);
+        $truck  = new Truck($input);
         $errors = $truck->validate();
 
         if (!empty($errors)) {
@@ -52,7 +56,8 @@ class TruckController
         }
 
         try {
-            $id = $truck->save();
+            $truck->save();
+
             $this->json([
                 'message' => 'Truck created successfully',
                 'truck'   => $truck->toArray(),

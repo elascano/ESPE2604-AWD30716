@@ -14,7 +14,12 @@ class Bank extends Model
 
     protected $fillable = [
         'name',
-        'id',
+        'country',
+        'clients',
+        'owner',
+        'phoneNumber',
+        'dollarValue',
+        'creationDate',
     ];
 
     protected static function booted()

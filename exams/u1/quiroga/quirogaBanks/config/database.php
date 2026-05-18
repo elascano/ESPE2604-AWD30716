@@ -8,11 +8,11 @@ $capsule = new Capsule;
 
 $capsule->addConnection([
     "driver" => "pgsql",
-    "host" => "https://pjdbftkrbrguiulkhnpk.supabase.co/rest/v1/",
+    "host" => "db.pjdbftkrbrguiulkhnpk.supabase.co",
     "database" => "postgres",
-    "username" => "pjdbftkrbrguiulkhnpk",
+    "username" => "postgres",
     "password" => "ddtvydtt432",
-    "port" => "6543",
+    "port" => "5432",
     "charset" => "utf8",
     "schema" => "public",
     "sslmode" => "require"
