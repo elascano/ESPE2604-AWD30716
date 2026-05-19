@@ -1,0 +1,69 @@
+# Maven
+target/
+.m2/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+
+# IDE
+.classpath
+.project
+.settings/
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+*.code-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Compiled and packaged files
+*.class
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+
+# Logs
+*.log
+*.log.*
+logs/
+
+# Temporary files
+*.swp
+*.swo
+*~
+*.bak
+*.orig
+
+# Build output
+build/
+dist/
+out/
+node_modules/
+
+# Cache
+.cache/
+.gradle/
+.npm/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Tomcat
+work/
+catalina.home/
+
+# Generated files
+*.properties.bak
+
+# Installation scripts (local setup only)
+*.ps1
+*.bat

@@ -1,0 +1,318 @@
+═══════════════════════════════════════════════════════════════
+    SISTEMA JSP DE GESTIÓN DE PRODUCTOS
+    Proyecto Completo - Listo para Instalar y Ejecutar
+═══════════════════════════════════════════════════════════════
+
+CONTENIDO DEL PROYECTO
+======================
+
+✓ Sistema completo de gestión de productos en JSP
+✓ Base de datos MongoDB Atlas integrada
+✓ Conversión de pesos en tiempo real (kg, lb, gr)
+✓ 2 páginas funcionales (formulario + tabla)
+✓ 9 campos de entrada para productos
+✓ Arquitectura MVC server-side (sin APIs)
+✓ Código sin comentarios, en inglés
+✓ Todo configurado para despliegue
+
+
+═══════════════════════════════════════════════════════════════
+INSTRUCCIONES DE INSTALACIÓN (Sigue estos pasos)
+═══════════════════════════════════════════════════════════════
+
+PASO 1: INSTALAR DEPENDENCIAS (Java 11 y Maven)
+================================================
+
+Opción A - AUTOMÁTICO (Recomendado)
+────────────────────────────────────
+1. Abre: c:\Users\USER\Downloads\wsJSP\INSTALAR.bat
+2. Click derecho → "Ejecutar como administrador"
+3. Espera a que termine (5-10 minutos)
+4. Cierra la ventana
+
+Opción B - MANUAL
+──────────────────
+1. Descarga:
+   Java 11: https://adoptium.net/releases.html (OpenJDK 11, Windows x64)
+   Maven: https://maven.apache.org/download.cgi (Binary zip)
+
+2. Extrae en:
+   Java → C:\Installs\Java
+   Maven → C:\Installs\Maven
+
+3. Configura variables de entorno:
+   - JAVA_HOME = C:\Installs\Java\jdk-11...
+   - M2_HOME = C:\Installs\Maven\apache-maven-3.9.0
+   - PATH = (agregar bin folders)
+
+
+PASO 2: VERIFICAR INSTALACIÓN
+==============================
+
+1. Abre Command Prompt NUEVA
+2. Ejecuta:
+   java -version
+   mvn -version
+
+Deberías ver versiones (11.0.x, 3.9.0)
+
+
+PASO 3: CONFIGURAR MONGODB ATLAS
+=================================
+
+1. Ve a: https://www.mongodb.com/cloud/atlas
+2. Crea una cuenta (gratis)
+3. Crea un cluster (tier FREE)
+4. En "Connect" → obtén la cadena de conexión
+   (debería ser similar a: mongodb+srv://username:password@cluster0.xxxxx.mongodb.net/...)
+
+5. Abre archivo:
+   c:\Users\USER\Downloads\wsJSP\src\main\resources\application.properties
+
+6. Modifica esta línea:
+   mongodb.uri=mongodb+srv://USERNAME:PASSWORD@cluster0.xxxxx.mongodb.net/products?retryWrites=true&w=majority
+
+7. Reemplaza:
+   - USERNAME: tu usuario de MongoDB
+   - PASSWORD: tu contraseña
+   - cluster0.xxxxx: tu URL de cluster
+
+8. GUARDA el archivo
+
+
+PASO 4: EJECUTAR EL PROYECTO
+=============================
+
+Opción A - AUTOMÁTICO
+──────────────────────
+1. Abre: c:\Users\USER\Downloads\wsJSP\run.bat
+2. Click derecho → "Ejecutar como administrador"
+3. Espera a que compile y arranque
+
+Opción B - MANUAL
+──────────────────
+1. Abre Command Prompt
+2. Navega a:
+   cd c:\Users\USER\Downloads\wsJSP
+
+3. Compila:
+   mvn clean install
+
+4. Ejecuta:
+   mvn tomcat7:run
+
+5. Espera a ver:
+   [INFO] INFO: Listening on 0.0.0.0:8080
+
+
+PASO 5: ACCEDER A LA APLICACIÓN
+================================
+
+1. Abre navegador (Chrome, Firefox, Edge)
+2. Ve a: http://localhost:8080/product-manager
+3. Deberías ver la página de inicio con 2 botones
+
+
+═══════════════════════════════════════════════════════════════
+FUNCIONALIDADES DEL SISTEMA
+═══════════════════════════════════════════════════════════════
+
+Página 1: FORMULARIO DE ENTRADA (form.jsp)
+───────────────────────────────────────────
+- Nombre del producto
+- Código de barras
+- Descripción
+- Categoría
+- Fabricante
+- Peso (con conversión automática)
+- Unidad de peso (kg, lb, gr)
+- Precio
+- Cantidad
+
+Al ingresar un peso:
+✓ Se convierte automáticamente a otras unidades
+✓ Se guarda en la base de datos
+✓ Se muestra en la tabla con todas las conversiones
+
+
+Página 2: TABLA DE PRODUCTOS (table.jsp)
+─────────────────────────────────────────
+- Listado de todos los productos ingresados
+- Tabla con:
+  • Nombre, código, descripción, categoría
+  • Peso (original, en kg, en lb)
+  • Precio y cantidad
+  • Total (precio × cantidad)
+  • Botón para eliminar
+
+Funcionalidades:
+✓ Filtrar por categoría
+✓ Ver estadísticas:
+  - Total de productos
+  - Valor total del inventario
+  - Peso total
+  - Promedio de precio
+
+
+═══════════════════════════════════════════════════════════════
+COMPONENTES DEL SISTEMA
+═══════════════════════════════════════════════════════════════
+
+Backend (Java):
+  ✓ Product.java - Modelo de datos
+  ✓ ProductRepository.java - Acceso a base de datos (ORM)
+  ✓ ProductService.java - Lógica de negocio
+  ✓ ProductController.java - Controlador HTTP
+  ✓ MongoDBConnection.java - Conexión a BD
+
+Frontend (JSP/HTML/JavaScript):
+  ✓ index.html - Página de inicio
+  ✓ form.jsp - Formulario de entrada
+  ✓ table.jsp - Tabla de productos
+  ✓ error.jsp - Página de errores
+
+Configuración:
+  ✓ pom.xml - Dependencias Maven
+  ✓ web.xml - Mapeo de servlets
+  ✓ application.properties - Configuración
+
+
+═══════════════════════════════════════════════════════════════
+SOLUCIÓN DE PROBLEMAS
+═══════════════════════════════════════════════════════════════
+
+"java: El término 'java' no se reconoce"
+→ Cierra Command Prompt y abre una NUEVA
+→ Los cambios de PATH necesitan nuevo terminal
+
+"mvn: El término 'mvn' no se reconoce"
+→ Igual que arriba - abre Command Prompt NUEVA
+
+"Cannot connect to MongoDB"
+→ Verifica que credentials en application.properties sean correctos
+→ Asegúrate de haber ingresado la cadena de conexión correcta
+→ Whitelist tu IP en MongoDB Atlas Security → Network Access
+
+"Port 8080 already in use"
+→ Opción 1: Cierra la aplicación anterior
+→ Opción 2: Cambia puerto en pom.xml:
+   <port>8080</port> → <port>8888</port>
+→ Luego accede a: http://localhost:8888/product-manager
+
+"Compilation error / BUILD FAILURE"
+→ Ejecuta: mvn clean install -U
+→ Esto descarga todas las dependencias nuevamente
+
+"Cannot find /jdk-11 folder"
+→ La descarga de Java falló
+→ Intenta descargar manualmente desde: https://adoptium.net
+
+
+═══════════════════════════════════════════════════════════════
+FORMULAS DE CONVERSIÓN IMPLEMENTADAS
+═══════════════════════════════════════════════════════════════
+
+Sistema métrico-imperial:
+  1 kilogramo (kg) = 2.20462 libras (lb)
+  1 libra (lb) = 0.453592 kg
+
+Sistema métrico-gramos:
+  1 kg = 1000 gramos (gr)
+  1 gr = 0.001 kg
+
+Sistema imperial-gramos:
+  1 lb = 453.592 gr
+  1 gr = 0.00220462 lb
+
+
+═══════════════════════════════════════════════════════════════
+ARCHIVOS IMPORTANTES DEL PROYECTO
+═══════════════════════════════════════════════════════════════
+
+SCRIPTS DE INSTALACIÓN/EJECUCIÓN:
+  INSTALAR.bat → Script instalador automático
+  run.bat → Script para ejecutar el proyecto
+  auto-install.ps1 → Script PowerShell de instalación
+
+DOCUMENTACIÓN:
+  START_HERE.txt → Este archivo (START HERE!)
+  SETUP_FINAL.txt → Instrucciones detalladas paso a paso
+  README.md → Descripción general
+  ARCHITECTURE.md → Arquitectura del sistema
+  MONGODB_SETUP.md → Configuración de MongoDB
+  DEPLOYMENT.md → Guía de despliegue
+
+CONFIGURACIÓN:
+  pom.xml → Dependencias y configuración Maven
+  src/main/resources/application.properties → BD config
+
+
+═══════════════════════════════════════════════════════════════
+TECNOLOGÍAS UTILIZADAS
+═══════════════════════════════════════════════════════════════
+
+Servidor:
+  - Java 11 (OpenJDK)
+  - JSP (Java Server Pages)
+  - Apache Tomcat 7+ (incluido con Maven plugin)
+  - Maven 3.6+
+
+Base de Datos:
+  - MongoDB 4.9.1 (cloud: MongoDB Atlas)
+
+Frontend:
+  - HTML5
+  - CSS3
+  - Vanilla JavaScript (sin frameworks)
+
+Librerías Java:
+  - MongoDB Java Driver 4.9.1
+  - Gson 2.10.1 (JSON parsing)
+  - SLF4J 2.0.7 (Logging)
+
+
+═══════════════════════════════════════════════════════════════
+PUERTOS Y DIRECCIONES
+═══════════════════════════════════════════════════════════════
+
+URL Principal:
+  http://localhost:8080/product-manager
+
+Formulario:
+  http://localhost:8080/product-manager/form.jsp
+
+Tabla de productos:
+  http://localhost:8080/product-manager/table.jsp
+
+Puerto por defecto: 8080
+(puedes cambiarlo en pom.xml si está en uso)
+
+
+═══════════════════════════════════════════════════════════════
+PRÓXIMOS PASOS
+═══════════════════════════════════════════════════════════════
+
+1. ✓ Lee este archivo (START_HERE.txt)
+2. ✓ Ejecuta INSTALAR.bat (o descarga manualmente)
+3. ✓ Verifica instalación: java -version, mvn -version
+4. ✓ Configura MongoDB en application.properties
+5. ✓ Ejecuta run.bat (o mvn tomcat7:run)
+6. ✓ Abre http://localhost:8080/product-manager
+7. ✓ Ingresa tu primer producto!
+
+
+═══════════════════════════════════════════════════════════════
+SOPORTE Y DOCUMENTACIÓN ADICIONAL
+═══════════════════════════════════════════════════════════════
+
+Este proyecto está completamente documentado. Consulta:
+
+- SETUP_FINAL.txt → Configuración paso a paso
+- ARCHITECTURE.md → Cómo funciona el sistema
+- MONGODB_SETUP.md → Detalles de MongoDB Atlas
+- PRODUCT_FIELDS.md → Campos disponibles
+- DEPLOYMENT.md → Despliegue en producción
+
+¡El proyecto está listo para usar!
+
+═══════════════════════════════════════════════════════════════

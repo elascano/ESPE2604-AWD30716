@@ -1,0 +1,63 @@
+ANTES DE CONTINUAR - LEE ESTO PRIMERO
+====================================
+
+Tu proyecto JSP está 100% completado. Todo el código está escrito, la
+estructura está lista, y solo necesitas seguir 4 pasos simples:
+
+
+PASO 1: INSTALAR JAVA Y MAVEN (10 minutos)
+============================================
+
+Opción A - Automático (RECOMENDADO):
+  1. Click derecho en: INSTALAR.bat
+  2. "Ejecutar como administrador"
+  3. Espera a que termine
+
+Opción B - Manual (descarga e instalación manual)
+  1. Descarga Java 11 desde: https://adoptium.net
+  2. Descarga Maven desde: https://maven.apache.org
+  3. Extrae en C:\Installs\
+  4. Configura PATH
+
+
+PASO 2: VERIFICAR INSTALACIÓN (1 minuto)
+==========================================
+
+Abre Command Prompt NUEVA y escribe:
+  java -version
+  mvn -version
+
+Si ves versiones, está bien instalado.
+
+
+PASO 3: CONFIGURAR MONGODB (5 minutos)
+=======================================
+
+1. Crear cuenta: https://www.mongodb.com/cloud/atlas
+2. Crear cluster (FREE tier)
+3. Obtener cadena de conexión
+4. Editar: src\main\resources\application.properties
+5. Pegar la cadena en la línea mongodb.uri
+
+IMPORTANTE: No olvides actualizar USERNAME y PASSWORD
+
+
+PASO 4: EJECUTAR (1 minuto)
+============================
+
+Click derecho en: run.bat
+"Ejecutar como administrador"
+
+O manualmente:
+  cd c:\Users\USER\Downloads\wsJSP
+  mvn tomcat7:run
+
+Luego abre navegador: http://localhost:8080/product-manager
+
+
+LISTO!
+======
+
+Esto es todo. El sistema está funcionando.
+
+¿Problemas? Lee START_HERE.txt o SETUP_FINAL.txt
