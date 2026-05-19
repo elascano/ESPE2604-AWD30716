@@ -1,0 +1,3 @@
+com\almacen\controller\ProductController.class
+com\almacen\dao\ProductDAO.class
+com\almacen\model\Product.class
