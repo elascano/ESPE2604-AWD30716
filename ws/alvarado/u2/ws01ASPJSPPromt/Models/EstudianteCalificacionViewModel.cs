@@ -4,36 +4,36 @@ namespace SchoolGrades.Models;
 
 public class EstudianteCalificacionViewModel
 {
-    // Estudiante fields
-    [Required(ErrorMessage = "El nombre es obligatorio")]
+    // Student fields
+    [Required(ErrorMessage = "The name is required")]
     [StringLength(150)]
-    [Display(Name = "Nombre completo")]
+    [Display(Name = "Full name")]
     public string Nombre { get; set; } = string.Empty;
 
-    [Required(ErrorMessage = "La cédula es obligatoria")]
+    [Required(ErrorMessage = "The ID number is required")]
     [StringLength(20)]
-    [Display(Name = "Cédula")]
+    [Display(Name = "ID number")]
     public string Cedula { get; set; } = string.Empty;
 
-    [Required(ErrorMessage = "El correo es obligatorio")]
-    [EmailAddress(ErrorMessage = "Correo no válido")]
+    [Required(ErrorMessage = "The email is required")]
+    [EmailAddress(ErrorMessage = "Invalid email address")]
     [StringLength(200)]
-    [Display(Name = "Correo electrónico")]
+    [Display(Name = "Email address")]
     public string Correo { get; set; } = string.Empty;
 
-    // Calificacion fields
-    [Required(ErrorMessage = "La nota 1 es obligatoria")]
-    [Range(1, 10, ErrorMessage = "La nota debe estar entre 1 y 10")]
-    [Display(Name = "Nota 1")]
+    // Grade fields
+    [Required(ErrorMessage = "Grade 1 is required")]
+    [Range(1, 10, ErrorMessage = "The grade must be between 1 and 10")]
+    [Display(Name = "Grade 1")]
     public decimal Nota1 { get; set; }
 
-    [Required(ErrorMessage = "La nota 2 es obligatoria")]
-    [Range(1, 10, ErrorMessage = "La nota debe estar entre 1 y 10")]
-    [Display(Name = "Nota 2")]
+    [Required(ErrorMessage = "Grade 2 is required")]
+    [Range(1, 10, ErrorMessage = "The grade must be between 1 and 10")]
+    [Display(Name = "Grade 2")]
     public decimal Nota2 { get; set; }
 
-    [Required(ErrorMessage = "La nota 3 es obligatoria")]
-    [Range(1, 10, ErrorMessage = "La nota debe estar entre 1 y 10")]
-    [Display(Name = "Nota 3")]
+    [Required(ErrorMessage = "Grade 3 is required")]
+    [Range(1, 10, ErrorMessage = "The grade must be between 1 and 10")]
+    [Display(Name = "Grade 3")]
     public decimal Nota3 { get; set; }
 }
