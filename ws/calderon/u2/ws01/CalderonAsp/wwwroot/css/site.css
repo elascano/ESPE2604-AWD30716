@@ -1,0 +1,12 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f5f5;
+}
+main { min-height: calc(100vh - 120px); }
+.table { background-color: white; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); }
+.btn-primary { background-color: #0d6efd; }
+.btn-primary:hover { background-color: #0b5ed7; }
+footer { background-color: #f5f5f5; border-top: 1px solid #ddd; }
+.table-responsive { box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); border-radius: 5px; }
+.form-control:focus { border-color: #0d6efd; }
+.alert { border-radius: 5px; }

@@ -1,0 +1,40 @@
+@model EmployeeManagement.Models.Employee
+@{
+    ViewData["Title"] = "Create Employee";
+}
+
+<div class="container mt-5">
+    <h1>Create New Employee</h1>
+
+    <form asp-action="Create" asp-controller="Employee" method="post" class="mt-4">
+        <div class="form-group mb-3">
+            <label asp-for="Name" class="form-label">Name</label>
+            <input asp-for="Name" class="form-control" placeholder="Full name" required />
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="Email" class="form-label">Email</label>
+            <input asp-for="Email" type="email" class="form-control" placeholder="name@example.com" required />
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="Address" class="form-label">Address</label>
+            <input asp-for="Address" class="form-control" placeholder="Full address" required />
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="Cellphone" class="form-label">Phone</label>
+            <input asp-for="Cellphone" class="form-control" placeholder="Phone number" required />
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="Salary" class="form-label">Salary</label>
+            <input asp-for="Salary" type="number" step="0.01" class="form-control" placeholder="0.00" required />
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-success">Save Employee</button>
+            <a asp-action="Index" asp-controller="Employee" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
