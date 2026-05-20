@@ -1,5 +1,5 @@
 # Maven
-target/
+
 .m2/
 pom.xml.tag
 pom.xml.releaseBackup
@@ -24,7 +24,6 @@ Thumbs.db
 # Compiled and packaged files
 *.class
 *.jar
-*.war
 *.ear
 *.zip
 *.tar.gz

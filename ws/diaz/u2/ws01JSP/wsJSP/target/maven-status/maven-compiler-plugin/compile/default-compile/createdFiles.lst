@@ -1,0 +1,7 @@
+com\products\repository\ProductRepository.class
+com\products\model\Product.class
+com\products\util\DataInitializer.class
+com\products\service\ProductService$ProductWeightConversion.class
+com\products\controller\ProductController.class
+com\products\repository\MongoDBConnection.class
+com\products\service\ProductService.class
