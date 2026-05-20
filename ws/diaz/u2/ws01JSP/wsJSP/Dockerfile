@@ -1,9 +1,9 @@
-FROM tomcat:9.0-jdk11
+FROM maven:3.9-eclipse-temurin-17 AS build
 
-RUN rm -rf /usr/local/tomcat/webapps/*
+WORKDIR /app
+COPY . .
+RUN mvn clean package -DskipTests
 
-COPY product-manager.war /usr/local/tomcat/webapps/ROOT.war
+FROM tomcat:9
 
-EXPOSE 8080
-
-CMD ["catalina.sh", "run"]
+COPY --from=build /app/target/*.war /usr/local/tomcat/webapps/ROOT.war
