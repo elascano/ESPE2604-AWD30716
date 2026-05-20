@@ -1,0 +1,7 @@
+controller\SaveProductServlet.class
+util\MongoUtil.class
+com\mycompany\storeproductsmvc\JakartaRestConfiguration.class
+controller\ProductListServlet.class
+dao\ProductDAO.class
+model\StoreProduct.class
+com\mycompany\storeproductsmvc\resources\JakartaEE8Resource.class

@@ -1,0 +1,155 @@
+INSTRUCCIONES FINALES DE INSTALACIÓN Y CONFIGURACIÓN
+=====================================================
+
+La descarga de Java y Maven está en proceso. Sigue estos pasos:
+
+PASO 1: EXTRAE LOS ARCHIVOS DESCARGADOS
+========================================
+
+Una vez que la descarga esté completa (archivos .zip en Downloads):
+
+A. OpenJDK 11:
+   - Click derecho en: C:\Users\USER\Downloads\openjdk11.zip
+   - "Extraer todo..."
+   - Extraer a: C:\jdk-11
+
+B. Maven (cuando se complete la descarga):
+   - Click derecho en: C:\Users\USER\Downloads\maven.zip
+   - "Extraer todo..."
+   - Extraer a: C:\maven
+
+PASO 2: CONFIGURA VARIABLES DE ENTORNO
+========================================
+
+Ejecuta en PowerShell (como administrador si es posible):
+
+[Environment]::SetEnvironmentVariable("JAVA_HOME", "C:\jdk-11.0.21+9", "User")
+[Environment]::SetEnvironmentVariable("M2_HOME", "C:\apache-maven-3.9.0", "User")
+
+$path = [Environment]::GetEnvironmentVariable("Path", "User")
+$newPath = "$path;C:\jdk-11.0.21+9\bin;C:\apache-maven-3.9.0\bin"
+[Environment]::SetEnvironmentVariable("Path", $newPath, "User")
+
+PASO 3: VERIFICA LAS INSTALACIONES
+===================================
+
+Abre una NUEVA ventana de Command Prompt y ejecuta:
+
+java -version
+mvn -version
+
+Deberías ver:
+- openjdk version "11.0.21"
+- Apache Maven 3.9.0
+
+PASO 4: CONFIGURA MONGODB ATLAS
+================================
+
+1. Ve a https://www.mongodb.com/cloud/atlas
+2. Crea una cuenta (si no tienes)
+3. Crea un cluster gratuito
+4. Obtén la cadena de conexión: mongodb+srv://...
+
+5. Abre el archivo:
+   c:\Users\USER\Downloads\wsJSP\src\main\resources\application.properties
+
+6. Modifica esta línea con tu cadena:
+   mongodb.uri=mongodb+srv://USERNAME:PASSWORD@cluster.mongodb.net/products?retryWrites=true&w=majority
+
+Reemplaza:
+- USERNAME: tu usuario
+- PASSWORD: tu contraseña
+- cluster: nombre de tu cluster
+
+PASO 5: COMPILA EL PROYECTO
+=============================
+
+Abre Command Prompt y navega a:
+   cd c:\Users\USER\Downloads\wsJSP
+
+Luego ejecuta:
+   mvn clean install
+
+PASO 6: EJECUTA EL SERVIDOR
+============================
+
+En la misma ventana de Command Prompt:
+   mvn tomcat7:run
+
+Deberías ver:
+   [INFO] INFO: Listening on 0.0.0.0:8080
+
+PASO 7: ACCEDE A LA APLICACIÓN
+===============================
+
+Abre tu navegador (Chrome, Firefox, Edge):
+   http://localhost:8080/product-manager
+
+Deberías ver la página de inicio con dos botones:
+- "Ingresar Producto" → lleva a form.jsp
+- "Ver Productos" → lleva a table.jsp
+
+NOTAS IMPORTANTES
+=================
+
+1. Si Maven o Java no se encuentran:
+   - Cierra todas las ventanas de Command Prompt
+   - Abre una NUEVA ventana
+   - Los cambios de PATH necesitan reinicio
+
+2. Si el puerto 8080 está en uso:
+   - Modifica en pom.xml: <port>8080</port> → <port>8888</port>
+   - Luego accede a: http://localhost:8888/product-manager
+
+3. Para detener el servidor:
+   - Presiona Ctrl+C en la ventana de Command Prompt
+
+4. Para volver a ejecutar:
+   - Cd a la carpeta del proyecto
+   - mvn tomcat7:run
+
+ESTRUCTURA DE CARPETAS
+======================
+
+c:\Users\USER\Downloads\wsJSP\
+├── pom.xml (configuración Maven)
+├── src\main\java\com\products\
+│   ├── model\Product.java
+│   ├── repository\ProductRepository.java
+│   ├── service\ProductService.java
+│   └── controller\ProductController.java
+├── src\main\webapp\
+│   ├── jsp\form.jsp
+│   ├── jsp\table.jsp
+│   ├── jsp\error.jsp
+│   └── index.html
+└── src\main\resources\
+    └── application.properties
+
+PROBLEMAS COMUNES
+=================
+
+1. "java no se reconoce"
+   → Abre NUEVA ventana de Command Prompt
+
+2. "Cannot connect to MongoDB"
+   → Verifica credenciales en application.properties
+   → Asegúrate de agregar tu IP a MongoDB Atlas whitelist
+
+3. "Port 8080 already in use"
+   → Cambia puerto en pom.xml
+
+4. "No se puede compilar"
+   → Asegúrate de que Java esté instalado
+   → mvn clean install -U (para descargar dependencias nuevamente)
+
+CONTACTO/DOCUMENTACIÓN ADICIONAL
+==================================
+
+Consulta estos archivos en la carpeta del proyecto:
+- README.md - Descripción general
+- DEPLOYMENT.md - Guía de despliegue
+- MONGODB_SETUP.md - Configuración de MongoDB
+- ARCHITECTURE.md - Arquitectura del sistema
+
+¡Listo! El sistema estará funcionando.

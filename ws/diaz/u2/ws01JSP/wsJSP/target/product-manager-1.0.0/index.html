@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Manager - Welcome</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 100%;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .features {
+            background: #f5f5f5;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 40px;
+            text-align: left;
+        }
+
+        .features h3 {
+            color: #667eea;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            color: #666;
+            margin-bottom: 12px;
+            padding-left: 30px;
+            position: relative;
+            font-size: 14px;
+        }
+
+        .feature-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #4caf50;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 14px 32px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            min-width: 200px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #e0e0e0;
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            background: #d0d0d0;
+            transform: translateY(-3px);
+        }
+
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 30px;
+            text-align: left;
+            font-size: 13px;
+            color: #1565c0;
+            line-height: 1.6;
+        }
+
+        .tech-stack {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #e0e0e0;
+        }
+
+        .tech-stack h4 {
+            color: #333;
+            font-size: 14px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .tech-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .tech-badge {
+            background: #f5f5f5;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: #667eea;
+            font-weight: 600;
+            border: 1px solid #e0e0e0;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 40px 20px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .logo {
+                font-size: 48px;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            button {
+                min-width: 100%;
+            }
+
+            .features {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="logo">📦</div>
+    <h1>Product Manager</h1>
+    <p class="subtitle">
+        Manage your product inventory with ease. Add products, convert weights, 
+        and view your complete inventory in real-time.
+    </p>
+
+    <div class="features">
+        <h3>Features</h3>
+        <ul class="feature-list">
+            <li>Add products with 9 input fields</li>
+            <li>Real-time weight conversion (kg, lb, gr)</li>
+            <li>Complete inventory table view</li>
+            <li>Search and filter by category</li>
+            <li>MongoDB Atlas database</li>
+            <li>Responsive Vue.js interface</li>
+            <li>Product details modal</li>
+            <li>Quick delete functionality</li>
+        </ul>
+    </div>
+
+    <div class="button-group">
+        <button class="btn-primary" onclick="window.location.href='/product-manager/jsp/form.jsp'">
+            Add Product
+        </button>
+        <button class="btn-primary" onclick="window.location.href='/product-manager/jsp/table.jsp'">
+            View Inventory
+        </button>
+    </div>
+
+    <div class="info-box">
+        <strong>ℹ️ Getting Started:</strong>
+        <br><br>
+        1. Click "Add Product" to enter new products<br>
+        2. Fill all required fields (marked with *)<br>
+        3. Watch weight conversions update in real-time<br>
+        4. Click "View Inventory" to see all products<br>
+        5. Use search and filters to find products
+    </div>
+
+    <div class="tech-stack">
+        <h4>Technology Stack</h4>
+        <div class="tech-badges">
+            <span class="tech-badge">Java 11</span>
+            <span class="tech-badge">JSP</span>
+            <span class="tech-badge">Vue.js 3</span>
+            <span class="tech-badge">MongoDB</span>
+            <span class="tech-badge">Tomcat</span>
+            <span class="tech-badge">Maven</span>
+        </div>
+    </div>
+</div>
+</body>
+</html>

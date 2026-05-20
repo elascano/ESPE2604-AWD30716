@@ -1,0 +1,19 @@
+@model TaxiApp.Models.Ride
+
+<h2>Add New Ride</h2>
+
+<form asp-action="Add" method="post">
+    <div>
+        <label>Origin (e.g. Sangolqui):</label>
+        <input asp-for="Origin" required class="form-control" />
+    </div>
+    <div>
+        <label>Destination (e.g. Quito):</label>
+        <input asp-for="Destination" required class="form-control" />
+    </div>
+    <div>
+        <label>Price ($):</label>
+        <input asp-for="Price" type="number" step="0.01" required class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">Save</button>
+</form>

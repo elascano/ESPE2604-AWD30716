@@ -1,0 +1,28 @@
+@model IEnumerable<TaxiApp.Models.Ride>
+
+<h2>Rides Summary</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Origin</th>
+            <th>Destination</th>
+            <th>Price</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Origin</td>
+                <td>@item.Destination</td>
+                <td>$@item.Price</td>
+                <td>@item.Date.ToString("g")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h3 class="text-success">Total Earnings: $@ViewBag.Total</h3>
+<a asp-action="Add" class="btn btn-secondary">Add another</a>
