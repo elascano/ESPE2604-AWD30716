@@ -1,0 +1,84 @@
+@model IEnumerable<GestionNominaMVC.Models.Employee>
+
+<div class="container mt-4 animate-entrance">
+    <div class="row align-items-center mb-4">
+        <div class="col-md-8">
+            <h1 class="display-5 fw-bold mb-0 text-dark">Team Roster</h1>
+            <p class="text-secondary mt-2 fs-6">Manage your workforce and monitor real-time monthly payroll expenses.</p>
+        </div>
+        <div class="col-md-4 text-end">
+            <a asp-action="Create" class="btn btn-primary-custom shadow-sm">+ Onboard Team Member</a>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="summary-widget d-flex align-items-center justify-content-between">
+                <div>
+                    <h5 class="summary-label mb-1">Monthly Payroll Expense</h5>
+                    <div class="summary-value text-primary">@String.Format("{0:C}", ViewBag.TotalPayroll)</div>
+                </div>
+                <div class="fs-1 text-primary opacity-25">
+                    <i class="bi bi-cash-stack"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="summary-widget d-flex align-items-center justify-content-between">
+                <div>
+                    <h5 class="summary-label mb-1">Active Team Members</h5>
+                    <div class="summary-value text-success">@Model.Count()</div>
+                </div>
+                <div class="fs-1 text-success opacity-25">
+                    <i class="bi bi-people-fill"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="clean-card p-0 overflow-hidden border-0">
+        <div class="table-responsive">
+            <table class="table clean-table align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th class="py-3 px-4">Full Name</th>
+                        <th class="py-3 px-4">Role</th>
+                        <th class="py-3 px-4">Department</th>
+                        <th class="py-3 px-4">Base Salary</th>
+                        <th class="py-3 px-4">Net Salary</th>
+                        <th class="py-3 px-4 text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!Model.Any())
+                    {
+                        <tr>
+                            <td colspan="6" class="text-center py-5 text-muted">
+                                <i>No team members registered yet. Click "Onboard Team Member" to get started.</i>
+                            </td>
+                        </tr>
+                    }
+                    @foreach (var item in Model) {
+                    <tr>
+                        <td class="px-4 py-3">
+                            <div class="fw-bold text-dark fs-6">@item.FirstName @item.LastName</div>
+                            <small class="text-muted">ID Number: @item.NationalId</small>
+                        </td>
+                        <td class="px-4 py-3 text-secondary">@item.JobTitle</td>
+                        <td class="px-4 py-3">
+                            <span class="badge badge-soft rounded-pill px-3 py-2">@item.Department</span>
+                        </td>
+                        <td class="px-4 py-3 text-secondary">@item.BaseSalary.ToString("C")</td>
+                        <td class="px-4 py-3 text-success fw-bold">@item.NetSalary.ToString("C")</td>
+                        <td class="px-4 py-3 text-center">
+                            <form asp-action="Delete" asp-route-id="@item.Id" method="post" onsubmit="return confirm('Are you sure you want to remove this team member?');" class="d-inline">
+                                <button type="submit" class="btn btn-sm btn-danger-custom px-3 py-1">Remove</button>
+                            </form>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
