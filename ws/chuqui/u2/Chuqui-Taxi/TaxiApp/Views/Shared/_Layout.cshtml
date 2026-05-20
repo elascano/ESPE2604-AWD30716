@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - TaxiApp</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/TaxiApp.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TaxiApp - Control de Carreras</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <style>
+        :root { --taxi-yellow: #f7d117; --taxi-dark: #212529; }
+        .navbar { background-color: var(--taxi-dark) !important; border-bottom: 4px solid var(--taxi-yellow); }
+        .nav-link { color: white !important; font-weight: bold; }
+        .nav-link:hover { color: var(--taxi-yellow) !important; }
+        .btn-taxi { background-color: var(--taxi-yellow); color: var(--taxi-dark); font-weight: bold; border: none; }
+        .btn-taxi:hover { background-color: #e2bd14; }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+                    <i class="fa-solid fa-taxi text-warning"></i> TaxiApp
+                </a>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Rides" asp-action="Add"><i class="fa-solid fa-plus-circle"></i> Nueva Carrera</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Rides" asp-action="Summary"><i class="fa-solid fa-list-check"></i> Historial</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+</body>
+</html>
