@@ -1,21 +1,14 @@
-@model ProductStorageMvc.ViewModels.ProductCreateViewModel
+@model ProductStorageMvc.ViewModels.ProductEditViewModel
 
 @{
-    ViewData["Title"] = "Add Product";
+    ViewData["Title"] = "Edit Product";
 }
 
 <section class="card">
     <div class="card-header">
-        <h1>Add Product</h1>
-        <p>Register a new product with its name, price, and quantity.</p>
+        <h1>Edit Product</h1>
+        <p>Update the selected product information.</p>
     </div>
-
-    @if (ViewBag.SuccessMessage != null)
-    {
-        <div class="alert alert-success">
-            @ViewBag.SuccessMessage
-        </div>
-    }
 
     @if (ViewBag.ErrorMessage != null)
     {
@@ -24,12 +17,10 @@
         </div>
     }
 
-    <form asp-controller="Products"
-          asp-action="Create"
-          method="post"
-          class="product-form"
-          novalidate>
+    <form asp-controller="Products" asp-action="Edit" method="post" class="product-form">
         @Html.AntiForgeryToken()
+
+        <input asp-for="Id" type="hidden" />
 
         <div class="form-group">
             <label asp-for="Name"></label>
@@ -64,11 +55,11 @@
 
         <div class="form-actions">
             <button type="submit" class="primary-button">
-                Save Product
+                Update Product
             </button>
 
             <a asp-controller="Products" asp-action="Index" class="secondary-button">
-                View Products
+                Cancel
             </a>
         </div>
     </form>

@@ -27,12 +27,28 @@ namespace ProductStorageMvc.Controllers
         {
             if (!ModelState.IsValid)
             {
+                ViewBag.ErrorMessage = "Please check the entered data before saving the product.";
                 return View(viewModel);
             }
 
-            await _productService.CreateProductAsync(viewModel);
+            try
+            {
+                await _productService.CreateProductAsync(viewModel);
 
-            return RedirectToAction(nameof(Index));
+                ModelState.Clear();
+
+                ViewBag.SuccessMessage = "Product saved successfully.";
+
+                ProductCreateViewModel cleanViewModel = new ProductCreateViewModel();
+
+                return View(cleanViewModel);
+            }
+            catch
+            {
+                ViewBag.ErrorMessage = "The product request was sent, but the server could not confirm the result because the connection was slow. Please check the product list before trying again.";
+
+                return View(viewModel);
+            }
         }
 
         [HttpGet]
@@ -41,6 +57,60 @@ namespace ProductStorageMvc.Controllers
             ProductListViewModel viewModel = await _productService.GetProductListAsync();
 
             return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditFromModal(ProductEditViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                TempData["ErrorMessage"] = "The product could not be updated because the entered data is invalid.";
+                return RedirectToAction(nameof(Index));
+            }
+
+            try
+            {
+                bool updated = await _productService.UpdateProductAsync(viewModel);
+
+                if (!updated)
+                {
+                    TempData["ErrorMessage"] = "The selected product was not found.";
+                    return RedirectToAction(nameof(Index));
+                }
+
+                TempData["SuccessMessage"] = "Product updated successfully.";
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                TempData["ErrorMessage"] = "The product could not be updated. Please try again.";
+                return RedirectToAction(nameof(Index));
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteFromModal(int id)
+        {
+            try
+            {
+                bool deleted = await _productService.DeleteProductAsync(id);
+
+                if (!deleted)
+                {
+                    TempData["ErrorMessage"] = "The selected product was not found.";
+                    return RedirectToAction(nameof(Index));
+                }
+
+                TempData["SuccessMessage"] = "Product deleted successfully.";
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                TempData["ErrorMessage"] = "The product could not be deleted. Please try again.";
+                return RedirectToAction(nameof(Index));
+            }
         }
     }
 }
