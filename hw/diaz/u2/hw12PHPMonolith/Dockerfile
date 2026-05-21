@@ -1,11 +1,3 @@
-FROM composer:2.6 AS builder
-
-WORKDIR /app
-
-COPY composer.json ./
-
-RUN composer install --prefer-dist --no-interaction --no-dev --optimize-autoloader
-
 FROM php:8.2-apache
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -13,29 +5,36 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     autoconf \
+    pkg-config \
+    libssl-dev \
+    libsasl2-dev \
+    libsnappy-dev \
+    libzstd-dev \
+    zstd \
     git \
     curl \
     wget \
     zip \
     unzip \
-    ca-certificates \
-    libssl-dev \
-    libsasl2-dev \
-    libsnappy-dev \
-    libzstd-dev \
-    pkg-config \
-    zstd
+    ca-certificates
 
 RUN docker-php-ext-install -j$(nproc) opcache
 
-RUN pecl install -o -f mongodb && \
+RUN pecl channel-update pecl.php.net && \
+    pecl install -o -f mongodb && \
     docker-php-ext-enable mongodb
+
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 RUN a2enmod rewrite headers
 
 WORKDIR /var/www/html
 
-COPY --from=builder /app/vendor ./vendor
+COPY composer.json composer.lock ./
+
+RUN composer install --no-progress --prefer-dist --no-interaction --no-dev --no-scripts 2>&1 | tail -20
+
+RUN composer dump-autoload --optimize --no-dev
 
 COPY . .
 
@@ -56,5 +55,6 @@ RUN a2enconf app
 EXPOSE 80
 
 CMD ["apache2-foreground"]
+
 
 
