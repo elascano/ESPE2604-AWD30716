@@ -1,0 +1,82 @@
+body {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    min-height: 100vh;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+}
+
+.btn-glass {
+    background: rgba(79, 172, 254, 0.2);
+    color: #fff;
+    border: 1px solid rgba(79, 172, 254, 0.4);
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.btn-glass:hover {
+    background: rgba(79, 172, 254, 0.4);
+    color: #fff;
+    box-shadow: 0 0 15px rgba(79, 172, 254, 0.4);
+}
+
+.btn-danger-glass {
+    background: rgba(239, 68, 68, 0.15);
+    color: #fca5a5;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.btn-danger-glass:hover {
+    background: rgba(239, 68, 68, 0.4);
+    color: #fff;
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
+}
+
+.glass-table {
+    color: #fff !important;
+    background: transparent !important;
+}
+
+.glass-table thead th {
+    background: rgba(0, 0, 0, 0.2) !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.glass-table tbody td {
+    background: transparent !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+.form-control, .form-select {
+    background: rgba(0, 0, 0, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: #fff !important;
+}
+
+.form-control::placeholder {
+    color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #4facfe !important;
+    box-shadow: 0 0 8px rgba(79, 172, 254, 0.5) !important;
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
