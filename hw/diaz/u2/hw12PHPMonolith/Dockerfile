@@ -1,48 +1,58 @@
 FROM php:8.2-apache
 
-RUN apt-get update && apt-get install -y \
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     autoconf \
     git \
     curl \
+    wget \
     zip \
     unzip \
+    ca-certificates \
     libssl-dev \
     libsasl2-dev \
     libsnappy-dev \
+    libzstd-dev \
     pkg-config \
-    zstd \
-    libzstd-dev
+    zstd
 
-RUN pecl install mongodb && docker-php-ext-enable mongodb
+RUN docker-php-ext-install -j$(nproc) opcache
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN pecl install -o -f mongodb && \
+    docker-php-ext-enable mongodb
 
-RUN a2enmod rewrite
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
+    chmod +x /usr/local/bin/composer
+
+RUN a2enmod rewrite headers
 
 WORKDIR /var/www/html
 
 COPY composer.json ./
 
-RUN composer install --no-cache --prefer-dist --no-interaction --no-dev --optimize-autoloader
+RUN composer install --prefer-dist --no-interaction --no-dev --optimize-autoloader 2>&1
 
 COPY . .
 
-RUN chown -R www-data:www-data /var/www/html && \
-    chmod -R 755 /var/www/html
+RUN chown -R www-data:www-data /var/www/html
 
 RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/html/public|g' /etc/apache2/sites-available/000-default.conf
 
-RUN echo "<Directory /var/www/html/public>" >> /etc/apache2/conf-available/custom.conf && \
-    echo "    Options -Indexes +FollowSymLinks" >> /etc/apache2/conf-available/custom.conf && \
-    echo "    AllowOverride All" >> /etc/apache2/conf-available/custom.conf && \
-    echo "    Require all granted" >> /etc/apache2/conf-available/custom.conf && \
-    echo "</Directory>" >> /etc/apache2/conf-available/custom.conf
+RUN cat > /etc/apache2/conf-available/app.conf << 'EOF'
+<Directory /var/www/html/public>
+    Options -Indexes +FollowSymLinks
+    AllowOverride All
+    Require all granted
+</Directory>
+EOF
 
-RUN a2enconf custom
+RUN a2enconf app
 
 EXPOSE 80
 
 CMD ["apache2-foreground"]
+
 
 
