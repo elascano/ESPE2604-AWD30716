@@ -1,0 +1,8 @@
+.git
+.gitignore
+.env.example
+README.md
+nginx.conf
+vendor/
+node_modules/
+.DS_Store
