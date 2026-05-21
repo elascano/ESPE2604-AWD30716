@@ -22,11 +22,10 @@ RUN a2enmod rewrite
 
 WORKDIR /var/www/html
 
-COPY composer.json composer.lock ./
-
-RUN composer install --prefer-dist --no-interaction --no-dev --optimize-autoloader
-
 COPY . .
+
+RUN rm -f composer.lock && \
+    composer install --no-cache --prefer-dist --no-interaction --no-dev 2>&1 | head -100 || true
 
 RUN chown -R www-data:www-data /var/www/html && \
     chmod -R 755 /var/www/html
@@ -44,3 +43,4 @@ RUN a2enconf custom
 EXPOSE 80
 
 CMD ["apache2-foreground"]
+
