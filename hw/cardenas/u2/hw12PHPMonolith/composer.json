@@ -1,0 +1,17 @@
+{
+    "name": "andres/hw12php-monolith",
+    "autoload": {
+        "psr-4": {
+            "Andres\\Hw12phpMonolith\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Andres Cardenas",
+            "email": "andrescardenase77@gmail.com"
+        }
+    ],
+    "require": {
+        "mongodb/mongodb": "^2.2"
+    }
+}
