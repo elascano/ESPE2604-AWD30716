@@ -32,12 +32,13 @@ final class ProductService
 
     public function getById(string $id): ?Product
     {
-        if (!ObjectId::isValid($id)) {
-            return null;
-        }
-
         $collection = $this->database->getProductsCollection();
-        $document = $collection->findOne(['_id' => new ObjectId($id)]);
+
+        $document = $collection->findOne(['_id' => $id]);
+
+        if ($document === null && self::isObjectId($id)) {
+            $document = $collection->findOne(['_id' => new ObjectId($id)]);
+        }
 
         if ($document === null) {
             return null;
@@ -58,18 +59,21 @@ final class ProductService
     {
         $id = $product->getId();
 
-        if (!ObjectId::isValid($id)) {
-            throw new \InvalidArgumentException('Invalid product ID format');
-        }
-
         $collection = $this->database->getProductsCollection();
         $data = $product->toBson();
         unset($data['RegistrationDate']);
 
         $result = $collection->updateOne(
-            ['_id' => new ObjectId($id)],
+            ['_id' => $id],
             ['$set' => $data]
         );
+
+        if ($result->getMatchedCount() === 0 && self::isObjectId($id)) {
+            $result = $collection->updateOne(
+                ['_id' => new ObjectId($id)],
+                ['$set' => $data]
+            );
+        }
 
         if ($result->getMatchedCount() === 0) {
             throw new \RuntimeException("Product with ID {$id} was not found");
@@ -78,15 +82,21 @@ final class ProductService
 
     public function delete(string $id): void
     {
-        if (!ObjectId::isValid($id)) {
-            throw new \InvalidArgumentException('Invalid product ID format');
-        }
-
         $collection = $this->database->getProductsCollection();
-        $result = $collection->deleteOne(['_id' => new ObjectId($id)]);
+
+        $result = $collection->deleteOne(['_id' => $id]);
+
+        if ($result->getDeletedCount() === 0 && self::isObjectId($id)) {
+            $result = $collection->deleteOne(['_id' => new ObjectId($id)]);
+        }
 
         if ($result->getDeletedCount() === 0) {
             throw new \RuntimeException("Product with ID {$id} was not found");
         }
+    }
+
+    private static function isObjectId(string $value): bool
+    {
+        return preg_match('/^[a-fA-F0-9]{24}$/', $value) === 1;
     }
 }
