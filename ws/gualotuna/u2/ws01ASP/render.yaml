@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: optima-hr-app
+    env: docker
+    plan: free
+    region: ohio
+    branch: main
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+      # The default port .NET 8 uses is 8080 in Docker
+      - key: PORT
+        value: 8080

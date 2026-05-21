@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: product-price-manager
+    env: docker
+    plan: free
+    envVars:
+      - key: SUPABASE_URL
+        value: https://tmjxgxiwmqfvavjnbdyj.supabase.co
+      - key: SUPABASE_ANON_KEY
+        sync: false

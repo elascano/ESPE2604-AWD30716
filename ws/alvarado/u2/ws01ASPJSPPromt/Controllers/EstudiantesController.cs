@@ -1,76 +1,87 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using SchoolGrades.Data;
-using SchoolGrades.Models;
-
-namespace SchoolGrades.Controllers;
-
-public class EstudiantesController : Controller
+[HttpPost]
+[ValidateAntiForgeryToken]
+public async Task<IActionResult> Insertar(EstudianteCalificacionViewModel vm)
 {
-    private readonly AppDbContext _context;
+    // Server-side: trim whitespace before validation
+    vm.Nombre = vm.Nombre?.Trim() ?? string.Empty;
+    vm.Cedula = vm.Cedula?.Trim() ?? string.Empty;
+    vm.Correo = vm.Correo?.Trim().ToLower() ?? string.Empty;
 
-    public EstudiantesController(AppDbContext context)
+    // Re-validate after trimming
+    ModelState.Clear();
+    TryValidateModel(vm);
+
+    if (!ModelState.IsValid)
+        return View(vm);
+
+    // Verify: check duplicate cédula
+    bool cedulaExiste = await _context.Estudiantes
+        .AnyAsync(e => e.Cedula == vm.Cedula);
+    if (cedulaExiste)
     {
-        _context = context;
+        ModelState.AddModelError("Cedula", "A student with this ID number already exists.");
+        return View(vm);
     }
 
-    // GET: /Estudiantes/Index  — lista de calificaciones
-    public async Task<IActionResult> Index()
+    // Verify: check duplicate correo
+    bool correoExiste = await _context.Estudiantes
+        .AnyAsync(e => e.Correo == vm.Correo);
+    if (correoExiste)
     {
-        var estudiantes = await _context.Estudiantes
-            .Include(e => e.Calificacion)
-            .OrderBy(e => e.Nombre)
-            .ToListAsync();
-
-        return View(estudiantes);
+        ModelState.AddModelError("Correo", "A student with this email already exists.");
+        return View(vm);
     }
 
-    // GET: /Estudiantes/Insertar
-    public IActionResult Insertar()
+    // Verify: Ecuadorian cédula algorithm
+    if (!ValidarCedulaEcuatoriana(vm.Cedula))
     {
-        return View(new EstudianteCalificacionViewModel());
+        ModelState.AddModelError("Cedula", "The entered ID number is not valid.");
+        return View(vm);
     }
 
-    // POST: /Estudiantes/Insertar
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Insertar(EstudianteCalificacionViewModel vm)
+    var estudiante = new Estudiante
     {
-        if (!ModelState.IsValid)
-            return View(vm);
+        Nombre = vm.Nombre,
+        Cedula = vm.Cedula,
+        Correo = vm.Correo,
+    };
 
-        // Check duplicate cedula
-        bool cedulaExiste = await _context.Estudiantes
-            .AnyAsync(e => e.Cedula == vm.Cedula);
+    _context.Estudiantes.Add(estudiante);
+    await _context.SaveChangesAsync();
 
-        if (cedulaExiste)
-        {
-            ModelState.AddModelError("Cedula", "Ya existe un estudiante con esa cédula.");
-            return View(vm);
-        }
+    var calificacion = new Calificacion
+    {
+        EstudianteId = estudiante.Id,
+        Nota1 = vm.Nota1,
+        Nota2 = vm.Nota2,
+        Nota3 = vm.Nota3,
+    };
 
-        var estudiante = new Estudiante
-        {
-            Nombre = vm.Nombre,
-            Cedula = vm.Cedula,
-            Correo = vm.Correo,
-        };
+    _context.Calificaciones.Add(calificacion);
+    await _context.SaveChangesAsync();
 
-        _context.Estudiantes.Add(estudiante);
-        await _context.SaveChangesAsync();
+    TempData["Exito"] = $"Student '{estudiante.Nombre}' was successfully registered.";
+    return RedirectToAction(nameof(Index));
+}
 
-        var calificacion = new Calificacion
-        {
-            EstudianteId = estudiante.Id,
-            Nota1 = vm.Nota1,
-            Nota2 = vm.Nota2,
-            Nota3 = vm.Nota3,
-        };
+// Ecuadorian cédula verification algorithm
+private static bool ValidarCedulaEcuatoriana(string cedula)
+{
+    if (cedula.Length != 10) return false;
 
-        _context.Calificaciones.Add(calificacion);
-        await _context.SaveChangesAsync();
+    int provincia = int.Parse(cedula.Substring(0, 2));
+    if (provincia < 1 || provincia > 24) return false;
 
-        TempData["Exito"] = $"Estudiante '{estudiante.Nombre}' registrado correctamente.";
-        return RedirectToAction(nameof(Index));
+    int[] coeficientes = { 2, 1, 2, 1, 2, 1, 2, 1, 2 };
+    int suma = 0;
+
+    for (int i = 0; i < 9; i++)
+    {
+        int digito = int.Parse(cedula[i].ToString()) * coeficientes[i];
+        if (digito >= 10) digito -= 9;
+        suma += digito;
     }
+
+    int digitoVerificador = (10 - (suma % 10)) % 10;
+    return digitoVerificador == int.Parse(cedula[9].ToString());
 }

@@ -1,0 +1,16 @@
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="container mt-5 text-center">
+    <h1>Welcome to Employee Management</h1>
+    <p class="lead mt-3">ASP.NET MVC + Vue + Supabase Application</p>
+    <div class="mt-5">
+        <a asp-action="Index" asp-controller="Employee" class="btn btn-primary btn-lg">
+            See Employees
+        </a>
+        <a asp-action="Create" asp-controller="Employee" class="btn btn-success btn-lg ms-2">
+            Create Employee
+        </a>
+    </div>
+</div>

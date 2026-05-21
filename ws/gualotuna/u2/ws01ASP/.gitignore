@@ -1,0 +1,12 @@
+# Carpetas de compilación
+bin/
+obj/
+
+# Configuraciones de editores
+.vs/
+.vscode/
+*.user
+
+# Archivos de sistema operativo
+.DS_Store
+Thumbs.db

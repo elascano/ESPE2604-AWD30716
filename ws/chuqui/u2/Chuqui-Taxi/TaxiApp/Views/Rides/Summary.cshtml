@@ -1,0 +1,40 @@
+@model IEnumerable<TaxiApp.Models.Ride>
+
+<div class="card shadow">
+    <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+        <h4 class="mb-0"><i class="fa-solid fa-clock-rotate-left text-warning"></i> Resumen del Día</h4>
+        <span class="badge bg-warning text-dark fs-5">Total: $@ViewBag.Total</span>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead class="table-light">
+                    <tr>
+                        <th><i class="fa-solid fa-route"></i> Ruta</th>
+                        <th><i class="fa-solid fa-money-bill-wave"></i> Precio</th>
+                        <th><i class="fa-solid fa-calendar-day"></i> Fecha/Hora</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <strong>@item.Origin</strong> 
+                                <i class="fa-solid fa-arrow-right text-muted mx-2"></i> 
+                                <strong>@item.Destination</strong>
+                            </td>
+                            <td class="text-success fw-bold">$@item.Price</td>
+                            <td class="text-muted">@item.Date.ToString("dd/MM/yyyy HH:mm")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="text-center mt-3">
+            <a asp-action="Add" class="btn btn-outline-dark">
+                <i class="fa-solid fa-plus"></i> Registrar otra carrera
+            </a>
+        </div>
+    </div>
+</div>

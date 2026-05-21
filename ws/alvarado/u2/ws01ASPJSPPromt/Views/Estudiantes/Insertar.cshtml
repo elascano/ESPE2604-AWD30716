@@ -150,9 +150,7 @@
 
         <br />
 
-        <button type="submit" @@click.prevent="enviar">
-            Save
-        </button>
+        <button type="button" @@click="enviar">Save</button>
 
     </form>
 
@@ -212,35 +210,64 @@
             });
 
             function validar() {
-
                 const e = {};
 
-                if (!form.value.nombre.trim())
-                    e.nombre = 'Name is required.';
+                // Name
+                const nombre = form.value.nombre.trim();
+                if (!nombre)
+                    e.nombre = 'The name is required.';
+                else if (nombre.length < 3)
+                    e.nombre = 'The name must be at least 3 characters long.';
+                else if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(nombre))
+                    e.nombre = 'The name can only contain letters and spaces.';
 
-                if (!form.value.cedula.trim())
-                    e.cedula = 'ID is required.';
+                // ID number
+                const cedula = form.value.cedula.trim();
+                if (!cedula)
+                    e.cedula = 'The ID number is required.';
+                else if (!/^\d{10}$/.test(cedula))
+                    e.cedula = 'The ID number must contain exactly 10 numeric digits.';
+                else if (!validarCedulaEcuatoriana(cedula))
+                    e.cedula = 'The entered ID number is not valid.';
 
-                if (
-                    !form.value.correo.trim() ||
-                    !/\S+@@\S+\.\S+/.test(form.value.correo)
-                )
+                // Email
+                const correo = form.value.correo.trim();
+                if (!correo)
+                    e.correo = 'The email is required.';
+                else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo))
                     e.correo = 'Enter a valid email address.';
 
+                // Grades
                 ['nota1', 'nota2', 'nota3'].forEach((n, i) => {
-
                     const v = form.value[n];
-
                     if (v === null || v === undefined || v === '')
                         e[n] = `Grade ${i + 1} is required.`;
-
-                    else if (v < 1 || v > 10)
+                    else if (isNaN(v) || v < 1 || v > 10)
                         e[n] = `Grade ${i + 1} must be between 1 and 10.`;
+                    else if (!/^\d+(\.\d{1,2})?$/.test(String(v)))
+                        e[n] = `Grade ${i + 1} allows a maximum of 2 decimal places.`;
                 });
 
                 errores.value = e;
-
                 return Object.keys(e).length === 0;
+            }
+
+            // Ecuadorian cédula algorithm (client-side mirror)
+            function validarCedulaEcuatoriana(cedula) {
+                const provincia = parseInt(cedula.substring(0, 2));
+                if (provincia < 1 || provincia > 24) return false;
+
+                const coeficientes = [2, 1, 2, 1, 2, 1, 2, 1, 2];
+                let suma = 0;
+
+                for (let i = 0; i < 9; i++) {
+                    let digito = parseInt(cedula[i]) * coeficientes[i];
+                    if (digito >= 10) digito -= 9;
+                    suma += digito;
+                }
+
+                const digitoVerificador = (10 - (suma % 10)) % 10;
+                return digitoVerificador === parseInt(cedula[9]);
             }
 
             function enviar() {
