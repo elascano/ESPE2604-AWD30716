@@ -1,4 +1,4 @@
-FROM php:8.2-apache
+FROM php:8.2-fpm
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -16,7 +16,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     wget \
     zip \
     unzip \
-    ca-certificates
+    ca-certificates \
+    nginx \
+    supervisor
 
 RUN docker-php-ext-install -j$(nproc) opcache
 
@@ -26,13 +28,11 @@ RUN pecl channel-update pecl.php.net && \
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-RUN a2enmod rewrite headers
-
 WORKDIR /var/www/html
 
 COPY composer.json composer.lock ./
 
-RUN composer install --no-progress --prefer-dist --no-interaction --no-dev --no-scripts 2>&1 | tail -20
+RUN composer install --no-progress --prefer-dist --no-interaction --no-dev
 
 RUN composer dump-autoload --optimize --no-dev
 
@@ -40,18 +40,12 @@ COPY . .
 
 RUN chown -R www-data:www-data /var/www/html
 
-RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/html/public|g' /etc/apache2/sites-available/000-default.conf
+RUN mkdir -p /run/php
 
-RUN cat > /etc/apache2/conf-available/app.conf << 'EOF'
-<Directory /var/www/html/public>
-    Options -Indexes +FollowSymLinks
-    AllowOverride All
-    Require all granted
-</Directory>
-EOF
+COPY nginx.conf /etc/nginx/nginx.conf
 
-RUN a2enconf app
+RUN chmod -R 755 /var/www/html/public
 
-EXPOSE 80
+EXPOSE 8080
 
-CMD ["apache2-foreground"]
+CMD ["php-fpm"]

@@ -4,7 +4,7 @@ namespace App\Models;
 
 require_once __DIR__ . '/../../config/Database.php';
 
-use Database;
+use Config\Database;
 use MongoDB\BSON\ObjectId;
 
 class Product {

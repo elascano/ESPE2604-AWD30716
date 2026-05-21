@@ -1,1 +1,1 @@
-web: vendor/bin/heroku-php-apache2 -C php.ini public/
+web: php-fpm -D && exec nginx -g 'daemon off;'
