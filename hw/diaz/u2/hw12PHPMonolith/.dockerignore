@@ -1,8 +1,6 @@
 .git
 .gitignore
-.env.example
-README.md
-nginx.conf
-vendor/
-node_modules/
-.DS_Store
+.dockerignore
+*.md
+.env
+[.env.example](http://_vscodecontentref_/3)
