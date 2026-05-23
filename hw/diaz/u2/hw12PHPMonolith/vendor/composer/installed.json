@@ -304,6 +304,6 @@
             "install-path": "../symfony/polyfill-php81"
         }
     ],
-    "dev": false,
+    "dev": true,
     "dev-package-names": []
 }
