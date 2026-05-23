@@ -1,1 +1,1 @@
-web: php-fpm -D && exec nginx -g 'daemon off;'
+web: /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf

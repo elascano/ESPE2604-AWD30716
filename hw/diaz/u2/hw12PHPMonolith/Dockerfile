@@ -2,6 +2,7 @@ FROM php:8.2-fpm
 
 ENV DEBIAN_FRONTEND=noninteractive
 
+# Install packages
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     autoconf \
@@ -18,34 +19,36 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     unzip \
     ca-certificates \
     nginx \
-    supervisor
+    supervisor \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
+# Install PHP extensions
 RUN docker-php-ext-install -j$(nproc) opcache
-
 RUN pecl channel-update pecl.php.net && \
     pecl install -o -f mongodb && \
     docker-php-ext-enable mongodb
 
+# Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 WORKDIR /var/www/html
 
+# Copy composer files and install dependencies
 COPY composer.json composer.lock ./
+RUN composer install --no-progress --prefer-dist --no-interaction --no-dev --no-scripts
 
-RUN composer install --no-progress --prefer-dist --no-interaction --no-dev
-
-RUN composer dump-autoload --optimize --no-dev
-
+# Copy application files
 COPY . .
 
-RUN chown -R www-data:www-data /var/www/html
+# Set permissions
+RUN chown -R www-data:www-data /var/www/html && \
+    chmod -R 755 /var/www/html/public
 
-RUN mkdir -p /run/php
-
+# Copy configurations
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY nginx.conf /etc/nginx/nginx.conf
-
-RUN chmod -R 755 /var/www/html/public
+COPY php-fpm.conf /usr/local/etc/php-fpm.d/zz-php-fpm.conf
 
 EXPOSE 8080
 
-CMD ["php-fpm"]
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
