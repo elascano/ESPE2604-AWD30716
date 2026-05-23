@@ -1,44 +1,36 @@
+# --- Etapa 1: Builder ---
+FROM composer:2 as builder
+
+WORKDIR /app
+
+# Copiamos solo los archivos de composer para aprovechar el cache de Docker
+COPY composer.json composer.lock ./
+
+# Instalamos las dependencias
+RUN composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
+
+# --- Etapa 2: Final ---
 FROM php:8.2-fpm
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Install packages
+# Instalar solo los paquetes necesarios para producción
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential \
-    autoconf \
-    pkg-config \
-    libssl-dev \
-    libsasl2-dev \
-    libsnappy-dev \
-    libzstd-dev \
-    zstd \
-    git \
-    curl \
-    wget \
-    zip \
-    unzip \
-    ca-certificates \
     nginx \
     supervisor \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Install PHP extensions
-RUN docker-php-ext-install -j$(nproc) opcache
+# Instalar extensiones de PHP
 RUN pecl channel-update pecl.php.net && \
     pecl install -o -f mongodb && \
     docker-php-ext-enable mongodb
 
-# Install Composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-ENV COMPOSER_MEMORY_LIMIT=-1
-
 WORKDIR /var/www/html
 
-# Copy composer files and install dependencies
-COPY composer.json composer.lock ./
-RUN composer install --no-progress --prefer-dist --no-interaction --no-dev --no-scripts --optimize-autoloader
+# Copiar las dependencias desde la etapa "builder"
+COPY --from=builder /app/vendor/ /var/www/html/vendor/
 
-# Copy application files
+# Copiar el resto de la aplicación
 COPY . .
 
 # Set permissions
@@ -53,5 +45,4 @@ COPY php-fpm.conf /usr/local/etc/php-fpm.d/zz-php-fpm.conf
 EXPOSE 8080
 
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
-
 
