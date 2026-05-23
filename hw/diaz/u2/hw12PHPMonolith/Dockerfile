@@ -21,11 +21,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     nginx \
     supervisor
 
-# 2. Instalar extensiones de PHP
-RUN docker-php-ext-install -j$(nproc) opcache
+# ... (código anterior) ...
+
+# Instalar extensiones de PHP
 RUN pecl channel-update pecl.php.net && \
-    pecl install -o -f mongodb && \
+    pecl install -o -f mongodb-1.18.1 && \
     docker-php-ext-enable mongodb
+
+# ... (resto del código) ...
 
 # 3. Instalar Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
