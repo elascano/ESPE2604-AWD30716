@@ -30,12 +30,13 @@ RUN pecl channel-update pecl.php.net && \
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+ENV COMPOSER_MEMORY_LIMIT=-1
 
 WORKDIR /var/www/html
 
-# Copy composer file and update dependencies
-COPY composer.json ./
-RUN composer update --no-progress --no-interaction --no-dev --optimize-autoloader
+# Copy composer files and install dependencies
+COPY composer.json composer.lock ./
+RUN composer install --no-progress --prefer-dist --no-interaction --no-dev --no-scripts --optimize-autoloader
 
 # Copy application files
 COPY . .
@@ -52,4 +53,5 @@ COPY php-fpm.conf /usr/local/etc/php-fpm.d/zz-php-fpm.conf
 EXPOSE 8080
 
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+
 
