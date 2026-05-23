@@ -3,7 +3,7 @@
         'name' => 'product-inventory/app',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '3c0099c31c303f764fe57fcd5a46e3503945222a',
+        'reference' => 'f9df902b10d3a029089cc98eade4074cd5589366',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -22,7 +22,7 @@
         'product-inventory/app' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '3c0099c31c303f764fe57fcd5a46e3503945222a',
+            'reference' => 'f9df902b10d3a029089cc98eade4074cd5589366',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
