@@ -35,14 +35,15 @@ ENV COMPOSER_MEMORY_LIMIT=-1
 
 WORKDIR /var/www/html
 
-# Copiar TODA la aplicación, incluyendo la carpeta /vendor
+# Copiar el resto de la aplicación
 COPY . .
 
-# Set permissions
-RUN chown -R www-data:www-data /var/www/html && \
+# Crear directorio para el socket de PHP-FPM y establecer permisos
+RUN mkdir -p /run/php && \
+    chown -R www-data:www-data /var/www/html && \
     chmod -R 755 /var/www/html/public
 
-# ... (resto de la configuración) ...
+# ... (resto del código) ...
 
 # Copy configurations
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
