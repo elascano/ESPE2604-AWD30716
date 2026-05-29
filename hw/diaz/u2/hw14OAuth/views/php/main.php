@@ -1,4 +1,7 @@
-<?php require_once __DIR__ . '/../../auth/auth-check.php'; ?>
+<?php
+require_once __DIR__ . '/../../auth/auth-check.php';
+$basePath = $GLOBALS['APP_BASE_PATH'] ?? '';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,7 +48,7 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item text-danger py-2" href="/hw13Sesion/auth/logout.php"><i
+                        <li><a class="dropdown-item text-danger py-2" href="<?php echo $basePath; ?>/auth/logout.php"><i
                                     class="bi bi-box-arrow-right me-2"></i> Logout</a></li>
                     </ul>
                 </div>
