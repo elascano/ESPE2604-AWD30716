@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Pagos | Fábula Dental</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/user-views.css">
+    <link rel="stylesheet" href="../css/forms.css">
+</head>
+
+<body class="bg-light">
+
+    <header>
+        <h1>Fábula Dental</h1>
+        <p class="m-0">Especialistas en Sonrisas Infantiles</p>
+    </header>
+
+    <main class="form-container">
+        <div class="form-card shadow-sm">
+            <h2 class="text-primary fw-bold">Registrar Nuevo Pago</h2>
+
+            <form action="../../controllers/payment-controller.php" method="POST" id="paymentForm">
+                <input type="hidden" name="action" value="create">
+                <div class="form-grid">
+
+                    <div class="input-group full-width">
+                        <label for="patientID">Cédula del Paciente</label>
+                        <input type="text" id="patientID" name="patientID" required pattern="[0-9]{10}" placeholder="Ej: 1727095414">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="amount">Monto del Pago ($)</label>
+                        <input type="number" id="amount" name="amount" required min="0.01" step="0.01" placeholder="Ej: 50.00">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="date">Fecha de Pago</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="paymentType">Tipo de Pago</label>
+                        <select id="paymentType" name="paymentType" required>
+                            <option value="">Seleccione tipo</option>
+                            <option value="Deposit">Abono (Deposit)</option>
+                            <option value="Final">Pago Final (Final)</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="paymentMethod">Método de Pago</label>
+                        <select id="paymentMethod" name="paymentMethod" required>
+                            <option value="">Seleccione método</option>
+                            <option value="Cash">Efectivo</option>
+                            <option value="Transfer">Transferencia</option>
+                            <option value="Card">Tarjeta Crédito/Débito</option>
+                        </select>
+                    </div>
+
+                    <div class="full-width mt-3">
+                        <button type="submit" class="btn btn-primary w-100 fw-bold">Registrar Transacción</button>
+                    </div>
+
+                    <div class="full-width actions-row d-flex gap-2 mt-2">
+                        <a href="../php/payment-list.php" class="btn btn-secondary flex-grow-1">Ver Historial</a>
+                        <a href="./receptionist.html" class="btn btn-secondary flex-grow-1">Volver al Panel</a>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer class="text-center py-3">
+        <p class="text-muted small">&copy; 2026 Fábula Dental - Odontopediatría Especializada.</p>
+    </footer>
+
+    <script src="../js/payment-validation.js"></script>
+</body>
+
+</html>
