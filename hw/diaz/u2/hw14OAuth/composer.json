@@ -1,0 +1,11 @@
+{
+    "require": {
+        "illuminate/database": "^12.58",
+        "google/apiclient": "^2.15.0"
+    },
+    "config": {
+        "audit": {
+            "abandoned": "ignore"
+        }
+    }
+}
