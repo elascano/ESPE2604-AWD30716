@@ -1,126 +1,18 @@
-<script setup>
-import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
-import LogoutModal from './components/LogoutModal.vue'
-import Login from './views/Login.vue'
-import Home from './views/Home.vue'
-import { supabase } from './lib/supabase'
-
-const activeView = ref('login')
-const homeSection = ref('home')
-const user = ref(null)
-const isProfileDropdownOpen = ref(false)
-const showSignOutModal = ref(false)
-const showSessionClosedModal = ref(false)
-let authSubscription = null
-
-const isHomeView = computed(() => activeView.value === 'home' && !!user.value)
-
-const userMetadata = computed(() => user.value?.user_metadata ?? {})
-
-const profileName = computed(() => {
-	return userMetadata.value.full_name || userMetadata.value.name || 'Jefferson Aguilar'
-})
-
-const profileRole = computed(() => {
-	return String(userMetadata.value.role || 'CUSTOMER').toUpperCase()
-})
-
-const syncSession = async () => {
-	const { data, error } = await supabase.auth.getSession()
-	if (error) {
-		console.error(error)
-		user.value = null
-		activeView.value = 'login'
-		return
-	}
-
-	user.value = data.session?.user ?? null
-	activeView.value = data.session?.user ? 'home' : 'login'
-	if (!data.session?.user) {
-		isProfileDropdownOpen.value = false
-		showSignOutModal.value = false
-		showSessionClosedModal.value = false
-	}
-}
-
-const goHomeSection = (section) => {
-	homeSection.value = section
-	activeView.value = 'home'
-	isProfileDropdownOpen.value = false
-}
-
-const toggleProfileDropdown = () => {
-	isProfileDropdownOpen.value = !isProfileDropdownOpen.value
-	if (isProfileDropdownOpen.value) {
-		showSignOutModal.value = false
-	}
-}
-
-const requestSignOut = () => {
-	isProfileDropdownOpen.value = false
-	showSignOutModal.value = true
-}
-
-const cancelSignOutModal = () => {
-	showSignOutModal.value = false
-}
-
-const signOut = async () => {
-	showSignOutModal.value = false
-	isProfileDropdownOpen.value = false
-	try {
-		await supabase.auth.signOut()
-	} catch (error) {
-		console.error(error)
-	}
-}
-
-const handleSessionClosed = () => {
-	showSessionClosedModal.value = false
-	user.value = null
-	homeSection.value = 'home'
-	activeView.value = 'login'
-	isProfileDropdownOpen.value = false
-}
-
-onMounted(async () => {
-	await syncSession()
-	const { data } = supabase.auth.onAuthStateChange((event, session) => {
-		user.value = session?.user ?? null
-		if (session?.user) {
-			activeView.value = 'home'
-			showSessionClosedModal.value = false
-		} else if (event === 'SIGNED_OUT') {
-			showSessionClosedModal.value = true
-			activeView.value = 'login'
-			isProfileDropdownOpen.value = false
-			showSignOutModal.value = false
-			homeSection.value = 'home'
-		} else {
-			activeView.value = 'login'
-		}
-	})
-	authSubscription = data.subscription
-})
-
-onBeforeUnmount(() => {
-	authSubscription?.unsubscribe()
-})
-</script>
+<script src="./js/app.js"></script>
 
 <template>
 	<div class="flex h-screen max-h-screen w-full flex-col overflow-hidden bg-[#f9fafb] text-slate-800">
 		<header v-if="isHomeView" class="sticky top-0 z-40 w-full bg-[#1a4731] text-white shadow-2xl">
 			<div class="flex w-full items-center justify-between gap-4 px-6 py-4 lg:px-8">
-				<a href="#" class="flex items-center gap-4" @click.prevent="goHomeSection('home')">
+				<a href="#" class="flex items-center gap-4" @click.prevent="activeView='home'">
 					<img src="/img/restaurant-logo-green.png" alt="Biconoirs Gourmet" class="logo-main" />
 				</a>
 
 				<div class="flex items-center gap-3">
 					<nav class="hidden flex-wrap items-center gap-2 text-sm font-semibold md:flex lg:gap-3">
-						<button class="rounded-full px-4 py-2 transition hover:bg-white/10" @click="goHomeSection('home')">Home</button>
-						<button class="rounded-full px-4 py-2 transition hover:bg-white/10" @click="goHomeSection('menu')">Menu</button>
-						<button class="rounded-full px-4 py-2 transition hover:bg-white/10" @click="goHomeSection('about')">About</button>
+						<button class="rounded-full px-4 py-2 transition hover:bg-white/10" @click="activeView='home'">Home</button>
+						<button class="rounded-full px-4 py-2 transition hover:bg-white/10" @click="activeView='home'">Menu</button>
+						<button class="rounded-full px-4 py-2 transition hover:bg-white/10" @click="activeView='home'">About</button>
 					</nav>
 
 					<div class="relative">
@@ -155,8 +47,13 @@ onBeforeUnmount(() => {
 		</header>
 
 		<main class="flex w-full flex-1 flex-col overflow-hidden">
-			<Login v-if="activeView === 'login'" class="flex-1" />
-			<Home v-else-if="activeView === 'home'" class="flex-1" :user="user" :section="homeSection" @section-change="goHomeSection" />
+			<Login
+				v-if="activeView === 'login'"
+				class="flex-1"
+				:auth-message="loginMessage"
+				@authenticated="handleLocalAuthenticated"
+			/>
+			<Home v-else-if="activeView === 'home'" class="flex-1" :user="user" />
 		</main>
 
 		<footer class="w-full bg-[#0b111e] px-4 py-8 text-center text-white/75">
