@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Fabula Dental</title>
+    <link rel="stylesheet" href="./public/css/login.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+    <header class="header">
+        <ul class="nav-links">
+            <li><a href="#">HOME</a></li>
+            <li><a href="#">TREATMENTS</a></li>
+        </ul>
+        <div class="nav-buttons">
+            <a href="#" class="active">LOGIN</a>
+        </div>
+    </header>
+
+    <main class="main-content" id="authenticationApp">
+        <img src="https://fabuladental.com/wp-content/uploads/2023/08/EMPH-42_websize.jpg" alt="Background" class="bg-image">
+
+        <div class="login-container">
+            <h2>Sign In</h2>
+            
+            <div v-if="errorMessage" class="error-msg">
+                {{ errorMessage }}
+            </div>
+            
+            <div id="googleSignInWrapper" class="google-btn-wrapper"></div>
+        </div>
+    </main>
+
+    <script src="./public/js/login.js"></script>
+</body>
+</html>

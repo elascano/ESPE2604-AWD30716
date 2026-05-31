@@ -1,0 +1,59 @@
+services:
+  - type: web
+    name: american-latin-class-api
+    runtime: image
+    repo: https://github.com/YOUR_USER/YOUR_REPO
+    plan: free
+    region: oregon
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    envVars:
+      - key: APP_KEY
+        sync: false
+      - key: DB_HOST
+        sync: false
+      - key: DB_PORT
+        sync: false
+      - key: DB_DATABASE
+        sync: false
+      - key: DB_USERNAME
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_SSLMODE
+        value: require
+      - key: FRONTEND_ORIGINS
+        value: https://american-latin-class-frontend.onrender.com,https://YOUR_NETLIFY_URL.netlify.app
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: "false"
+      - key: APP_TIMEZONE
+        value: America/Bogota
+    healthCheckPath: /api/health
+    autoDeploy: true
+
+staticSites:
+  - type: static
+    name: american-latin-class-frontend
+    repo: https://github.com/YOUR_USER/YOUR_REPO
+    plan: free
+    region: oregon
+    buildCommand: ""
+    publishPath: ./View
+    headers:
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
+      - path: /*
+        name: Cache-Control
+        value: no-cache, no-store, must-revalidate
+      - path: /script/*
+        name: Cache-Control
+        value: no-cache, no-store, must-revalidate
+    envVars:
+      - key: apiBase
+        value: https://american-latin-class-api.onrender.com
