@@ -1,0 +1,22 @@
+Para ejecutar el proyecto necesitas:
+
+1. JAVA 11+ (https://adoptium.net/)
+2. MAVEN 3.6+ (https://maven.apache.org/download.cgi)
+3. Cuenta MongoDB Atlas con cluster corriendo
+
+PASOS RÁPIDOS:
+==============
+
+Paso 1: Instala Java y Maven
+Paso 2: Configura connection string en src/main/resources/application.properties
+Paso 3: Abre Command Prompt en este directorio
+Paso 4: Ejecuta:
+
+    mvn clean tomcat7:run
+
+Paso 5: Accede a:
+    http://localhost:8080/product-manager/
+
+NOTA: Primera compilación puede tomar 5-10 minutos descargando dependencias
+
+Ver INSTALLATION.txt para guía detallada

@@ -1,0 +1,130 @@
+INSTALACIÓN MANUAL - PASO A PASO
+=================================
+
+OPCIÓN 1: Instalación Automática (Recomendado)
+================================================
+
+1. Abre Command Prompt como ADMINISTRADOR
+   - Click derecho en el ícono de Command Prompt
+   - Selecciona "Ejecutar como administrador"
+
+2. Navega a la carpeta del proyecto:
+   cd c:\Users\USER\Downloads\wsJSP
+
+3. Ejecuta el instalador de Chocolatey:
+   install-choco.bat
+
+4. Espera a que termine la instalación
+
+5. Abre una NUEVA Command Prompt y verifica:
+   java -version
+   mvn -version
+
+
+OPCIÓN 2: Instalación Manual con Descarga Directa
+==================================================
+
+Si Chocolatey falla, descarga manualmente:
+
+JAVA 11:
+  1. Descarga: https://github.com/adoptium/temurin11-binaries/releases
+  2. Busca: "OpenJDK11U-jdk_x64_windows_hotspot"
+  3. Extrae en: C:\
+  4. Configura variable de entorno JAVA_HOME = C:\jdk-11...
+
+MAVEN:
+  1. Descarga: https://maven.apache.org/download.cgi
+  2. Busca: apache-maven-3.9.x-bin.zip
+  3. Extrae en: C:\
+  4. Configura variable de entorno M2_HOME = C:\apache-maven-3.9.x
+
+
+OPCIÓN 3: Uso de WSL (Windows Subsystem for Linux)
+===================================================
+
+Si los scripts anteriores fallan:
+
+1. Abre PowerShell como Administrador
+2. Ejecuta: wsl --install
+3. Reinicia la computadora
+4. Abre Ubuntu terminal y ejecuta:
+   sudo apt update && sudo apt install -y openjdk-11-jdk maven
+
+5. Navega a la carpeta:
+   cd /mnt/c/Users/USER/Downloads/wsJSP
+
+6. Ejecuta:
+   mvn clean tomcat7:run
+
+
+CONFIGURACIÓN DE MONGODB ATLAS
+==============================
+
+1. Ve a: https://www.mongodb.com/cloud/atlas
+
+2. Crea una cuenta (si no la tienes)
+
+3. Crea un cluster:
+   - Elige el tier FREE
+   - Selecciona tu región
+   - Crea
+
+4. Obtén la cadena de conexión:
+   - Click en "Connect"
+   - Selecciona "Drivers"
+   - Copia la cadena (debería ser similar a):
+     mongodb+srv://USERNAME:PASSWORD@cluster0.xxxxx.mongodb.net/products?retryWrites=true&w=majority
+
+5. Abre el archivo:
+   src/main/resources/application.properties
+
+6. Modifica la línea:
+   mongodb.uri=mongodb+srv://USERNAME:PASSWORD@cluster0.xxxxx.mongodb.net/products?retryWrites=true&w=majority
+
+7. Reemplaza:
+   - USERNAME: tu usuario de MongoDB
+   - PASSWORD: tu contraseña
+   - xxxxx: código de tu cluster
+
+
+EJECUCIÓN DEL PROYECTO
+======================
+
+Una vez instalados Java y Maven:
+
+1. Abre Command Prompt
+
+2. Navega a la carpeta:
+   cd c:\Users\USER\Downloads\wsJSP
+
+3. Compila el proyecto:
+   mvn clean install
+
+4. Ejecuta con Tomcat:
+   mvn tomcat7:run
+
+5. Abre tu navegador:
+   http://localhost:8080/product-manager
+
+
+SOLUCIÓN DE PROBLEMAS
+====================
+
+Error: "java no se reconoce"
+  → JAVA no está en el PATH
+  → Reinicia Command Prompt después de instalar
+  → O configura JAVA_HOME manualmente
+
+Error: "mvn no se reconoce"
+  → Maven no está en el PATH
+  → Reinicia Command Prompt después de instalar
+
+Error: "Cannot connect to MongoDB"
+  → Verifica la cadena de conexión en application.properties
+  → Asegúrate de que tu IP está whitelisted en MongoDB Atlas
+  → Verifica credenciales (usuario/contraseña)
+
+Error: "Port 8080 already in use"
+  → Cambia el puerto en pom.xml:
+  → <port>8080</port> → <port>8888</port>
+  → Accede a: http://localhost:8888/product-manager
