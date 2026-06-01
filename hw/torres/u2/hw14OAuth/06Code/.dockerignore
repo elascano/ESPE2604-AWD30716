@@ -1,0 +1,7 @@
+Controller/.env
+Controller/vendor/
+View/
+.git
+*.md
+Evidence/
+render.yaml

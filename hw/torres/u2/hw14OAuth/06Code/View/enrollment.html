@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enrollment Request | American Latin Class</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg alc-navbar sticky-top">
+    <div class="container-fluid px-lg-5">
+      <a class="navbar-brand alc-brand" href="index.html" aria-label="American Latin Class">
+        <span class="alc-brand-mark">ALC</span>
+        <span>
+          <strong>American Latin Class</strong>
+          <small>Dance academy</small>
+        </span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavigation" aria-controls="mainNavigation" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNavigation">
+        <div class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+          <a class="nav-link" href="index.html">Home</a>
+          <a class="nav-link" href="pricing.html">Pricing</a>
+          <a class="nav-link active" href="enrollment.html" aria-current="page">Enrollment</a>
+          <a class="btn btn-warning fw-bold ms-lg-2" href="login.html">
+            <i class="bi bi-person-badge"></i>
+            School portal
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-shell">
+    <section class="page-hero compact-hero">
+      <div>
+        <p class="eyebrow">Public request</p>
+        <h1>Enrollment request</h1>
+        <p>The directors will review the request and contact the applicant before activating a student account.</p>
+      </div>
+    </section>
+
+    <section class="alc-section pt-4">
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <aside class="alc-card sticky-note">
+            <i class="bi bi-clipboard-check card-icon"></i>
+            <h2 id="enrollmentSidebarTitle">How it works</h2>
+            <p id="enrollmentSidebarText">Choose a branch, share contact details, and mention the preferred style or offer. Payment is handled outside the system.</p>
+            <div class="summary-list">
+              <span>Monthly style from $35</span>
+              <span>Directors contact applicants</span>
+              <span>Student portal after activation</span>
+            </div>
+          </aside>
+        </div>
+        <div class="col-lg-8">
+          <form class="alc-card form-grid" id="enrollmentForm">
+            <input id="enrollGoogleCredential" type="hidden">
+            <label>
+              <span>Full name</span>
+              <input id="enrollName" class="form-control" type="text" placeholder="Camila Rojas" maxlength="120" pattern="[A-Za-zÀ-ÿñÑ\s'-]+" required>
+              <small class="field-error" id="enrollNameError"></small>
+            </label>
+            <label>
+              <span>Email</span>
+              <input id="enrollEmail" class="form-control" type="email" placeholder="student@example.com" autocomplete="off" autocapitalize="none" spellcheck="false" required>
+              <small class="field-error" id="enrollEmailError"></small>
+            </label>
+            <label>
+              <span>National ID</span>
+              <input id="enrollNationalId" class="form-control" type="text" inputmode="numeric" maxlength="10" pattern="\d{10}" placeholder="1723456784" required>
+              <small class="field-error" id="enrollNationalIdError"></small>
+            </label>
+            <label>
+              <span>Phone</span>
+              <input id="enrollPhone" class="form-control" type="tel" inputmode="tel" maxlength="15" pattern="[0-9+\s-]{7,15}" placeholder="0990000000" required>
+              <small class="field-error" id="enrollPhoneError"></small>
+            </label>
+            <label>
+              <span>Preferred branch</span>
+              <select id="enrollBranch" class="form-select"></select>
+            </label>
+            <label>
+              <span>Initial level</span>
+              <select id="enrollLevel" class="form-select">
+                <option value="B1">B1 - Foundation</option>
+                <option value="B2">B2 - Performance</option>
+              </select>
+            </label>
+            <label>
+              <span>Preferred style</span>
+              <select id="enrollStyle" class="form-select">
+                <option>Reggaeton</option>
+                <option>Urban</option>
+                <option>Hip hop</option>
+                <option>Afro</option>
+                <option>House</option>
+                <option>Salsa</option>
+                <option>Bachata</option>
+                <option>Stage training</option>
+              </select>
+            </label>
+            <label>
+              <span>Selected offer</span>
+              <input id="enrollOffer" class="form-control" type="text" placeholder="No offer selected">
+            </label>
+            <label>
+              <span>Guardian</span>
+              <input id="enrollGuardian" class="form-control" type="text" maxlength="120" pattern="[A-Za-zÀ-ÿñÑ\s'-]+" placeholder="Parent or guardian name">
+              <small class="field-error" id="enrollGuardianError"></small>
+            </label>
+            <label>
+              <span>Guardian phone</span>
+              <input id="enrollGuardianPhone" class="form-control" type="tel" inputmode="tel" maxlength="15" pattern="[0-9+\s-]{7,15}" placeholder="0991112222">
+              <small class="field-error" id="enrollGuardianPhoneError"></small>
+            </label>
+            <label class="full">
+              <span>Notes</span>
+              <textarea id="enrollNotes" class="form-control" rows="4" placeholder="Schedule, previous experience, or questions"></textarea>
+            </label>
+            <button class="btn btn-warning btn-lg fw-bold full" type="submit">
+              <i class="bi bi-send"></i>
+              Submit request
+            </button>
+            <p class="notice full" id="enrollmentMessage" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="alc-footer">
+    <span>American Latin Class</span>
+    <a href="login.html">School portal</a>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script/config.js"></script>
+  <script src="script/app.js?v=20260529-google-oauth"></script>
+</body>
+</html>

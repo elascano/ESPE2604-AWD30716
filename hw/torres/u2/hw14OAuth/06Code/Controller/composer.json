@@ -1,0 +1,32 @@
+{
+    "name": "american-latin-class/controller",
+    "description": "American Latin Class controller layer with Slim and Eloquent ORM",
+    "type": "project",
+    "license": "proprietary",
+    "require": {
+        "php": ">=8.2",
+        "illuminate/database": "^11.0",
+        "slim/psr7": "^1.7",
+        "slim/slim": "^4.14",
+        "vlucas/phpdotenv": "^5.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\Controller\\": "src/Controller/",
+            "App\\Middleware\\": "src/Middleware/",
+            "App\\Service\\": "src/Service/",
+            "App\\Support\\": "src/Support/",
+            "App\\Model\\": "../Model/"
+        }
+    },
+    "scripts": {
+        "start": "@php -S 127.0.0.1:8080 -t public",
+        "start:production": "@php -S 0.0.0.0:${PORT:-8080} -t public",
+        "lint": "@php tests/lint.php",
+        "test": "@php tests/run.php",
+        "check": [
+            "@lint",
+            "@test"
+        ]
+    }
+}

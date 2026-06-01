@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing | American Latin Class</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg alc-navbar sticky-top">
+    <div class="container-fluid px-lg-5">
+      <a class="navbar-brand alc-brand" href="index.html" aria-label="American Latin Class">
+        <span class="alc-brand-mark">ALC</span>
+        <span>
+          <strong>American Latin Class</strong>
+          <small>Dance academy</small>
+        </span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavigation" aria-controls="mainNavigation" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNavigation">
+        <div class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+          <a class="nav-link" href="index.html">Home</a>
+          <a class="nav-link active" href="pricing.html" aria-current="page">Pricing</a>
+          <a class="nav-link" href="enrollment.html">Enrollment</a>
+          <a class="btn btn-warning fw-bold ms-lg-2" href="login.html">
+            <i class="bi bi-person-badge"></i>
+            School portal
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-shell">
+    <section class="page-hero compact-hero">
+      <div>
+        <p class="eyebrow">Monthly plans</p>
+        <h1>Prices and offers</h1>
+        <p>Each style starts at $35 per month. Offers send students directly to the enrollment request form.</p>
+      </div>
+    </section>
+
+    <section class="alc-section pt-4">
+      <ul class="nav nav-pills alc-tabs mb-4" id="pricingTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="styles-tab" data-bs-toggle="pill" data-bs-target="#styles" type="button" role="tab" aria-controls="styles" aria-selected="true">
+            Styles
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="offers-tab" data-bs-toggle="pill" data-bs-target="#offers" type="button" role="tab" aria-controls="offers" aria-selected="false">
+            Offers
+          </button>
+        </li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane fade show active" id="styles" role="tabpanel" aria-labelledby="styles-tab" tabindex="0">
+          <div class="row g-3">
+            <div class="col-sm-6 col-lg-3">
+              <article class="price-card">
+                <img src="https://images.unsplash.com/photo-1524594152303-9fd13543fe6e?auto=format&fit=crop&w=700&q=80" alt="Reggaeton dance class">
+                <div><span>Reggaeton</span><strong>$35</strong><a href="enrollment.html?style=Reggaeton">Request</a></div>
+              </article>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+              <article class="price-card">
+                <img src="https://images.unsplash.com/photo-1547153760-18fc86324498?auto=format&fit=crop&w=700&q=80" alt="Urban dance class">
+                <div><span>Urban</span><strong>$35</strong><a href="enrollment.html?style=Urban">Request</a></div>
+              </article>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+              <article class="price-card">
+                <img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=700&q=80" alt="Hip hop dance class">
+                <div><span>Hip hop</span><strong>$35</strong><a href="enrollment.html?style=Hip%20hop">Request</a></div>
+              </article>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+              <article class="price-card">
+                <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=700&q=80" alt="Afro dance class">
+                <div><span>Afro</span><strong>$35</strong><a href="enrollment.html?style=Afro">Request</a></div>
+              </article>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+              <article class="price-card">
+                <img src="https://images.unsplash.com/photo-1519925610903-381054cc2a1c?auto=format&fit=crop&w=700&q=80" alt="House dance class">
+                <div><span>House</span><strong>$35</strong><a href="enrollment.html?style=House">Request</a></div>
+              </article>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+              <article class="price-card">
+                <img src="https://images.unsplash.com/photo-1504609813442-a8924e83f76e?auto=format&fit=crop&w=700&q=80" alt="Salsa dance class">
+                <div><span>Salsa</span><strong>$35</strong><a href="enrollment.html?style=Salsa">Request</a></div>
+              </article>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+              <article class="price-card">
+                <img src="https://images.unsplash.com/photo-1552160753-117159821e01?auto=format&fit=crop&w=700&q=80" alt="Bachata dance class">
+                <div><span>Bachata</span><strong>$35</strong><a href="enrollment.html?style=Bachata">Request</a></div>
+              </article>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+              <article class="price-card">
+                <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=700&q=80" alt="Stage training dance class">
+                <div><span>Stage training</span><strong>$35</strong><a href="enrollment.html?style=Stage%20training">Request</a></div>
+              </article>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane fade" id="offers" role="tabpanel" aria-labelledby="offers-tab" tabindex="0">
+          <div class="row g-3">
+            <div class="col-md-4">
+              <article class="offer-card">
+                <span class="offer-label">Starter</span>
+                <h2>First Month Pack</h2>
+                <p>One style, level review, and welcome class plan for new students.</p>
+                <strong>$35</strong>
+                <a class="btn btn-warning fw-bold" href="enrollment.html?offer=First%20Month%20Pack">
+                  <i class="bi bi-send"></i>
+                  Request offer
+                </a>
+              </article>
+            </div>
+            <div class="col-md-4">
+              <article class="offer-card featured">
+                <span class="offer-label">Popular</span>
+                <h2>Two Style Combo</h2>
+                <p>Two monthly styles for students who want urban strength and Latin rhythm.</p>
+                <strong>$60</strong>
+                <a class="btn btn-warning fw-bold" href="enrollment.html?offer=Two%20Style%20Combo">
+                  <i class="bi bi-send"></i>
+                  Request offer
+                </a>
+              </article>
+            </div>
+            <div class="col-md-4">
+              <article class="offer-card">
+                <span class="offer-label">Family</span>
+                <h2>Family Flow</h2>
+                <p>Enrollment request for two relatives with schedule review from directors.</p>
+                <strong>$65</strong>
+                <a class="btn btn-warning fw-bold" href="enrollment.html?offer=Family%20Flow">
+                  <i class="bi bi-send"></i>
+                  Request offer
+                </a>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="alc-footer">
+    <span>American Latin Class</span>
+    <a href="login.html">School portal</a>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
