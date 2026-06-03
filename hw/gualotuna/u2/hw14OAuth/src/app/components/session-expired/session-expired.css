@@ -1,0 +1,158 @@
+.session-expired-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  background-color: var(--bg-canvas);
+  background-image: radial-gradient(circle at center, #1c0d0d 0%, var(--bg-canvas) 70%);
+  overflow: hidden;
+}
+
+/* Red-orange ambient glow orb for secure feeling */
+.glow-orb {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(235, 87, 87, 0.12) 0%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  filter: blur(40px);
+  z-index: 1;
+}
+
+.expired-card {
+  width: 90%;
+  max-width: 480px;
+  padding: 40px 30px;
+  border-radius: 20px;
+  text-align: center;
+  z-index: 2;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.spotify-logo-icon {
+  width: 48px;
+  height: 48px;
+  color: var(--text-subdued);
+  margin-bottom: 24px;
+  opacity: 0.6;
+}
+
+.warning-badge {
+  background: rgba(235, 87, 87, 0.1);
+  color: #eb5757;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #eb5757;
+  box-shadow: 0 0 8px #eb5757;
+  animation: pulse 1.5s infinite;
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  letter-spacing: -0.5px;
+}
+
+.description {
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  max-width: 360px;
+}
+
+/* Timer styles */
+.timer-wrapper {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.progress-ring {
+  transform: rotate(-90deg);
+}
+
+.progress-ring-bg {
+  fill: transparent;
+  stroke: rgba(255, 255, 255, 0.05);
+  stroke-width: 6px;
+}
+
+.progress-ring-fg {
+  fill: transparent;
+  stroke: #eb5757;
+  stroke-width: 6px;
+  stroke-linecap: round;
+  stroke-dasharray: 282.7; /* 2 * PI * 45 */
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 1s linear;
+}
+
+.timer-text {
+  position: absolute;
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--text-base);
+}
+
+.redirect-notice {
+  color: var(--text-subdued);
+  font-size: 13px;
+  margin-bottom: 24px;
+}
+
+.skip-btn {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: var(--transition-fast);
+  background: transparent;
+}
+
+.skip-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.25);
+  color: var(--text-base);
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.9); opacity: 0.5; }
+  50% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(0.9); opacity: 0.5; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}

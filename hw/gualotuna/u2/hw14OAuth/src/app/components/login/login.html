@@ -1,0 +1,80 @@
+<div class="login-page-container">
+  <!-- Glowing ambient orbs for beautiful dark aesthetics -->
+  <div class="glow-orb orb-1"></div>
+  <div class="glow-orb orb-2"></div>
+  
+  <div class="login-card glass-panel animated-fade-in">
+    <!-- Spotify Logo -->
+    <div class="spotify-header">
+      <svg viewBox="0 0 24 24" fill="currentColor" class="spotify-logo">
+        <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424c-.18.295-.565.387-.86.207-2.377-1.454-5.37-1.783-8.893-.982-.336.075-.668-.135-.744-.47-.077-.337.135-.668.47-.743 3.856-.88 7.15-.508 9.82 1.13.295.178.387.563.207.858zm1.224-2.723c-.226.367-.707.487-1.074.26-2.72-1.672-6.87-2.157-10.076-1.183-.412.125-.845-.107-.97-.52-.125-.412.107-.845.52-.97 3.665-1.11 8.243-.574 11.34 1.33.367.227.487.708.26 1.075zm.106-2.836C14.393 8.8 8.413 8.6 4.975 9.643a1.002 1.002 0 0 1-1.173-.787 1.002 1.002 0 0 1 .787-1.173c3.97-1.205 10.564-.972 14.636 1.448a1 1 0 0 1 .496 1.305c-.244.412-.765.556-1.173.313z"/>
+      </svg>
+      <span class="brand-name">Spotify</span>
+    </div>
+
+    <h2>Música para todos.</h2>
+    <p class="subtitle">Inicia sesión de forma segura usando tu cuenta de Google para ingresar a tu reproductor.</p>
+
+    <!-- LOADING OVERLAY -->
+    @if (isLoading()) {
+      <div class="loading-overlay glass-panel">
+        <div class="spotify-spinner">
+          <div class="double-bounce1"></div>
+          <div class="double-bounce2"></div>
+        </div>
+        <p class="loading-message">{{ loadingText() }}</p>
+      </div>
+    }
+
+    <!-- BUTTONS SECTION -->
+    <div class="login-actions" [class.hidden]="isLoading()">
+      <!-- Google Official SSO Container -->
+      <div class="official-sso-wrapper">
+        <label class="section-label">Acceso con Google API</label>
+        <div #googleButtonContainer class="google-btn-container"></div>
+      </div>
+
+      <div class="divider">
+        <span class="divider-line"></span>
+        <span class="divider-text">o alternativo</span>
+        <span class="divider-line"></span>
+      </div>
+
+      <!-- Google Simulator Button (For localhost testing without Cloud Console setup) -->
+      <button class="google-simulator-btn" (click)="onLoginWithSimulator()">
+        <svg viewBox="0 0 24 24" class="google-icon" fill="currentColor">
+          <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+          <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+          <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"/>
+          <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"/>
+        </svg>
+        <span>Ingresar con Google Simulator</span>
+      </button>
+
+      <button class="setup-hint-toggle" (click)="toggleClientSetupHint()">
+        {{ showClientSetupHint() ? 'Ocultar info técnica' : '¿Cómo configurar Google API real?' }}
+      </button>
+
+      @if (showClientSetupHint()) {
+        <div class="technical-hint glass-panel animated-fade-in">
+          <p><strong>Configuración Google Cloud Console:</strong></p>
+          <ol>
+            <li>Crea un proyecto en Google Cloud Console.</li>
+            <li>Configura la pantalla de consentimiento de OAuth.</li>
+            <li>Crea credenciales de ID de cliente de OAuth (Tipo: Web).</li>
+            <li>Agrega <code>http://localhost:4200</code> a <em>Orígenes autorizados de JavaScript</em>.</li>
+            <li>Reemplaza el Client ID en <code>auth.service.ts</code>.</li>
+          </ol>
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- Security Badge -->
+  <div class="security-footer">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="shield-icon">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+    </svg>
+    Protegido por Angular Auth Guard & Control de Expiración
+  </div>
+</div>

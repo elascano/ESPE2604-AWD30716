@@ -1,0 +1,297 @@
+.login-page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  background-color: var(--bg-canvas);
+  overflow: hidden;
+  padding: 20px;
+}
+
+/* Drifting glowing ambient background orbs */
+.glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.15;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.orb-1 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, var(--spotify-green) 0%, transparent 70%);
+  top: -200px;
+  left: -200px;
+  animation: drift 25s infinite alternate ease-in-out;
+}
+
+.orb-2 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, #38ef7d 0%, transparent 70%);
+  bottom: -150px;
+  right: -150px;
+  animation: drift 20s infinite alternate-reverse ease-in-out;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 440px;
+  padding: 48px 40px;
+  border-radius: 20px;
+  z-index: 2;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.spotify-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.spotify-logo {
+  width: 44px;
+  height: 44px;
+  color: var(--spotify-green);
+  filter: drop-shadow(0 0 8px var(--spotify-green-glow));
+}
+
+.brand-name {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+h2 {
+  font-size: 32px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  text-align: center;
+  letter-spacing: -0.8px;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 36px;
+  max-width: 320px;
+}
+
+/* ACTIONS */
+.login-actions {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: opacity 0.3s ease;
+}
+
+.login-actions.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.official-sso-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.section-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-subdued);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.google-btn-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  min-height: 44px;
+}
+
+/* Dividers */
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 10px 0;
+}
+
+.divider-line {
+  flex-grow: 1;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.divider-text {
+  padding: 0 12px;
+  color: var(--text-subdued);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Google Simulator Button styling */
+.google-simulator-btn {
+  width: 100%;
+  background-color: #ffffff;
+  color: #1f1f1f;
+  border: none;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 12px 24px;
+  border-radius: 500px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  transition: var(--transition-smooth);
+}
+
+.google-simulator-btn:hover {
+  background-color: #f8f9fa;
+  transform: scale(1.02);
+  box-shadow: 0 6px 15px rgba(255, 255, 255, 0.15);
+}
+
+.google-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* Setup hint styling */
+.setup-hint-toggle {
+  background: transparent;
+  border: none;
+  color: var(--text-subdued);
+  font-size: 12px;
+  cursor: pointer;
+  text-decoration: underline;
+  margin-top: 10px;
+  transition: var(--transition-fast);
+}
+
+.setup-hint-toggle:hover {
+  color: var(--text-muted);
+}
+
+.technical-hint {
+  padding: 16px;
+  border-radius: 10px;
+  font-size: 12px;
+  text-align: left;
+  line-height: 1.5;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text-muted);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.4);
+}
+
+.technical-hint p {
+  margin-bottom: 8px;
+  color: var(--text-base);
+}
+
+.technical-hint ol {
+  padding-left: 20px;
+}
+
+.technical-hint li {
+  margin-bottom: 6px;
+}
+
+/* SECURITY FOOTER */
+.security-footer {
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-subdued);
+  font-size: 12px;
+  z-index: 2;
+}
+
+.shield-icon {
+  width: 14px;
+  height: 14px;
+}
+
+/* LOADING OVERLAY SPINNER */
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(18, 18, 18, 0.85);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+.spotify-spinner {
+  width: 50px;
+  height: 50px;
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.double-bounce1, .double-bounce2 {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: var(--spotify-green);
+  opacity: 0.6;
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: sk-bounce 2.0s infinite ease-in-out;
+  box-shadow: 0 0 15px var(--spotify-green-glow);
+}
+
+.double-bounce2 {
+  animation-delay: -1.0s;
+}
+
+.loading-message {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-base);
+  letter-spacing: 0.5px;
+}
+
+/* Keyframes */
+@keyframes drift {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(100px, 50px) scale(1.1); }
+  100% { transform: translate(-50px, 80px) scale(0.95); }
+}
+
+@keyframes sk-bounce {
+  0%, 100% { transform: scale(0.0) }
+  50% { transform: scale(1.0) }
+}

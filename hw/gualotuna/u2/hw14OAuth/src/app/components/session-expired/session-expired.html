@@ -1,0 +1,45 @@
+<div class="session-expired-container">
+  <div class="glow-orb"></div>
+  
+  <div class="expired-card glass-panel animated-fade-in">
+    <!-- Spotify Logo Silhouette -->
+    <div class="spotify-logo-icon">
+      <svg viewBox="0 0 24 24" fill="currentColor" class="spotify-svg">
+        <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424c-.18.295-.565.387-.86.207-2.377-1.454-5.37-1.783-8.893-.982-.336.075-.668-.135-.744-.47-.077-.337.135-.668.47-.743 3.856-.88 7.15-.508 9.82 1.13.295.178.387.563.207.858zm1.224-2.723c-.226.367-.707.487-1.074.26-2.72-1.672-6.87-2.157-10.076-1.183-.412.125-.845-.107-.97-.52-.125-.412.107-.845.52-.97 3.665-1.11 8.243-.574 11.34 1.33.367.227.487.708.26 1.075zm.106-2.836C14.393 8.8 8.413 8.6 4.975 9.643a1.002 1.002 0 0 1-1.173-.787 1.002 1.002 0 0 1 .787-1.173c3.97-1.205 10.564-.972 14.636 1.448a1 1 0 0 1 .496 1.305c-.244.412-.765.556-1.173.313z"/>
+      </svg>
+    </div>
+
+    <!-- Alarm Header -->
+    <div class="warning-badge">
+      <span class="pulse-dot"></span>
+      ACCESO SEGURO
+    </div>
+
+    <h1>Sesión Expirada</h1>
+    <p class="description">Por motivos de seguridad, tu sesión ha finalizado o estás intentando acceder a una ruta protegida.</p>
+
+    <!-- Circular SVG Progress Countdown -->
+    <div class="timer-wrapper">
+      <svg class="progress-ring" width="120" height="120">
+        <!-- Background Track -->
+        <circle class="progress-ring-bg" cx="60" cy="60" r="45"></circle>
+        <!-- Animated Foreground Stroke -->
+        <circle 
+          class="progress-ring-fg" 
+          cx="60" 
+          cy="60" 
+          r="45"
+          [style.strokeDashoffset]="progressStrokeDashoffset()"
+        ></circle>
+      </svg>
+      <div class="timer-text">{{ timeLeft() }}</div>
+    </div>
+
+    <p class="redirect-notice">Redirigiéndote al portal de inicio de sesión de forma segura...</p>
+
+    <!-- Direct Redirection Button -->
+    <a href="/login" class="skip-btn">
+      Volver al Login Ahora
+    </a>
+  </div>
+</div>
