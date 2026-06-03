@@ -1,0 +1,235 @@
+import type { User, DashboardSummary, Invoice, AtsFile, ProcessStep, AuditEvent, Notification } from '../types';
+
+const MOCK_NOTIFICATIONS: Notification[] = [
+  {
+    id: 'n1',
+    type: 'warning',
+    title: 'Facturas Faltantes',
+    message: '2 facturas del proveedor XYZ no han sido descargadas.',
+    timestamp: 'Hace 1 hora',
+    read: false,
+  },
+  {
+    id: 'n2',
+    type: 'error',
+    title: 'Inconsistencia en ATS',
+    message: 'La retención M001-001-000040 tiene un error de validación.',
+    timestamp: 'Hace 2 horas',
+    read: false,
+  },
+  {
+    id: 'n3',
+    type: 'info',
+    title: 'Recordatorio',
+    message: 'El plazo para declarar el ATS vence el 30/11/2025.',
+    timestamp: 'Hace 3 horas',
+    read: true,
+  },
+];
+
+export const MockUserData: User = {
+  id: 'u001',
+  ruc: '1234567890001',
+  firstName: 'David',
+  lastName: 'Rodriguez',
+  email: 'david2626714@gmail.com',
+  birthDate: '1990-05-15',
+  role: 'accountant',
+  createdAt: '2025-01-10T10:00:00Z',
+};
+
+export const MockAdminData: User = {
+  id: 'u002',
+  ruc: '9876543210001',
+  firstName: 'Angel',
+  lastName: 'Sabando',
+  email: 'admin@atsexpress.com',
+  birthDate: '1985-03-20',
+  role: 'admin',
+  createdAt: '2024-12-01T08:00:00Z',
+};
+
+export const MockDashboardSummary: DashboardSummary = {
+  invoicesDownloaded: 247,
+  invoicesDownloadedChange: 12,
+  errorsDetected: 3,
+  atsReadyToGenerate: true,
+  sriStatus: 'connected',
+  lastSync: 'Hace 15 minutos',
+  notifications: MOCK_NOTIFICATIONS,
+};
+
+export const MockInvoices: Invoice[] = [
+  {
+    id: 'inv001',
+    number: 'F001-001-000001',
+    issuerRuc: '0912345678001',
+    issuerName: 'Proveedor ABC S.A.',
+    date: '2025-11-05',
+    total: 1120.00,
+    taxBase: 1000.00,
+    iva: 120.00,
+    format: 'XML',
+    period: { type: 'monthly', month: 11, year: 2025 },
+  },
+  {
+    id: 'inv002',
+    number: 'F001-001-000002',
+    issuerRuc: '1723456789001',
+    issuerName: 'Servicios XYZ Cía. Ltda.',
+    date: '2025-11-12',
+    total: 560.00,
+    taxBase: 500.00,
+    iva: 60.00,
+    format: 'XML',
+    period: { type: 'monthly', month: 11, year: 2025 },
+  },
+  {
+    id: 'inv003',
+    number: 'F002-001-000010',
+    issuerRuc: '0987654321001',
+    issuerName: 'Tech Solutions Ecuador',
+    date: '2025-11-20',
+    total: 2240.00,
+    taxBase: 2000.00,
+    iva: 240.00,
+    format: 'XML',
+    period: { type: 'monthly', month: 11, year: 2025 },
+  },
+  {
+    id: 'inv004',
+    number: 'F003-001-000005',
+    issuerRuc: '1234509876001',
+    issuerName: 'Distribuidora Norte',
+    date: '2025-11-25',
+    total: 336.00,
+    taxBase: 300.00,
+    iva: 36.00,
+    format: 'PDF',
+    period: { type: 'monthly', month: 11, year: 2025 },
+  },
+];
+
+export const MockAtsFiles: AtsFile[] = [
+  {
+    id: 'ats001',
+    name: 'ATS_2025_11_v1.xlsm',
+    format: 'XLSM',
+    period: { type: 'monthly', month: 11, year: 2025 },
+    createdAt: '2025-11-28T14:30:00Z',
+    invoiceCount: 247,
+    validationErrors: 3,
+    downloadUrl: '#',
+  },
+  {
+    id: 'ats002',
+    name: 'ATS_2025_10_final.xml',
+    format: 'XML',
+    period: { type: 'monthly', month: 10, year: 2025 },
+    createdAt: '2025-10-30T09:00:00Z',
+    invoiceCount: 312,
+    validationErrors: 0,
+    downloadUrl: '#',
+  },
+  {
+    id: 'ats003',
+    name: 'ATS_2025_S1.xlsm',
+    format: 'XLSM',
+    period: { type: 'semi-annual', semester: 1, year: 2025 },
+    createdAt: '2025-07-05T11:00:00Z',
+    invoiceCount: 1834,
+    validationErrors: 7,
+    downloadUrl: '#',
+  },
+];
+
+export const MockProcessSteps: ProcessStep[] = [
+  {
+    id: 'step1',
+    title: 'Vincular con SRI',
+    description: 'Conectar credenciales del portal SRI en línea',
+    status: 'completed',
+    completedAt: '2025-11-28T09:00:00Z',
+    module: 'Módulo 2',
+  },
+  {
+    id: 'step2',
+    title: 'Descargar Facturas',
+    description: 'Obtener facturas del período seleccionado desde SRI',
+    status: 'completed',
+    completedAt: '2025-11-28T09:45:00Z',
+    module: 'Módulo 3',
+  },
+  {
+    id: 'step3',
+    title: 'Cargar Directorio XML',
+    description: 'Validar y cargar directorio de facturas XML',
+    status: 'completed',
+    completedAt: '2025-11-28T10:00:00Z',
+    module: 'Módulo 3',
+  },
+  {
+    id: 'step4',
+    title: 'Generar ATS XLSM',
+    description: 'Crear archivo ATS en formato Excel Macro',
+    status: 'in-progress',
+    module: 'Módulo 4',
+  },
+  {
+    id: 'step5',
+    title: 'Validar ATS XLSM',
+    description: 'Revisar errores en el archivo XLSM generado',
+    status: 'pending',
+    module: 'Módulo 5',
+  },
+  {
+    id: 'step6',
+    title: 'Generar ATS XML',
+    description: 'Exportar ATS final compatible con DIMM del SRI',
+    status: 'blocked',
+    module: 'Módulo 6',
+  },
+];
+
+export const MockAuditEvents: AuditEvent[] = [
+  {
+    id: 'ae001',
+    userId: 'u001',
+    action: 'LOGIN',
+    module: 'Autenticación',
+    timestamp: '2025-11-28T08:55:00Z',
+    details: 'Inicio de sesión exitoso desde 192.168.1.10',
+  },
+  {
+    id: 'ae002',
+    userId: 'u001',
+    action: 'SRI_CONNECT',
+    module: 'Integración SRI',
+    timestamp: '2025-11-28T09:00:00Z',
+    details: 'Vinculación exitosa con portal SRI en línea',
+  },
+  {
+    id: 'ae003',
+    userId: 'u001',
+    action: 'INVOICES_DOWNLOAD',
+    module: 'Gestión de Facturas',
+    timestamp: '2025-11-28T09:45:00Z',
+    details: '247 facturas descargadas para Noviembre 2025',
+  },
+  {
+    id: 'ae004',
+    userId: 'u001',
+    action: 'DIRECTORY_UPLOAD',
+    module: 'Gestión de Facturas',
+    timestamp: '2025-11-28T10:00:00Z',
+    details: 'Directorio XML cargado y validado correctamente',
+  },
+  {
+    id: 'ae005',
+    userId: 'u001',
+    action: 'ATS_XLSM_GENERATE',
+    module: 'Generación ATS',
+    timestamp: '2025-11-28T10:30:00Z',
+    details: 'ATS XLSM generado: ATS_2025_11_v1.xlsm con 247 facturas',
+  },
+];

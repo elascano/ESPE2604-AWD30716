@@ -1,10 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "0qkChhG7LeU=",
+  "dgSpecHash": "CH2CXR2B9/4=",
   "success": true,
-  "projectFilePath": "D:\\UNIVERSIDAD\\8vo Semestre (Quinto)\\WebAv\\U2\\AspPractice\\EmployeeManagement.csproj",
+  "projectFilePath": "C:\\Users\\Det-Pc\\Desktop\\ESPE2604-AWD30716\\ws\\calderon\\u2\\ws01\\CalderonAsp\\EmployeeManagement.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\jhoel\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+    "C:\\Users\\Det-Pc\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
+    "C:\\Users\\Det-Pc\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.27\\microsoft.netcore.app.ref.8.0.27.nupkg.sha512",
+    "C:\\Users\\Det-Pc\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.27\\microsoft.windowsdesktop.app.ref.8.0.27.nupkg.sha512",
+    "C:\\Users\\Det-Pc\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.27\\microsoft.aspnetcore.app.ref.8.0.27.nupkg.sha512",
+    "C:\\Users\\Det-Pc\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\8.0.27\\microsoft.netcore.app.host.win-x64.8.0.27.nupkg.sha512"
   ],
   "logs": []
 }

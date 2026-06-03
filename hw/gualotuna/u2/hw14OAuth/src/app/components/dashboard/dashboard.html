@@ -1,0 +1,261 @@
+<div class="spotify-app-layout" (click)="closeProfileDropdown()">
+  
+  <!-- 1. LEFT SIDEBAR -->
+  <aside class="spotify-sidebar">
+    <!-- Spotify Logo -->
+    <div class="sidebar-logo">
+      <svg viewBox="0 0 24 24" fill="currentColor" class="logo-svg">
+        <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424c-.18.295-.565.387-.86.207-2.377-1.454-5.37-1.783-8.893-.982-.336.075-.668-.135-.744-.47-.077-.337.135-.668.47-.743 3.856-.88 7.15-.508 9.82 1.13.295.178.387.563.207.858zm1.224-2.723c-.226.367-.707.487-1.074.26-2.72-1.672-6.87-2.157-10.076-1.183-.412.125-.845-.107-.97-.52-.125-.412.107-.845.52-.97 3.665-1.11 8.243-.574 11.34 1.33.367.227.487.708.26 1.075zm.106-2.836C14.393 8.8 8.413 8.6 4.975 9.643a1.002 1.002 0 0 1-1.173-.787 1.002 1.002 0 0 1 .787-1.173c3.97-1.205 10.564-.972 14.636 1.448a1 1 0 0 1 .496 1.305c-.244.412-.765.556-1.173.313z"/>
+      </svg>
+      <span class="logo-text">Spotify</span>
+    </div>
+
+    <!-- Main Navigation Menu -->
+    <nav class="sidebar-nav">
+      <a class="nav-item active">
+        <svg viewBox="0 0 24 24" fill="currentColor" class="nav-icon"><path d="M12.5 3.247a1 1 0 0 0-1 0L4 7.577V20a1 1 0 0 0 1 1h5v-7h4v7h5a1 1 0 0 0 1-1V7.577l-7.5-4.33z"/></svg>
+        <span>Inicio</span>
+      </a>
+      <a class="nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="nav-icon"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <span>Buscar</span>
+      </a>
+      <a class="nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="nav-icon"><path d="M12 20h9M3 20h9M3 4h18M3 12h18"/></svg>
+        <span>Tu Biblioteca</span>
+      </a>
+    </nav>
+
+    <!-- Playlists section separator -->
+    <div class="sidebar-divider"></div>
+
+    <!-- Playlist list -->
+    <div class="sidebar-playlists">
+      <div class="playlists-header">
+        <span>PLAYLISTS</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="add-icon"><path d="M12 5v14M5 12h14"/></svg>
+      </div>
+      
+      <div class="playlists-scroll-area">
+        @for (playlist of playlists(); track playlist) {
+          <a class="playlist-link">{{ playlist }}</a>
+        }
+      </div>
+    </div>
+  </aside>
+
+  <!-- 2. MAIN SCROLL CONTAINER -->
+  <main class="spotify-main">
+    
+    <!-- STICKY TOPBAR -->
+    <header class="main-topbar glass-panel">
+      <!-- Arrows (visual) -->
+      <div class="navigation-arrows">
+        <button class="arrow-btn" disabled>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="arrow-icon"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <button class="arrow-btn" disabled>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="arrow-icon"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+
+      <!-- User Profile Menu -->
+      <div class="profile-dropdown-container">
+        <button class="profile-badge-btn" (click)="toggleProfileDropdown($event)">
+          @if (user()?.picture) {
+            <img [src]="user()?.picture" alt="User Profile Image" class="profile-thumb">
+          } @else {
+            <div class="profile-thumb-placeholder">
+              {{ user()?.name?.substring(0,1) || 'U' }}
+            </div>
+          }
+          <span class="user-display-name">{{ user()?.name || 'Brayan Gualotuña' }}</span>
+          <svg viewBox="0 0 24 24" fill="currentColor" class="dropdown-chevron" [class.rotated]="isProfileDropdownOpen()">
+            <path d="m7 10 5 5 5-5H7z"/>
+          </svg>
+        </button>
+
+        <!-- Dropdown Dialog -->
+        @if (isProfileDropdownOpen()) {
+          <div class="dropdown-menu glass-panel animated-fade-in" (click)="$event.stopPropagation()">
+            <div class="menu-header">
+              <span class="user-email">{{ user()?.email || 'brayan@google.com' }}</span>
+              <span class="account-badge">Google Acc</span>
+            </div>
+            <div class="menu-divider"></div>
+            <a class="menu-item">
+              <span>Configuración</span>
+            </a>
+            <a class="menu-item">
+              <span>Tu Perfil</span>
+            </a>
+            <div class="menu-divider"></div>
+            <button class="logout-menu-btn" (click)="onLogout()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="logout-icon"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+              <span>Cerrar Sesión</span>
+            </button>
+          </div>
+        }
+      </div>
+    </header>
+
+    <!-- CONTENT BODY -->
+    <div class="main-content-scroll">
+      
+      <!-- Greeting and Hero Grid -->
+      <section class="content-section">
+        <h1 class="section-title greeting-title">{{ greeting() }}, {{ userFirstName() }}! 👋</h1>
+        
+        <div class="quick-grid">
+          @for (track of tracks().slice(0, 6); track track.id) {
+            <div class="quick-card" (click)="selectTrack(track)">
+              <img [src]="track.coverUrl" alt="Cover" class="quick-card-img">
+              <div class="quick-card-info">
+                <span class="quick-card-title">{{ track.title }}</span>
+                <span class="quick-card-artist">{{ track.artist }}</span>
+              </div>
+              <button class="quick-play-btn" [class.playing]="activeTrack()?.id === track.id && isPlaying()">
+                @if (activeTrack()?.id === track.id && isPlaying()) {
+                  <!-- Pause bars animated -->
+                  <svg viewBox="0 0 24 24" fill="currentColor" class="play-svg"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                } @else {
+                  <svg viewBox="0 0 24 24" fill="currentColor" class="play-svg"><path d="M8 5v14l11-7z"/></svg>
+                }
+              </button>
+            </div>
+          }
+        </div>
+      </section>
+
+      <!-- Featured Songs Carousel Grid -->
+      <section class="content-section">
+        <div class="section-header-flex">
+          <h2 class="section-title">Recomendado para ti</h2>
+          <span class="see-all">VER TODO</span>
+        </div>
+
+        <div class="spotify-card-grid">
+          @for (track of tracks(); track track.id) {
+            <div class="spotify-music-card" (click)="selectTrack(track)" [class.active-card]="activeTrack()?.id === track.id">
+              <div class="card-image-wrapper">
+                <img [src]="track.coverUrl" alt="Cover Image" class="card-cover">
+                <!-- Play button visible on hover -->
+                <button class="card-play-btn" [class.active-play]="activeTrack()?.id === track.id && isPlaying()">
+                  @if (activeTrack()?.id === track.id && isPlaying()) {
+                    <svg viewBox="0 0 24 24" fill="currentColor" class="play-icon-svg"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                  } @else {
+                    <svg viewBox="0 0 24 24" fill="currentColor" class="play-icon-svg"><path d="M8 5v14l11-7z"/></svg>
+                  }
+                </button>
+              </div>
+              <div class="card-info">
+                <h3>{{ track.title }}</h3>
+                <p>{{ track.artist }}</p>
+              </div>
+            </div>
+          }
+        </div>
+      </section>
+      
+      <!-- Safe space bottom of grid -->
+      <div style="height: 120px;"></div>
+    </div>
+  </main>
+
+  <!-- 3. BOTTOM PLAYER BAR -->
+  <footer class="spotify-player-bar">
+    
+    <!-- LEFT: Track Info -->
+    <div class="player-left">
+      @if (activeTrack()) {
+        <img [src]="activeTrack()?.coverUrl" alt="Cover" class="track-cover-thumb">
+        <div class="track-meta">
+          <span class="track-title-scroll">{{ activeTrack()?.title }}</span>
+          <span class="track-artist-muted">{{ activeTrack()?.artist }}</span>
+        </div>
+        <button class="heart-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="heart-icon"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+      }
+    </div>
+
+    <!-- CENTER: Playback Controls and Slider -->
+    <div class="player-center">
+      <div class="playback-controls">
+        <!-- Shuffle -->
+        <button class="control-icon-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="c-svg"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>
+        </button>
+        <!-- Prev -->
+        <button class="control-icon-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor" class="c-svg"><path d="m6 6 9 6-9 6V6zm9 0h3v12h-3V6z"/></svg>
+        </button>
+        <!-- Toggle Play -->
+        <button class="player-play-toggle-btn" (click)="togglePlay()">
+          @if (isPlaying()) {
+            <svg viewBox="0 0 24 24" fill="currentColor" class="play-svg-main"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+          } @else {
+            <svg viewBox="0 0 24 24" fill="currentColor" class="play-svg-main" style="transform: translateX(1px);"><path d="M8 5v14l11-7z"/></svg>
+          }
+        </button>
+        <!-- Next -->
+        <button class="control-icon-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor" class="c-svg"><path d="m6 18 9-6-9-6v12zm9-12h3v12h-3V6z"/></svg>
+        </button>
+        <!-- Repeat -->
+        <button class="control-icon-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="c-svg"><path d="M17 1l4 4-4 4M3 11V9a4 4 0 0 1 4-4h14M7 23l-4-4 4-4M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+        </button>
+      </div>
+
+      <!-- Time slider tracker -->
+      <div class="playback-timeline">
+        <span class="time-label">{{ formatTime(currentProgress()) }}</span>
+        <div class="timeline-slider-wrapper">
+          <input 
+            type="range" 
+            class="timeline-slider"
+            min="0"
+            [max]="activeTrack()?.durationSec || 100"
+            [value]="currentProgress()"
+            (input)="onProgressChange($event)"
+          >
+          <div class="slider-fill-track" [style.width.%]="getProgressPercent()"></div>
+        </div>
+        <span class="time-label">{{ activeTrack()?.duration || '0:00' }}</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: Volume Controls -->
+    <div class="player-right">
+      <button class="control-icon-btn-secondary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="right-icon"><path d="M12 20h9M3 20h9M3 4h18M3 12h18"/></svg>
+      </button>
+      <button class="control-icon-btn-secondary" (click)="toggleMute()">
+        @if (isMuted() || currentVolume() === 0) {
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="right-icon"><path d="M11 5L6 9H2v6h4l5 4V5zM23 9l-6 6M17 9l6 6"/></svg>
+        } @else if (currentVolume() < 40) {
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="right-icon"><path d="M11 5L6 9H2v6h4l5 4V5zM15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+        } @else {
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="right-icon"><path d="M11 5L6 9H2v6h4l5 4V5zM19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+        }
+      </button>
+      <div class="volume-slider-wrapper">
+        <input 
+          type="range" 
+          class="volume-slider"
+          min="0"
+          max="100"
+          [value]="isMuted() ? 0 : currentVolume()"
+          (input)="onVolumeChange($event)"
+        >
+        <div class="volume-fill-track" [style.width.%]="isMuted() ? 0 : currentVolume()"></div>
+      </div>
+      <button class="control-icon-btn-secondary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="right-icon"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+      </button>
+    </div>
+
+  </footer>
+
+</div>

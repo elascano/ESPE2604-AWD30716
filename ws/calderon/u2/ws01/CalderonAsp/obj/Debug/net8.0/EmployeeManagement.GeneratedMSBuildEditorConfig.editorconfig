@@ -8,41 +8,40 @@ build_property.ProjectTypeGuids =
 build_property.InvariantGlobalization = 
 build_property.PlatformNeutralAssembly = 
 build_property.EnforceExtendedAnalyzerRules = 
-build_property.EntryPointFilePath = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = EmployeeManagement
 build_property.RootNamespace = EmployeeManagement
-build_property.ProjectDir = D:\UNIVERSIDAD\8vo Semestre (Quinto)\WebAv\U2\AspPractice\
+build_property.ProjectDir = C:\Users\Det-Pc\Desktop\ESPE2604-AWD30716\ws\calderon\u2\ws01\CalderonAsp\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\UNIVERSIDAD\8vo Semestre (Quinto)\WebAv\U2\AspPractice
+build_property.MSBuildProjectDirectory = C:\Users\Det-Pc\Desktop\ESPE2604-AWD30716\ws\calderon\u2\ws01\CalderonAsp
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
 
-[D:/UNIVERSIDAD/8vo Semestre (Quinto)/WebAv/U2/AspPractice/Views/Employee/Create.cshtml]
+[C:/Users/Det-Pc/Desktop/ESPE2604-AWD30716/ws/calderon/u2/ws01/CalderonAsp/Views/Employee/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/UNIVERSIDAD/8vo Semestre (Quinto)/WebAv/U2/AspPractice/Views/Employee/Index.cshtml]
+[C:/Users/Det-Pc/Desktop/ESPE2604-AWD30716/ws/calderon/u2/ws01/CalderonAsp/Views/Employee/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/UNIVERSIDAD/8vo Semestre (Quinto)/WebAv/U2/AspPractice/Views/Home/Index.cshtml]
+[C:/Users/Det-Pc/Desktop/ESPE2604-AWD30716/ws/calderon/u2/ws01/CalderonAsp/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/UNIVERSIDAD/8vo Semestre (Quinto)/WebAv/U2/AspPractice/Views/Shared/_Layout.cshtml]
+[C:/Users/Det-Pc/Desktop/ESPE2604-AWD30716/ws/calderon/u2/ws01/CalderonAsp/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/UNIVERSIDAD/8vo Semestre (Quinto)/WebAv/U2/AspPractice/Views/_ViewImports.cshtml]
+[C:/Users/Det-Pc/Desktop/ESPE2604-AWD30716/ws/calderon/u2/ws01/CalderonAsp/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/UNIVERSIDAD/8vo Semestre (Quinto)/WebAv/U2/AspPractice/Views/_ViewStart.cshtml]
+[C:/Users/Det-Pc/Desktop/ESPE2604-AWD30716/ws/calderon/u2/ws01/CalderonAsp/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
