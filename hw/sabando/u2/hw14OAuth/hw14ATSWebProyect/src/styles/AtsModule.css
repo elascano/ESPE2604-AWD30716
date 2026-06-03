@@ -1,0 +1,120 @@
+.ats-layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 24px;
+  align-items: start;
+}
+
+.ats-main { min-width: 0; }
+.ats-sidebar { display: flex; flex-direction: column; }
+
+.generation-idle,
+.generation-processing,
+.generation-done {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+  padding: 32px 20px;
+}
+
+.generation-idle-icon {
+  width: 80px;
+  height: 80px;
+  background: var(--color-primary-50);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary-500);
+}
+
+.generation-info-grid {
+  display: flex;
+  gap: 32px;
+  background: var(--color-gray-50);
+  border-radius: var(--radius-lg);
+  padding: 20px 32px;
+  border: 1px solid var(--color-gray-200);
+}
+
+.generation-info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.generation-info-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-gray-900);
+}
+
+.generation-info-label {
+  font-size: 0.75rem;
+  color: var(--color-gray-500);
+}
+
+.processing-animation {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, var(--color-primary-50), var(--color-primary-100));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary-600);
+  animation: pulse 1.5s ease infinite;
+}
+
+.processing-progress {
+  width: 100%;
+  max-width: 400px;
+}
+
+.done-icon {
+  width: 80px;
+  height: 80px;
+  background: var(--color-success-50);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-success-500);
+}
+
+.done-file-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 20px;
+  background: var(--color-gray-50);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-lg);
+  width: 100%;
+  max-width: 460px;
+}
+
+.done-file-card > div { flex: 1; text-align: left; }
+
+.requirement-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.info-detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--color-gray-100);
+}
+
+.info-detail-row:last-child { border-bottom: none; }
+
+@media (max-width: 1024px) {
+  .ats-layout { grid-template-columns: 1fr; }
+}
