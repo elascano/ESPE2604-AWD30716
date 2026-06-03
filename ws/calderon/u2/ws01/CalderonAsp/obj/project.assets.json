@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 3,
   "targets": {
     "net8.0": {
       "Newtonsoft.Json/13.0.3": {
@@ -55,23 +55,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jhoel\\.nuget\\packages\\": {},
+    "C:\\Users\\Det-Pc\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\UNIVERSIDAD\\8vo Semestre (Quinto)\\WebAv\\U2\\AspPractice\\EmployeeManagement.csproj",
+      "projectUniqueName": "C:\\Users\\Det-Pc\\Desktop\\ESPE2604-AWD30716\\ws\\calderon\\u2\\ws01\\CalderonAsp\\EmployeeManagement.csproj",
       "projectName": "EmployeeManagement",
-      "projectPath": "D:\\UNIVERSIDAD\\8vo Semestre (Quinto)\\WebAv\\U2\\AspPractice\\EmployeeManagement.csproj",
-      "packagesPath": "C:\\Users\\jhoel\\.nuget\\packages\\",
-      "outputPath": "D:\\UNIVERSIDAD\\8vo Semestre (Quinto)\\WebAv\\U2\\AspPractice\\obj\\",
+      "projectPath": "C:\\Users\\Det-Pc\\Desktop\\ESPE2604-AWD30716\\ws\\calderon\\u2\\ws01\\CalderonAsp\\EmployeeManagement.csproj",
+      "packagesPath": "C:\\Users\\Det-Pc\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Det-Pc\\Desktop\\ESPE2604-AWD30716\\ws\\calderon\\u2\\ws01\\CalderonAsp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\jhoel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Det-Pc\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -84,7 +84,6 @@
       },
       "frameworks": {
         "net8.0": {
-          "framework": "net8.0",
           "targetAlias": "net8.0",
           "projectReferences": {}
         }
@@ -99,11 +98,10 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "10.0.300"
+      "SdkAnalysisLevel": "10.0.200"
     },
     "frameworks": {
       "net8.0": {
-        "framework": "net8.0",
         "targetAlias": "net8.0",
         "dependencies": {
           "Newtonsoft.Json": {
@@ -122,6 +120,24 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[8.0.27, 8.0.27]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[8.0.27, 8.0.27]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[8.0.27, 8.0.27]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[8.0.27, 8.0.27]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -130,7 +146,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.204/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
