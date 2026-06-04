@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Student Grades</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+</head>
+<body>
+    <header class="topbar">
+        <a class="brand" asp-controller="Students" asp-action="Create">Student Grades</a>
+        <nav class="nav-menu" aria-label="Main navigation">
+            <a asp-controller="Students" asp-action="Create">Student Form</a>
+            <a asp-controller="Students" asp-action="Index">Class Table</a>
+        </nav>
+    </header>
+
+    <main class="page-shell">
+        @RenderBody()
+    </main>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
