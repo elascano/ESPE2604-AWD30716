@@ -30,7 +30,7 @@ router.get("/customer/:id", async(req, res) =>{
 router.get("/customer/totalSale", async(req, res) =>{
     try {
         const customerObject = await customer({
-            totalSale: req.params.totalSale
+            totalSale: req.params.moneySpent
         });
         if(customerObject == null){
             res.status(400).json({status: 404});

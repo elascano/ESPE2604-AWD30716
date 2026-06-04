@@ -1,4 +1,8 @@
 // Ricardo's port 3011
+const dns = require('dns');
+// Esto usa los servidores DNS de Google para evitar problemas de resolución de SRV con MongoDB Atlas
+dns.setServers(['8.8.8.8', '8.8.4.4']);
+
 const port = 3011;
 const express = require("express");
 const app = express();
