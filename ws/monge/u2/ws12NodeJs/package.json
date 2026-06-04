@@ -1,0 +1,21 @@
+{
+  "name": "ws12nodejs",
+  "version": "1.0.0",
+  "description": "hellojs",
+  "license": "ISC",
+  "author": "Ricardo Monge",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "start:hello": "node helloServer.js",
+    "start:server": "node server.mjs"
+  },
+  "dependencies": {
+    "expres": "^0.0.5",
+    "express": "^5.2.1",
+    "mongo": "^0.1.0",
+    "mongoose": "^9.6.3"
+  }
+}
