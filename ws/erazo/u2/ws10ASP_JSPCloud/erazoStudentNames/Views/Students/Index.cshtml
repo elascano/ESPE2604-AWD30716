@@ -1,0 +1,70 @@
+@model StudentListViewModel
+
+@{
+    ViewData["Title"] = "Class Table";
+}
+
+<section class="workspace">
+    <div class="page-heading">
+        <span>Class results</span>
+        <h1>Students table</h1>
+    </div>
+
+    @if (TempData["SuccessMessage"] is string successMessage)
+    {
+        <div class="notice">@successMessage</div>
+    }
+
+    @if (Model.Students.Count == 0)
+    {
+        <div class="empty-state">No students have been registered yet.</div>
+    }
+    else
+    {
+        <div class="table-shell">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>City</th>
+                        <th>Postal code</th>
+                        <th>Course</th>
+                        <th>Unit 1</th>
+                        <th>Unit 2</th>
+                        <th>Unit 3</th>
+                        <th>Mean</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var student in Model.Students)
+                    {
+                        <tr>
+                            <td>@student.FirstName @student.LastName</td>
+                            <td>@student.Email</td>
+                            <td>@student.City</td>
+                            <td>@student.PostalCode</td>
+                            <td>@student.CourseName</td>
+                            <td>@student.UnitOneGrade.ToString("0.##")</td>
+                            <td>@student.UnitTwoGrade.ToString("0.##")</td>
+                            <td>@student.UnitThreeGrade.ToString("0.##")</td>
+                            <td>@student.Mean.ToString("0.00")</td>
+                            <td>
+                                <span class="status-pill @(student.Passed ? "pass" : "fail")">
+                                    @(student.Passed ? "Pass" : "Not pass")
+                                </span>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="8">Class mean</td>
+                        <td colspan="2">@Model.ClassMean.ToString("0.00")</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    }
+</section>
