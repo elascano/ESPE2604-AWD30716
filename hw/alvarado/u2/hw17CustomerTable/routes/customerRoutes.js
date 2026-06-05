@@ -2,7 +2,6 @@ const express = require("express");
 const Customer = require("../models/customer");
 const router = express.Router();
 
-// Helper: normalize a raw DB document into a clean customer object
 function normalize(doc, index) {
   const displayName = doc.fullName || doc.name || "—";
   const spent =
@@ -22,8 +21,6 @@ function normalize(doc, index) {
   };
 }
 
-// GET /computerstore/customers
-// Returns all customers, normalized + grand total
 router.get("/customers", async (req, res) => {
   try {
     const raw = await Customer.find().lean();
@@ -38,8 +35,6 @@ router.get("/customers", async (req, res) => {
   }
 });
 
-// GET /computerstore/customers/:id
-// Returns a single customer by their numeric id field
 router.get("/customers/:id", async (req, res) => {
   try {
     const doc = await Customer.findOne({ id: req.params.id }).lean();
