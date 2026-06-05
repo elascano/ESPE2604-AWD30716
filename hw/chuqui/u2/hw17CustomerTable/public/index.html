@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kerly's Computers Store - Customers Directory</title>
+    <meta name="description" content="View and manage customer data at Kerly's Computers Store. Experience a high-performance interactive interface with real-time searching, sorting, and database statistics.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="glow-container">
+        <div class="glow-sphere sphere-1"></div>
+        <div class="glow-sphere sphere-2"></div>
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="logo-area">
+                <span class="icon">💻</span>
+                <div>
+                    <h1 id="app-title">Kerly's Computers Store</h1>
+                    <p class="subtitle">System Database Control Panel</p>
+                </div>
+            </div>
+            <div class="stats-card" id="db-status-container">
+                <div class="status-indicator">
+                    <span class="status-dot online"></span>
+                    <span class="status-text">Database Connected</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Total Customers:</span>
+                    <span class="stat-val" id="total-customers-count">0</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Dashboard Card -->
+        <main class="dashboard-card">
+            <!-- Toolbar: Filter, Search, Sort -->
+            <div class="toolbar">
+                <div class="search-box">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="search-input" placeholder="Search customers by ID or name..." autocomplete="off">
+                </div>
+                
+                <div class="actions">
+                    <div class="select-wrapper">
+                        <select id="sort-select">
+                            <option value="id-asc">Sort by: ID (Asc)</option>
+                            <option value="id-desc">Sort by: ID (Desc)</option>
+                            <option value="name-asc">Sort by: Name (A-Z)</option>
+                            <option value="name-desc">Sort by: Name (Z-A)</option>
+                            <option value="sale-desc">Sort by: Total Sale (Highest)</option>
+                            <option value="sale-asc">Sort by: Total Sale (Lowest)</option>
+                            <option value="discount-desc">Sort by: Discount (Highest)</option>
+                        </select>
+                    </div>
+                    <button id="refresh-btn" class="btn btn-primary">
+                        <span class="btn-icon">🔄</span> Refresh
+                    </button>
+                </div>
+            </div>
+
+            <!-- Loader -->
+            <div id="loader" class="loader-container">
+                <div class="spinner"></div>
+                <p>Loading database records...</p>
+            </div>
+
+            <!-- Table Container -->
+            <div class="table-responsive" id="table-container" style="display: none;">
+                <table id="customers-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Customer Name</th>
+                            <th>Email</th>
+                            <th>Type</th>
+                            <th>Discount</th>
+                            <th>Total Sale</th>
+                            <th class="actions-col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="customers-tbody">
+                        <!-- Dynamic Rows here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Empty / Error state -->
+            <div id="empty-state" class="empty-state" style="display: none;">
+                <div class="empty-icon">📁</div>
+                <h3>No customers found</h3>
+                <p>Try refining your search filter or add records to the database.</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- Details Modal -->
+    <div id="customer-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Customer Profile Details</h2>
+                <button class="close-btn" id="close-modal-btn">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body-content">
+                <!-- Dynamic Content here -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="close-modal-footer-btn">Close Details</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
