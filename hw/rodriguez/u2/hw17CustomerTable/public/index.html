@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Customers - Computer Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Customers</h1>
+      <p>Customers collection table and total earnings.</p>
+    </header>
+
+    <div class="total total-top">
+      Total earned: <strong id="total-earned-top">$0.00</strong>
+    </div>
+
+    <section class="card">
+      <div class="table-header">
+        <h2>Customer list</h2>
+        <button id="refresh-btn" type="button">Refresh</button>
+      </div>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Full name</th>
+              <th>Email</th>
+              <th>Type</th>
+              <th>Discount</th>
+              <th>Total sale</th>
+            </tr>
+          </thead>
+          <tbody id="customers-body"></tbody>
+        </table>
+      </div>
+      <div class="total">
+        Total earned: <strong id="total-earned">$0.00</strong>
+      </div>
+      <div id="form-status" class="status"></div>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
