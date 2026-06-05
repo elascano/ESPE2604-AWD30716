@@ -11,7 +11,6 @@ db.on('error', (error) => console.error(error));
 db.once('open', () => console.log('Connected to Database successfully opp :) Lascano System'));
 
 app.use(express.json());
-app.use(express.static("public"));
 
 const customerRouter = require('./routes/customerRoutes');
 app.use('/computerstore', customerRouter);
