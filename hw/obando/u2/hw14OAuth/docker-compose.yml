@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  react-app:
+    env_file:
+      - .env
+    build: .
+    container_name: mi_frontend_react
+    ports:
+      - "5173:5173"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+
+  backend-app:
+    env_file:
+      - .env
+    build: ./backend
+    container_name: mi_backend_python
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
