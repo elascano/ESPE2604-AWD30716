@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Pago | Fábula Dental</title>
+    
+    <link rel="stylesheet" href="/css/forms.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Fábula Dental</h1>
+    </header>
+
+    <main class="form-container">
+        <div class="form-card">
+            <h2>Modificar Pago Existente</h2>
+
+            <form id="paymentForm" action="/api/payments/<%= payment.id %>" method="POST" class="form-grid">
+
+                <div class="input-group full-width">
+                    <label for="patientID">ID del Paciente</label>
+                    <input type="text" id="patientID" name="patientID" value="<%= payment.patientID %>" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="amount">Monto ($)</label>
+                    <input type="number" id="amount" name="amount" min="0.01" step="0.01" value="<%= payment.amount %>" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="date">Fecha</label>
+                    <input type="date" id="date" name="date" value="<%= payment.date %>" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="paymentType">Tipo de Pago</label>
+                    <input type="text" id="paymentType" name="paymentType" value="<%= payment.paymentType %>" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="paymentMethod">Método de Pago</label>
+                    <select id="paymentMethod" name="paymentMethod" required>
+                        <option value="Efectivo" <%= payment.paymentMethod === 'Efectivo' ? 'selected' : '' %>>Efectivo</option>
+                        <option value="Tarjeta" <%= payment.paymentMethod === 'Tarjeta' ? 'selected' : '' %>>Tarjeta (Crédito/Débito)</option>
+                        <option value="Transferencia" <%= payment.paymentMethod === 'Transferencia' ? 'selected' : '' %>>Transferencia Bancaria</option>
+                    </select>
+                </div>
+
+                <div class="input-group full-width">
+                    <label for="status">Estado</label>
+                    <select id="status" name="status" required>
+                        <option value="Completado" <%= payment.status === 'Completado' ? 'selected' : '' %>>Completado</option>
+                        <option value="Pendiente" <%= payment.status === 'Pendiente' ? 'selected' : '' %>>Pendiente</option>
+                    </select>
+                </div>
+
+                <div class="input-group full-width">
+                    <button type="submit" class="btn btn-primary">Actualizar Pago</button>
+                </div>
+
+                <div class="full-width actions-row">
+                    <a href="/api/payments" class="btn btn-secondary">Ver Pagos</a>
+                    <a href="/html/administrator.html" class="btn btn-secondary">Volver al Panel</a>
+                </div>
+
+            </form>
+        </div>
+    </main>
+
+</body>
+
+</html>
