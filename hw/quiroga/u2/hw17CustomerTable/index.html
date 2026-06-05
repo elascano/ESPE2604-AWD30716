@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Customer Store</title>
+  </head>
+  <body>
+    <div style="max-width: 800px; margin: 0 auto; padding: 20px; font-family: sans-serif;">
+      <h1>Customer Dashboard</h1>
+
+      <!-- SECCIÓN: Total Gastado -->
+      <div style="background-color: #e8f5e9; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+        <h2 style="margin: 0; color: #2e7d32;">Total Gastado: $<span id="totalSpent">0.00</span></h2>
+      </div>
+
+      <!-- SECCIÓN: Ingresar Cliente -->
+      <div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+        <h3>Ingresar Nuevo Cliente</h3>
+        <form id="customerForm" style="display: flex; gap: 10px; align-items: flex-end; flex-wrap: wrap;">
+          <div>
+            <label style="font-weight: bold; font-size: 14px;">Name:</label><br>
+            <input type="text" id="name" required style="padding: 5px;">
+          </div>
+          <div>
+            <label style="font-weight: bold; font-size: 14px;">Age:</label><br>
+            <input type="number" id="age" required style="padding: 5px;">
+          </div>
+          <div>
+            <label style="font-weight: bold; font-size: 14px;">Money Spent:</label><br>
+            <input type="number" id="moneySpent" step="0.01" min="0" required style="padding: 5px;">
+          </div>
+          <button type="submit" style="padding: 6px 15px; background-color: #0d6efd; color: white; border: none; border-radius: 4px; cursor: pointer;">Guardar</button>
+        </form>
+      </div>
+
+      
+      <h3>Listado de Clientes</h3>
+      <table style="width: 100%; border-collapse: collapse; text-align: left; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+        <thead style="background-color: #f8f9fa; border-bottom: 2px solid #dee2e6;">
+          <tr>
+            <th style="padding: 10px;">Nombre</th>
+            <th style="padding: 10px;">Edad</th>
+            <th style="padding: 10px;">Gastado ($)</th>
+          </tr>
+        </thead>
+        <tbody id="customerTableBody">
+          <tr><td colspan="3" style="padding: 10px; text-align: center;">Cargando clientes...</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
