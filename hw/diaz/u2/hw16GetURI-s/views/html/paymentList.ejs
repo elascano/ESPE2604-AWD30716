@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Pagos | Fábula Dental</title>
+    
+    <link rel="stylesheet" href="/css/forms.css">
+    <style>
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f8f9fa;
+        }
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+        .btn-small {
+            padding: 5px 10px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Fábula Dental</h1>
+    </header>
+
+    <main class="form-container" style="max-width: 900px;">
+        <div class="form-card">
+            <h2>Registro de Pagos</h2>
+
+            <div class="full-width actions-row" style="margin-bottom: 20px;">
+                <a href="/payments/new" class="btn btn-primary">Registrar Nuevo Pago</a>
+                <a href="/html/administrator.html" class="btn btn-secondary">Volver al Panel</a>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID Paciente</th>
+                            <th>Monto</th>
+                            <th>Fecha</th>
+                            <th>Tipo</th>
+                            <th>Método</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (payments && payments.length > 0) { %>
+                            <% payments.forEach(function(payment) { %>
+                                <tr>
+                                    <td><%= payment.patientID %></td>
+                                    <td>$<%= payment.amount %></td>
+                                    <td><%= payment.date %></td>
+                                    <td><%= payment.paymentType %></td>
+                                    <td><%= payment.paymentMethod %></td>
+                                    <td><%= payment.status %></td>
+                                    <td class="actions">
+                                        <a href="/payments/<%= payment.id %>/edit" class="btn btn-secondary btn-small">Editar</a>
+                                    </td>
+                                </tr>
+                            <% }); %>
+                        <% } else { %>
+                            <tr>
+                                <td colspan="7" style="text-align: center;">No hay pagos registrados.</td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+
+</html>
