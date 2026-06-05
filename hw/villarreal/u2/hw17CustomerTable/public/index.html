@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Evelyn's Computer Store - Customers</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Evelyn's Computer Store</h1>
+            <p class="subtitle">Customer Management</p>
+        </header>
+
+        <section class="controls">
+            <button id="loadBtn" onclick="fetchCustomers()">Load Customers</button>
+            <div class="total-card">
+                <span class="total-label">Total Money Spent</span>
+                <span class="total-value" id="totalDisplay">$0.00</span>
+            </div>
+        </section>
+
+        <section class="table-wrapper">
+            <table id="customerTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Money Spent</th>
+                    </tr>
+                </thead>
+                <tbody id="customerBody">
+                    <tr>
+                        <td colspan="4" class="empty-msg">Click "Load Customers" to fetch data</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <script>
+        async function fetchCustomers() {
+            const tbody = document.getElementById("customerBody");
+            const totalDisplay = document.getElementById("totalDisplay");
+            const btn = document.getElementById("loadBtn");
+
+            btn.disabled = true;
+            btn.textContent = "Loading...";
+            tbody.innerHTML = '<tr><td colspan="4" class="empty-msg">Loading...</td></tr>';
+
+            try {
+                const res = await fetch("/computerstore/customers");
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const customers = await res.json();
+
+                if (!customers.length) {
+                    tbody.innerHTML = '<tr><td colspan="4" class="empty-msg">No customers found</td></tr>';
+                    totalDisplay.textContent = "$0.00";
+                    btn.disabled = false;
+                    btn.textContent = "Load Customers";
+                    return;
+                }
+
+                let total = 0;
+                let rows = "";
+                for (const c of customers) {
+                    const spent = Number(c.moneySpent) || 0;
+                    total += spent;
+                    rows += `<tr>
+                        <td>${c.id}</td>
+                        <td>${c.name || "-"}</td>
+                        <td>${c.age ?? "-"}</td>
+                        <td>$${spent.toFixed(2)}</td>
+                    </tr>`;
+                }
+
+                tbody.innerHTML = rows;
+                totalDisplay.textContent = `$${total.toFixed(2)}`;
+            } catch (err) {
+                tbody.innerHTML = `<tr><td colspan="4" class="empty-msg error">Error: ${err.message}</td></tr>`;
+            } finally {
+                btn.disabled = false;
+                btn.textContent = "Load Customers";
+            }
+        }
+    </script>
+</body>
+</html>

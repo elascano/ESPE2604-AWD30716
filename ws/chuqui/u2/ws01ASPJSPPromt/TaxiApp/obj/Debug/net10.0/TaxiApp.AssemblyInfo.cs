@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TaxiApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6875a76cd76b703a82a73dd909b48a017d2491ac")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c66afb4eb634d7c12cc90217a7578b9a6d1cab37")]
 [assembly: System.Reflection.AssemblyProductAttribute("TaxiApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TaxiApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
