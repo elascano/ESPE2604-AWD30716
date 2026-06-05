@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Dashboard | Computer Store</title>
+    
+    <link rel="stylesheet" href="/customers.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+
+    <div id="customer-dashboard">
+        <h1>Customer Spending Management</h1>
+
+        <div class="summary-container">
+            Total Spent: $ {{ globalAmountSpent }}
+        </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Full Name</th>
+                    <th>Email Address</th>
+                    <th>Total Spent (USD)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="activeCustomer in storeCustomers" :key="activeCustomer._id">
+                    <td>{{ activeCustomer.name || 'Anonymous Customer' }}</td>
+                    <td>{{ activeCustomer.email || 'No Email Provided' }}</td>
+                    <td>$ {{ activeCustomer.moneySpent || 0 }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="/customers-app.js"></script>
+</body>
+</html>
