@@ -1,0 +1,12 @@
+{
+  "name": "computerstore-frontend",
+  "version": "1.0.0",
+  "description": "Frontend server for Computer Store Customer CRUD",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
