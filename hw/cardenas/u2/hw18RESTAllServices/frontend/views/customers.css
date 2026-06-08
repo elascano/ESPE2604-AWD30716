@@ -1,0 +1,113 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 40px;
+    background-color: #f4f6f9;
+    color: #333;
+}
+
+h1 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.form-container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.form-container h3 {
+    margin-top: 0;
+    color: #007bff;
+}
+
+form {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    flex: 1;
+    min-width: 120px;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+}
+
+.btn-save { background-color: #28a745; }
+.btn-save:hover { background-color: #218838; }
+
+.btn-cancel { background-color: #6c757d; }
+.btn-cancel:hover { background-color: #5a6268; }
+
+.btn-edit { background-color: #ffc107; color: #212529; margin-right: 5px; }
+.btn-edit:hover { background-color: #e0a800; }
+
+.btn-delete { background-color: #dc3545; }
+.btn-delete:hover { background-color: #c82333; }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 14px 18px;
+    text-align: left;
+}
+
+th {
+    background-color: #007bff;
+    color: #ffffff;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+tr {
+    border-bottom: 1px solid #e9ecef;
+}
+
+tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+tr:hover {
+    background-color: #f1f3f5;
+}
+
+.summary-container {
+    margin-top: 10px;
+    padding: 20px;
+    background-color: #e2e3e5;
+    color: #1c1f23;
+    font-size: 1.3rem;
+    font-weight: bold;
+    border-radius: 6px;
+    border-left: 5px solid #28a745;
+    display: inline-block;
+}
+
+.empty-state {
+    text-align: center; 
+    color: #7f8c8d;
+}

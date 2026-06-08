@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Dashboard | Computer Store</title>
+    <link rel="stylesheet" href="/customers.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+
+    <div id="customer-dashboard">
+        <h1>Customer Spending Management</h1>
+
+        <div class="form-container">
+            <h3>{{ isEditing ? 'Edit Customer' : 'Add New Customer' }}</h3>
+            <form @submit.prevent="saveCustomer">
+                <input type="number" v-model.number="form.id" placeholder="Customer ID" :disabled="isEditing" required>
+                <input type="text" v-model="form.name" placeholder="Full Name" required>
+                <input type="number" v-model.number="form.age" placeholder="Age" required>
+                <input type="number" step="0.01" v-model.number="form.moneySpent" placeholder="Total Spent ($)" required>
+                
+                <button type="submit" class="btn-save">{{ isEditing ? 'Update' : 'Save Record' }}</button>
+                <button type="button" class="btn-cancel" v-if="isEditing" @click="resetForm">Cancel</button>
+            </form>
+        </div>
+
+        <div class="summary-container">
+            Total Accumulated Spent: $ {{ globalAmountSpent.toFixed(2) }}
+        </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Full Name</th>
+                    <th>Age</th>
+                    <th>Total Spent (USD)</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="customer in storeCustomers" :key="customer.id">
+                    <td>{{ customer.id }}</td>
+                    <td>{{ customer.name || 'Anonymous Customer' }}</td>
+                    <td>{{ customer.age }}</td>
+                    <td>$ {{ (customer.moneySpent || 0).toFixed(2) }}</td>
+                    <td>
+                        <button class="btn-edit" @click="setTargetEdit(customer)">Edit</button>
+                        <button class="btn-delete" @click="deleteCustomer(customer.id)">Delete</button>
+                    </td>
+                </tr>
+                <tr v-if="storeCustomers.length === 0">
+                    <td colspan="5" class="empty-state">No customer records found in the database.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="/customers-app.js"></script>
+</body>
+</html>
