@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kerly's Computers Store - Customers Directory</title>
+    <meta name="description"
+        content="View and manage customer data at Kerly's Computers Store. Experience a high-performance interactive interface with real-time searching, sorting, and database statistics.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="glow-container">
+        <div class="glow-sphere sphere-1"></div>
+        <div class="glow-sphere sphere-2"></div>
+    </div>
+
+    <div class="container">
+
+        <header class="app-header">
+            <div class="logo-area">
+                <span class="icon">💻</span>
+                <div>
+                    <h1 id="app-title">Kerly's Computers Store</h1>
+                    <p class="subtitle">System Database Control Panel</p>
+                </div>
+            </div>
+            <div class="stats-card" id="db-status-container">
+                <div class="status-indicator">
+                    <span class="status-dot online"></span>
+                    <span class="status-text">Database Connected</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Total Customers:</span>
+                    <span class="stat-val" id="total-customers-count">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Total Sales:</span>
+                    <span class="stat-val" id="total-sales-sum"
+                        style="color: var(--accent-success); font-weight: 700;">$0.00</span>
+                </div>
+            </div>
+        </header>
+
+
+        <main class="dashboard-card">
+
+            <div class="toolbar">
+                <div class="search-box">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="search-input" placeholder="Search customers by ID or name..."
+                        autocomplete="off">
+                </div>
+
+                <div class="actions">
+                    <div class="select-wrapper">
+                        <select id="sort-select">
+                            <option value="id-asc">Sort by: ID (Asc)</option>
+                            <option value="id-desc">Sort by: ID (Desc)</option>
+                            <option value="name-asc">Sort by: Name (A-Z)</option>
+                            <option value="name-desc">Sort by: Name (Z-A)</option>
+                            <option value="sale-desc">Sort by: Total Sale (Highest)</option>
+                            <option value="sale-asc">Sort by: Total Sale (Lowest)</option>
+                            <option value="discount-desc">Sort by: Discount (Highest)</option>
+                        </select>
+                    </div>
+                    <button id="add-customer-btn" class="btn btn-primary"
+                        style="background: linear-gradient(135deg, var(--accent-color) 0%, #5b4cd8 100%);">
+                        <span class="btn-icon">➕</span> Add Customer
+                    </button>
+                    <button id="refresh-btn" class="btn btn-secondary">
+                        <span class="btn-icon">🔄</span> Refresh
+                    </button>
+                </div>
+            </div>
+
+
+            <div id="loader" class="loader-container">
+                <div class="spinner"></div>
+                <p>Loading database records...</p>
+            </div>
+
+
+            <div class="table-responsive" id="table-container" style="display: none;">
+                <table id="customers-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Customer Name</th>
+                            <th>Email</th>
+                            <th>Type</th>
+                            <th>Discount</th>
+                            <th>Total Sale</th>
+                            <th class="actions-col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="customers-tbody">
+
+                    </tbody>
+                </table>
+            </div>
+
+
+            <div id="empty-state" class="empty-state" style="display: none;">
+                <div class="empty-icon">📁</div>
+                <h3>No customers found</h3>
+                <p>Try refining your search filter or add records to the database.</p>
+            </div>
+        </main>
+    </div>
+
+
+    <div id="customer-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Customer Profile Details</h2>
+                <button class="close-btn" id="close-modal-btn">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body-content">
+
+            </div>
+            <div class="modal-footer" style="gap: 0.5rem; justify-content: space-between;">
+                <div>
+                    <button class="btn btn-primary" id="edit-customer-btn"
+                        style="background: var(--accent-color);">Edit</button>
+                    <button class="btn" id="delete-customer-btn"
+                        style="background: var(--accent-danger); color: #fff; display: inline-flex;">Delete</button>
+                </div>
+                <button class="btn btn-secondary" id="close-modal-footer-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="customer-form-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="form-modal-title">Add New Customer</h2>
+                <button class="close-btn" id="close-form-btn">&times;</button>
+            </div>
+            <form id="customer-form">
+                <input type="hidden" id="customer-mongo-id">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="form-id">ID (Numeric)</label>
+                        <input type="number" id="form-id" required placeholder="e.g. 101">
+                    </div>
+                    <div class="form-group">
+                        <label for="form-fullName">Full Name</label>
+                        <input type="text" id="form-fullName" required placeholder="e.g. John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label for="form-email">Email</label>
+                        <input type="email" id="form-email" required placeholder="e.g. john@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="form-type">Type</label>
+                        <select id="form-type">
+                            <option value="Normal">Normal</option>
+                            <option value="VIP">VIP</option>
+                            <option value="Frequent">Frequent</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-discount">Discount (%)</label>
+                        <input type="number" id="form-discount" min="0" max="100" required placeholder="e.g. 10">
+                    </div>
+                    <div class="form-group">
+                        <label for="form-totalSale">Total Sales ($)</label>
+                        <input type="number" id="form-totalSale" step="0.01" min="0" required placeholder="e.g. 150.50">
+                    </div>
+                </div>
+                <div class="modal-footer" style="gap: 0.5rem;">
+                    <button type="button" class="btn btn-secondary" id="cancel-form-btn">Cancel</button>
+                    <button type="submit" class="btn btn-primary"
+                        style="background: var(--accent-success); color: white;">Save Customer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
