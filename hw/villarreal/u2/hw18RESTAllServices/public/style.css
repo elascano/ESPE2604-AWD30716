@@ -1,0 +1,380 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2rem 1rem;
+}
+
+.container {
+    width: 100%;
+    max-width: 960px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    font-size: 2rem;
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.subtitle {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.95rem;
+    margin-top: 0.25rem;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.left-group {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.search-group {
+    display: flex;
+    gap: 0.4rem;
+}
+
+.search-group input {
+    padding: 0.55rem 0.8rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.06);
+    color: #fff;
+    font-size: 0.9rem;
+    outline: none;
+    width: 130px;
+    transition: border-color 0.2s;
+}
+
+.search-group input:focus {
+    border-color: #667eea;
+}
+
+.search-group button {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: #fff;
+    border: none;
+    padding: 0.55rem 1rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.search-group button:hover {
+    opacity: 0.8;
+}
+
+#loadBtn, #createBtn {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #fff;
+    border: none;
+    padding: 0.7rem 1.8rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+}
+
+#createBtn {
+    background: linear-gradient(135deg, #4ade80, #22c55e);
+}
+
+#loadBtn:hover, #createBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+#createBtn:hover {
+    box-shadow: 0 6px 20px rgba(74, 222, 128, 0.4);
+}
+
+#loadBtn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.total-card {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 0.7rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.total-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.total-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #4ade80;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+thead th {
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    padding: 1rem 1.2rem;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.08);
+}
+
+tbody td {
+    padding: 0.9rem 1.2rem;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.95rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+tbody tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.empty-msg {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.35);
+    padding: 2.5rem 1rem;
+    font-style: italic;
+}
+
+.error {
+    color: #f87171;
+}
+
+.actions-cell {
+    white-space: nowrap;
+}
+
+.btn-sm {
+    border: none;
+    padding: 0.4rem 0.9rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    color: #fff;
+}
+
+.btn-sm:hover {
+    opacity: 0.8;
+}
+
+.btn-edit {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    margin-right: 0.4rem;
+}
+
+.btn-delete {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: #fff;
+    border: none;
+    padding: 0.6rem 1.5rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* Modal */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal {
+    background: #1e1b4b;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.modal-sm {
+    max-width: 360px;
+}
+
+.modal h2 {
+    color: #fff;
+    margin-bottom: 1.25rem;
+    font-size: 1.4rem;
+}
+
+.modal p {
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+.modal label {
+    display: block;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin: 0.8rem 0 0.3rem;
+}
+
+.modal input {
+    width: 100%;
+    padding: 0.65rem 0.9rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.06);
+    color: #fff;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.modal input:focus {
+    border-color: #667eea;
+}
+
+.modal input:disabled {
+    opacity: 0.5;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+}
+
+.modal-actions button {
+    padding: 0.6rem 1.5rem;
+    border-radius: 8px;
+    border: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    color: #fff;
+}
+
+.modal-actions button[type="button"] {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.modal-actions button[type="submit"], #saveBtn {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.modal-actions button:hover {
+    opacity: 0.8;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 1.25rem;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    .controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .left-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-group {
+        width: 100%;
+    }
+
+    .search-group input {
+        flex: 1;
+        width: auto;
+    }
+
+    #loadBtn, #createBtn {
+        width: 100%;
+    }
+
+    .total-card {
+        width: 100%;
+    }
+
+    thead th,
+    tbody td {
+        padding: 0.7rem 0.8rem;
+        font-size: 0.85rem;
+    }
+}

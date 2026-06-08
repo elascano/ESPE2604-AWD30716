@@ -1,0 +1,24 @@
+version: "3.8"
+
+services:
+  backend:
+    build: ./backend
+    container_name: computerstore-api
+    ports:
+      - "3017:3017"
+    environment:
+      - PORT=3017
+      - MONGODB_URI=mongodb+srv://oop:oop@cluster0.9knxc.mongodb.net/oop?appName=Cluster0
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    container_name: computerstore-frontend
+    ports:
+      - "8017:8017"
+    environment:
+      - PORT=8017
+      - API_TARGET=http://computerstore-api:3017
+    depends_on:
+      - backend
+    restart: unless-stopped

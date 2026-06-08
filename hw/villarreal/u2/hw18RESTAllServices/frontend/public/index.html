@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Evelyn's Computer Store - CRUD</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Evelyn's Computer Store</h1>
+            <p class="subtitle">Customer Management — Full CRUD</p>
+        </header>
+
+        <section class="controls">
+            <div class="left-group">
+                <button id="loadBtn" onclick="fetchCustomers()">Load Customers</button>
+                <button id="createBtn" onclick="openCreateModal()">+ New Customer</button>
+                <div class="search-group">
+                    <input type="number" id="searchId" placeholder="Search by ID..." />
+                    <button onclick="searchCustomer()">Search</button>
+                </div>
+            </div>
+            <div class="total-card">
+                <span class="total-label">Total Money Spent</span>
+                <span class="total-value" id="totalDisplay">$0.00</span>
+            </div>
+        </section>
+
+        <section class="table-wrapper">
+            <table id="customerTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Money Spent</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="customerBody">
+                    <tr>
+                        <td colspan="5" class="empty-msg">Click "Load Customers" to fetch data</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <!-- Create / Edit Modal -->
+    <div id="customerModal" class="modal-overlay" style="display:none;">
+        <div class="modal">
+            <h2 id="modalTitle">New Customer</h2>
+            <form id="customerForm" onsubmit="saveCustomer(event)">
+                <input type="hidden" id="editId" />
+                <label>ID *</label>
+                <input type="number" id="fieldId" required />
+                <label>Name *</label>
+                <input type="text" id="fieldName" required />
+                <label>Age</label>
+                <input type="number" id="fieldAge" />
+                <label>Money Spent</label>
+                <input type="number" step="0.01" id="fieldMoney" />
+                <div class="modal-actions">
+                    <button type="button" onclick="closeModal()">Cancel</button>
+                    <button type="submit" id="saveBtn">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Delete confirmation modal -->
+    <div id="deleteModal" class="modal-overlay" style="display:none;">
+        <div class="modal modal-sm">
+            <h2>Confirm Delete</h2>
+            <p id="deleteMsg">Are you sure you want to delete this customer?</p>
+            <div class="modal-actions">
+                <button type="button" onclick="closeDeleteModal()">Cancel</button>
+                <button type="button" id="confirmDeleteBtn" class="btn-danger" onclick="confirmDelete()">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function apiUrl(path) {
+            return '/api' + path;
+        }
+
+        // --- Search by ID ---
+        async function searchCustomer() {
+            const id = document.getElementById("searchId").value.trim();
+            if (!id) return fetchCustomers();
+            const tbody = document.getElementById("customerBody");
+            const totalDisplay = document.getElementById("totalDisplay");
+            try {
+                const res = await fetch(apiUrl("/customer/" + id));
+                if (!res.ok) {
+                    tbody.innerHTML = '<tr><td colspan="5" class="empty-msg error">Customer not found</td></tr>';
+                    totalDisplay.textContent = "$0.00";
+                    return;
+                }
+                const c = await res.json();
+                const spent = Number(c.moneySpent) || 0;
+                tbody.innerHTML = `<tr>
+                    <td>${c.id}</td>
+                    <td>${c.name || "-"}</td>
+                    <td>${c.age ?? "-"}</td>
+                    <td>$${spent.toFixed(2)}</td>
+                    <td class="actions-cell">
+                        <button class="btn-sm btn-edit" onclick="editCustomer(${c.id})">Edit</button>
+                        <button class="btn-sm btn-delete" onclick="openDeleteModal(${c.id}, '${(c.name || '').replace(/'/g, "\\'")}')">Delete</button>
+                    </td>
+                </tr>`;
+                totalDisplay.textContent = `$${spent.toFixed(2)}`;
+            } catch (err) {
+                tbody.innerHTML = `<tr><td colspan="5" class="empty-msg error">Error: ${err.message}</td></tr>`;
+            }
+        }
+
+        // --- Fetch & Render ---
+        async function fetchCustomers() {
+            const tbody = document.getElementById("customerBody");
+            const totalDisplay = document.getElementById("totalDisplay");
+            const btn = document.getElementById("loadBtn");
+
+            btn.disabled = true;
+            btn.textContent = "Loading...";
+            tbody.innerHTML = '<tr><td colspan="5" class="empty-msg">Loading...</td></tr>';
+
+            try {
+                const res = await fetch(apiUrl("/customers"));
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const customers = await res.json();
+
+                if (!customers.length) {
+                    tbody.innerHTML = '<tr><td colspan="5" class="empty-msg">No customers found</td></tr>';
+                    totalDisplay.textContent = "$0.00";
+                    btn.disabled = false;
+                    btn.textContent = "Load Customers";
+                    return;
+                }
+
+                let total = 0;
+                let rows = "";
+                for (const c of customers) {
+                    const spent = Number(c.moneySpent) || 0;
+                    total += spent;
+                    rows += `<tr>
+                        <td>${c.id}</td>
+                        <td>${c.name || "-"}</td>
+                        <td>${c.age ?? "-"}</td>
+                        <td>$${spent.toFixed(2)}</td>
+                        <td class="actions-cell">
+                            <button class="btn-sm btn-edit" onclick="editCustomer(${c.id})">Edit</button>
+                            <button class="btn-sm btn-delete" onclick="openDeleteModal(${c.id}, '${(c.name || '').replace(/'/g, "\\'")}')">Delete</button>
+                        </td>
+                    </tr>`;
+                }
+
+                tbody.innerHTML = rows;
+                totalDisplay.textContent = `$${total.toFixed(2)}`;
+            } catch (err) {
+                tbody.innerHTML = `<tr><td colspan="5" class="empty-msg error">Error: ${err.message}</td></tr>`;
+            } finally {
+                btn.disabled = false;
+                btn.textContent = "Load Customers";
+            }
+        }
+
+        // --- Create Modal ---
+        function openCreateModal() {
+            document.getElementById("modalTitle").textContent = "New Customer";
+            document.getElementById("saveBtn").textContent = "Create";
+            document.getElementById("customerForm").reset();
+            document.getElementById("editId").value = "";
+            document.getElementById("customerModal").style.display = "flex";
+        }
+
+        // --- Edit Modal ---
+        async function editCustomer(id) {
+            try {
+                const res = await fetch(apiUrl("/customer/" + id));
+                if (!res.ok) throw new Error("Customer not found");
+                const c = await res.json();
+
+                document.getElementById("modalTitle").textContent = "Edit Customer";
+                document.getElementById("saveBtn").textContent = "Update";
+                document.getElementById("editId").value = c.id;
+                document.getElementById("fieldId").value = c.id;
+                document.getElementById("fieldId").disabled = true; // cannot change id
+                document.getElementById("fieldName").value = c.name || "";
+                document.getElementById("fieldAge").value = c.age ?? "";
+                document.getElementById("fieldMoney").value = c.moneySpent ?? "";
+                document.getElementById("customerModal").style.display = "flex";
+            } catch (err) {
+                alert("Error loading customer: " + err.message);
+            }
+        }
+
+        // --- Save (Create / Update) ---
+        async function saveCustomer(event) {
+            event.preventDefault();
+            const editId = document.getElementById("editId").value;
+            const payload = {
+                id: Number(document.getElementById("fieldId").value),
+                name: document.getElementById("fieldName").value,
+                age: document.getElementById("fieldAge").value
+                    ? Number(document.getElementById("fieldAge").value)
+                    : undefined,
+                moneySpent: document.getElementById("fieldMoney").value
+                    ? Number(document.getElementById("fieldMoney").value)
+                    : undefined
+            };
+
+            try {
+                let res;
+                if (editId) {
+                    // Update
+                    res = await fetch(apiUrl("/customer/" + editId), {
+                        method: "PUT",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(payload)
+                    });
+                } else {
+                    // Create
+                    res = await fetch(apiUrl("/customers"), {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(payload)
+                    });
+                }
+                if (!res.ok) {
+                    const err = await res.json();
+                    throw new Error(err.message || "Request failed");
+                }
+                closeModal();
+                fetchCustomers();
+            } catch (err) {
+                alert("Error: " + err.message);
+            }
+        }
+
+        function closeModal() {
+            document.getElementById("customerModal").style.display = "none";
+            document.getElementById("fieldId").disabled = false;
+        }
+
+        // --- Delete ---
+        let deleteTargetId = null;
+
+        function openDeleteModal(id, name) {
+            deleteTargetId = id;
+            document.getElementById("deleteMsg").textContent =
+                "Are you sure you want to delete customer \"" + name + "\" (ID: " + id + ")?";
+            document.getElementById("deleteModal").style.display = "flex";
+        }
+
+        function closeDeleteModal() {
+            document.getElementById("deleteModal").style.display = "none";
+            deleteTargetId = null;
+        }
+
+        async function confirmDelete() {
+            if (deleteTargetId == null) return;
+            try {
+                const res = await fetch(apiUrl("/customer/" + deleteTargetId), {
+                    method: "DELETE"
+                });
+                if (!res.ok) {
+                    const err = await res.json();
+                    throw new Error(err.message || "Delete failed");
+                }
+                closeDeleteModal();
+                fetchCustomers();
+            } catch (err) {
+                alert("Error: " + err.message);
+                closeDeleteModal();
+            }
+        }
+
+        // Search on Enter key
+        document.getElementById("searchId").addEventListener("keyup", function (e) {
+            if (e.key === "Enter") searchCustomer();
+        });
+
+        // Close modals on overlay click
+        document.querySelectorAll(".modal-overlay").forEach(el => {
+            el.addEventListener("click", function (e) {
+                if (e.target === this) {
+                    closeModal();
+                    closeDeleteModal();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

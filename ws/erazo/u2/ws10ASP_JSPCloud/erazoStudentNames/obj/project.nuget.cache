@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Y+ZRqw95A+A=",
+  "dgSpecHash": "QxMGYeHYREQ=",
   "success": true,
-  "projectFilePath": "c:\\Users\\Det-Pc\\Desktop\\ESPE2604-AWD30716\\ws\\erazo\\u2\\ws10ASP_JSPCloud\\erazoStudentNames\\ErazoStudentNames.csproj",
+  "projectFilePath": "C:\\Users\\Det-Pc\\Desktop\\ESPE2604-AWD30716\\ws\\erazo\\u2\\ws10ASP_JSPCloud\\erazoStudentNames\\ErazoStudentNames.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Det-Pc\\.nuget\\packages\\dnsclient\\1.6.1\\dnsclient.1.6.1.nupkg.sha512",
     "C:\\Users\\Det-Pc\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\2.0.0\\microsoft.extensions.logging.abstractions.2.0.0.nupkg.sha512",

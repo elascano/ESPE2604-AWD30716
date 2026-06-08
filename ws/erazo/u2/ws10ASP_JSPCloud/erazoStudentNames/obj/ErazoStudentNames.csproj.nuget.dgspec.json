@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\Det-Pc\\Desktop\\ESPE2604-AWD30716\\ws\\erazo\\u2\\ws10ASP_JSPCloud\\erazoStudentNames\\ErazoStudentNames.csproj": {}
+    "C:\\Users\\Det-Pc\\Desktop\\ESPE2604-AWD30716\\ws\\erazo\\u2\\ws10ASP_JSPCloud\\erazoStudentNames\\ErazoStudentNames.csproj": {}
   },
   "projects": {
-    "c:\\Users\\Det-Pc\\Desktop\\ESPE2604-AWD30716\\ws\\erazo\\u2\\ws10ASP_JSPCloud\\erazoStudentNames\\ErazoStudentNames.csproj": {
+    "C:\\Users\\Det-Pc\\Desktop\\ESPE2604-AWD30716\\ws\\erazo\\u2\\ws10ASP_JSPCloud\\erazoStudentNames\\ErazoStudentNames.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Det-Pc\\Desktop\\ESPE2604-AWD30716\\ws\\erazo\\u2\\ws10ASP_JSPCloud\\erazoStudentNames\\ErazoStudentNames.csproj",
+        "projectUniqueName": "C:\\Users\\Det-Pc\\Desktop\\ESPE2604-AWD30716\\ws\\erazo\\u2\\ws10ASP_JSPCloud\\erazoStudentNames\\ErazoStudentNames.csproj",
         "projectName": "ErazoStudentNames",
-        "projectPath": "c:\\Users\\Det-Pc\\Desktop\\ESPE2604-AWD30716\\ws\\erazo\\u2\\ws10ASP_JSPCloud\\erazoStudentNames\\ErazoStudentNames.csproj",
+        "projectPath": "C:\\Users\\Det-Pc\\Desktop\\ESPE2604-AWD30716\\ws\\erazo\\u2\\ws10ASP_JSPCloud\\erazoStudentNames\\ErazoStudentNames.csproj",
         "packagesPath": "C:\\Users\\Det-Pc\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Det-Pc\\Desktop\\ESPE2604-AWD30716\\ws\\erazo\\u2\\ws10ASP_JSPCloud\\erazoStudentNames\\obj\\",
+        "outputPath": "C:\\Users\\Det-Pc\\Desktop\\ESPE2604-AWD30716\\ws\\erazo\\u2\\ws10ASP_JSPCloud\\erazoStudentNames\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

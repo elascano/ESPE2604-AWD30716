@@ -1,0 +1,11 @@
+{
+  "name": "computerstore",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Evelyn's Computer Store — Full CRUD",
+  "author": "Evelyn Villarreal",
+  "scripts": {
+    "docker:up": "docker compose up --build",
+    "docker:down": "docker compose down"
+  }
+}

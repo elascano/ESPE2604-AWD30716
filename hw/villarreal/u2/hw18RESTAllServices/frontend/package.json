@@ -1,0 +1,16 @@
+{
+  "name": "computerstore-frontend",
+  "version": "1.0.0",
+  "description": "Computer Store Frontend",
+  "license": "ISC",
+  "author": "Evelyn Villarreal",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
