@@ -1,0 +1,24 @@
+{
+  "name": "ws14-rest-web-services-torres",
+  "version": "1.0.0",
+  "description": "Workshop 14 - REST web services with Express and MongoDB",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "keywords": [
+    "express",
+    "mongodb",
+    "mongoose",
+    "rest"
+  ],
+  "author": "Carlos Alexander Torres Pincay",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "mongoose": "^9.6.3"
+  }
+}

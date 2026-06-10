@@ -1,0 +1,17 @@
+{
+  "name": "ws12-node-torres",
+  "version": "1.0.0",
+  "description": "Workshop 12 - Basic Node.js HTTP server",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "node",
+    "http",
+    "workshop"
+  ],
+  "author": "Carlos Alexander Torres Pincay",
+  "license": "ISC",
+  "type": "commonjs"
+}

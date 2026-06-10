@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WS16 EndPoints - Torres Dance Store</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <header class="header">
+        <p>Workshop 16</p>
+        <h1>Torres Dance Store Endpoints</h1>
+      </header>
+
+      <section class="panel">
+        <h2>Available GET URIs</h2>
+        <ul>
+          <li><a href="/api/health">/api/health</a></li>
+          <li><a href="/torresstore/items">/torresstore/items</a></li>
+          <li><a href="/torresstore/item/1601">/torresstore/item/1601</a></li>
+          <li><a href="/torresstore/items/category/footwear">/torresstore/items/category/footwear</a></li>
+        </ul>
+      </section>
+
+      <section class="panel">
+        <h2>Dance Items</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Category</th>
+              <th>Size</th>
+              <th>Price</th>
+              <th>Stock</th>
+            </tr>
+          </thead>
+          <tbody id="itemsBody">
+            <tr>
+              <td colspan="6">Loading items...</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

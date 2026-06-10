@@ -1,0 +1,26 @@
+{
+  "name": "ws16-endpoints-torres",
+  "version": "1.0.0",
+  "description": "Workshop 16 - REST endpoints for a dance items store",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "keywords": [
+    "express",
+    "mongodb",
+    "mongoose",
+    "endpoints",
+    "rest"
+  ],
+  "author": "Carlos Alexander Torres Pincay",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "mongoose": "^9.6.3"
+  }
+}
