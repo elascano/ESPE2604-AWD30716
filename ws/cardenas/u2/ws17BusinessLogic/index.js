@@ -1,0 +1,17 @@
+const port = process.env.PORT || 3004;const express = require("express");
+const app = express();
+const mongoose = require("mongoose");
+
+mongoose.connect("mongodb+srv://admin:admin@cluster0.x7strgx.mongodb.net/Videogame?appName=Cluster0");
+
+const db = mongoose.connection;
+db.on("error", (error) => console.error(error));
+db.once("open", () => console.log("Cardenas system connected to MongoDB Database"));
+
+app.use(express.json());
+
+// Changed from "videogamerRoutes" to "videogameRoutes"
+const videogameRouter = require("./routes/videogameRoutes");
+app.use("/andresvideogames", videogameRouter);
+
+app.listen(port, () => console.log("Andres´s Videogames Server is running on port " + port));
