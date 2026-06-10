@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Store Movies — Movie Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header>
+    <div class="logo">🎬</div>
+    <div>
+      <h1>Store Movies</h1>
+      <p>Movie Management Dashboard</p>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ══════════════════════════════════════════════════════
+         SECTION 1 – ADD MOVIE
+         URI used: POST /storemovies/movies
+    ════════════════════════════════════════════════════════ -->
+    <section class="card form-card">
+      <h2>➕ Add New Movie</h2>
+      <p class="uri-label">POST <code>/storemovies/movies</code></p>
+
+      <div class="form-grid">
+        <div class="field">
+          <label for="fId">ID <span class="req">*</span></label>
+          <input type="number" id="fId" placeholder="e.g. 1" />
+        </div>
+        <div class="field">
+          <label for="fTitle">Title <span class="req">*</span></label>
+          <input type="text" id="fTitle" placeholder="e.g. Inception" />
+        </div>
+        <div class="field">
+          <label for="fDirector">Director <span class="req">*</span></label>
+          <input type="text" id="fDirector" placeholder="e.g. Christopher Nolan" />
+        </div>
+        <div class="field">
+          <label for="fGender">Genre <span class="req">*</span></label>
+          <input type="text" id="fGender" placeholder="e.g. Sci-Fi" />
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button class="btn btn-primary" onclick="submitForm()">Add Movie</button>
+      </div>
+      <div id="formMsg" class="form-msg" style="display:none;"></div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         SECTION 2 – MOVIE TABLE
+         URI used: GET /storemovies/movies
+    ════════════════════════════════════════════════════════ -->
+    <section class="card table-section">
+      <h2>🎥 All Movies</h2>
+      <p class="uri-label">GET <code>/storemovies/movies</code></p>
+
+      <!-- Controls -->
+      <div class="controls">
+        <div class="search-wrapper">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+               stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Search by title, director or genre…"
+            oninput="filterTable()"
+          />
+        </div>
+        <div class="count-badge" id="countBadge">Loading…</div>
+        <button class="btn btn-ghost" onclick="loadMovies()">↺ Refresh</button>
+      </div>
+
+      <!-- Table -->
+      <div class="table-wrap">
+        <div id="statusMsg">⏳ Loading movies…</div>
+
+        <table id="movieTable" style="display:none;">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>ID</th>
+              <th>Title</th>
+              <th>Director</th>
+              <th>Genre</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+
+        <div id="noResults">🔍 No movies match your search.</div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
