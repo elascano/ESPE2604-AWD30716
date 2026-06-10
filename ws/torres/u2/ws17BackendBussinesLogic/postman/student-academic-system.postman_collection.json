@@ -1,0 +1,125 @@
+{
+  "info": {
+    "name": "Student Academic System API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Listar estudiantes",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/students"
+      }
+    },
+    {
+      "name": "Verificar base de datos MongoDB",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/health/database"
+      }
+    },
+    {
+      "name": "Crear estudiante",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": 8,\n  \"name\": \"Andrea Molina\",\n  \"descripcion\": \"Contabilidad\",\n  \"fechaNacimiento\": \"2004-05-16\",\n  \"quintilSocioeconomico\": 3,\n  \"promedio\": 8.9,\n  \"porcentajeBeca\": 15\n}"
+        },
+        "url": "{{baseUrl}}/api/students"
+      }
+    },
+    {
+      "name": "Consultar estudiante",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/students/1"
+      }
+    },
+    {
+      "name": "Actualizar estudiante",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"promedio\": 9.4,\n  \"porcentajeBeca\": 25\n}"
+        },
+        "url": "{{baseUrl}}/api/students/8"
+      }
+    },
+    {
+      "name": "Eliminar estudiante",
+      "request": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/api/students/8"
+      }
+    },
+    {
+      "name": "Reporte individual JSON",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/students/1/report"
+      }
+    },
+    {
+      "name": "Reporte individual Excel",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/students/1/report/excel"
+      }
+    },
+    {
+      "name": "Mejores estudiantes JSON",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/reports/top-students?limit=5"
+      }
+    },
+    {
+      "name": "Mejores estudiantes Excel",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/reports/top-students/excel?limit=5"
+      }
+    },
+    {
+      "name": "Reporte general JSON",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/reports/summary"
+      }
+    },
+    {
+      "name": "Reporte general Excel",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/reports/summary/excel"
+      }
+    },
+    {
+      "name": "Documentacion de URIs",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/docs/uris"
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://18.226.20.6"
+    }
+  ]
+}

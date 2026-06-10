@@ -1,0 +1,52 @@
+<mxfile host="app.diagrams.net" modified="2026-06-10T00:00:00.000Z" agent="Codex" version="24.7.17" type="device">
+  <diagram id="student-academic-system" name="Diagrama de clases">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="student" value="Student&#xa;-------------------------&#xa;- id: Number&#xa;- name: String&#xa;- descripcion: String&#xa;- fechaNacimiento: String&#xa;- quintilSocioeconomico: Number&#xa;- promedio: Number&#xa;- porcentajeBeca: Number&#xa;-------------------------&#xa;+ toJSON(): Object" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="90" width="250" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="repository" value="StudentRepository&#xa;-------------------------&#xa;- filePath: String&#xa;-------------------------&#xa;+ seedIfEmpty(): Promise&lt;void&gt;&#xa;+ findAll(): Promise&lt;Student[]&gt;&#xa;+ findById(id): Promise&lt;Student&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="390" y="90" width="250" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="calculation" value="StudentCalculationService&#xa;-------------------------&#xa;- semesterCost: Number&#xa;- currentDate: Date&#xa;-------------------------&#xa;+ calculateAge(fechaNacimiento): Number&#xa;+ calculatePaymentPercentage(quintil): Number&#xa;+ calculateScholarshipDiscount(beca): Number&#xa;+ calculateSemesterPayment(student): Number&#xa;+ enrichStudent(student): Object" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="710" y="70" width="330" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="report" value="StudentReportService&#xa;-------------------------&#xa;- studentRepository: StudentRepository&#xa;- calculationService: StudentCalculationService&#xa;-------------------------&#xa;+ getAllStudentsReport(): Object[]&#xa;+ getStudentReport(id): Object&#xa;+ getTopStudentsReport(limit): Object[]&#xa;+ getSummaryReport(): Object" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="390" y="380" width="330" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="controller" value="StudentController&#xa;-------------------------&#xa;- studentRepository: StudentRepository&#xa;- reportService: StudentReportService&#xa;-------------------------&#xa;+ listStudents(req, res)&#xa;+ getStudent(req, res)&#xa;+ getStudentReport(req, res)&#xa;+ getTopStudentsReport(req, res)&#xa;+ getSummaryReport(req, res)&#xa;+ getUriDocumentation(req, res)" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="380" width="270" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="routes" value="studentRoutes&#xa;-------------------------&#xa;+ createStudentRoutes(controller): Router&#xa;-------------------------&#xa;GET /api/students&#xa;GET /api/students/:id&#xa;GET /api/students/:id/report&#xa;GET /api/reports/top-students&#xa;GET /api/reports/summary&#xa;GET /api/docs/uris" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="790" y="380" width="300" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="mongo-model" value="AcademicStudent / StudentMongoModel&#xa;-------------------------&#xa;Coleccion: academic_students&#xa;Base: ws14RestWebServices&#xa;-------------------------&#xa;+ id: Number&#xa;+ name: String&#xa;+ descripcion: String&#xa;+ fechaNacimiento: String&#xa;+ quintilSocioeconomico: Number&#xa;+ promedio: Number&#xa;+ porcentajeBeca: Number" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="710" y="650" width="330" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="repo-student" value="crea" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="repository" target="student">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="report-repo" value="usa" style="endArrow=open;html=1;rounded=0;dashed=1;" edge="1" parent="1" source="report" target="repository">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="report-calc" value="usa" style="endArrow=open;html=1;rounded=0;dashed=1;" edge="1" parent="1" source="report" target="calculation">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="controller-report" value="usa" style="endArrow=open;html=1;rounded=0;dashed=1;" edge="1" parent="1" source="controller" target="report">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="controller-repo" value="usa" style="endArrow=open;html=1;rounded=0;dashed=1;" edge="1" parent="1" source="controller" target="repository">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="routes-controller" value="delega" style="endArrow=open;html=1;rounded=0;dashed=1;" edge="1" parent="1" source="routes" target="controller">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="repo-mongo" value="consulta" style="endArrow=open;html=1;rounded=0;dashed=1;" edge="1" parent="1" source="repository" target="mongo-model">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
