@@ -1,0 +1,92 @@
+[
+    {
+        "id": 1,
+        "name": "Monopoly",
+        "description": "A property trading board game where players buy, sell, and develop real estate to build wealth.",
+        "owner": "Hasbro",
+        "num_players": 6,
+        "grading": 9.2,
+        "rank": "Excellent"
+    },
+    {
+        "id": 2,
+        "name": "Chess",
+        "description": "A classic strategy game for two players focused on tactical thinking and planning.",
+        "owner": "Public Domain",
+        "num_players": 2,
+        "grading": 9.8,
+        "rank": "Excellent"
+    },
+    {
+        "id": 3,
+        "name": "Scrabble",
+        "description": "A word-building game where players create words on a board to earn points.",
+        "owner": "Mattel",
+        "num_players": 4,
+        "grading": 8.1,
+        "rank": "Good"
+    },
+    {
+        "id": 4,
+        "name": "Dominoes",
+        "description": "A traditional tile-based game where players match pieces with the same values.",
+        "owner": "Public Domain",
+        "num_players": 4,
+        "grading": 7.5,
+        "rank": "Good"
+    },
+    {
+        "id": 5,
+        "name": "Risk",
+        "description": "A strategy board game centered on global conquest and territorial control.",
+        "owner": "Hasbro",
+        "num_players": 6,
+        "grading": 8.7,
+        "rank": "Good"
+    },
+    {
+        "id": 6,
+        "name": "Parcheesi",
+        "description": "A race-style board game where players move pieces around the board based on dice rolls.",
+        "owner": "Public Domain",
+        "num_players": 4,
+        "grading": 6.4,
+        "rank": "Regular"
+    },
+    {
+        "id": 7,
+        "name": "Snakes and Ladders",
+        "description": "A luck-based board game where players advance through numbered squares using dice.",
+        "owner": "Public Domain",
+        "num_players": 4,
+        "grading": 5.2,
+        "rank": "Regular"
+    },
+    {
+        "id": 8,
+        "name": "Checkers",
+        "description": "A strategic board game where players aim to capture all of their opponent's pieces.",
+        "owner": "Public Domain",
+        "num_players": 2,
+        "grading": 7.0,
+        "rank": "Good"
+    },
+    {
+        "id": 9,
+        "name": "Bingo",
+        "description": "A popular number-matching game where players mark cards as numbers are called.",
+        "owner": "Public Domain",
+        "num_players": 20,
+        "grading": 4.8,
+        "rank": "Low"
+    },
+    {
+        "id": 10,
+        "name": "Tic-Tac-Toe",
+        "description": "A simple two-player game where the goal is to align three marks in a row.",
+        "owner": "Public Domain",
+        "num_players": 2,
+        "grading": 3.6,
+        "rank": "Low"
+    }
+]
