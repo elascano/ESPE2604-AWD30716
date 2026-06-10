@@ -1,0 +1,12 @@
+services:
+  - type: web_service
+    name: ws16endpoints
+    env: node
+    region: oregon
+    plan: free
+    branch: main
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: MONGODB_URI
+        fromSecret: MONGODB_URI

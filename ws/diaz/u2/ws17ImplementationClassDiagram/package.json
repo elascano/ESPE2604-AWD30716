@@ -1,0 +1,24 @@
+{
+    "name": "ws15endpoints",
+    "version": "1.0.0",
+    "description": "hello.js",
+    "keywords": [
+        "hello",
+        "world"
+    ],
+    "license": "ISC",
+    "author": "Victoria Diaz",
+    "type": "commonjs",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js",
+        "test": "echo"
+    },
+    "engines": {
+        "node": "20.x"
+    },
+    "dependencies": {
+        "express": "^5.2.1",
+        "mongoose": "^9.6.3"
+    }
+}
