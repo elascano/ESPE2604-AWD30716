@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Computer Store customer CRUD dashboard">
+  <title>Hw18 REST All Services - Computer Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="page-header">
+      <div>
+        <p class="eyebrow">Hw18 REST All Services</p>
+        <h1>Computer Store Customers</h1>
+        <p class="subtitle">Complete CRUD with GET, POST, PUT, PATCH, and DELETE.</p>
+      </div>
+      <button class="primary-button" id="addCustomerBtn" type="button">Add Customer</button>
+    </header>
+
+    <section class="summary-grid" aria-label="Service summary">
+      <article class="summary-card">
+        <span>Total Customers</span>
+        <strong id="totalCustomers">0</strong>
+      </article>
+      <article class="summary-card">
+        <span>Total Money Spent</span>
+        <strong id="totalSpent">$0.00</strong>
+      </article>
+      <article class="summary-card">
+        <span>Service Mode</span>
+        <strong id="serviceMode">Checking</strong>
+      </article>
+    </section>
+
+    <section class="panel">
+      <div class="panel-title">
+        <h2>Customer List</h2>
+        <button class="secondary-button" id="refreshBtn" type="button">Refresh</button>
+      </div>
+
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Customer ID</th>
+              <th>Name</th>
+              <th>Age</th>
+              <th>Money Spent</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="customersBody">
+            <tr>
+              <td colspan="6" class="empty">Loading customers...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel api-panel">
+      <h2>REST Services</h2>
+      <div class="endpoint-grid">
+        <code>GET /computerstore/customers</code>
+        <code>GET /computerstore/customer/:id</code>
+        <code>POST /computerstore/customer</code>
+        <code>PUT /computerstore/customer/:id</code>
+        <code>PATCH /computerstore/customer/:id</code>
+        <code>DELETE /computerstore/customer/:id</code>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal" id="customerModal" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-header">
+        <h2 id="modalTitle">Add Customer</h2>
+        <button class="icon-button" id="closeModalBtn" type="button" aria-label="Close">x</button>
+      </div>
+
+      <form id="customerForm">
+        <label>
+          <span>Customer ID</span>
+          <input id="customerId" type="number" min="1" required>
+        </label>
+        <label>
+          <span>Name</span>
+          <input id="customerName" type="text" maxlength="80" required>
+        </label>
+        <label>
+          <span>Age</span>
+          <input id="customerAge" type="number" min="0" required>
+        </label>
+        <label>
+          <span>Money Spent</span>
+          <input id="customerMoney" type="number" min="0" step="0.01" required>
+        </label>
+
+        <p class="message" id="formMessage" aria-live="polite"></p>
+
+        <div class="modal-actions">
+          <button class="secondary-button" id="cancelModalBtn" type="button">Cancel</button>
+          <button class="primary-button" type="submit">Save Customer</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

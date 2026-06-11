@@ -1,0 +1,14 @@
+{
+  "name": "games-world",
+  "version": "1.0.0",
+  "description": "Brayan's Games World Server",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "mongoose": "^9.6.3"
+  }
+}

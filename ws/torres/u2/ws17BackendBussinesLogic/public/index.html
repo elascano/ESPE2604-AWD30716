@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sistema Academico de Estudiantes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="./styles.css" rel="stylesheet">
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="top-bar">
+        <div>
+          <p class="eyebrow">REST API MVC</p>
+          <h1>Sistema academico</h1>
+        </div>
+        <button class="btn btn-dark refresh-button" id="refreshButton" type="button">
+          <i class="bi bi-arrow-clockwise" aria-hidden="true"></i>
+          Actualizar
+        </button>
+      </section>
+
+      <section class="summary-grid" aria-label="Resumen academico">
+        <article class="metric-card">
+          <span>Total estudiantes</span>
+          <strong id="totalStudents">0</strong>
+        </article>
+        <article class="metric-card">
+          <span>Promedio general</span>
+          <strong id="averageGrade">0</strong>
+        </article>
+        <article class="metric-card">
+          <span>Recaudacion esperada</span>
+          <strong id="expectedRevenue">$0</strong>
+        </article>
+      </section>
+
+      <section class="content-grid">
+        <article class="content-panel main-panel">
+          <div class="toolbar">
+            <div class="input-group search-box">
+              <span class="input-group-text"><i class="bi bi-search" aria-hidden="true"></i></span>
+              <input id="searchInput" class="form-control" type="search" placeholder="Buscar por nombre o carrera">
+            </div>
+            <span class="badge rounded-pill text-bg-light" id="resultCount">0 resultados</span>
+          </div>
+
+          <div class="alert alert-danger d-none" id="errorMessage" role="alert"></div>
+
+          <div class="loading-state" id="loadingState">
+            <div class="spinner-border text-dark" role="status"></div>
+            <span>Cargando estudiantes...</span>
+          </div>
+
+          <div class="empty-state d-none" id="emptyState">
+            <i class="bi bi-inbox" aria-hidden="true"></i>
+            <p>No se encontraron estudiantes.</p>
+          </div>
+
+          <div class="table-responsive d-none" id="tableContainer">
+            <table class="table align-middle student-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Estudiante</th>
+                  <th>Carrera</th>
+                  <th>Edad</th>
+                  <th>Promedio</th>
+                  <th>Pago semestre</th>
+                  <th>Accion</th>
+                </tr>
+              </thead>
+              <tbody id="studentsTableBody"></tbody>
+            </table>
+          </div>
+        </article>
+
+        <aside class="content-panel report-panel">
+          <h2>Descargas Excel</h2>
+          <div class="report-actions">
+            <a class="btn btn-outline-dark" href="/api/reports/top-students/excel?limit=5">
+              <i class="bi bi-trophy" aria-hidden="true"></i>
+              Mejores estudiantes
+            </a>
+            <a class="btn btn-outline-dark" href="/api/reports/summary/excel">
+              <i class="bi bi-bar-chart" aria-hidden="true"></i>
+              Reporte general
+            </a>
+          </div>
+
+          <h2 class="uri-title">URIs para Postman</h2>
+          <div class="uri-list" id="uriList">
+            <div><span>GET</span><code>/api/students</code></div>
+            <div><span>POST</span><code>/api/students</code></div>
+            <div><span>GET</span><code>/api/students/:id</code></div>
+            <div><span>PUT</span><code>/api/students/:id</code></div>
+            <div><span>DELETE</span><code>/api/students/:id</code></div>
+            <div><span>GET</span><code>/api/students/:id/report</code></div>
+            <div><span>GET</span><code>/api/students/:id/report/excel</code></div>
+            <div><span>GET</span><code>/api/reports/top-students</code></div>
+            <div><span>GET</span><code>/api/reports/top-students/excel</code></div>
+            <div><span>GET</span><code>/api/reports/summary</code></div>
+            <div><span>GET</span><code>/api/reports/summary/excel</code></div>
+            <div><span>GET</span><code>/api/health/database</code></div>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>

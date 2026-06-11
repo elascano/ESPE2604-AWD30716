@@ -1,0 +1,24 @@
+{
+  "name": "student-academic-system",
+  "version": "1.0.0",
+  "description": "Sistema REST MVC para reportes academicos de estudiantes",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "node src/app.js",
+    "check": "node --check src/app.js"
+  },
+  "keywords": [
+    "express",
+    "mvc",
+    "rest",
+    "students"
+  ],
+  "author": "Alexander Torres",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^5.2.1",
+    "mongoose": "^9.6.3"
+  }
+}

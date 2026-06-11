@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alexander Torres Customer Table</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">HW17 Customer Table</p>
+        <h1>Computer Store Customers</h1>
+        <p class="subtitle">Carlos Alexander Torres Pincay</p>
+      </div>
+      <button id="refresh-btn" type="button">Refresh</button>
+    </header>
+
+    <section class="stats" aria-label="Customer statistics">
+      <article class="stat">
+        <span>Total Customers</span>
+        <strong id="total-customers">-</strong>
+      </article>
+      <article class="stat">
+        <span>Total Revenue</span>
+        <strong id="total-revenue">-</strong>
+      </article>
+      <article class="stat">
+        <span>API Status</span>
+        <strong id="api-status">Checking</strong>
+      </article>
+    </section>
+
+    <section class="toolbar">
+      <label>
+        <span>Search By</span>
+        <select id="search-type">
+          <option value="id">ID</option>
+          <option value="name">Name</option>
+          <option value="age">Age</option>
+        </select>
+      </label>
+      <label class="search-field">
+        <span>Value</span>
+        <input id="search-input" type="text" placeholder="Type a value">
+      </label>
+      <button id="search-btn" type="button">Search</button>
+      <button id="clear-btn" class="secondary" type="button">Clear</button>
+    </section>
+
+    <section id="search-results" class="result hidden" aria-live="polite"></section>
+
+    <section class="table-panel">
+      <div class="table-title">
+        <h2>Customers</h2>
+        <span id="row-count">0 rows</span>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Age</th>
+              <th>Money Spent</th>
+            </tr>
+          </thead>
+          <tbody id="customers-body">
+            <tr>
+              <td colspan="4" class="empty">Loading customers...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
