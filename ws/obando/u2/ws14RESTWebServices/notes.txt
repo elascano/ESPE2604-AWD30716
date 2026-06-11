@@ -1,0 +1,4 @@
+GET
+http://localhost:3004/shoppingcart/customers/{id}   :d is the same
+id -> id -> represented by cedula number of the customers
+espe regret: ^[LSls]\d{8}$

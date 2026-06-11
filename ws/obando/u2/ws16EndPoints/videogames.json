@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "name": "The Legend of Zelda: Breath of the Wild",
+    "launchdate": "2017-03-03",
+    "genre": "Action-Adventure"
+  },
+  {
+    "id": 2,
+    "name": "God of War",
+    "launchdate": "2018-04-20",
+    "genre": "Action"
+  },
+  {
+    "id": 3,
+    "name": "Minecraft",
+    "launchdate": "2011-11-18",
+    "genre": "Sandbox"
+  },
+  {
+    "id": 4,
+    "name": "The Witcher 3: Wild Hunt",
+    "launchdate": "2015-05-19",
+    "genre": "RPG"
+  },
+  {
+    "id": 5,
+    "name": "Overwatch",
+    "launchdate": "2016-05-24",
+    "genre": "First-Person Shooter"
+  },
+  {
+    "id": 6,
+    "name": "Stardew Valley",
+    "launchdate": "2016-02-26",
+    "genre": "Simulation"
+  },
+  {
+    "id": 7,
+    "name": "Hollow Knight",
+    "launchdate": "2017-02-24",
+    "genre": "Metroidvania"
+  },
+  {
+    "id": 8,
+    "name": "Red Dead Redemption 2",
+    "launchdate": "2018-10-26",
+    "genre": "Action-Adventure"
+  },
+  {
+    "id": 9,
+    "name": "Celeste",
+    "launchdate": "2018-01-25",
+    "genre": "Platformer"
+  },
+  {
+    "id": 10,
+    "name": "Among Us",
+    "launchdate": "2018-06-15",
+    "genre": "Party"
+  }
+]
