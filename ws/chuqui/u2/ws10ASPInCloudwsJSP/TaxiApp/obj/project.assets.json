@@ -210,11 +210,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Det-Pc\\Desktop\\ESPE2604-AWD30716\\ws\\chuqui\\u2\\Chuqui-Taxi\\TaxiApp\\TaxiApp.csproj",
+      "projectUniqueName": "c:\\Users\\Det-Pc\\Desktop\\ESPE2604-AWD30716\\ws\\chuqui\\u2\\ws10ASPInCloudwsJSP\\TaxiApp\\TaxiApp.csproj",
       "projectName": "TaxiApp",
-      "projectPath": "C:\\Users\\Det-Pc\\Desktop\\ESPE2604-AWD30716\\ws\\chuqui\\u2\\Chuqui-Taxi\\TaxiApp\\TaxiApp.csproj",
+      "projectPath": "c:\\Users\\Det-Pc\\Desktop\\ESPE2604-AWD30716\\ws\\chuqui\\u2\\ws10ASPInCloudwsJSP\\TaxiApp\\TaxiApp.csproj",
       "packagesPath": "C:\\Users\\Det-Pc\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Det-Pc\\Desktop\\ESPE2604-AWD30716\\ws\\chuqui\\u2\\Chuqui-Taxi\\TaxiApp\\obj\\",
+      "outputPath": "c:\\Users\\Det-Pc\\Desktop\\ESPE2604-AWD30716\\ws\\chuqui\\u2\\ws10ASPInCloudwsJSP\\TaxiApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
