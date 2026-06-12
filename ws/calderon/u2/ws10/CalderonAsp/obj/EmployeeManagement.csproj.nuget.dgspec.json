@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Det-Pc\\Desktop\\ESPE2604-AWD30716\\ws\\calderon\\u2\\ws01\\CalderonAsp\\EmployeeManagement.csproj": {}
+    "C:\\Users\\Det-Pc\\Desktop\\ESPE2604-AWD30716\\ws\\calderon\\u2\\ws10\\CalderonAsp\\EmployeeManagement.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Det-Pc\\Desktop\\ESPE2604-AWD30716\\ws\\calderon\\u2\\ws01\\CalderonAsp\\EmployeeManagement.csproj": {
+    "C:\\Users\\Det-Pc\\Desktop\\ESPE2604-AWD30716\\ws\\calderon\\u2\\ws10\\CalderonAsp\\EmployeeManagement.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Det-Pc\\Desktop\\ESPE2604-AWD30716\\ws\\calderon\\u2\\ws01\\CalderonAsp\\EmployeeManagement.csproj",
+        "projectUniqueName": "C:\\Users\\Det-Pc\\Desktop\\ESPE2604-AWD30716\\ws\\calderon\\u2\\ws10\\CalderonAsp\\EmployeeManagement.csproj",
         "projectName": "EmployeeManagement",
-        "projectPath": "C:\\Users\\Det-Pc\\Desktop\\ESPE2604-AWD30716\\ws\\calderon\\u2\\ws01\\CalderonAsp\\EmployeeManagement.csproj",
+        "projectPath": "C:\\Users\\Det-Pc\\Desktop\\ESPE2604-AWD30716\\ws\\calderon\\u2\\ws10\\CalderonAsp\\EmployeeManagement.csproj",
         "packagesPath": "C:\\Users\\Det-Pc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Det-Pc\\Desktop\\ESPE2604-AWD30716\\ws\\calderon\\u2\\ws01\\CalderonAsp\\obj\\",
+        "outputPath": "C:\\Users\\Det-Pc\\Desktop\\ESPE2604-AWD30716\\ws\\calderon\\u2\\ws10\\CalderonAsp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

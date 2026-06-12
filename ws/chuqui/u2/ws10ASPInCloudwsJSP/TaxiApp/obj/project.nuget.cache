@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "AWD5wProiFQ=",
+  "dgSpecHash": "oSaQRbl17D0=",
   "success": true,
-  "projectFilePath": "c:\\Users\\Det-Pc\\Desktop\\ESPE2604-AWD30716\\ws\\chuqui\\u2\\ws10ASPInCloudwsJSP\\TaxiApp\\TaxiApp.csproj",
+  "projectFilePath": "C:\\Users\\Det-Pc\\Desktop\\ESPE2604-AWD30716\\ws\\chuqui\\u2\\ws10ASPInCloudwsJSP\\TaxiApp\\TaxiApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Det-Pc\\.nuget\\packages\\dnsclient\\1.6.1\\dnsclient.1.6.1.nupkg.sha512",
     "C:\\Users\\Det-Pc\\.nuget\\packages\\mongodb.bson\\3.8.1\\mongodb.bson.3.8.1.nupkg.sha512",
@@ -16,9 +16,9 @@
       "code": "NU1902",
       "level": "Warning",
       "message": "Package 'SharpCompress' 0.30.1 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-6c8g-7p36-r338",
-      "projectPath": "c:\\Users\\Det-Pc\\Desktop\\ESPE2604-AWD30716\\ws\\chuqui\\u2\\ws10ASPInCloudwsJSP\\TaxiApp\\TaxiApp.csproj",
+      "projectPath": "C:\\Users\\Det-Pc\\Desktop\\ESPE2604-AWD30716\\ws\\chuqui\\u2\\ws10ASPInCloudwsJSP\\TaxiApp\\TaxiApp.csproj",
       "warningLevel": 1,
-      "filePath": "c:\\Users\\Det-Pc\\Desktop\\ESPE2604-AWD30716\\ws\\chuqui\\u2\\ws10ASPInCloudwsJSP\\TaxiApp\\TaxiApp.csproj",
+      "filePath": "C:\\Users\\Det-Pc\\Desktop\\ESPE2604-AWD30716\\ws\\chuqui\\u2\\ws10ASPInCloudwsJSP\\TaxiApp\\TaxiApp.csproj",
       "libraryId": "SharpCompress",
       "targetGraphs": [
         "net10.0"
