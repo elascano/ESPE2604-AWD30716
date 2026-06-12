@@ -1,0 +1,109 @@
+@{
+    ViewData["Title"] = "Gestión de Productos";
+}
+
+@model IEnumerable<TaxProblem.Web.Models.Product>
+
+<div class="container mt-5">
+    <!-- Mensajes de éxito/error -->
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["Success"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["Error"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    <!-- Encabezado -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h3 mb-0">
+            <i class="bi bi-box"></i> Gestión de Productos
+        </h1>
+        <a href="@Url.Action("Create")" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i> Nuevo Producto
+        </a>
+    </div>
+
+    @if (Model.Any())
+    {
+        <!-- Tabla de productos -->
+        <div class="table-responsive">
+            <table class="table table-hover table-striped align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th style="width: 5%">#</th>
+                        <th style="width: 25%">Nombre</th>
+                        <th style="width: 10%; text-align: right;">Cantidad</th>
+                        <th style="width: 12%; text-align: right;">Precio Unitario</th>
+                        <th style="width: 12%; text-align: right;">Subtotal</th>
+                        <th style="width: 12%; text-align: right;">IVA (15%)</th>
+                        <th style="width: 12%; text-align: right;"><strong>Total</strong></th>
+                        <th style="width: 20%; text-align: center;">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var product in Model)
+                    {
+                        <tr>
+                            <td><small class="text-muted">@product.Id</small></td>
+                            <td>
+                                <strong>@product.Name</strong>
+                                <br>
+                                <small class="text-muted">
+                                    @product.CreatedAt.ToString("dd/MM/yyyy HH:mm")
+                                </small>
+                            </td>
+                            <td class="text-end">@product.Quantity</td>
+                            <td class="text-end">$@product.Price.ToString("N2")</td>
+                            <td class="text-end">$@product.Subtotal.ToString("N2")</td>
+                            <td class="text-end">
+                                <span class="badge bg-info">$@product.IVA.ToString("N2")</span>
+                            </td>
+                            <td class="text-end">
+                                <strong class="text-success">$@product.Total.ToString("N2")</strong>
+                            </td>
+                            <td class="text-center">
+                                <a href="@Url.Action("Edit", new { id = product.Id })" 
+                                   class="btn btn-sm btn-warning" title="Editar">
+                                    <i class="bi bi-pencil"></i> Editar
+                                </a>
+                                <a href="@Url.Action("Delete", new { id = product.Id })" 
+                                   class="btn btn-sm btn-danger" title="Eliminar">
+                                    <i class="bi bi-trash"></i> Eliminar
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot class="table-light">
+                    <tr>
+                        <td colspan="4" class="text-end"><strong>TOTALES:</strong></td>
+                        <td class="text-end"><strong>$@Model.Sum(p => p.Subtotal).ToString("N2")</strong></td>
+                        <td class="text-end"><strong>$@Model.Sum(p => p.IVA).ToString("N2")</strong></td>
+                        <td class="text-end"><strong class="text-success">$@Model.Sum(p => p.Total).ToString("N2")</strong></td>
+                        <td></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    }
+    else
+    {
+        <!-- Mensaje cuando no hay productos -->
+        <div class="alert alert-info text-center py-5">
+            <h5>No hay productos registrados</h5>
+            <p class="mb-3">Comienza creando tu primer producto</p>
+            <a href="@Url.Action("Create")" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> Crear Producto
+            </a>
+        </div>
+    }
+</div>
