@@ -1,4 +1,0 @@
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteRule ^api/products$ ../backend/public/index.php [L,QSA]
-</IfModule>
