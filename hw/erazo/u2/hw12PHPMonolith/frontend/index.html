@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Manage and calculate product prices easily.">
+    <title>Product Price Manager</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<header class="header">
+    <div class="container header-inner">
+        <span class="logo">Product Price Manager</span>
+        <nav class="nav">
+            <button id="nav-list" class="nav-link nav-link--active">Products</button>
+            <button id="nav-create" class="nav-link">Add Product</button>
+        </nav>
+    </div>
+</header>
+
+<main class="main">
+    <div class="container" id="view-list">
+        <div class="page-header page-header--row">
+            <div>
+                <h2 class="page-title">Products</h2>
+                <p class="page-subtitle">All registered products and their price totals.</p>
+            </div>
+            <button class="btn btn--primary" id="btn-add-product">Add Product</button>
+        </div>
+
+        <div id="loading-state" class="empty-state">
+            <p>Loading products...</p>
+        </div>
+
+        <div id="empty-state" class="empty-state" style="display: none;">
+            <p>No products found. Add your first product to get started.</p>
+        </div>
+
+        <div id="table-container" class="card card--table" style="display: none;">
+            <table class="table" id="products-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Quantity</th>
+                        <th>Unit Price</th>
+                        <th>Total Price</th>
+                    </tr>
+                </thead>
+                <tbody id="products-tbody">
+                </tbody>
+                <tfoot>
+                    <tr class="total-row">
+                        <td colspan="5" class="total-row__label">Grand Total</td>
+                        <td class="total-row__value" id="grand-total">$0.00</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+    <div class="container" id="view-create" style="display: none;">
+        <div class="page-header">
+            <h2 class="page-title">Add New Product</h2>
+            <p class="page-subtitle">Fill in the fields below to register a product.</p>
+        </div>
+
+        <div id="error-container" class="alert alert--error" style="display: none;"></div>
+
+        <div class="card">
+            <form class="form" id="product-form">
+                <div class="form-group">
+                    <label for="name" class="form-label">Product Name</label>
+                    <input type="text" id="name" name="name" class="form-input" placeholder="e.g. Wireless Keyboard" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea id="description" name="description" class="form-input form-textarea" rows="3" placeholder="Brief description of the product"></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="quantity" class="form-label">Quantity</label>
+                        <input type="number" id="quantity" name="quantity" class="form-input" min="1" value="1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="unit_price" class="form-label">Unit Price ($)</label>
+                        <input type="number" id="unit_price" name="unit_price" class="form-input" step="0.01" min="0.01" placeholder="0.00" required>
+                    </div>
+                </div>
+
+                <div class="total-preview-block">
+                    <span class="total-preview-label">Total Price Preview</span>
+                    <span class="total-preview-value" id="total-preview">$0.00</span>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" id="btn-cancel" class="btn btn--secondary">Cancel</button>
+                    <button type="submit" class="btn btn--primary">Save Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <span>Product Price Manager</span>
+    </div>
+</footer>
+
+<script type="module" src="/js/main.js"></script>
+</body>
+</html>
