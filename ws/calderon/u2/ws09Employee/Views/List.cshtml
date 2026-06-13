@@ -1,0 +1,46 @@
+@model List<EmployeeApp.Models.Employee>
+
+<h2>Employees</h2>
+
+<table border="1" cellpadding="10">
+
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Cellphone</th>
+            <th>Email</th>
+            <th>Salary</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+    @foreach (var emp in Model)
+    {
+        <tr>
+            <td>@emp.EmployeeId</td>
+            <td>@emp.Name</td>
+            <td>@emp.Address</td>
+            <td>@emp.Cellphone</td>
+            <td>@emp.Email</td>
+            <td>@emp.Salary</td>
+        </tr>
+    }
+
+    </tbody>
+
+    <tfoot>
+        <tr>
+            <td colspan="5">
+                TOTAL
+            </td>
+
+            <td>
+                @ViewBag.TotalSalary
+            </td>
+        </tr>
+    </tfoot>
+
+</table>
