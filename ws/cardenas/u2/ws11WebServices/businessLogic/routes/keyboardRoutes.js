@@ -2,7 +2,7 @@ const express = require("express");
 const keyboard = require("../../crud/models/keyboard");
 const router = express.Router();
 
-const publicCrudIP = "136.111.146.1";
+const publicCrudIP = "35.238.2.136";
 const baseURI = `http://${publicCrudIP}:3000/andreskeyboardstore`;
 
 router.get("/keyboards/warrantyMonthsAverage", async (request, response) => {
