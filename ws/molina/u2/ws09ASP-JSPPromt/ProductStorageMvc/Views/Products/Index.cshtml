@@ -1,0 +1,147 @@
+@model ProductStorageMvc.ViewModels.ProductListViewModel
+
+@{
+    ViewData["Title"] = "Product List";
+}
+
+<section class="card">
+    <div class="card-header">
+        <h1>Product List</h1>
+        <p>View all registered products and their calculated totals.</p>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-error">@TempData["ErrorMessage"]</div>
+    }
+
+    <div class="summary-grid">
+        <div class="summary-card">
+            <span class="summary-label">Total Quantity</span>
+            <strong class="summary-value">@Model.TotalQuantity</strong>
+        </div>
+
+        <div class="summary-card">
+            <span class="summary-label">Total Inventory Value</span>
+            <strong class="summary-value">$@Model.TotalInventoryValue.ToString("F2")</strong>
+        </div>
+    </div>
+
+    @if (Model.Products == null || Model.Products.Count == 0)
+    {
+        <div class="empty-state">
+            <p>No products have been registered yet.</p>
+            <a asp-controller="Products" asp-action="Create" class="primary-button">Add First Product</a>
+        </div>
+    }
+    else
+    {
+        <div class="table-wrapper">
+            <table class="product-table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total Value</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var product in Model.Products)
+                    {
+                        <tr>
+                            <td>@product.Id</td>
+                            <td>@product.Name</td>
+                            <td>$@product.Price.ToString("F2")</td>
+                            <td>@product.Quantity</td>
+                            <td>$@product.TotalValue.ToString("F2")</td>
+                            <td>
+                                <div class="table-actions">
+                                    <button type="button"
+                                            class="small-button edit-button js-open-edit"
+                                            data-id="@product.Id"
+                                            data-name="@product.Name"
+                                            data-price="@product.Price.ToString("F2")"
+                                            data-quantity="@product.Quantity">
+                                        Edit
+                                    </button>
+
+                                    <button type="button"
+                                            class="small-button delete-button js-open-delete"
+                                            data-id="@product.Id"
+                                            data-name="@product.Name">
+                                        Delete
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="form-actions">
+            <a asp-controller="Products" asp-action="Create" class="primary-button">Add Another Product</a>
+        </div>
+    }
+</section>
+
+<div class="modal-overlay" id="editModal" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="editModalTitle">
+        <div class="modal-header">
+            <h2 id="editModalTitle">Edit Product</h2>
+            <button type="button" class="modal-close js-close-modal">×</button>
+        </div>
+
+        <form asp-controller="Products" asp-action="Edit" method="post" class="product-form">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="Id" id="editProductId" />
+
+            <div class="form-group">
+                <label for="editProductName">Product Name</label>
+                <input class="form-control" type="text" name="Name" id="editProductName" maxlength="100" required />
+            </div>
+
+            <div class="form-group">
+                <label for="editProductPrice">Price</label>
+                <input class="form-control" type="number" name="Price" id="editProductPrice" min="0.01" step="0.01" required />
+            </div>
+
+            <div class="form-group">
+                <label for="editProductQuantity">Quantity</label>
+                <input class="form-control" type="number" name="Quantity" id="editProductQuantity" min="1" step="1" required />
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="primary-button">Update Product</button>
+                <button type="button" class="secondary-button js-close-modal">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal-overlay" id="deleteModal" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="deleteModalTitle">
+        <div class="modal-header">
+            <h2 id="deleteModalTitle">Delete Product</h2>
+            <button type="button" class="modal-close js-close-modal">×</button>
+        </div>
+
+        <div class="alert alert-error">This action cannot be undone.</div>
+        <p>Are you sure you want to delete <strong id="deleteProductName"></strong>?</p>
+
+        <form asp-controller="Products" asp-action="DeleteConfirmed" method="post" class="form-actions">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="id" id="deleteProductId" />
+            <button type="submit" class="danger-button">Confirm Delete</button>
+            <button type="button" class="secondary-button js-close-modal">Cancel</button>
+        </form>
+    </div>
+</div>

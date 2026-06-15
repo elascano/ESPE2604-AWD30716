@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Dashboard | Cloud Architecture</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="./css/styles.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: { 'fade-in': 'fadeIn 0.5s ease-out' },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-950 text-slate-300 font-sans min-h-screen p-8 selection:bg-cyan-500 selection:text-white">
+    <div id="app" class="max-w-7xl mx-auto animate-fade-in" v-cloak>
+        
+        <header class="relative overflow-hidden bg-slate-900/50 backdrop-blur-xl border border-slate-800 rounded-3xl p-8 mb-8 shadow-2xl flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl -mr-20 -mt-20"></div>
+            <div class="z-10 flex items-center gap-6">
+                <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/30">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-3xl font-bold text-white tracking-tight">Cloud Microservices Hub</h1>
+                    <p class="text-slate-400 font-medium tracking-wide text-sm mt-1">Distributed Architecture Dashboard</p>
+                </div>
+            </div>
+            <div class="z-10 text-right border-l border-slate-700/50 pl-8">
+                <h2 class="text-slate-400 text-xs font-bold tracking-[0.2em] uppercase mb-2">Total System Revenue</h2>
+                <div class="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
+                    ${{ formatCurrency(totalRevenue) }}
+                </div>
+            </div>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-lg col-span-2">
+                <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Add / Update Customer</label>
+                <form @submit.prevent="saveCustomer" class="grid grid-cols-2 gap-4">
+                    <input type="number" v-model="formData.id" placeholder="ID" class="bg-slate-950 border border-slate-700 rounded-lg px-4 py-2 text-sm text-slate-200 focus:outline-none focus:border-cyan-500" required>
+                    <input type="text" v-model="formData.name" placeholder="Name" class="bg-slate-950 border border-slate-700 rounded-lg px-4 py-2 text-sm text-slate-200 focus:outline-none focus:border-cyan-500">
+                    <input type="number" v-model="formData.age" placeholder="Age" class="bg-slate-950 border border-slate-700 rounded-lg px-4 py-2 text-sm text-slate-200 focus:outline-none focus:border-cyan-500">
+                    <input type="number" step="0.01" v-model="formData.moneySpent" placeholder="Money Spent" class="bg-slate-950 border border-slate-700 rounded-lg px-4 py-2 text-sm text-slate-200 focus:outline-none focus:border-cyan-500">
+                    <input type="email" v-model="formData.email" placeholder="Email" class="bg-slate-950 border border-slate-700 rounded-lg px-4 py-2 text-sm text-slate-200 focus:outline-none focus:border-cyan-500 col-span-2">
+                    <div class="col-span-2 flex gap-4">
+                        <button type="submit" class="flex-1 bg-cyan-600 hover:bg-cyan-500 text-white font-semibold py-2 rounded-lg transition-colors">Submit (POST/PUT)</button>
+                        <button type="button" @click="resetForm" class="bg-slate-700 hover:bg-slate-600 text-white font-semibold py-2 px-6 rounded-lg transition-colors">Clear</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-lg flex flex-col justify-center">
+                <label class="block text-xs font-bold text-rose-400 uppercase tracking-wider mb-3">Delete Customer</label>
+                <form @submit.prevent="deleteCustomer" class="flex flex-col gap-3">
+                    <input type="number" v-model="deleteId" placeholder="Enter ID to Delete" class="bg-slate-950 border border-rose-900 rounded-lg px-4 py-2 text-sm text-slate-200 focus:outline-none focus:border-rose-500" required>
+                    <button type="submit" class="bg-rose-600 hover:bg-rose-500 text-white font-semibold py-2 rounded-lg transition-colors">Delete Record</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-slate-950/50 text-slate-400 text-xs uppercase tracking-wider border-b border-slate-800">
+                            <th class="p-5 font-semibold">ID</th>
+                            <th class="p-5 font-semibold">Customer Name</th>
+                            <th class="p-5 font-semibold">Email</th>
+                            <th class="p-5 font-semibold">Age</th>
+                            <th class="p-5 font-semibold">Investment</th>
+                            <th class="p-5 font-semibold">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-800/50">
+                        <tr v-if="isLoading">
+                            <td colspan="6" class="p-10 text-center text-slate-500">Connecting to API Gateway...</td>
+                        </tr>
+                        <tr v-for="user in customers" :key="user._id" class="group transition-all duration-300 hover:bg-slate-800/50">
+                            <td class="p-5 font-mono text-sm text-cyan-400">{{ user.id || 'N/A' }}</td>
+                            <td class="p-5 text-slate-200">{{ user.name || user.fullName || 'N/A' }}</td>
+                            <td class="p-5 text-sm text-slate-400">{{ user.email || 'N/A' }}</td>
+                            <td class="p-5 font-mono text-sm text-slate-300">{{ user.age || 'N/A' }}</td>
+                            <td class="p-5 font-mono text-emerald-400">
+                                <span v-if="user.moneySpent !== undefined || user.totalSale !== undefined">
+                                    ${{ formatCurrency(user.moneySpent || user.totalSale || 0) }}
+                                </span>
+                                <span v-else class="text-rose-500">N/A</span>
+                            </td>
+                            <td class="p-5">
+                                <button @click="editCustomer(user)" class="text-xs bg-slate-700 hover:bg-slate-600 text-white px-3 py-1 rounded transition-colors">Edit</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="./js/app.js"></script>
+</body>
+</html>
