@@ -1,0 +1,20 @@
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model CompactDisc {
+  id      String  @id @default(auto()) @map("_id") @db.ObjectId
+  serial  Int     @unique
+  number  Int
+  brand   String
+  model   String
+  inStock Boolean
+  buyer   Boolean
+
+  @@map("compactdiscs")
+}

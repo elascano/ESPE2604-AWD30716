@@ -1,0 +1,31 @@
+# Dependencias
+node_modules/
+npm-debug.log
+npm-debug.log.*
+yarn-error.log
+yarn-error.log.*
+
+# Variables de entorno
+.env
+.env.local
+.env.*.local
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Archivos del sistema
+Thumbs.db
+.DS_Store
+
+# Registros
+logs
+*.log
+
+# Carpetas temporales
+tmp/
+temp/

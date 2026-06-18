@@ -1,0 +1,10 @@
+bin/
+obj/
+.vs/
+*.user
+*.userosscache
+*.suo
+*.nupkg
+packages/
+TestResults/
+appsettings.*.json

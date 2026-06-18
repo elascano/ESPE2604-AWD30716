@@ -1,0 +1,72 @@
+@{
+    ViewData["Title"] = "Eliminar Producto";
+}
+
+@model TaxProblem.Web.Models.Product
+
+<div class="container mt-5" style="max-width: 600px;">
+    <div class="card shadow-lg border-danger">
+        <div class="card-header bg-danger text-white">
+            <h4 class="mb-0">
+                <i class="bi bi-exclamation-triangle"></i> Confirmar Eliminación
+            </h4>
+        </div>
+
+        <div class="card-body p-4">
+            <div class="alert alert-danger" role="alert">
+                <strong>¡Advertencia!</strong> Esta acción no se puede deshacer.
+            </div>
+
+            <!-- Detalles del Producto -->
+            <div class="card bg-light mb-4">
+                <div class="card-body">
+                    <div class="row mb-2">
+                        <div class="col-md-6">
+                            <small class="text-muted">Nombre</small>
+                            <h5>@Model.Name</h5>
+                        </div>
+                        <div class="col-md-6">
+                            <small class="text-muted">ID</small>
+                            <h5>#@Model.Id</h5>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <small class="text-muted">Cantidad</small>
+                            <p class="mb-0"><strong>@Model.Quantity</strong></p>
+                        </div>
+                        <div class="col-md-3">
+                            <small class="text-muted">Precio Unit.</small>
+                            <p class="mb-0"><strong>$@Model.Price.ToString("N2")</strong></p>
+                        </div>
+                        <div class="col-md-3">
+                            <small class="text-muted">Subtotal</small>
+                            <p class="mb-0"><strong>$@Model.Subtotal.ToString("N2")</strong></p>
+                        </div>
+                        <div class="col-md-3">
+                            <small class="text-muted">Total</small>
+                            <p class="mb-0"><strong class="text-success">$@Model.Total.ToString("N2")</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Formulario de Confirmación -->
+            <form asp-action="Delete" method="post">
+                <input asp-for="Id" type="hidden">
+                
+                <p class="mb-4">¿Deseas eliminar permanentemente este producto?</p>
+
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-danger flex-grow-1">
+                        <i class="bi bi-trash"></i> Sí, Eliminar Producto
+                    </button>
+                    <a href="@Url.Action("Index")" class="btn btn-secondary">
+                        <i class="bi bi-x-circle"></i> Cancelar
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

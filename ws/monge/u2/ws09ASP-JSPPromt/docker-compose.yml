@@ -1,0 +1,54 @@
+services:
+  # Servicio Web - ASP.NET 8 MVC
+  taxproblem-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    container_name: taxproblem-web
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:80
+    networks:
+      - taxproblem-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/Products/Index"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Base de Datos PostgreSQL (opcional - para desarrollo local)
+  # Si usas Supabase en la nube, comenta este servicio
+  # taxproblem-db:
+  #   image: postgres:15-alpine
+  #   container_name: taxproblem-db
+  #   environment:
+  #     - POSTGRES_DB=${DB_NAME:-taxproblem}
+  #     - POSTGRES_USER=${DB_USER:-postgres}
+  #     - POSTGRES_PASSWORD=${DB_PASSWORD:-postgres}
+  #   ports:
+  #     - "5432:5432"
+  #   volumes:
+  #     - postgres-data:/var/lib/postgresql/data
+  #   networks:
+  #     - taxproblem-network
+  #   restart: unless-stopped
+  #   healthcheck:
+  #     test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-postgres}"]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 5
+
+volumes:
+  postgres-data:
+    driver: local
+
+networks:
+  taxproblem-network:
+    driver: bridge

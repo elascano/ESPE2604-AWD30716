@@ -1,0 +1,4 @@
+com\andino\products\AndinoProductsApplication.class
+com\andino\products\controller\ProductController.class
+com\andino\products\model\Product.class
+com\andino\products\repository\ProductRepository.class

@@ -1,0 +1,141 @@
+@{
+    ViewData["Title"] = "Editar Producto";
+}
+
+@model TaxProblem.Web.Models.Product
+
+<div class="container mt-5" style="max-width: 600px;">
+    <div class="card shadow-lg">
+        <div class="card-header bg-warning text-dark">
+            <h4 class="mb-0">
+                <i class="bi bi-pencil"></i> Editar Producto: @Model.Name
+            </h4>
+        </div>
+
+        <div class="card-body p-4">
+            <form asp-action="Edit" method="post" class="needs-validation" novalidate>
+                @if (!ViewData.ModelState.IsValid)
+                {
+                    <div asp-validation-summary="All" class="alert alert-danger"></div>
+                }
+
+                <input asp-for="Id" type="hidden">
+
+                <!-- Información de Creación (solo lectura) -->
+                <div class="alert alert-secondary" role="alert">
+                    <small>
+                        <strong>Creado:</strong> @Model.CreatedAt.ToString("dd/MM/yyyy HH:mm")
+                        <br>
+                        <strong>ID Producto:</strong> @Model.Id
+                    </small>
+                </div>
+
+                <!-- Nombre del Producto -->
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label"><strong>Nombre del Producto</strong></label>
+                    <input asp-for="Name" class="form-control" 
+                           placeholder="Ej: Laptop Dell XPS 13" 
+                           maxlength="150"
+                           required>
+                    <span asp-validation-for="Name" class="invalid-feedback d-block"></span>
+                </div>
+
+                <!-- Cantidad -->
+                <div class="mb-3">
+                    <label asp-for="Quantity" class="form-label"><strong>Cantidad</strong></label>
+                    <input asp-for="Quantity" 
+                           type="number" 
+                           class="form-control" 
+                           placeholder="Ej: 5"
+                           min="1"
+                           required>
+                    <span asp-validation-for="Quantity" class="invalid-feedback d-block"></span>
+                </div>
+
+                <!-- Precio Unitario -->
+                <div class="mb-4">
+                    <label asp-for="Price" class="form-label"><strong>Precio Unitario ($)</strong></label>
+                    <input asp-for="Price" 
+                           type="number" 
+                           step="0.01"
+                           class="form-control" 
+                           placeholder="Ej: 99.99"
+                           min="0.01"
+                           required>
+                    <span asp-validation-for="Price" class="invalid-feedback d-block"></span>
+                </div>
+
+                <!-- Cálculos en Tiempo Real -->
+                <div class="row mb-4">
+                    <div class="col-md-4">
+                        <div class="card bg-light">
+                            <div class="card-body">
+                                <small class="text-muted">Subtotal</small>
+                                <h5 class="mb-0">$<span id="subtotal">@Model.Subtotal.ToString("N2")</span></h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card bg-info bg-opacity-10">
+                            <div class="card-body">
+                                <small class="text-muted">IVA (15%)</small>
+                                <h5 class="mb-0 text-info">$<span id="iva">@Model.IVA.ToString("N2")</span></h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card bg-success bg-opacity-10">
+                            <div class="card-body">
+                                <small class="text-muted">Total</small>
+                                <h5 class="mb-0 text-success"><strong>$<span id="total">@Model.Total.ToString("N2")</span></strong></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botones -->
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-warning flex-grow-1">
+                        <i class="bi bi-check-circle"></i> Actualizar Producto
+                    </button>
+                    <a href="@Url.Action("Index")" class="btn btn-secondary">
+                        <i class="bi bi-x-circle"></i> Cancelar
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Script para cálculo en tiempo real -->
+@section Scripts {
+    <script>
+        const quantityInput = document.querySelector('input[name="Quantity"]');
+        const priceInput = document.querySelector('input[name="Price"]');
+        
+        function updateCalculations() {
+            const quantity = parseFloat(quantityInput.value) || 0;
+            const price = parseFloat(priceInput.value) || 0;
+            
+            const subtotal = quantity * price;
+            const iva = subtotal * 0.15;
+            const total = subtotal + iva;
+            
+            document.getElementById('subtotal').textContent = subtotal.toFixed(2);
+            document.getElementById('iva').textContent = iva.toFixed(2);
+            document.getElementById('total').textContent = total.toFixed(2);
+        }
+        
+        quantityInput.addEventListener('input', updateCalculations);
+        priceInput.addEventListener('input', updateCalculations);
+        
+        // Bootstrap form validation
+        document.querySelector('form').addEventListener('submit', function(e) {
+            if (!this.checkValidity()) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            this.classList.add('was-validated');
+        }, false);
+    </script>
+}

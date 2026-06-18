@@ -1,0 +1,31 @@
+{
+  "name": "business-logic",
+  "version": "1.0.0",
+  "description": "Business logic service - applies 10% discount rules and calls CRUD Lambda",
+  "main": "dist/handler.js",
+  "type": "commonjs",
+  "scripts": {
+    "build": "tsc",
+    "start": "IS_LOCAL=true node dist/handler.js",
+    "dev": "IS_LOCAL=true ts-node src/handler.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "serverless-http": "^3.2.0"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.149",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.9.2",
+    "nodemon": "^3.1.14",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.3"
+  }
+}

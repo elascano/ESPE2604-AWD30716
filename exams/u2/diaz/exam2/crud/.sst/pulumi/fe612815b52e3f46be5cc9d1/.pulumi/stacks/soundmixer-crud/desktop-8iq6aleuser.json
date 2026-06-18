@@ -1,0 +1,1269 @@
+{
+    "version": 3,
+    "checkpoint": {
+        "stack": "organization/soundmixer-crud/desktop-8iq6aleuser",
+        "latest": {
+            "manifest": {
+                "time": "2026-06-17T18:30:45.6946403-05:00",
+                "magic": "887a8edb9fda410e7284d562e21176efd284574cb7f8d94bf88178f5f526fe3c",
+                "version": "v3.215.0"
+            },
+            "secrets_providers": {
+                "type": "passphrase",
+                "state": {
+                    "salt": "v1:4COeNUUTwRI=:v1:20kPdJEY5mq3S8o7:7+hhqvXw725z6rmuTuCnhpjX4dqCtA=="
+                }
+            },
+            "resources": [
+                {
+                    "urn": "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::pulumi:pulumi:Stack::soundmixer-crud-desktop-8iq6aleuser",
+                    "custom": false,
+                    "type": "pulumi:pulumi:Stack",
+                    "outputs": {
+                        "_protect": false,
+                        "crudApiUrl": "https://lf6brft8ac.execute-api.us-east-1.amazonaws.com"
+                    },
+                    "created": "2026-06-17T23:29:53.8560215Z",
+                    "modified": "2026-06-17T23:29:53.8560215Z"
+                },
+                {
+                    "urn": "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2LambdaRoute::CrudApiRouteRthxae",
+                    "custom": false,
+                    "type": "sst:aws:ApiGatewayV2LambdaRoute",
+                    "parent": "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::pulumi:pulumi:Stack::soundmixer-crud-desktop-8iq6aleuser",
+                    "created": "2026-06-17T23:29:59.3333736Z",
+                    "modified": "2026-06-17T23:29:59.3333736Z"
+                },
+                {
+                    "urn": "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2::CrudApi",
+                    "custom": false,
+                    "type": "sst:aws:ApiGatewayV2",
+                    "outputs": {
+                        "_hint": "https://lf6brft8ac.execute-api.us-east-1.amazonaws.com"
+                    },
+                    "parent": "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::pulumi:pulumi:Stack::soundmixer-crud-desktop-8iq6aleuser",
+                    "created": "2026-06-17T23:29:59.3801467Z",
+                    "modified": "2026-06-17T23:29:59.3801467Z"
+                },
+                {
+                    "urn": "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2LambdaRoute$sst:aws:Function::CrudApiRouteRthxaeHandler",
+                    "custom": false,
+                    "type": "sst:aws:Function",
+                    "outputs": {
+                        "_metadata": {
+                            "dev": false,
+                            "handler": "src/handler.handler"
+                        }
+                    },
+                    "parent": "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2LambdaRoute::CrudApiRouteRthxae",
+                    "created": "2026-06-17T23:30:01.7997945Z",
+                    "modified": "2026-06-17T23:30:01.7997945Z"
+                },
+                {
+                    "urn": "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::pulumi:providers:aws::default_7_20_0",
+                    "custom": true,
+                    "id": "15b8605a-67b3-43ff-b694-d9fd5408ffc0",
+                    "type": "pulumi:providers:aws",
+                    "inputs": {
+                        "__internal": {},
+                        "defaultTags": "{\"tags\":{\"sst:app\":\"soundmixer-crud\",\"sst:stage\":\"desktop-8iq6aleuser\"}}",
+                        "region": "us-east-1",
+                        "skipCredentialsValidation": "false",
+                        "skipRegionValidation": "true",
+                        "version": "7.20.0"
+                    },
+                    "outputs": {
+                        "defaultTags": "{\"tags\":{\"sst:app\":\"soundmixer-crud\",\"sst:stage\":\"desktop-8iq6aleuser\"}}",
+                        "region": "us-east-1",
+                        "skipCredentialsValidation": "false",
+                        "skipRegionValidation": "true",
+                        "version": "7.20.0"
+                    },
+                    "created": "2026-06-17T23:30:01.8198912Z",
+                    "modified": "2026-06-17T23:30:01.8198912Z"
+                },
+                {
+                    "urn": "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::pulumi:providers:random::default_4_16_6",
+                    "custom": true,
+                    "id": "11eb2604-a407-4769-b3b2-626a798bc93b",
+                    "type": "pulumi:providers:random",
+                    "inputs": {
+                        "__internal": {},
+                        "version": "4.16.6"
+                    },
+                    "outputs": {
+                        "version": "4.16.6"
+                    },
+                    "created": "2026-06-17T23:30:02.2172683Z",
+                    "modified": "2026-06-17T23:30:02.2172683Z"
+                },
+                {
+                    "urn": "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::random:index/randomBytes:RandomBytes::LambdaEncryptionKey",
+                    "custom": true,
+                    "id": "4vEeX72rLhMZgPJa+gQOtGKv60jmN/qYQ4rBXRCU1MI=",
+                    "type": "random:index/randomBytes:RandomBytes",
+                    "inputs": {
+                        "length": 32
+                    },
+                    "outputs": {
+                        "base64": {
+                            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
+                            "ciphertext": "v1:9Lmy+qW2yNIWrRy+:bH4mH5TEQgSqxKc6SSNuJtTVRRPloaPa5FR6UpZ4vB3lvQpUHmdCXKZ8rlZMfPi0kM/Y1r2LNGmV0jHKMnA="
+                        },
+                        "hex": {
+                            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
+                            "ciphertext": "v1:0Fe6cfCObwQWypzV:kz8xjzm/Jj+gTkAQBjPr1blk6sSVd9GxACLaW09peGYDCoHewME4/d4M/v1u8+VYqbeGWr6IWFK2sy4KI9/YqN9B1xkHS38tIe5lxE7wR8Xa5Q=="
+                        },
+                        "length": 32
+                    },
+                    "parent": "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::pulumi:pulumi:Stack::soundmixer-crud-desktop-8iq6aleuser",
+                    "provider": "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::pulumi:providers:random::default_4_16_6::11eb2604-a407-4769-b3b2-626a798bc93b",
+                    "propertyDependencies": {
+                        "length": []
+                    },
+                    "additionalSecretOutputs": [
+                        "base64",
+                        "hex"
+                    ],
+                    "created": "2026-06-17T23:30:02.2685957Z",
+                    "modified": "2026-06-17T23:30:02.2685957Z",
+                    "stackTrace": [
+                        {},
+                        {},
+                        {},
+                        {},
+                        {},
+                        {},
+                        {}
+                    ]
+                },
+                {
+                    "urn": "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2LambdaRoute$sst:aws:Function$aws:cloudwatch/logGroup:LogGroup::CrudApiRouteRthxaeHandlerLogGroup",
+                    "custom": true,
+                    "id": "/aws/lambda/s-desktop-8iq6aleuser-CrudApiRouteRthxaeHandlerFunction-oroxxehc",
+                    "type": "aws:cloudwatch/logGroup:LogGroup",
+                    "inputs": {
+                        "__defaults": [
+                            "skipDestroy"
+                        ],
+                        "name": "/aws/lambda/s-desktop-8iq6aleuser-CrudApiRouteRthxaeHandlerFunction-oroxxehc",
+                        "region": "us-east-1",
+                        "retentionInDays": 30,
+                        "skipDestroy": false,
+                        "tagsAll": {
+                            "sst:app": "soundmixer-crud",
+                            "sst:stage": "desktop-8iq6aleuser"
+                        }
+                    },
+                    "outputs": {
+                        "__pulumi_raw_state_delta": {
+                            "obj": {
+                                "ps": {
+                                    "tagsAll": {
+                                        "map": {}
+                                    }
+                                }
+                            }
+                        },
+                        "arn": "arn:aws:logs:us-east-1:980825417466:log-group:/aws/lambda/s-desktop-8iq6aleuser-CrudApiRouteRthxaeHandlerFunction-oroxxehc",
+                        "deletionProtectionEnabled": false,
+                        "id": "/aws/lambda/s-desktop-8iq6aleuser-CrudApiRouteRthxaeHandlerFunction-oroxxehc",
+                        "kmsKeyId": "",
+                        "logGroupClass": "STANDARD",
+                        "name": "/aws/lambda/s-desktop-8iq6aleuser-CrudApiRouteRthxaeHandlerFunction-oroxxehc",
+                        "namePrefix": "",
+                        "region": "us-east-1",
+                        "retentionInDays": 30,
+                        "skipDestroy": false,
+                        "tags": null,
+                        "tagsAll": {
+                            "sst:app": "soundmixer-crud",
+                            "sst:stage": "desktop-8iq6aleuser"
+                        }
+                    },
+                    "parent": "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2LambdaRoute$sst:aws:Function::CrudApiRouteRthxaeHandler",
+                    "provider": "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::pulumi:providers:aws::default_7_20_0::15b8605a-67b3-43ff-b694-d9fd5408ffc0",
+                    "propertyDependencies": {
+                        "name": [],
+                        "retentionInDays": []
+                    },
+                    "created": "2026-06-17T23:30:03.2039973Z",
+                    "modified": "2026-06-17T23:30:03.2039973Z",
+                    "stackTrace": [
+                        {},
+                        {},
+                        {}
+                    ],
+                    "ignoreChanges": [
+                        "name"
+                    ]
+                },
+                {
+                    "urn": "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2$aws:cloudwatch/logGroup:LogGroup::CrudApiAccessLog",
+                    "custom": true,
+                    "id": "/aws/vendedlogs/apis/soundmixer-crud-desktop-8iq6aleuser-CrudApi-bbdwzeee",
+                    "type": "aws:cloudwatch/logGroup:LogGroup",
+                    "inputs": {
+                        "__defaults": [
+                            "skipDestroy"
+                        ],
+                        "name": "/aws/vendedlogs/apis/soundmixer-crud-desktop-8iq6aleuser-CrudApi-bbdwzeee",
+                        "region": "us-east-1",
+                        "retentionInDays": 30,
+                        "skipDestroy": false,
+                        "tagsAll": {
+                            "sst:app": "soundmixer-crud",
+                            "sst:stage": "desktop-8iq6aleuser"
+                        }
+                    },
+                    "outputs": {
+                        "__pulumi_raw_state_delta": {
+                            "obj": {
+                                "ps": {
+                                    "tagsAll": {
+                                        "map": {}
+                                    }
+                                }
+                            }
+                        },
+                        "arn": "arn:aws:logs:us-east-1:980825417466:log-group:/aws/vendedlogs/apis/soundmixer-crud-desktop-8iq6aleuser-CrudApi-bbdwzeee",
+                        "deletionProtectionEnabled": false,
+                        "id": "/aws/vendedlogs/apis/soundmixer-crud-desktop-8iq6aleuser-CrudApi-bbdwzeee",
+                        "kmsKeyId": "",
+                        "logGroupClass": "STANDARD",
+                        "name": "/aws/vendedlogs/apis/soundmixer-crud-desktop-8iq6aleuser-CrudApi-bbdwzeee",
+                        "namePrefix": "",
+                        "region": "us-east-1",
+                        "retentionInDays": 30,
+                        "skipDestroy": false,
+                        "tags": null,
+                        "tagsAll": {
+                            "sst:app": "soundmixer-crud",
+                            "sst:stage": "desktop-8iq6aleuser"
+                        }
+                    },
+                    "parent": "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2::CrudApi",
+                    "provider": "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::pulumi:providers:aws::default_7_20_0::15b8605a-67b3-43ff-b694-d9fd5408ffc0",
+                    "propertyDependencies": {
+                        "name": [],
+                        "retentionInDays": []
+                    },
+                    "created": "2026-06-17T23:30:03.2561253Z",
+                    "modified": "2026-06-17T23:30:03.2561253Z",
+                    "ignoreChanges": [
+                        "name"
+                    ]
+                },
+                {
+                    "urn": "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2$aws:apigatewayv2/api:Api::CrudApiApi",
+                    "custom": true,
+                    "id": "lf6brft8ac",
+                    "type": "aws:apigatewayv2/api:Api",
+                    "inputs": {
+                        "__defaults": [
+                            "apiKeySelectionExpression",
+                            "routeSelectionExpression"
+                        ],
+                        "apiKeySelectionExpression": "$request.header.x-api-key",
+                        "corsConfiguration": {
+                            "__defaults": [],
+                            "allowHeaders": [
+                                "*"
+                            ],
+                            "allowMethods": [
+                                "*"
+                            ],
+                            "allowOrigins": [
+                                "*"
+                            ]
+                        },
+                        "name": "soundmixer-crud-desktop-8iq6aleuser-CrudApiApi-bsrmawzt",
+                        "protocolType": "HTTP",
+                        "region": "us-east-1",
+                        "routeSelectionExpression": "$request.method $request.path",
+                        "tagsAll": {
+                            "sst:app": "soundmixer-crud",
+                            "sst:stage": "desktop-8iq6aleuser"
+                        }
+                    },
+                    "outputs": {
+                        "__pulumi_raw_state_delta": {
+                            "obj": {
+                                "ps": {
+                                    "corsConfiguration": {
+                                        "plu": {
+                                            "i": {
+                                                "obj": {
+                                                    "ps": {
+                                                        "allowHeaders": {
+                                                            "arr": {}
+                                                        },
+                                                        "allowMethods": {
+                                                            "arr": {}
+                                                        },
+                                                        "allowOrigins": {
+                                                            "arr": {}
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "tagsAll": {
+                                        "map": {}
+                                    }
+                                }
+                            }
+                        },
+                        "apiEndpoint": "https://lf6brft8ac.execute-api.us-east-1.amazonaws.com",
+                        "apiKeySelectionExpression": "$request.header.x-api-key",
+                        "arn": "arn:aws:apigateway:us-east-1::/apis/lf6brft8ac",
+                        "body": null,
+                        "corsConfiguration": {
+                            "allowCredentials": false,
+                            "allowHeaders": [
+                                "*"
+                            ],
+                            "allowMethods": [
+                                "*"
+                            ],
+                            "allowOrigins": [
+                                "*"
+                            ],
+                            "exposeHeaders": null,
+                            "maxAge": 0
+                        },
+                        "credentialsArn": null,
+                        "description": "",
+                        "disableExecuteApiEndpoint": false,
+                        "executionArn": "arn:aws:execute-api:us-east-1:980825417466:lf6brft8ac",
+                        "failOnWarnings": null,
+                        "id": "lf6brft8ac",
+                        "ipAddressType": "ipv4",
+                        "name": "soundmixer-crud-desktop-8iq6aleuser-CrudApiApi-bsrmawzt",
+                        "protocolType": "HTTP",
+                        "region": "us-east-1",
+                        "routeKey": null,
+                        "routeSelectionExpression": "$request.method $request.path",
+                        "tags": null,
+                        "tagsAll": {
+                            "sst:app": "soundmixer-crud",
+                            "sst:stage": "desktop-8iq6aleuser"
+                        },
+                        "target": null,
+                        "version": ""
+                    },
+                    "parent": "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2::CrudApi",
+                    "provider": "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::pulumi:providers:aws::default_7_20_0::15b8605a-67b3-43ff-b694-d9fd5408ffc0",
+                    "propertyDependencies": {
+                        "corsConfiguration": [],
+                        "name": [],
+                        "protocolType": []
+                    },
+                    "created": "2026-06-17T23:30:03.4623445Z",
+                    "modified": "2026-06-17T23:30:03.4623445Z",
+                    "ignoreChanges": [
+                        "name"
+                    ]
+                },
+                {
+                    "urn": "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:sst:LinkRef::CrudApiLinkRef",
+                    "custom": false,
+                    "type": "sst:sst:LinkRef",
+                    "inputs": {
+                        "properties": {
+                            "url": "https://lf6brft8ac.execute-api.us-east-1.amazonaws.com"
+                        }
+                    },
+                    "outputs": {
+                        "properties": {
+                            "type": "sst.aws.ApiGatewayV2",
+                            "url": "https://lf6brft8ac.execute-api.us-east-1.amazonaws.com"
+                        },
+                        "target": "CrudApi"
+                    },
+                    "parent": "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::pulumi:pulumi:Stack::soundmixer-crud-desktop-8iq6aleuser",
+                    "dependencies": [
+                        "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2$aws:apigatewayv2/api:Api::CrudApiApi"
+                    ],
+                    "propertyDependencies": {
+                        "properties": [
+                            "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2$aws:apigatewayv2/api:Api::CrudApiApi"
+                        ]
+                    },
+                    "created": "2026-06-17T23:30:03.6229074Z",
+                    "modified": "2026-06-17T23:30:03.6229074Z",
+                    "stackTrace": [
+                        {},
+                        {}
+                    ]
+                },
+                {
+                    "urn": "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2LambdaRoute$sst:aws:Function$aws:iam/role:Role::CrudApiRouteRthxaeHandlerRole",
+                    "custom": true,
+                    "id": "sound-desktop-8iq6aleuser-CrudApiRouteRthxaeHandlerRole-bdmrbtds",
+                    "type": "aws:iam/role:Role",
+                    "inputs": {
+                        "__defaults": [
+                            "forceDetachPolicies",
+                            "maxSessionDuration",
+                            "path"
+                        ],
+                        "assumeRolePolicy": "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Effect\": \"Allow\",\n      \"Action\": \"sts:AssumeRole\",\n      \"Principal\": {\n        \"AWS\": \"arn:aws:iam::980825417466:root\",\n        \"Service\": \"lambda.amazonaws.com\"\n      }\n    }\n  ]\n}",
+                        "forceDetachPolicies": false,
+                        "inlinePolicies": [],
+                        "managedPolicyArns": [
+                            "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                        ],
+                        "maxSessionDuration": 3600,
+                        "name": "sound-desktop-8iq6aleuser-CrudApiRouteRthxaeHandlerRole-bdmrbtds",
+                        "path": "/",
+                        "tagsAll": {
+                            "sst:app": "soundmixer-crud",
+                            "sst:stage": "desktop-8iq6aleuser"
+                        }
+                    },
+                    "outputs": {
+                        "__pulumi_raw_state_delta": {
+                            "obj": {
+                                "ps": {
+                                    "inlinePolicies": {
+                                        "arr": {}
+                                    },
+                                    "managedPolicyArns": {
+                                        "arr": {}
+                                    },
+                                    "tagsAll": {
+                                        "map": {}
+                                    }
+                                },
+                                "renamed": {
+                                    "inlinePolicies": "inline_policy"
+                                }
+                            }
+                        },
+                        "arn": "arn:aws:iam::980825417466:role/sound-desktop-8iq6aleuser-CrudApiRouteRthxaeHandlerRole-bdmrbtds",
+                        "assumeRolePolicy": "{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Effect\":\"Allow\",\"Principal\":{\"AWS\":\"arn:aws:iam::980825417466:root\",\"Service\":\"lambda.amazonaws.com\"}}],\"Version\":\"2012-10-17\"}",
+                        "createDate": "2026-06-17T23:30:02Z",
+                        "description": "",
+                        "forceDetachPolicies": false,
+                        "id": "sound-desktop-8iq6aleuser-CrudApiRouteRthxaeHandlerRole-bdmrbtds",
+                        "inlinePolicies": [],
+                        "managedPolicyArns": [
+                            "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                        ],
+                        "maxSessionDuration": 3600,
+                        "name": "sound-desktop-8iq6aleuser-CrudApiRouteRthxaeHandlerRole-bdmrbtds",
+                        "namePrefix": "",
+                        "path": "/",
+                        "permissionsBoundary": "",
+                        "tags": null,
+                        "tagsAll": {
+                            "sst:app": "soundmixer-crud",
+                            "sst:stage": "desktop-8iq6aleuser"
+                        },
+                        "uniqueId": "AROA6IXOAE35HC627ZHA3"
+                    },
+                    "parent": "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2LambdaRoute$sst:aws:Function::CrudApiRouteRthxaeHandler",
+                    "provider": "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::pulumi:providers:aws::default_7_20_0::15b8605a-67b3-43ff-b694-d9fd5408ffc0",
+                    "propertyDependencies": {
+                        "assumeRolePolicy": [],
+                        "inlinePolicies": [],
+                        "managedPolicyArns": [],
+                        "name": []
+                    },
+                    "created": "2026-06-17T23:30:03.8124614Z",
+                    "modified": "2026-06-17T23:30:03.8124614Z",
+                    "ignoreChanges": [
+                        "name"
+                    ]
+                },
+                {
+                    "urn": "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2$aws:apigatewayv2/stage:Stage::CrudApiStage",
+                    "custom": true,
+                    "id": "$default",
+                    "type": "aws:apigatewayv2/stage:Stage",
+                    "inputs": {
+                        "__defaults": [],
+                        "accessLogSettings": {
+                            "__defaults": [],
+                            "destinationArn": "arn:aws:logs:us-east-1:980825417466:log-group:/aws/vendedlogs/apis/soundmixer-crud-desktop-8iq6aleuser-CrudApi-bbdwzeee",
+                            "format": "{\"requestTime\":\"\\\"$context.requestTime\\\"\",\"requestId\":\"\\\"$context.requestId\\\"\",\"httpMethod\":\"\\\"$context.httpMethod\\\"\",\"path\":\"\\\"$context.path\\\"\",\"routeKey\":\"\\\"$context.routeKey\\\"\",\"status\":\"$context.status\",\"responseLatency\":\"$context.responseLatency\",\"integrationRequestId\":\"\\\"$context.integration.requestId\\\"\",\"integrationStatus\":\"\\\"$context.integration.status\\\"\",\"integrationLatency\":\"\\\"$context.integration.latency\\\"\",\"integrationServiceStatus\":\"\\\"$context.integration.integrationStatus\\\"\",\"ip\":\"\\\"$context.identity.sourceIp\\\"\",\"userAgent\":\"\\\"$context.identity.userAgent\\\"\"}"
+                        },
+                        "apiId": "lf6brft8ac",
+                        "autoDeploy": true,
+                        "name": "$default",
+                        "region": "us-east-1",
+                        "tagsAll": {
+                            "sst:app": "soundmixer-crud",
+                            "sst:stage": "desktop-8iq6aleuser"
+                        }
+                    },
+                    "outputs": {
+                        "__pulumi_raw_state_delta": {
+                            "obj": {
+                                "ps": {
+                                    "accessLogSettings": {
+                                        "plu": {
+                                            "i": {
+                                                "obj": {}
+                                            }
+                                        }
+                                    },
+                                    "defaultRouteSettings": {
+                                        "plu": {
+                                            "i": {
+                                                "obj": {}
+                                            }
+                                        }
+                                    },
+                                    "routeSettings": {
+                                        "arr": {}
+                                    },
+                                    "tagsAll": {
+                                        "map": {}
+                                    }
+                                }
+                            }
+                        },
+                        "accessLogSettings": {
+                            "destinationArn": "arn:aws:logs:us-east-1:980825417466:log-group:/aws/vendedlogs/apis/soundmixer-crud-desktop-8iq6aleuser-CrudApi-bbdwzeee",
+                            "format": "{\"requestTime\":\"\\\"$context.requestTime\\\"\",\"requestId\":\"\\\"$context.requestId\\\"\",\"httpMethod\":\"\\\"$context.httpMethod\\\"\",\"path\":\"\\\"$context.path\\\"\",\"routeKey\":\"\\\"$context.routeKey\\\"\",\"status\":\"$context.status\",\"responseLatency\":\"$context.responseLatency\",\"integrationRequestId\":\"\\\"$context.integration.requestId\\\"\",\"integrationStatus\":\"\\\"$context.integration.status\\\"\",\"integrationLatency\":\"\\\"$context.integration.latency\\\"\",\"integrationServiceStatus\":\"\\\"$context.integration.integrationStatus\\\"\",\"ip\":\"\\\"$context.identity.sourceIp\\\"\",\"userAgent\":\"\\\"$context.identity.userAgent\\\"\"}"
+                        },
+                        "apiId": "lf6brft8ac",
+                        "arn": "arn:aws:apigateway:us-east-1::/apis/lf6brft8ac/stages/$default",
+                        "autoDeploy": true,
+                        "clientCertificateId": "",
+                        "defaultRouteSettings": {
+                            "dataTraceEnabled": false,
+                            "detailedMetricsEnabled": false,
+                            "loggingLevel": "",
+                            "throttlingBurstLimit": 0,
+                            "throttlingRateLimit": 0
+                        },
+                        "deploymentId": "",
+                        "description": "",
+                        "executionArn": "arn:aws:execute-api:us-east-1:980825417466:lf6brft8ac/$default",
+                        "id": "$default",
+                        "invokeUrl": "https://lf6brft8ac.execute-api.us-east-1.amazonaws.com/",
+                        "name": "$default",
+                        "region": "us-east-1",
+                        "routeSettings": [],
+                        "stageVariables": null,
+                        "tags": null,
+                        "tagsAll": {
+                            "sst:app": "soundmixer-crud",
+                            "sst:stage": "desktop-8iq6aleuser"
+                        }
+                    },
+                    "parent": "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2::CrudApi",
+                    "dependencies": [
+                        "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2$aws:cloudwatch/logGroup:LogGroup::CrudApiAccessLog",
+                        "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2$aws:apigatewayv2/api:Api::CrudApiApi"
+                    ],
+                    "provider": "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::pulumi:providers:aws::default_7_20_0::15b8605a-67b3-43ff-b694-d9fd5408ffc0",
+                    "propertyDependencies": {
+                        "accessLogSettings": [
+                            "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2$aws:cloudwatch/logGroup:LogGroup::CrudApiAccessLog"
+                        ],
+                        "apiId": [
+                            "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2$aws:apigatewayv2/api:Api::CrudApiApi"
+                        ],
+                        "autoDeploy": [],
+                        "name": []
+                    },
+                    "created": "2026-06-17T23:30:04.6906782Z",
+                    "modified": "2026-06-17T23:30:04.6906782Z"
+                },
+                {
+                    "urn": "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2LambdaRoute$sst:aws:Function$aws:s3/bucketObjectv2:BucketObjectv2::CrudApiRouteRthxaeHandlerSourcemap0",
+                    "custom": true,
+                    "id": "sst-asset-wdtnrmdzuxnh/sourcemap/arn:aws:logs:us-east-1:980825417466:log-group:/aws/lambda/s-desktop-8iq6aleuser-CrudApiRouteRthxaeHandlerFunction-oroxxehc/ef921c434040163c1763b21ea42372f1a27e645d0a8b91d93e17e7b35bc381e9.bundle.mjs.map",
+                    "type": "aws:s3/bucketObjectv2:BucketObjectv2",
+                    "inputs": {
+                        "__defaults": [
+                            "forceDestroy"
+                        ],
+                        "bucket": "sst-asset-wdtnrmdzuxnh",
+                        "forceDestroy": false,
+                        "key": "sourcemap/arn:aws:logs:us-east-1:980825417466:log-group:/aws/lambda/s-desktop-8iq6aleuser-CrudApiRouteRthxaeHandlerFunction-oroxxehc/ef921c434040163c1763b21ea42372f1a27e645d0a8b91d93e17e7b35bc381e9.bundle.mjs.map",
+                        "region": "us-east-1",
+                        "source": {
+                            "4dabf18193072939515e22adb298388d": "c44067f5952c0a294b673a41bacd8c17",
+                            "hash": "f4d43084471f678ffb4fe6527c93a3320b960ce4dc3b500e983270de74d1f45d",
+                            "path": "C:\\Users\\USER\\Downloads\\exam2 (5)\\exam2\\crud\\.sst\\artifacts\\CrudApiRouteRthxaeHandler-src\\bundle.mjs.map"
+                        },
+                        "tagsAll": {
+                            "sst:app": "soundmixer-crud",
+                            "sst:stage": "desktop-8iq6aleuser"
+                        }
+                    },
+                    "outputs": {
+                        "__pulumi_raw_state_delta": {
+                            "obj": {
+                                "ps": {
+                                    "overrideProvider": {
+                                        "plu": {
+                                            "i": {}
+                                        }
+                                    },
+                                    "source": {
+                                        "asset": {
+                                            "kind": 0
+                                        }
+                                    },
+                                    "tagsAll": {
+                                        "map": {}
+                                    }
+                                }
+                            }
+                        },
+                        "acl": null,
+                        "arn": "arn:aws:s3:::sst-asset-wdtnrmdzuxnh/sourcemap/arn:aws:logs:us-east-1:980825417466:log-group:/aws/lambda/s-desktop-8iq6aleuser-CrudApiRouteRthxaeHandlerFunction-oroxxehc/ef921c434040163c1763b21ea42372f1a27e645d0a8b91d93e17e7b35bc381e9.bundle.mjs.map",
+                        "bucket": "sst-asset-wdtnrmdzuxnh",
+                        "bucketKeyEnabled": false,
+                        "cacheControl": "",
+                        "checksumAlgorithm": null,
+                        "checksumCrc32": "",
+                        "checksumCrc32c": "",
+                        "checksumCrc64nvme": "",
+                        "checksumSha1": "",
+                        "checksumSha256": "",
+                        "content": null,
+                        "contentBase64": null,
+                        "contentDisposition": "",
+                        "contentEncoding": "",
+                        "contentLanguage": "",
+                        "contentType": "application/octet-stream",
+                        "etag": "ee997f9f639a2fd1f610ae3601aac5df",
+                        "forceDestroy": false,
+                        "id": "sst-asset-wdtnrmdzuxnh/sourcemap/arn:aws:logs:us-east-1:980825417466:log-group:/aws/lambda/s-desktop-8iq6aleuser-CrudApiRouteRthxaeHandlerFunction-oroxxehc/ef921c434040163c1763b21ea42372f1a27e645d0a8b91d93e17e7b35bc381e9.bundle.mjs.map",
+                        "key": "sourcemap/arn:aws:logs:us-east-1:980825417466:log-group:/aws/lambda/s-desktop-8iq6aleuser-CrudApiRouteRthxaeHandlerFunction-oroxxehc/ef921c434040163c1763b21ea42372f1a27e645d0a8b91d93e17e7b35bc381e9.bundle.mjs.map",
+                        "kmsKeyId": null,
+                        "metadata": null,
+                        "objectLockLegalHoldStatus": "",
+                        "objectLockMode": "",
+                        "objectLockRetainUntilDate": "",
+                        "overrideProvider": null,
+                        "region": "us-east-1",
+                        "serverSideEncryption": "AES256",
+                        "source": {
+                            "4dabf18193072939515e22adb298388d": "c44067f5952c0a294b673a41bacd8c17",
+                            "hash": "f4d43084471f678ffb4fe6527c93a3320b960ce4dc3b500e983270de74d1f45d",
+                            "path": "C:\\Users\\USER\\Downloads\\exam2 (5)\\exam2\\crud\\.sst\\artifacts\\CrudApiRouteRthxaeHandler-src\\bundle.mjs.map"
+                        },
+                        "sourceHash": null,
+                        "storageClass": "STANDARD",
+                        "tags": null,
+                        "tagsAll": {
+                            "sst:app": "soundmixer-crud",
+                            "sst:stage": "desktop-8iq6aleuser"
+                        },
+                        "versionId": "",
+                        "websiteRedirect": ""
+                    },
+                    "parent": "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2LambdaRoute$sst:aws:Function::CrudApiRouteRthxaeHandler",
+                    "provider": "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::pulumi:providers:aws::default_7_20_0::15b8605a-67b3-43ff-b694-d9fd5408ffc0",
+                    "propertyDependencies": {
+                        "bucket": [],
+                        "key": [],
+                        "source": []
+                    },
+                    "retainOnDelete": true,
+                    "created": "2026-06-17T23:30:29.958457Z",
+                    "modified": "2026-06-17T23:30:29.958457Z"
+                },
+                {
+                    "urn": "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2LambdaRoute$sst:aws:Function$aws:s3/bucketObjectv2:BucketObjectv2::CrudApiRouteRthxaeHandlerCode",
+                    "custom": true,
+                    "id": "sst-asset-wdtnrmdzuxnh/assets/CrudApiRouteRthxaeHandler-code-ef921c434040163c1763b21ea42372f1a27e645d0a8b91d93e17e7b35bc381e9.zip",
+                    "type": "aws:s3/bucketObjectv2:BucketObjectv2",
+                    "inputs": {
+                        "__defaults": [
+                            "forceDestroy"
+                        ],
+                        "bucket": "sst-asset-wdtnrmdzuxnh",
+                        "forceDestroy": false,
+                        "key": "assets/CrudApiRouteRthxaeHandler-code-ef921c434040163c1763b21ea42372f1a27e645d0a8b91d93e17e7b35bc381e9.zip",
+                        "region": "us-east-1",
+                        "source": {
+                            "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                            "hash": "ef921c434040163c1763b21ea42372f1a27e645d0a8b91d93e17e7b35bc381e9",
+                            "path": "C:\\Users\\USER\\Downloads\\exam2 (5)\\exam2\\crud\\.sst\\artifacts\\CrudApiRouteRthxaeHandler\\code.zip"
+                        },
+                        "tagsAll": {
+                            "sst:app": "soundmixer-crud",
+                            "sst:stage": "desktop-8iq6aleuser"
+                        }
+                    },
+                    "outputs": {
+                        "__pulumi_raw_state_delta": {
+                            "obj": {
+                                "ps": {
+                                    "overrideProvider": {
+                                        "plu": {
+                                            "i": {}
+                                        }
+                                    },
+                                    "source": {
+                                        "asset": {
+                                            "kind": 0
+                                        }
+                                    },
+                                    "tagsAll": {
+                                        "map": {}
+                                    }
+                                }
+                            }
+                        },
+                        "acl": null,
+                        "arn": "arn:aws:s3:::sst-asset-wdtnrmdzuxnh/assets/CrudApiRouteRthxaeHandler-code-ef921c434040163c1763b21ea42372f1a27e645d0a8b91d93e17e7b35bc381e9.zip",
+                        "bucket": "sst-asset-wdtnrmdzuxnh",
+                        "bucketKeyEnabled": false,
+                        "cacheControl": "",
+                        "checksumAlgorithm": null,
+                        "checksumCrc32": "",
+                        "checksumCrc32c": "",
+                        "checksumCrc64nvme": "",
+                        "checksumSha1": "",
+                        "checksumSha256": "",
+                        "content": null,
+                        "contentBase64": null,
+                        "contentDisposition": "",
+                        "contentEncoding": "",
+                        "contentLanguage": "",
+                        "contentType": "binary/octet-stream",
+                        "etag": "c293c68d106772b2b0122c14839fa1b9-7",
+                        "forceDestroy": false,
+                        "id": "sst-asset-wdtnrmdzuxnh/assets/CrudApiRouteRthxaeHandler-code-ef921c434040163c1763b21ea42372f1a27e645d0a8b91d93e17e7b35bc381e9.zip",
+                        "key": "assets/CrudApiRouteRthxaeHandler-code-ef921c434040163c1763b21ea42372f1a27e645d0a8b91d93e17e7b35bc381e9.zip",
+                        "kmsKeyId": null,
+                        "metadata": null,
+                        "objectLockLegalHoldStatus": "",
+                        "objectLockMode": "",
+                        "objectLockRetainUntilDate": "",
+                        "overrideProvider": null,
+                        "region": "us-east-1",
+                        "serverSideEncryption": "AES256",
+                        "source": {
+                            "4dabf18193072939515e22adb298388d": "0def7320c3a5731c473e5ecbe6d01bc7",
+                            "hash": "ef921c434040163c1763b21ea42372f1a27e645d0a8b91d93e17e7b35bc381e9",
+                            "path": "C:\\Users\\USER\\Downloads\\exam2 (5)\\exam2\\crud\\.sst\\artifacts\\CrudApiRouteRthxaeHandler\\code.zip"
+                        },
+                        "sourceHash": null,
+                        "storageClass": "STANDARD",
+                        "tags": null,
+                        "tagsAll": {
+                            "sst:app": "soundmixer-crud",
+                            "sst:stage": "desktop-8iq6aleuser"
+                        },
+                        "versionId": "",
+                        "websiteRedirect": ""
+                    },
+                    "parent": "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2LambdaRoute$sst:aws:Function::CrudApiRouteRthxaeHandler",
+                    "provider": "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::pulumi:providers:aws::default_7_20_0::15b8605a-67b3-43ff-b694-d9fd5408ffc0",
+                    "propertyDependencies": {
+                        "bucket": [],
+                        "key": [],
+                        "source": []
+                    },
+                    "created": "2026-06-17T23:30:35.869838Z",
+                    "modified": "2026-06-17T23:30:35.869838Z"
+                },
+                {
+                    "urn": "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2LambdaRoute$sst:aws:Function$aws:lambda/function:Function::CrudApiRouteRthxaeHandlerFunction",
+                    "custom": true,
+                    "id": "s-desktop-8iq6aleuser-CrudApiRouteRthxaeHandlerFunction-mmexhbad",
+                    "type": "aws:lambda/function:Function",
+                    "inputs": {
+                        "__defaults": [
+                            "reservedConcurrentExecutions",
+                            "skipDestroy"
+                        ],
+                        "architectures": [
+                            "x86_64"
+                        ],
+                        "description": "CrudApi route POST /store",
+                        "environment": {
+                            "__defaults": [],
+                            "variables": {
+                                "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
+                                "ciphertext": "v1:QHEiWBaTpHmeluvn:3BfyU49+ipnXxvbyfmQgPGLc5JGlEGt13b+ydDfOSNSsNKppF+oYYCbUlogC9ZNpsC2gCMb/wgnXg2WyNwI/TpIK7mG7LOgJXGeb0avmpiFTOQ9j9BURxcEBvVjitSvjWF+NA6Ogh9B1NDCxLHuh9XWruG5Ije5tyudFGY+zsOe453NKivAhNxy/7c73GC46qB46KbRN5l0bfz+ui1GoaBr05R0i3TPujfw4lY+/gbIvsH+sgs4k8WIb21gCO0QKFs7Ps9ucyVzX0jMYfgSMTK8tDZaVhUDpuIgCW4zpRM0NoHWuPjj54Rg5yG3MRMkacuDW1k5OBVIIbm3ZW85pXgxBxhTtqDJFVJAaX1pykUyr4hYRCAsWftoltO9QU7xRv5ygwIbraait4pYyJEh3L97/vDog79I/Im8iSxAm8oxJbqeVctmKnxZ8HlY="
+                            }
+                        },
+                        "ephemeralStorage": {
+                            "__defaults": [],
+                            "size": 512
+                        },
+                        "handler": "bundle.handler",
+                        "loggingConfig": {
+                            "__defaults": [
+                                "applicationLogLevel",
+                                "systemLogLevel"
+                            ],
+                            "applicationLogLevel": "",
+                            "logFormat": "Text",
+                            "logGroup": "/aws/lambda/s-desktop-8iq6aleuser-CrudApiRouteRthxaeHandlerFunction-oroxxehc",
+                            "systemLogLevel": ""
+                        },
+                        "memorySize": 512,
+                        "name": "s-desktop-8iq6aleuser-CrudApiRouteRthxaeHandlerFunction-mmexhbad",
+                        "packageType": "Zip",
+                        "publish": false,
+                        "region": "us-east-1",
+                        "reservedConcurrentExecutions": -1,
+                        "role": "arn:aws:iam::980825417466:role/sound-desktop-8iq6aleuser-CrudApiRouteRthxaeHandlerRole-bdmrbtds",
+                        "runtime": "nodejs24.x",
+                        "s3Bucket": "sst-asset-wdtnrmdzuxnh",
+                        "s3Key": "assets/CrudApiRouteRthxaeHandler-code-ef921c434040163c1763b21ea42372f1a27e645d0a8b91d93e17e7b35bc381e9.zip",
+                        "skipDestroy": false,
+                        "tagsAll": {
+                            "sst:app": "soundmixer-crud",
+                            "sst:stage": "desktop-8iq6aleuser"
+                        },
+                        "timeout": 30
+                    },
+                    "outputs": {
+                        "__meta": "{\"e2bfb730-ecaa-11e6-8f88-34363bc7c4c0\":{\"create\":600000000000,\"delete\":600000000000,\"update\":600000000000}}",
+                        "__pulumi_raw_state_delta": {
+                            "obj": {
+                                "ps": {
+                                    "architectures": {
+                                        "arr": {}
+                                    },
+                                    "capacityProviderConfig": {
+                                        "plu": {
+                                            "i": {}
+                                        }
+                                    },
+                                    "deadLetterConfig": {
+                                        "plu": {
+                                            "i": {}
+                                        }
+                                    },
+                                    "durableConfig": {
+                                        "plu": {
+                                            "i": {}
+                                        }
+                                    },
+                                    "environment": {
+                                        "plu": {
+                                            "i": {
+                                                "obj": {
+                                                    "ps": {
+                                                        "variables": {
+                                                            "map": {}
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "ephemeralStorage": {
+                                        "plu": {
+                                            "i": {
+                                                "obj": {}
+                                            }
+                                        }
+                                    },
+                                    "fileSystemConfig": {
+                                        "plu": {
+                                            "i": {}
+                                        }
+                                    },
+                                    "imageConfig": {
+                                        "plu": {
+                                            "i": {}
+                                        }
+                                    },
+                                    "loggingConfig": {
+                                        "plu": {
+                                            "i": {
+                                                "obj": {}
+                                            }
+                                        }
+                                    },
+                                    "snapStart": {
+                                        "plu": {
+                                            "i": {}
+                                        }
+                                    },
+                                    "tagsAll": {
+                                        "map": {}
+                                    },
+                                    "tenancyConfig": {
+                                        "plu": {
+                                            "i": {}
+                                        }
+                                    },
+                                    "tracingConfig": {
+                                        "plu": {
+                                            "i": {
+                                                "obj": {}
+                                            }
+                                        }
+                                    },
+                                    "vpcConfig": {
+                                        "plu": {
+                                            "i": {}
+                                        }
+                                    }
+                                },
+                                "renamed": {
+                                    "code": "filename",
+                                    "name": "function_name"
+                                }
+                            }
+                        },
+                        "architectures": [
+                            "x86_64"
+                        ],
+                        "arn": "arn:aws:lambda:us-east-1:980825417466:function:s-desktop-8iq6aleuser-CrudApiRouteRthxaeHandlerFunction-mmexhbad",
+                        "capacityProviderConfig": null,
+                        "code": null,
+                        "codeSha256": "75IcQ0BAFjwXY7IepCNy8aJ+ZF0Ki5HZPhfns1vDgek=",
+                        "codeSigningConfigArn": "",
+                        "deadLetterConfig": null,
+                        "description": "CrudApi route POST /store",
+                        "durableConfig": null,
+                        "environment": {
+                            "variables": {
+                                "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
+                                "ciphertext": "v1:03Ylb5Qavy7ikeGD:JljUPqUqvR21X+nM3i8AywwMTGRM9OeYOgCozKKZBZ9Nk1DZHIXMUn+iKOogOQB8UxQUhcvt9Bl3XPQq9YGf/w+vb5ce6QyqHhzXYTHqYig8zkCTTKP+jQxwWoDJy9bdCkw/iGGbWWf4GQMijz9+9B2VBgqhNYE6bz5syUr+TFzmX76fC2zWUersmG6QOVlagVkAhKsb+5x3JNWtqKHLwE0GJ46V2G+/YO+QzDtHWo/JsfivCGScTSO+CJODcmX7Z2zEiOY7DcQGSW6od1Hmk7a74ekAvAMehUh156Nqoe09uzU/jDwmfENwVXZXs7ucnCWm3OirXkpWPqYOQgXnHURX+4m1sJuwVtWNUXa1qF6BNdStQ6t4lNC3tG8QF43u8yEtD+TU5FiBIQYD4MDlRqzVXaMut5EkPDsdsBzMfilmYAQ/eMhpRGzMrdc="
+                            }
+                        },
+                        "ephemeralStorage": {
+                            "size": 512
+                        },
+                        "fileSystemConfig": null,
+                        "handler": "bundle.handler",
+                        "id": "s-desktop-8iq6aleuser-CrudApiRouteRthxaeHandlerFunction-mmexhbad",
+                        "imageConfig": null,
+                        "imageUri": "",
+                        "invokeArn": "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:980825417466:function:s-desktop-8iq6aleuser-CrudApiRouteRthxaeHandlerFunction-mmexhbad/invocations",
+                        "kmsKeyArn": "",
+                        "lastModified": "2026-06-17T23:30:36.652+0000",
+                        "layers": null,
+                        "loggingConfig": {
+                            "applicationLogLevel": "",
+                            "logFormat": "Text",
+                            "logGroup": "/aws/lambda/s-desktop-8iq6aleuser-CrudApiRouteRthxaeHandlerFunction-oroxxehc",
+                            "systemLogLevel": ""
+                        },
+                        "memorySize": 512,
+                        "name": "s-desktop-8iq6aleuser-CrudApiRouteRthxaeHandlerFunction-mmexhbad",
+                        "packageType": "Zip",
+                        "publish": false,
+                        "publishTo": null,
+                        "qualifiedArn": "arn:aws:lambda:us-east-1:980825417466:function:s-desktop-8iq6aleuser-CrudApiRouteRthxaeHandlerFunction-mmexhbad:$LATEST",
+                        "qualifiedInvokeArn": "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:980825417466:function:s-desktop-8iq6aleuser-CrudApiRouteRthxaeHandlerFunction-mmexhbad:$LATEST/invocations",
+                        "region": "us-east-1",
+                        "replaceSecurityGroupsOnDestroy": null,
+                        "replacementSecurityGroupIds": null,
+                        "reservedConcurrentExecutions": -1,
+                        "responseStreamingInvokeArn": "arn:aws:apigateway:us-east-1:lambda:path/2021-11-15/functions/arn:aws:lambda:us-east-1:980825417466:function:s-desktop-8iq6aleuser-CrudApiRouteRthxaeHandlerFunction-mmexhbad/response-streaming-invocations",
+                        "role": "arn:aws:iam::980825417466:role/sound-desktop-8iq6aleuser-CrudApiRouteRthxaeHandlerRole-bdmrbtds",
+                        "runtime": "nodejs24.x",
+                        "s3Bucket": "sst-asset-wdtnrmdzuxnh",
+                        "s3Key": "assets/CrudApiRouteRthxaeHandler-code-ef921c434040163c1763b21ea42372f1a27e645d0a8b91d93e17e7b35bc381e9.zip",
+                        "s3ObjectVersion": null,
+                        "signingJobArn": "",
+                        "signingProfileVersionArn": "",
+                        "skipDestroy": false,
+                        "snapStart": null,
+                        "sourceCodeHash": "",
+                        "sourceCodeSize": 33030663,
+                        "sourceKmsKeyArn": "",
+                        "tags": null,
+                        "tagsAll": {
+                            "sst:app": "soundmixer-crud",
+                            "sst:stage": "desktop-8iq6aleuser"
+                        },
+                        "tenancyConfig": null,
+                        "timeout": 30,
+                        "tracingConfig": {
+                            "mode": "PassThrough"
+                        },
+                        "version": "$LATEST",
+                        "vpcConfig": null
+                    },
+                    "parent": "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2LambdaRoute$sst:aws:Function::CrudApiRouteRthxaeHandler",
+                    "dependencies": [
+                        "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2$aws:apigatewayv2/api:Api::CrudApiApi",
+                        "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::random:index/randomBytes:RandomBytes::LambdaEncryptionKey",
+                        "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2LambdaRoute$sst:aws:Function$aws:cloudwatch/logGroup:LogGroup::CrudApiRouteRthxaeHandlerLogGroup",
+                        "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2LambdaRoute$sst:aws:Function$aws:iam/role:Role::CrudApiRouteRthxaeHandlerRole",
+                        "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2LambdaRoute$sst:aws:Function$aws:s3/bucketObjectv2:BucketObjectv2::CrudApiRouteRthxaeHandlerCode"
+                    ],
+                    "provider": "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::pulumi:providers:aws::default_7_20_0::15b8605a-67b3-43ff-b694-d9fd5408ffc0",
+                    "propertyDependencies": {
+                        "architectures": [],
+                        "description": [
+                            "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2$aws:apigatewayv2/api:Api::CrudApiApi"
+                        ],
+                        "environment": [
+                            "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::random:index/randomBytes:RandomBytes::LambdaEncryptionKey"
+                        ],
+                        "ephemeralStorage": [],
+                        "handler": [],
+                        "loggingConfig": [
+                            "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2LambdaRoute$sst:aws:Function$aws:cloudwatch/logGroup:LogGroup::CrudApiRouteRthxaeHandlerLogGroup"
+                        ],
+                        "memorySize": [],
+                        "name": [],
+                        "packageType": [],
+                        "publish": [],
+                        "role": [
+                            "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2LambdaRoute$sst:aws:Function$aws:iam/role:Role::CrudApiRouteRthxaeHandlerRole"
+                        ],
+                        "runtime": [],
+                        "s3Bucket": [
+                            "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2LambdaRoute$sst:aws:Function$aws:s3/bucketObjectv2:BucketObjectv2::CrudApiRouteRthxaeHandlerCode"
+                        ],
+                        "s3Key": [
+                            "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2LambdaRoute$sst:aws:Function$aws:s3/bucketObjectv2:BucketObjectv2::CrudApiRouteRthxaeHandlerCode"
+                        ],
+                        "timeout": []
+                    },
+                    "created": "2026-06-17T23:30:44.1573589Z",
+                    "modified": "2026-06-17T23:30:44.1573589Z",
+                    "stackTrace": [
+                        {},
+                        {},
+                        {}
+                    ],
+                    "ignoreChanges": [
+                        "name"
+                    ]
+                },
+                {
+                    "urn": "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2LambdaRoute$aws:lambda/permission:Permission::CrudApiRouteRthxaePermissions",
+                    "custom": true,
+                    "id": "CrudApiRouteRthxaePermissions-f5be3e7",
+                    "type": "aws:lambda/permission:Permission",
+                    "inputs": {
+                        "__defaults": [
+                            "statementId"
+                        ],
+                        "action": "lambda:InvokeFunction",
+                        "function": {
+                            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
+                            "ciphertext": "v1:RSrjfzmtKLMiDapC:VKsC6VapEyKSyssniI3x5M8BdrNzk25gob14ZUc2yidfoEKv07z9RwifM2/cGgla+Vvc8DN5qdGLO2biHysRQboeTnKihXR1x3jJ7SdWHCLMwxjzx5B3Kh54LRqBgfiJkSzLKWJYb7iw2LDIW1LAlP9NCWEmEPVKBwlkaXzcIznV"
+                        },
+                        "principal": "apigateway.amazonaws.com",
+                        "region": "us-east-1",
+                        "sourceArn": "arn:aws:execute-api:us-east-1:980825417466:lf6brft8ac/*",
+                        "statementId": "CrudApiRouteRthxaePermissions-f5be3e7"
+                    },
+                    "outputs": {
+                        "__pulumi_raw_state_delta": {
+                            "obj": {
+                                "renamed": {
+                                    "function": "function_name"
+                                }
+                            }
+                        },
+                        "action": "lambda:InvokeFunction",
+                        "eventSourceToken": null,
+                        "function": {
+                            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
+                            "ciphertext": "v1:suqbaDLMSf2JDxNS:lUKaP0PE3y0yLRaUJdtq/Z/cbxLngLxibQIY/IBuik+zvE3MZWv0YuybgjAzUr88NHprn2Afwu0gF+fUHLm8+1YpH+iYpKCXmXquAYL3dz1ccTHzlBqwa6XpPIj3n7m7jEdQtIlvtiQFDOLY7h5aPuPnAcQ9GWn8t05KHZ+LLT1r"
+                        },
+                        "functionUrlAuthType": null,
+                        "id": "CrudApiRouteRthxaePermissions-f5be3e7",
+                        "invokedViaFunctionUrl": null,
+                        "principal": "apigateway.amazonaws.com",
+                        "principalOrgId": null,
+                        "qualifier": "",
+                        "region": "us-east-1",
+                        "sourceAccount": null,
+                        "sourceArn": "arn:aws:execute-api:us-east-1:980825417466:lf6brft8ac/*",
+                        "statementId": "CrudApiRouteRthxaePermissions-f5be3e7",
+                        "statementIdPrefix": ""
+                    },
+                    "parent": "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2LambdaRoute::CrudApiRouteRthxae",
+                    "dependencies": [
+                        "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2LambdaRoute$sst:aws:Function$aws:lambda/function:Function::CrudApiRouteRthxaeHandlerFunction",
+                        "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2$aws:apigatewayv2/api:Api::CrudApiApi",
+                        "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2LambdaRoute$sst:aws:Function$aws:cloudwatch/logGroup:LogGroup::CrudApiRouteRthxaeHandlerLogGroup",
+                        "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::random:index/randomBytes:RandomBytes::LambdaEncryptionKey"
+                    ],
+                    "provider": "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::pulumi:providers:aws::default_7_20_0::15b8605a-67b3-43ff-b694-d9fd5408ffc0",
+                    "propertyDependencies": {
+                        "action": [],
+                        "function": [
+                            "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2LambdaRoute$sst:aws:Function$aws:cloudwatch/logGroup:LogGroup::CrudApiRouteRthxaeHandlerLogGroup",
+                            "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::random:index/randomBytes:RandomBytes::LambdaEncryptionKey",
+                            "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2LambdaRoute$sst:aws:Function$aws:lambda/function:Function::CrudApiRouteRthxaeHandlerFunction"
+                        ],
+                        "principal": [],
+                        "qualifier": [
+                            "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2LambdaRoute$sst:aws:Function$aws:cloudwatch/logGroup:LogGroup::CrudApiRouteRthxaeHandlerLogGroup",
+                            "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::random:index/randomBytes:RandomBytes::LambdaEncryptionKey",
+                            "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2LambdaRoute$sst:aws:Function$aws:lambda/function:Function::CrudApiRouteRthxaeHandlerFunction"
+                        ],
+                        "sourceArn": [
+                            "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2$aws:apigatewayv2/api:Api::CrudApiApi"
+                        ]
+                    },
+                    "created": "2026-06-17T23:30:44.6092482Z",
+                    "modified": "2026-06-17T23:30:44.6092482Z"
+                },
+                {
+                    "urn": "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2LambdaRoute$aws:apigatewayv2/integration:Integration::CrudApiRouteRthxaeIntegration",
+                    "custom": true,
+                    "id": "1i1fims",
+                    "type": "aws:apigatewayv2/integration:Integration",
+                    "inputs": {
+                        "__defaults": [
+                            "connectionType",
+                            "passthroughBehavior"
+                        ],
+                        "apiId": "lf6brft8ac",
+                        "connectionType": "INTERNET",
+                        "integrationType": "AWS_PROXY",
+                        "integrationUri": {
+                            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
+                            "ciphertext": "v1:zSDnZpgXyGKQLq45:B3LRu/qErX+TevIL0dObXmBnAXWe5zHrVTNmitPjSyG0+m6+tx2yZDKlkYagxNiP1AomGooVhGCScF9ToVZ0BObkzY699Z7H3geaN8G4q87FuX94mTHR92Zp3NzxboOS4qqShQCjYBf3f1WvqItiPkCYHdHjzfZCkhwYYyojIfMG"
+                        },
+                        "passthroughBehavior": "WHEN_NO_MATCH",
+                        "payloadFormatVersion": "2.0",
+                        "region": "us-east-1"
+                    },
+                    "outputs": {
+                        "__pulumi_raw_state_delta": {
+                            "obj": {
+                                "ps": {
+                                    "responseParameters": {
+                                        "arr": {}
+                                    },
+                                    "tlsConfig": {
+                                        "plu": {
+                                            "i": {}
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "apiId": "lf6brft8ac",
+                        "connectionId": "",
+                        "connectionType": "INTERNET",
+                        "contentHandlingStrategy": "",
+                        "credentialsArn": "",
+                        "description": "",
+                        "id": "1i1fims",
+                        "integrationMethod": "POST",
+                        "integrationResponseSelectionExpression": "",
+                        "integrationSubtype": "",
+                        "integrationType": "AWS_PROXY",
+                        "integrationUri": {
+                            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
+                            "ciphertext": "v1:VIM8rpsygY7ZGplt:xWONQ2I/d1UZKzs14+eHOB4ThpH5hHBlfa2kR04Ag3IRhB+vlVG6oyzxDZZFRW1nOktJ4qdb5GUNIAHjRgvwZzDKZHfuZ82fp6xucxH0zCSEILdBqL63ODEYoyv/GwiZGCm3q1rZCOccs+fxM+XF3nPh4+kxzMrr1bdCAvB5b4o7"
+                        },
+                        "passthroughBehavior": "",
+                        "payloadFormatVersion": "2.0",
+                        "region": "us-east-1",
+                        "requestParameters": null,
+                        "requestTemplates": null,
+                        "responseParameters": [],
+                        "templateSelectionExpression": "",
+                        "timeoutMilliseconds": 30000,
+                        "tlsConfig": null
+                    },
+                    "parent": "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2LambdaRoute::CrudApiRouteRthxae",
+                    "dependencies": [
+                        "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2LambdaRoute$aws:lambda/permission:Permission::CrudApiRouteRthxaePermissions",
+                        "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2$aws:apigatewayv2/api:Api::CrudApiApi",
+                        "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2LambdaRoute$sst:aws:Function$aws:cloudwatch/logGroup:LogGroup::CrudApiRouteRthxaeHandlerLogGroup",
+                        "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::random:index/randomBytes:RandomBytes::LambdaEncryptionKey",
+                        "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2LambdaRoute$sst:aws:Function$aws:lambda/function:Function::CrudApiRouteRthxaeHandlerFunction"
+                    ],
+                    "provider": "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::pulumi:providers:aws::default_7_20_0::15b8605a-67b3-43ff-b694-d9fd5408ffc0",
+                    "propertyDependencies": {
+                        "apiId": [
+                            "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2$aws:apigatewayv2/api:Api::CrudApiApi"
+                        ],
+                        "integrationType": [],
+                        "integrationUri": [
+                            "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2LambdaRoute$sst:aws:Function$aws:cloudwatch/logGroup:LogGroup::CrudApiRouteRthxaeHandlerLogGroup",
+                            "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::random:index/randomBytes:RandomBytes::LambdaEncryptionKey",
+                            "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2LambdaRoute$sst:aws:Function$aws:lambda/function:Function::CrudApiRouteRthxaeHandlerFunction"
+                        ],
+                        "payloadFormatVersion": []
+                    },
+                    "created": "2026-06-17T23:30:45.1305037Z",
+                    "modified": "2026-06-17T23:30:45.1305037Z"
+                },
+                {
+                    "urn": "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2LambdaRoute$aws:apigatewayv2/route:Route::CrudApiRouteRthxaeRoute",
+                    "custom": true,
+                    "id": "31lulkl",
+                    "type": "aws:apigatewayv2/route:Route",
+                    "inputs": {
+                        "__defaults": [
+                            "apiKeyRequired"
+                        ],
+                        "apiId": "lf6brft8ac",
+                        "apiKeyRequired": false,
+                        "authorizationType": "NONE",
+                        "region": "us-east-1",
+                        "routeKey": "POST /store",
+                        "target": "integrations/1i1fims"
+                    },
+                    "outputs": {
+                        "__pulumi_raw_state_delta": {
+                            "obj": {
+                                "ps": {
+                                    "requestParameters": {
+                                        "arr": {}
+                                    }
+                                },
+                                "renamed": {
+                                    "requestParameters": "request_parameter"
+                                }
+                            }
+                        },
+                        "apiId": "lf6brft8ac",
+                        "apiKeyRequired": false,
+                        "authorizationScopes": null,
+                        "authorizationType": "NONE",
+                        "authorizerId": "",
+                        "id": "31lulkl",
+                        "modelSelectionExpression": "",
+                        "operationName": "",
+                        "region": "us-east-1",
+                        "requestModels": null,
+                        "requestParameters": [],
+                        "routeKey": "POST /store",
+                        "routeResponseSelectionExpression": "",
+                        "target": "integrations/1i1fims"
+                    },
+                    "parent": "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2LambdaRoute::CrudApiRouteRthxae",
+                    "dependencies": [
+                        "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2$aws:apigatewayv2/api:Api::CrudApiApi",
+                        "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2LambdaRoute$aws:apigatewayv2/integration:Integration::CrudApiRouteRthxaeIntegration"
+                    ],
+                    "provider": "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::pulumi:providers:aws::default_7_20_0::15b8605a-67b3-43ff-b694-d9fd5408ffc0",
+                    "propertyDependencies": {
+                        "apiId": [
+                            "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2$aws:apigatewayv2/api:Api::CrudApiApi"
+                        ],
+                        "authorizationType": [],
+                        "routeKey": [],
+                        "target": [
+                            "urn:pulumi:desktop-8iq6aleuser::soundmixer-crud::sst:aws:ApiGatewayV2LambdaRoute$aws:apigatewayv2/integration:Integration::CrudApiRouteRthxaeIntegration"
+                        ]
+                    },
+                    "created": "2026-06-17T23:30:45.6467348Z",
+                    "modified": "2026-06-17T23:30:45.6467348Z",
+                    "stackTrace": [
+                        {},
+                        {},
+                        {}
+                    ]
+                }
+            ],
+            "metadata": {}
+        }
+    }
+}

@@ -1,0 +1,19 @@
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="container animate-entrance mt-5">
+    <div class="row justify-content-center align-items-center text-center">
+        <div class="col-lg-8">
+            <div class="mb-4">
+                <span class="badge badge-soft rounded-pill mb-3">AstraPayroll 2.0 is Live</span>
+                <h1 class="display-3 fw-bold text-dark mb-4">Empower Your Workforce</h1>
+                <p class="lead text-secondary mb-5">Seamlessly manage your team, track payroll expenses, and streamline HR operations with our modern dashboard.</p>
+                <div class="d-flex justify-content-center gap-3">
+                    <a asp-controller="Employees" asp-action="Index" class="btn btn-primary-custom btn-lg">View Team Roster</a>
+                    <a asp-controller="Employees" asp-action="Create" class="btn btn-outline-custom btn-lg">Onboard Member</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+@model ProductStorageMvc.Models.ErrorViewModel
+
+@{
+    ViewData["Title"] = "Error";
+}
+
+<section class="card">
+    <div class="card-header">
+        <h1>Error</h1>
+        <p>An error occurred while processing your request.</p>
+    </div>
+
+    @if (Model?.ShowRequestId == true)
+    {
+        <p><strong>Request ID:</strong> <code>@Model.RequestId</code></p>
+    }
+</section>
