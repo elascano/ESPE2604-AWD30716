@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  u2-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: u2-any-object-api
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    restart: unless-stopped

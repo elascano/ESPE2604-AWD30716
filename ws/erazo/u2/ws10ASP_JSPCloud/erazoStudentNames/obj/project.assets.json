@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "targets": {
     "net8.0": {
       "DnsClient/1.6.1": {
@@ -599,23 +599,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Det-Pc\\.nuget\\packages\\": {},
+    "C:\\Users\\User\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\Det-Pc\\Desktop\\ESPE2604-AWD30716\\ws\\erazo\\u2\\ws10ASP_JSPCloud\\erazoStudentNames\\ErazoStudentNames.csproj",
+      "projectUniqueName": "C:\\Users\\User\\Desktop\\web\\ESPE2604-AWD30716\\ws\\erazo\\u2\\ws10ASP_JSPCloud\\erazoStudentNames\\ErazoStudentNames.csproj",
       "projectName": "ErazoStudentNames",
-      "projectPath": "c:\\Users\\Det-Pc\\Desktop\\ESPE2604-AWD30716\\ws\\erazo\\u2\\ws10ASP_JSPCloud\\erazoStudentNames\\ErazoStudentNames.csproj",
-      "packagesPath": "C:\\Users\\Det-Pc\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\Det-Pc\\Desktop\\ESPE2604-AWD30716\\ws\\erazo\\u2\\ws10ASP_JSPCloud\\erazoStudentNames\\obj\\",
+      "projectPath": "C:\\Users\\User\\Desktop\\web\\ESPE2604-AWD30716\\ws\\erazo\\u2\\ws10ASP_JSPCloud\\erazoStudentNames\\ErazoStudentNames.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\User\\Desktop\\web\\ESPE2604-AWD30716\\ws\\erazo\\u2\\ws10ASP_JSPCloud\\erazoStudentNames\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Det-Pc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -628,6 +628,7 @@
       },
       "frameworks": {
         "net8.0": {
+          "framework": "net8.0",
           "targetAlias": "net8.0",
           "projectReferences": {}
         }
@@ -642,10 +643,11 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "10.0.200"
+      "SdkAnalysisLevel": "10.0.300"
     },
     "frameworks": {
       "net8.0": {
+        "framework": "net8.0",
         "targetAlias": "net8.0",
         "dependencies": {
           "MongoDB.Driver": {
@@ -667,19 +669,19 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[8.0.27, 8.0.27]"
+            "version": "[8.0.28, 8.0.28]"
           },
           {
             "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[8.0.27, 8.0.27]"
+            "version": "[8.0.28, 8.0.28]"
           },
           {
             "name": "Microsoft.NETCore.App.Ref",
-            "version": "[8.0.27, 8.0.27]"
+            "version": "[8.0.28, 8.0.28]"
           },
           {
             "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[8.0.27, 8.0.27]"
+            "version": "[8.0.28, 8.0.28]"
           }
         ],
         "frameworkReferences": {
@@ -690,7 +692,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.204/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.301/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

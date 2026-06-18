@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ErazoStudentNames")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d860e6b0b3f45e0bd5649de0d837fbd46dbaff75")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f9345bf0f9398d9c62b9a7595e930a088eab1e54")]
 [assembly: System.Reflection.AssemblyProductAttribute("ErazoStudentNames")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ErazoStudentNames")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
