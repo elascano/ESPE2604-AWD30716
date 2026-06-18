@@ -20,3 +20,7 @@ app.use("/soccerInfo", soccerPlayerRoutes);
 app.listen(port, () => {
   console.log(`Erazo soccerPlayer service is running on port ${port}`);
 });
+
+
+
+

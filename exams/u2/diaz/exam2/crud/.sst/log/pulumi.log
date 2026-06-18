@@ -1,0 +1,35 @@
+Updating (desktop-8iq6aleuser):
+@ updating....
+
+@ updating................................
+ ++ aws:s3:BucketObjectv2 CrudApiRouteRthxaeHandlerSourcemap0 creating replacement (0s)[retain] [diff: ~key,source,versionId]
+ ++ aws:s3:BucketObjectv2 CrudApiRouteRthxaeHandlerCode creating replacement (0s) [diff: ~key,source,versionId]
+@ updating.....
+ ++ aws:s3:BucketObjectv2 CrudApiRouteRthxaeHandlerSourcemap0 created replacement (1s)[retain] [diff: ~key,source,versionId]
+ +- aws:s3:BucketObjectv2 CrudApiRouteRthxaeHandlerSourcemap0 replacing (0s)[retain] [diff: ~key,source,versionId]
+ +- aws:s3:BucketObjectv2 CrudApiRouteRthxaeHandlerSourcemap0 replaced (0.00s)[retain] [diff: ~key,source,versionId]
+@ updating........
+ ++ aws:s3:BucketObjectv2 CrudApiRouteRthxaeHandlerCode created replacement (7s) [diff: ~key,source,versionId]
+ +- aws:s3:BucketObjectv2 CrudApiRouteRthxaeHandlerCode replacing (0s) [diff: ~key,source,versionId]
+ +- aws:s3:BucketObjectv2 CrudApiRouteRthxaeHandlerCode replaced (0.00s) [diff: ~key,source,versionId]
+@ updating....
+ ~  aws:lambda:Function CrudApiRouteRthxaeHandlerFunction updating (0s) [diff: ~lastModified,s3Key]
+@ updating..........
+ ~  aws:lambda:Function CrudApiRouteRthxaeHandlerFunction updated (7s) [diff: ~lastModified,s3Key]
+ -- aws:s3:BucketObjectv2 CrudApiRouteRthxaeHandlerCode deleting original (0s) [diff: ~key,source,versionId]
+ -- aws:s3:BucketObjectv2 CrudApiRouteRthxaeHandlerSourcemap0 deleting original (0s)[retain] [diff: ~key,source,versionId]
+ -- aws:s3:BucketObjectv2 CrudApiRouteRthxaeHandlerSourcemap0 deleted original (0.10s)[retain] [diff: ~key,source,versionId]
+@ updating....
+ -- aws:s3:BucketObjectv2 CrudApiRouteRthxaeHandlerCode deleted original (0.59s) [diff: ~key,source,versionId]
+    pulumi:pulumi:Stack soundmixer-crud-desktop-8iq6aleuser  
+Outputs:
+    _protect  : false
+    crudApiUrl: "https://lf6brft8ac.execute-api.us-east-1.amazonaws.com"
+
+Resources:
+    ~ 1 updated
+    +-2 replaced
+    3 changes. 14 unchanged
+
+Duration: 46s
+

@@ -1,0 +1,29 @@
+{
+  "name": "examUnit2",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "sst dev",
+    "deploy:production": "sst deploy --stage production",
+    "remove:production": "sst remove --stage production",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "mongoose": "^9.7.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "8.10.162",
+    "@types/bun": "latest",
+    "@types/node": "^22.10.7",
+    "sst": "4.15.2",
+    "typescript": "^5.7.3"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "trustedDependencies": [
+    "sst"
+  ]
+}
