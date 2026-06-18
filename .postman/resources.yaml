@@ -1,7 +1,0 @@
-# Use this workspace to collaborate
-workspace:
-  id: 06e2feea-41b2-4666-8e4d-5bb0523b0b8b
-
-localResources:
-  docs:
-    - ..\hw\diaz\u1\hw05PhP\src\vendor\psr\log\README.md

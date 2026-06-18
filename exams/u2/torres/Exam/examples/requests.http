@@ -1,0 +1,71 @@
+@host = http://localhost:3000
+@base = {{host}}/api/gloves
+@id = GL-001
+
+### Home
+GET {{host}}/
+
+### Health
+GET {{base}}/health
+
+### Metadata
+GET {{base}}/metadata
+
+### Create
+POST {{base}}
+Content-Type: application/json
+
+{
+  "serialNumber": "GL-001",
+  "brand": "GoalKeeper",
+  "model": "Pro Grip",
+  "size": "M",
+  "gripType": "negative cut",
+  "description": "Sample object for the AWD Unit 2 exam",
+  "color": "black",
+  "material": "latex",
+  "isNew": true,
+  "price": 25.5,
+  "attributes": {
+    "category": "sports",
+    "warrantyMonths": 6
+  }
+}
+
+### List
+GET {{base}}
+
+### Get by serial number
+GET {{base}}/{{id}}
+
+### Update
+PUT {{base}}/{{id}}
+Content-Type: application/json
+
+{
+  "serialNumber": "GL-001",
+  "brand": "GoalKeeper",
+  "model": "Pro Grip v2",
+  "size": "L",
+  "gripType": "hybrid cut",
+  "description": "Updated from REST client",
+  "color": "blue",
+  "material": "latex",
+  "isNew": false,
+  "price": 30,
+  "attributes": {
+    "category": "sports"
+  }
+}
+
+### Recompute assigned range
+POST {{base}}/{{id}}/recompute
+
+### Logical delete
+DELETE {{base}}/{{id}}
+
+### List including deleted
+GET {{base}}?includeDeleted=true
+
+### Permanent delete
+DELETE {{base}}/{{id}}?hard=true

@@ -1,0 +1,15 @@
+{
+  "name": "back-br",
+  "version": "1.0.0",
+  "description": "Compact Disc Business Rules Service",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js"
+  },
+  "dependencies": {
+    "axios": "^1.7.9",
+    "cors": "^2.8.5",
+    "express": "^5.2.1"
+  }
+}

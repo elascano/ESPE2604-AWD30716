@@ -1,0 +1,16 @@
+{
+  "serialNumber": "GL-001",
+  "brand": "GoalKeeper",
+  "model": "Pro Grip",
+  "size": "M",
+  "gripType": "negative cut",
+  "description": "Sample object for the AWD Unit 2 exam",
+  "color": "black",
+  "material": "latex",
+  "isNew": true,
+  "price": 25.5,
+  "attributes": {
+    "category": "sports",
+    "warrantyMonths": 6
+  }
+}
