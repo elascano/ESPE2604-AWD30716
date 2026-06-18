@@ -20,16 +20,15 @@ router.get('/calculate-price/:serial_number', async (req, res) => {
 
         const product = productResponse.data;
 
-        // Regla de Negocio: Si el producto NO es nuevo, se le aplica un 20% de descuento automático por liquidación.
-        // Si el producto ES nuevo, mantiene su precio original pero se le añade un impuesto del 12%.
+
         let finalPrice = product.price;
         let appliedRule = '';
 
         if (!product.is_new) {
-            finalPrice = product.price * 0.80; // 20% descuento
+            finalPrice = product.price * 0.80;
             appliedRule = '20% discount applied for non-new item';
         } else {
-            finalPrice = product.price * 1.12; // 12% impuesto
+            finalPrice = product.price * 1.12;
             appliedRule = '12% tax applied for new item';
         }
 
