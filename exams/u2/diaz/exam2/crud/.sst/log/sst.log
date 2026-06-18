@@ -1,0 +1,68 @@
+time=2026-06-17T18:54:23.503-05:00 level=INFO msg="checking for pulumi" path=C:\Users\USER\AppData\Roaming\sst\bin\pulumi.exe
+time=2026-06-17T18:54:23.733-05:00 level=INFO msg="checking for bun" path=C:\Users\USER\AppData\Roaming\sst\bin\bun.exe
+time=2026-06-17T18:54:23.845-05:00 level=INFO msg="initializing project" version=4.15.2
+time=2026-06-17T18:54:23.848-05:00 level=INFO msg="esbuild building" out="C:\\Users\\USER\\Downloads\\exam2 (5)\\exam2\\crud\\.sst\\platform\\sst.config.1781740463847.mjs"
+time=2026-06-17T18:54:23.888-05:00 level=INFO msg="esbuild built" outfile="C:\\Users\\USER\\Downloads\\exam2 (5)\\exam2\\crud\\.sst\\platform\\sst.config.1781740463847.mjs"
+time=2026-06-17T18:54:23.889-05:00 level=INFO msg="evaluating config"
+time=2026-06-17T18:54:23.957-05:00 level=INFO msg="config evaluated"
+time=2026-06-17T18:54:23.965-05:00 level=INFO msg="checking platform"
+time=2026-06-17T18:54:23.965-05:00 level=INFO msg="loading home"
+time=2026-06-17T18:54:23.971-05:00 level=INFO msg="aws credentials found" region=us-east-1 profile=""
+time=2026-06-17T18:54:23.974-05:00 level=INFO msg="fetching bootstrap"
+time=2026-06-17T18:54:24.673-05:00 level=INFO msg="found existing bootstrap" data="{\"version\":5,\"asset\":\"sst-asset-wdtnrmdzuxnh\",\"assetEcrRegistryId\":\"980825417466\",\"assetEcrUrl\":\"980825417466.dkr.ecr.us-east-1.amazonaws.com/sst-asset\",\"state\":\"sst-state-wdtnrmdzuxnh\",\"appsyncHttp\":\"\",\"appsyncRealtime\":\"\"}"
+time=2026-06-17T18:54:24.674-05:00 level=INFO msg="loaded config" app=soundmixer-crud stage=desktop-8iq6aleuser
+time=2026-06-17T18:54:24.675-05:00 level=ERROR msg="failed to remove temp log file" err="open C:\\Users\\USER\\AppData\\Local\\Temp\\C:\\Users\\USER\\Downloads\\exam2 (5)\\exam2\\crud\\.sst\\log: The filename, directory name, or volume label syntax is incorrect."
+time=2026-06-17T18:54:24.677-05:00 level=INFO msg="initializing ui" isTTY=true
+time=2026-06-17T18:54:24.680-05:00 level=INFO msg="server port assigned" port=13557
+time=2026-06-17T18:54:24.682-05:00 level=INFO msg="running stack command" service=project.run cmd=deploy
+time=2026-06-17T18:54:24.682-05:00 level=INFO msg=starting service=server
+time=2026-06-17T18:54:24.684-05:00 level=INFO msg="INFO locking app=soundmixer-crud stage=desktop-8iq6aleuser"
+time=2026-06-17T18:54:24.684-05:00 level=INFO msg="INFO getting data key=lock app=soundmixer-crud stage=desktop-8iq6aleuser"
+time=2026-06-17T18:54:24.699-05:00 level=INFO msg=server service=server addr=0.0.0.0:13557
+time=2026-06-17T18:54:24.701-05:00 level=INFO msg="server ready to accept connections" service=server
+time=2026-06-17T18:54:25.679-05:00 level=INFO msg="INFO putting update app=soundmixer-crud stage=desktop-8iq6aleuser"
+time=2026-06-17T18:54:26.069-05:00 level=INFO msg="INFO getting passphrase app=soundmixer-crud stage=desktop-8iq6aleuser"
+time=2026-06-17T18:54:26.468-05:00 level=INFO msg="INFO pulling state app=soundmixer-crud stage=desktop-8iq6aleuser out=\"C:\\\\Users\\\\USER\\\\Downloads\\\\exam2 (5)\\\\exam2\\\\crud\\\\.sst\\\\pulumi\\\\fe6127fe15d4a81ffc357984\\\\.pulumi\\\\stacks\\\\soundmixer-crud\\\\desktop-8iq6aleuser.json\""
+time=2026-06-17T18:54:27.768-05:00 level=INFO msg="got previous deployment" service=project.run updateID=fe6127fe15d4a81ffc357984
+time=2026-06-17T18:54:27.768-05:00 level=INFO msg="esbuild building" out="C:\\Users\\USER\\Downloads\\exam2 (5)\\exam2\\crud\\.sst\\platform\\sst.config.1781740466465.mjs"
+time=2026-06-17T18:54:28.047-05:00 level=INFO msg="esbuild built" outfile="C:\\Users\\USER\\Downloads\\exam2 (5)\\exam2\\crud\\.sst\\platform\\sst.config.1781740466465.mjs"
+time=2026-06-17T18:54:28.082-05:00 level=INFO msg="built sst.config.ts" service=project.run updateID=fe6127fe15d4a81ffc357984 to="C:\\Users\\USER\\Downloads\\exam2 (5)\\exam2\\crud\\.sst\\platform\\sst.config.1781740466465.mjs"
+time=2026-06-17T18:54:28.101-05:00 level=INFO msg="tracked files" service=project.run updateID=fe6127fe15d4a81ffc357984
+time=2026-06-17T18:54:28.104-05:00 level=INFO msg="INFO getting data key=secret app=soundmixer-crud stage=desktop-8iq6aleuser"
+time=2026-06-17T18:54:28.104-05:00 level=INFO msg="INFO getting data key=secret app=soundmixer-crud stage=_fallback"
+time=2026-06-17T18:54:28.519-05:00 level=INFO msg="starting pulumi" service=project.run updateID=fe6127fe15d4a81ffc357984 args="[C:\\Users\\USER\\AppData\\Roaming\\sst\\bin\\pulumi.exe up --yes -f --stack organization/soundmixer-crud/desktop-8iq6aleuser --non-interactive --event-log C:\\Users\\USER\\Downloads\\exam2 (5)\\exam2\\crud\\.sst\\pulumi\\fe6127fe15d4a81ffc357984\\eventlog.json --config aws:region=us-east-1 --config aws:defaultTags={\"tags\":{\"sst:app\":\"soundmixer-crud\",\"sst:stage\":\"desktop-8iq6aleuser\"}}]"
+time=2026-06-17T18:54:33.522-05:00 level=INFO msg="INFO pushing partial state updateID=fe6127fe15d4a81ffc357984"
+time=2026-06-17T18:54:39.808-05:00 level=INFO msg="rpc request" method=POST url=/rpc
+time=2026-06-17T18:54:39.839-05:00 level=INFO msg="rpc request" method=POST url=/rpc
+time=2026-06-17T18:54:39.841-05:00 level=INFO msg="building function" runtime=nodejs24.x functionID=CrudApiRouteRthxaeHandler
+time=2026-06-17T18:54:39.923-05:00 level=INFO msg="loader info" service=runtime.node functionID=CrudApiRouteRthxaeHandler loader=map[]
+time=2026-06-17T18:54:39.923-05:00 level=INFO msg="running esbuild" service=runtime.node functionID=CrudApiRouteRthxaeHandler
+time=2026-06-17T18:54:40.038-05:00 level=INFO msg="esbuild finished" service=runtime.node functionID=CrudApiRouteRthxaeHandler
+time=2026-06-17T18:54:40.039-05:00 level=INFO msg=installing service=runtime.node functionID=CrudApiRouteRthxaeHandler packages="[pg @prisma/client @prisma/adapter-pg]"
+time=2026-06-17T18:54:40.045-05:00 level=INFO msg="running npm" service=runtime.node functionID=CrudApiRouteRthxaeHandler cmd="[install --force --platform=linux --os=linux --arch=x64 --cpu=x64]"
+time=2026-06-17T18:54:52.123-05:00 level=INFO msg="npm output" output="npm warn Unknown cli config \"--platform\". This will stop working in the next major version of npm.\nnpm warn Unknown cli config \"--arch\". This will stop working in the next major version of npm.\nnpm warn using --force Recommended protections disabled.\n\nadded 23 packages, and audited 24 packages in 12s\n\nfound 0 vulnerabilities\n"
+time=2026-06-17T18:54:52.124-05:00 level=INFO msg="done installing" service=runtime.node functionID=CrudApiRouteRthxaeHandler packages="[pg @prisma/client @prisma/adapter-pg]"
+time=2026-06-17T18:54:52.127-05:00 level=INFO msg="function built" runtime=nodejs24.x functionID=CrudApiRouteRthxaeHandler
+time=2026-06-17T18:54:59.648-05:00 level=INFO msg="rpc request" method=POST url=/rpc
+time=2026-06-17T18:54:59.961-05:00 level=INFO msg="INFO pushing partial state updateID=fe6127fe15d4a81ffc357984"
+time=2026-06-17T18:55:01.798-05:00 level=INFO msg="INFO pushing partial state updateID=fe6127fe15d4a81ffc357984"
+time=2026-06-17T18:55:07.140-05:00 level=INFO msg="INFO pushing partial state updateID=fe6127fe15d4a81ffc357984"
+time=2026-06-17T18:55:07.882-05:00 level=INFO msg="INFO pushing partial state updateID=fe6127fe15d4a81ffc357984"
+time=2026-06-17T18:55:15.020-05:00 level=INFO msg="INFO pushing partial state updateID=fe6127fe15d4a81ffc357984"
+time=2026-06-17T18:55:15.736-05:00 level=INFO msg="INFO pushing partial state updateID=fe6127fe15d4a81ffc357984"
+time=2026-06-17T18:55:16.085-05:00 level=INFO msg="pulumi exited" service=project.run updateID=fe6127fe15d4a81ffc357984 err=<nil>
+time=2026-06-17T18:55:16.085-05:00 level=INFO msg="eof and exited" service=project.run updateID=fe6127fe15d4a81ffc357984 eofs=0
+time=2026-06-17T18:55:16.085-05:00 level=INFO msg="eof and exited" service=project.run updateID=fe6127fe15d4a81ffc357984 eofs=1
+time=2026-06-17T18:55:16.085-05:00 level=INFO msg="breaking out of tail loop" service=project.run updateID=fe6127fe15d4a81ffc357984
+time=2026-06-17T18:55:16.085-05:00 level=INFO msg="parsing state" service=project.run updateID=fe6127fe15d4a81ffc357984
+time=2026-06-17T18:55:16.432-05:00 level=INFO msg="INFO pushing partial state updateID=fe6127fe15d4a81ffc357984"
+time=2026-06-17T18:55:16.726-05:00 level=INFO msg="generating types" root="C:\\Users\\USER\\Downloads\\exam2 (5)\\exam2\\crud"
+time=2026-06-17T18:55:16.748-05:00 level=INFO msg="canceling partial" service=project.run updateID=fe6127fe15d4a81ffc357984
+time=2026-06-17T18:55:16.748-05:00 level=INFO msg="waiting for partial to exit" service=project.run updateID=fe6127fe15d4a81ffc357984
+time=2026-06-17T18:55:17.144-05:00 level=INFO msg="INFO pushing eventlog updateID=fe6127fe15d4a81ffc357984"
+time=2026-06-17T18:55:17.145-05:00 level=INFO msg="INFO pushing snapshot updateID=fe6127fe15d4a81ffc357984"
+time=2026-06-17T18:55:17.885-05:00 level=INFO msg="INFO putting update app=soundmixer-crud stage=desktop-8iq6aleuser"
+time=2026-06-17T18:55:18.295-05:00 level=INFO msg="done running stack command" service=project.run updateID=fe6127fe15d4a81ffc357984 resources=19
+time=2026-06-17T18:55:18.340-05:00 level=INFO msg="INFO unlocking app=soundmixer-crud stage=desktop-8iq6aleuser"
+time=2026-06-17T18:55:18.759-05:00 level=INFO msg="shutting down server" service=server
+time=2026-06-17T18:55:18.761-05:00 level=INFO msg="server done" service=server

@@ -1,0 +1,15 @@
+{
+    "name": "exam2-deploy",
+    "version": "1.0.0",
+    "private": true,
+    "devDependencies": {
+        "sst": "latest",
+        "typescript": "^5.5.4"
+    },
+    "dependencies": {
+        "@serverless-stack/resources": "^1.18.4",
+        "better-sqlite3": "^7.6.2",
+        "mysql2": "^2.3.3",
+        "pg": "^8.21.0"
+    }
+}
