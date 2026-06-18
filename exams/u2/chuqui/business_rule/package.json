@@ -1,0 +1,17 @@
+{
+  "name": "business-rule-api",
+  "version": "1.0.0",
+  "description": "Business rule operations for the e-business company",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "axios": "^1.6.8"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}

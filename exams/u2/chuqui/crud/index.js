@@ -1,15 +1,13 @@
 const express = require('express');
-const app = express();
 const mongoose = require('mongoose');
 
+const app = express();
 const port = process.env.PORT || 8080;
 
 const mongoUri = process.env.MONGODB_URI || 'mongodb+srv://kachuqui_db_user:Simon123@cluster0.x7strgx.mongodb.net/?appName=Cluster0';
-mongoose.connect(mongoUri);
-
-const db = mongoose.connection;
-db.on('error', (error) => console.error('Mongo connection error:', error));
-db.once('open', () => console.log("Kerly's System connected to MongoDb Database"));
+mongoose.connect(mongoUri)
+  .then(() => console.log("CRUD Service connected to MongoDb Database"))
+  .catch((error) => console.error('Mongo connection error:', error));
 
 app.use(express.json());
 
@@ -23,9 +21,8 @@ app.use((err, req, res, next) => {
     next(err);
 });
 
-
 app.listen(port, () => {
-    console.log(`Kerly's Service is running on port ${port}`);
+    console.log(`CRUD Service is running on port ${port}`);
 });
 
 module.exports = app;
