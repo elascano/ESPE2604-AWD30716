@@ -1,0 +1,112 @@
+[
+  {
+    "id": 1,
+    "serial": "PF-101",
+    "brand": "FrameIt",
+    "model": "Classic Wood",
+    "date": "2026-06-16",
+    "price": 15.0,
+    "pice_time": 0,
+    "description": "Beautiful classic wooden frame",
+    "is_new": true
+  },
+  {
+    "id": 2,
+    "serial": "PF-102",
+    "brand": "ArtDecor",
+    "model": "Modern Metal",
+    "date": "2026-06-15",
+    "price": 25.0,
+    "pice_time": 0,
+    "description": "Sleek modern metal frame",
+    "is_new": true
+  },
+  {
+    "id": 3,
+    "serial": "PF-103",
+    "brand": "VintageCraft",
+    "model": "Rustic Oak",
+    "date": "2026-06-10",
+    "price": 35.0,
+    "pice_time": 0,
+    "description": "Distressed oak finish frame",
+    "is_new": false
+  },
+  {
+    "id": 4,
+    "serial": "PF-104",
+    "brand": "FrameIt",
+    "model": "Premium Gold",
+    "date": "2026-06-14",
+    "price": 60.0,
+    "pice_time": 0,
+    "description": "Elegant golden frame with ornate details",
+    "is_new": true
+  },
+  {
+    "id": 5,
+    "serial": "PF-105",
+    "brand": "ArtDecor",
+    "model": "Minimalist White",
+    "date": "2026-05-30",
+    "price": 12.0,
+    "pice_time": 0,
+    "description": "Simple white matte picture frame",
+    "is_new": false
+  },
+  {
+    "id": 6,
+    "serial": "PF-106",
+    "brand": "GalleryPro",
+    "model": "Studio Black",
+    "date": "2026-06-12",
+    "price": 20.0,
+    "pice_time": 0,
+    "description": "Professional gallery black frame",
+    "is_new": true
+  },
+  {
+    "id": 7,
+    "serial": "PF-107",
+    "brand": "VintageCraft",
+    "model": "Antique Bronze",
+    "date": "2026-05-15",
+    "price": 45.0,
+    "pice_time": 0,
+    "description": "Ornate antique bronze style frame",
+    "is_new": false
+  },
+  {
+    "id": 8,
+    "serial": "PF-108",
+    "brand": "FrameIt",
+    "model": "Shadow Box",
+    "date": "2026-06-05",
+    "price": 30.0,
+    "pice_time": 0,
+    "description": "Deep shadow box picture frame",
+    "is_new": true
+  },
+  {
+    "id": 9,
+    "serial": "PF-109",
+    "brand": "GalleryPro",
+    "model": "Acrylic Floating",
+    "date": "2026-06-17",
+    "price": 50.0,
+    "pice_time": 0,
+    "description": "Modern floating acrylic picture frame",
+    "is_new": true
+  },
+  {
+    "id": 10,
+    "serial": "PF-110",
+    "brand": "ArtDecor",
+    "model": "Collage Multi",
+    "date": "2026-06-01",
+    "price": 40.0,
+    "pice_time": 0,
+    "description": "Multi-aperture collage picture frame",
+    "is_new": false
+  }
+]
