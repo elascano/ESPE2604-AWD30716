@@ -1,0 +1,45 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: postgres
+    environment:
+      POSTGRES_DB: appdb
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: secret
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - alc-network
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mi-app
+    depends_on:
+      - postgres
+    environment:
+      - APP_ENV=development
+      - APP_DEBUG=true
+      - APP_TIMEZONE=America/Bogota
+      - DB_CONNECTION=pgsql
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_DATABASE=appdb
+      - DB_USERNAME=user
+      - DB_PASSWORD=secret
+      - DB_SSLMODE=disable
+      - PORT=8080
+    ports:
+      - "8080:8080"
+    networks:
+      - alc-network
+
+networks:
+  alc-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
