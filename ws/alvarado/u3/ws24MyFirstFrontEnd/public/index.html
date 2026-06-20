@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reporte de Clientes — Biconoirs Gourmet</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+
+  <!-- React 18 sin JSX (no necesita Babel) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+
+  <!-- jsPDF + AutoTable -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f4f2ee; --surface: #ffffff; --sidebar: #0f1c2e;
+      --sidebar-lt: #1a2f47; --accent: #c97f35; --accent-lt: #e8a057;
+      --text: #1a1a1a; --text-2: #6b7280; --border: #e5e0d8;
+      --green: #2d6a4f; --green-bg: #d8f3e9; --red: #b91c1c;
+    }
+    html, body { height: 100%; font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); }
+    .shell { display: flex; min-height: 100vh; }
+    .sidebar { width: 240px; flex-shrink: 0; background: var(--sidebar); padding: 28px 0; display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh; }
+    .sidebar-brand { padding: 0 24px 28px; border-bottom: 1px solid rgba(255,255,255,.08); }
+    .sidebar-brand .label { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; color: #fff; letter-spacing: .02em; line-height: 1.3; }
+    .sidebar-brand .sub { font-size: 10px; font-weight: 500; color: var(--accent-lt); text-transform: uppercase; letter-spacing: .12em; margin-top: 2px; }
+    .sidebar-nav { padding: 20px 12px; flex: 1; }
+    .nav-item { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 7px; font-size: 13px; font-weight: 500; color: rgba(255,255,255,.6); cursor: pointer; margin-bottom: 2px; }
+    .nav-item.active { background: var(--sidebar-lt); color: #fff; }
+    .main { flex: 1; padding: 36px 40px; overflow-x: hidden; }
+    .page-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; }
+    .page-title { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; }
+    .page-meta { font-size: 12px; color: var(--text-2); margin-top: 2px; }
+    .btn-pdf { display: flex; align-items: center; gap: 8px; background: var(--accent); color: #fff; border: none; border-radius: 8px; padding: 10px 20px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; transition: background .15s; }
+    .btn-pdf:hover { background: var(--accent-lt); }
+    .btn-pdf:disabled { opacity: .55; cursor: not-allowed; }
+    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 28px; }
+    .stat-card { background: var(--surface); border-radius: 12px; border: 1px solid var(--border); padding: 20px 22px; }
+    .stat-label { font-size: 11px; font-weight: 600; color: var(--text-2); text-transform: uppercase; letter-spacing: .08em; }
+    .stat-value { font-size: 30px; font-weight: 700; margin-top: 6px; line-height: 1; }
+    .table-card { background: var(--surface); border-radius: 12px; border: 1px solid var(--border); overflow: hidden; }
+    .table-topbar { padding: 16px 22px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); }
+    .table-title { font-size: 14px; font-weight: 600; }
+    .search-input { padding: 7px 12px; border: 1px solid var(--border); border-radius: 7px; font-size: 13px; font-family: 'Inter', sans-serif; background: var(--bg); outline: none; width: 220px; }
+    .search-input:focus { border-color: var(--accent); }
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; }
+    thead th { background: #f9f8f6; text-align: left; font-size: 11px; font-weight: 600; color: var(--text-2); text-transform: uppercase; letter-spacing: .07em; padding: 11px 16px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+    tbody tr:hover { background: #faf9f7; }
+    tbody tr + tr td { border-top: 1px solid var(--border); }
+    tbody td { padding: 13px 16px; font-size: 13px; vertical-align: middle; }
+    .avatar { width: 32px; height: 32px; border-radius: 50%; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; flex-shrink: 0; }
+    .name-cell { display: flex; align-items: center; gap: 10px; }
+    .name-text { font-weight: 500; }
+    .email-text { color: var(--text-2); font-size: 12px; margin-top: 1px; }
+    .badge { display: inline-flex; align-items: center; padding: 3px 9px; border-radius: 20px; font-size: 11px; font-weight: 600; background: var(--green-bg); color: var(--green); }
+    .date-text { font-size: 12px; color: var(--text-2); }
+    .state-box { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 60px 20px; gap: 12px; color: var(--text-2); font-size: 14px; text-align: center; }
+    .state-icon { font-size: 36px; }
+    .table-footer { padding: 12px 22px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; font-size: 12px; color: var(--text-2); }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .spinner { width: 28px; height: 28px; border-radius: 50%; border: 3px solid var(--border); border-top-color: var(--accent); animation: spin .7s linear infinite; }
+    .btn-retry { margin-top: 4px; font-size: 12px; font-weight: 600; background: none; border: 1px solid var(--border); border-radius: 6px; padding: 6px 14px; cursor: pointer; color: var(--text); font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body>
+<div id="root"></div>
+<script>
+const e = React.createElement;
+const { useState, useEffect, useMemo } = React;
+const API = "http://localhost:3001";
+
+const COLORS = ["#1a2f47","#2d6a4f","#7c3aed","#0f766e","#9d174d","#c97f35","#1e40af"];
+function avatarColor(str) {
+  let h = 0;
+  for (const c of (str || "")) h = (h * 31 + c.charCodeAt(0)) & 0xffffffff;
+  return COLORS[Math.abs(h) % COLORS.length];
+}
+function initials(name) {
+  return (name || "").trim().split(" ").slice(0, 2).map(w => w[0]).join("").toUpperCase();
+}
+function formatDate(iso) {
+  if (!iso) return "—";
+  return new Date(iso).toLocaleDateString("es-EC", { day:"2-digit", month:"short", year:"numeric" });
+}
+
+function exportPDF(clientes, stats) {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ orientation: "landscape", unit: "mm", format: "a4" });
+  doc.setFillColor(15, 28, 46);
+  doc.rect(0, 0, 297, 28, "F");
+  doc.setTextColor(255, 255, 255);
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(16);
+  doc.text("BICONOIRS GOURMET", 14, 11);
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(9);
+  doc.setTextColor(201, 127, 53);
+  doc.text("REPORTE DE CLIENTES", 14, 18);
+  doc.setTextColor(180, 180, 180);
+  doc.text("Generado: " + new Date().toLocaleString("es-EC"), 14, 24);
+  doc.setTextColor(15, 28, 46);
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(9);
+  const total = stats ? stats.total : clientes.length;
+  const nuevos = stats ? stats.nuevos_este_mes : "—";
+  const conTel = stats ? stats.con_telefono : "—";
+  doc.text("Total de clientes: " + total, 200, 11);
+  doc.text("Nuevos este mes: " + nuevos, 200, 18);
+  doc.text("Con teléfono: " + conTel, 200, 24);
+  doc.autoTable({
+    startY: 34,
+    head: [["#","Nombre","Correo electrónico","Teléfono","Rol","Fecha de registro"]],
+    body: clientes.map((c, i) => [i+1, c.nombre, c.email, c.telefono || "—", "Cliente", formatDate(c.fechaRegistro)]),
+    styles: { font:"helvetica", fontSize:8, cellPadding:3.5 },
+    headStyles: { fillColor:[15,28,46], textColor:[255,255,255], fontStyle:"bold", fontSize:8 },
+    alternateRowStyles: { fillColor:[249,248,246] },
+    columnStyles: {
+      0:{halign:"center",cellWidth:10}, 1:{cellWidth:50}, 2:{cellWidth:68},
+      3:{cellWidth:35}, 4:{cellWidth:22,halign:"center"}, 5:{cellWidth:38,halign:"center"}
+    },
+    margin: { left:14, right:14 }
+  });
+  const totalPages = doc.internal.getNumberOfPages();
+  for (let p = 1; p <= totalPages; p++) {
+    doc.setPage(p);
+    doc.setFont("helvetica","normal"); doc.setFontSize(7); doc.setTextColor(150,150,150);
+    doc.text("Página " + p + " de " + totalPages, 283, 207, { align:"right" });
+    doc.text("Biconoirs Gourmet — Reporte de Clientes — Confidencial", 14, 207);
+  }
+  doc.save("reporte-clientes-" + new Date().toISOString().slice(0,10) + ".pdf");
+}
+
+function Row({ cliente, index }) {
+  return e("tr", null,
+    e("td", { style:{color:"var(--text-2)",fontSize:"12px",width:"40px"} }, index + 1),
+    e("td", null,
+      e("div", { className:"name-cell" },
+        e("div", { className:"avatar", style:{background:avatarColor(cliente.nombre)} }, initials(cliente.nombre)),
+        e("div", null,
+          e("div", { className:"name-text" }, cliente.nombre),
+          e("div", { className:"email-text" }, cliente.email)
+        )
+      )
+    ),
+    e("td", null, cliente.telefono
+      ? e("span", { style:{fontSize:"12px",fontWeight:500,color:"var(--text-2)"} }, "📞 " + cliente.telefono)
+      : e("span", { style:{color:"#d1d5db"} }, "—")
+    ),
+    e("td", null, e("span", { className:"badge" }, "Cliente")),
+    e("td", null, e("span", { className:"date-text" }, formatDate(cliente.fechaRegistro)))
+  );
+}
+
+function App() {
+  const [clientes, setClientes] = useState([]);
+  const [stats, setStats] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [search, setSearch] = useState("");
+  const [pdfLoading, setPdfLoading] = useState(false);
+
+  async function fetchData() {
+    setLoading(true); setError(null);
+    try {
+      const [resC, resS] = await Promise.all([
+        fetch(API + "/api/clientes"),
+        fetch(API + "/api/stats")
+      ]);
+      const jsonC = await resC.json();
+      const jsonS = await resS.json();
+      if (!jsonC.ok) throw new Error(jsonC.message);
+      setClientes(jsonC.data);
+      if (jsonS.ok) setStats(jsonS.data);
+    } catch (err) {
+      setError(err.message || "No se pudo conectar al servidor");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => { fetchData(); }, []);
+
+  const filtered = useMemo(() => {
+    const q = search.toLowerCase().trim();
+    if (!q) return clientes;
+    return clientes.filter(c =>
+      (c.nombre || "").toLowerCase().includes(q) ||
+      (c.email || "").toLowerCase().includes(q) ||
+      (c.telefono || "").includes(q)
+    );
+  }, [clientes, search]);
+
+  function handleExport() {
+    setPdfLoading(true);
+    setTimeout(() => { exportPDF(filtered, stats); setPdfLoading(false); }, 50);
+  }
+
+  const now = new Date().toLocaleDateString("es-EC", { weekday:"long", day:"numeric", month:"long", year:"numeric" });
+
+  return e("div", { className:"shell" },
+    // Sidebar
+    e("aside", { className:"sidebar" },
+      e("div", { className:"sidebar-brand" },
+        e("div", { className:"sub" }, "Sistema de reportes"),
+        e("div", { className:"label" }, "Biconoirs Gourmet")
+      ),
+      e("nav", { className:"sidebar-nav" },
+        e("div", { className:"nav-item active" }, e("span", null, "👥"), " Clientes"),
+        e("div", { className:"nav-item" }, e("span", null, "🍽️"), " Menú"),
+        e("div", { className:"nav-item" }, e("span", null, "📦"), " Inventario"),
+        e("div", { className:"nav-item" }, e("span", null, "🧾"), " Órdenes"),
+        e("div", { className:"nav-item" }, e("span", null, "📅"), " Reservas")
+      )
+    ),
+    // Main
+    e("main", { className:"main" },
+      e("div", { className:"page-header" },
+        e("div", null,
+          e("div", { className:"page-title" }, "Reporte de Clientes"),
+          e("div", { className:"page-meta" }, now + " · URI: GET /api/clientes")
+        ),
+        e("button", { className:"btn-pdf", onClick:handleExport, disabled:pdfLoading||loading||!!error },
+          pdfLoading ? "⏳ Generando..." : "📄 Guardar como PDF"
+        )
+      ),
+      // Stats
+      e("div", { className:"stats-grid" },
+        e("div", { className:"stat-card" },
+          e("div", { className:"stat-label" }, "Total de clientes"),
+          e("div", { className:"stat-value", style:{color:"var(--accent)"} }, loading ? "—" : (stats ? stats.total : clientes.length))
+        ),
+        e("div", { className:"stat-card" },
+          e("div", { className:"stat-label" }, "Nuevos este mes"),
+          e("div", { className:"stat-value", style:{color:"var(--green)"} }, loading ? "—" : (stats ? stats.nuevos_este_mes : "—"))
+        ),
+        e("div", { className:"stat-card" },
+          e("div", { className:"stat-label" }, "Con teléfono registrado"),
+          e("div", { className:"stat-value", style:{color:"#1a2f47"} }, loading ? "—" : (stats ? stats.con_telefono : "—"))
+        )
+      ),
+      // Table
+      e("div", { className:"table-card" },
+        e("div", { className:"table-topbar" },
+          e("span", { className:"table-title" },
+            "Lista de clientes",
+            !loading && !error ? e("span", { style:{color:"var(--text-2)",fontWeight:400,marginLeft:8} }, "(" + filtered.length + " resultados)") : null
+          ),
+          e("input", {
+            className:"search-input", type:"text",
+            placeholder:"Buscar por nombre, correo o teléfono…",
+            value:search, onChange:ev => setSearch(ev.target.value),
+            disabled:loading||!!error
+          })
+        ),
+        e("div", { className:"table-wrap" },
+          loading
+            ? e("div", { className:"state-box" }, e("div", { className:"spinner" }), e("span", null, "Cargando clientes…"))
+            : error
+              ? e("div", { className:"state-box" },
+                  e("div", { className:"state-icon" }, "⚠️"),
+                  e("strong", { style:{color:"var(--red)"} }, "Error de conexión"),
+                  e("span", null, error),
+                  e("span", { style:{fontSize:"11px",maxWidth:"340px",lineHeight:"1.5"} },
+                    "Verifica que el servidor esté corriendo en localhost:3001 con npm start."
+                  ),
+                  e("button", { className:"btn-retry", onClick:fetchData }, "Reintentar")
+                )
+              : filtered.length === 0
+                ? e("div", { className:"state-box" }, e("div", { className:"state-icon" }, "🔍"), e("span", null, "No se encontraron clientes."))
+                : e("table", null,
+                    e("thead", null,
+                      e("tr", null,
+                        e("th", null, "#"), e("th", null, "Cliente"),
+                        e("th", null, "Teléfono"), e("th", null, "Rol"), e("th", null, "Fecha de registro")
+                      )
+                    ),
+                    e("tbody", null, filtered.map((c, i) => e(Row, { key:c.userId, cliente:c, index:i })))
+                  )
+        ),
+        !loading && !error && filtered.length > 0
+          ? e("div", { className:"table-footer" },
+              e("span", null, "Mostrando " + filtered.length + " de " + clientes.length + " clientes"),
+              e("span", null, "Fuente: users WHERE role = 'customer' · Supabase/PostgreSQL")
+            )
+          : null
+      )
+    )
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(e(App));
+</script>
+</body>
+</html>
