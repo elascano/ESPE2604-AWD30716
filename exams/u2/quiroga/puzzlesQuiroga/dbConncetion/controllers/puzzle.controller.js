@@ -1,4 +1,4 @@
-const Puzzle = require('../models/puzzle');
+const Puzzle = require('../models/Puzzle');
 
 class PuzzleController {
 
@@ -15,7 +15,12 @@ class PuzzleController {
         }
     }
 
-    
+    static async healthCheck(req, res){
+        res.status(200).json({
+            message: "OK"
+        });
+    }
 }
+
 
 module.exports = PuzzleController;
