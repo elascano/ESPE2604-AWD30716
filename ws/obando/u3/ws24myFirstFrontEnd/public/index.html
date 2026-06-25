@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reporte de Productos - Barbería Dashboard</title>
+  
+  <!-- Google Fonts: Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <!-- SheetJS for Native Excel Exports -->
+  <script src="xlsx.full.min.js"></script>
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- Top Header -->
+    <header class="main-header">
+      <div class="header-logo">
+        <i class="fa-solid fa-store logo-icon animate-spin-slow"></i>
+        <div>
+          <h1>Reporte de Productos</h1>
+          <p class="subtitle">BarberShop Admin Portal</p>
+        </div>
+      </div>
+      
+      <div class="header-actions">
+        <span id="connection-badge" class="badge badge-loading">
+          <i class="fa-solid fa-spinner fa-spin"></i> Conectando...
+        </span>
+        <button id="refresh-btn" class="btn btn-secondary">
+          <i class="fa-solid fa-rotate"></i> Actualizar
+        </button>
+      </div>
+    </header>
+
+    <!-- Metrics Cards Grid -->
+    <section class="metrics-grid">
+      <div class="metric-card card-total">
+        <div class="card-icon">
+          <i class="fa-solid fa-box-open"></i>
+        </div>
+        <div class="card-info">
+          <span class="card-label">Total de Productos</span>
+          <h2 id="metric-total">0</h2>
+        </div>
+      </div>
+      
+      <div class="metric-card card-active">
+        <div class="card-icon">
+          <i class="fa-solid fa-circle-check"></i>
+        </div>
+        <div class="card-info">
+          <span class="card-label">Productos Activos</span>
+          <h2 id="metric-active">0</h2>
+        </div>
+      </div>
+      
+      <div class="metric-card card-owners">
+        <div class="card-icon">
+          <i class="fa-solid fa-layer-group"></i>
+        </div>
+        <div class="card-info">
+          <span class="card-label">Total de Unidades (Stock)</span>
+          <h2 id="metric-stock">0</h2>
+        </div>
+      </div>
+      
+      <div class="metric-card card-barbers">
+        <div class="card-icon">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+        </div>
+        <div class="card-info">
+          <span class="card-label">Productos Sin Stock</span>
+          <h2 id="metric-out-of-stock">0</h2>
+        </div>
+      </div>
+    </section>
+
+    <!-- Visual Charts Section -->
+    <section class="charts-grid">
+      <div class="chart-card">
+        <h3><i class="fa-solid fa-chart-pie"></i> Estado de Inventario</h3>
+        <div class="chart-container">
+          <canvas id="stockChart"></canvas>
+        </div>
+      </div>
+      <div class="chart-card">
+        <h3><i class="fa-solid fa-chart-bar"></i> Distribución de Precios</h3>
+        <div class="chart-container">
+          <canvas id="priceChart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Workspace: Data + Controls -->
+    <main class="data-workspace">
+      
+      <!-- Filters and Actions Toolbar -->
+      <div class="toolbar">
+        <div class="filter-controls">
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" id="search-input" placeholder="Buscar por nombre, descripción, ID...">
+          </div>
+          
+          <div class="select-wrapper">
+            <select id="filter-status">
+              <option value="all">Todos los Estados</option>
+              <option value="active">Activo</option>
+              <option value="inactive">Inactivo</option>
+            </select>
+          </div>
+
+          <div class="select-wrapper">
+            <select id="filter-stock">
+              <option value="all">Todos los Niveles de Stock</option>
+              <option value="out">Sin Stock (0 unidades)</option>
+              <option value="low">Bajo Stock (1 a 5 unidades)</option>
+              <option value="ok">Stock Disponible (>5 unidades)</option>
+            </select>
+          </div>
+          
+          <button id="clear-filters-btn" class="btn btn-secondary-outline" title="Limpiar Filtros">
+            <i class="fa-solid fa-filter-circle-xmark"></i>
+          </button>
+        </div>
+
+        <div class="export-controls">
+          <button id="export-csv-btn" class="btn btn-primary-gradient">
+            <i class="fa-solid fa-file-csv"></i> Exportar CSV
+          </button>
+          <button id="export-excel-btn" class="btn btn-excel">
+            <i class="fa-solid fa-file-excel"></i> Exportar Excel
+          </button>
+          <button id="export-pdf-btn" class="btn btn-pdf">
+            <i class="fa-solid fa-file-pdf"></i> Imprimir / PDF
+          </button>
+        </div>
+      </div>
+
+      <!-- Products Table Container -->
+      <div class="table-container">
+        <table id="products-table">
+          <thead>
+            <tr>
+              <th class="sortable" data-sort="id">ID de Producto <i class="fa-solid fa-sort"></i></th>
+              <th class="sortable" data-sort="name">Nombre <i class="fa-solid fa-sort"></i></th>
+              <th>Descripción</th>
+              <th class="sortable" data-sort="price">Precio <i class="fa-solid fa-sort"></i></th>
+              <th class="sortable" data-sort="stock">Stock <i class="fa-solid fa-sort"></i></th>
+              <th class="sortable" data-sort="is_active">Estado <i class="fa-solid fa-sort"></i></th>
+              <th class="sortable" data-sort="created_at">Fecha Creación <i class="fa-solid fa-sort"></i></th>
+            </tr>
+          </thead>
+          <tbody id="table-body">
+            <tr class="table-loading-row">
+              <td colspan="7">
+                <div class="table-loader">
+                  <i class="fa-solid fa-spinner fa-spin"></i> Cargando catálogo de productos...
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pagination and Record Counter Footer -->
+      <footer class="table-footer">
+        <div class="entries-selector">
+          Mostrar
+          <select id="entries-per-page">
+            <option value="5">5</option>
+            <option value="10" selected>10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="all">Todos</option>
+          </select>
+          registros
+        </div>
+        
+        <div class="record-counter" id="record-counter-text">
+          Mostrando 0 de 0 registros
+        </div>
+        
+        <div class="pagination-controls">
+          <button id="prev-page-btn" class="btn btn-pagination" disabled>
+            <i class="fa-solid fa-chevron-left"></i> Anterior
+          </button>
+          <span class="page-number" id="page-num-display">Pág. 1</span>
+          <button id="next-page-btn" class="btn btn-pagination" disabled>
+            Siguiente <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+      </footer>
+
+    </main>
+  </div>
+  
+  <!-- Notification Toast -->
+  <div id="toast" class="toast hidden"></div>
+
+  <!-- JavaScript logic -->
+  <script src="app.js"></script>
+</body>
+</html>
