@@ -1,0 +1,49 @@
+<div class="report-wrapper">
+  <div class="actions-bar">
+    <button class="btn btn--print" (click)="handlePrint()">Print</button>
+    <button class="btn btn--pdf" (click)="handleDownloadPDF()">Download PDF</button>
+  </div>
+
+  <div #reportContent class="report-content">
+    <h1 class="report-title">Dish Menu Report</h1>
+
+    @if (dishService.dishes().loading) {
+      <p class="status-text">Loading dishes...</p>
+    } @else if (dishService.dishes().error) {
+      <p class="status-text status-text--error">
+        Error: {{ dishService.dishes().error }}
+      </p>
+    } @else {
+      <table class="dish-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Availability</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (dish of dishService.dishes().dishes; track dish.itemId) {
+            <tr>
+              <td>{{ dish.itemId }}</td>
+              <td>{{ dish.name }}</td>
+              <td>{{ dish.categoryId }}</td>
+              <td>{{ dish.price | currency }}</td>
+              <td>
+                <span
+                  class="badge"
+                  [class.badge--available]="dish.isAvailable"
+                  [class.badge--unavailable]="!dish.isAvailable"
+                >
+                  {{ dish.isAvailable ? 'Available' : 'Unavailable' }}
+                </span>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+  </div>
+</div>
