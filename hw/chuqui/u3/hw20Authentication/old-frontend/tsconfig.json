@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "lib": ["es2017", "dom"],
+    "module": "commonjs",
+    "outDir": "./views/js",
+    "rootDir": "./src/ts",
+    "strict": true,
+    "noImplicitAny": false,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": [
+    "src/ts/payments/**/*.ts",
+    "src/ts/patients/**/*.ts",
+    "src/ts/global.d.ts"
+  ]
+}
