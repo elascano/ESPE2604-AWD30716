@@ -1,0 +1,30 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Fabula Dental Patients FastAPI Service on AWS Lambda
+
+Resources:
+  PatientsApiFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: handler.handler
+      Runtime: python3.12
+      CodeUri: .
+      MemorySize: 256
+      Timeout: 30
+      Environment:
+        Variables:
+          DIRECT_URL: "postgresql://postgres.hoskmelosabzuxjvbjyk:fabuladental30716@aws-1-us-east-2.pooler.supabase.com:5432/postgres"
+          DATABASE_URL: "postgresql://postgres.hoskmelosabzuxjvbjyk:fabuladental30716@aws-1-us-east-2.pooler.supabase.com:5432/postgres"
+          CRUD_API_KEY: "fabuladental_api_key"
+          JWT_SECRET: "super_secret_jwt_key"
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: ANY
+
+Outputs:
+  PatientsApiUrl:
+    Description: "API Gateway URL for Patients Service"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"

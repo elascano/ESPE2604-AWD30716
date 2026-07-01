@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Pagos | Fábula Dental</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/user-views.css">
+    <link rel="stylesheet" href="../css/forms.css">
+</head>
+
+<body class="bg-light">
+    <div id="paymentApp">
+        <header>
+            <div class="d-flex flex-column flex-md-row align-items-center justify-content-center gap-2">
+                <h1 class="m-0">Fábula Dental</h1>
+                <span class="badge bg-light text-primary fw-semibold">Vue.js</span>
+            </div>
+            <p class="m-0">Especialistas en Sonrisas Infantiles</p>
+        </header>
+
+        <main class="form-container">
+            <div class="form-card shadow-sm">
+                <h2 class="text-primary fw-bold">Registrar Nuevo Pago</h2>
+
+                <form id="paymentForm" class="form-grid" @submit.prevent="handleSubmit">
+                    <div v-if="errors.length" class="alert alert-danger full-width">
+                        <strong>Corrige los siguientes errores:</strong>
+                        <ul class="mb-0">
+                            <li v-for="(error, index) in errors" :key="index">{{ error }}</li>
+                        </ul>
+                    </div>
+
+                    <div class="input-group full-width">
+                        <label for="patientID">Cédula del Paciente</label>
+                        <input type="text" id="patientID" name="patientID" v-model.trim="form.patientID" required pattern="[0-9]{10}" placeholder="Ej: 1727095414">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="amount">Monto del Pago ($)</label>
+                        <input type="number" id="amount" name="amount" v-model.number="form.amount" required min="0.01" step="0.01" placeholder="Ej: 50.00">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="date">Fecha de Pago</label>
+                        <input type="date" id="date" name="date" v-model="form.date" :max="today" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="paymentType">Tipo de Pago</label>
+                        <select id="paymentType" name="paymentType" v-model="form.paymentType" required>
+                            <option value="">Seleccione tipo</option>
+                            <option value="Deposit">Abono (Deposit)</option>
+                            <option value="Final">Pago Final (Final)</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="paymentMethod">Método de Pago</label>
+                        <select id="paymentMethod" name="paymentMethod" v-model="form.paymentMethod" required>
+                            <option value="">Seleccione método</option>
+                            <option value="Cash">Efectivo</option>
+                            <option value="Transfer">Transferencia</option>
+                            <option value="Card">Tarjeta Crédito/Débito</option>
+                        </select>
+                    </div>
+
+                    <div class="full-width mt-3">
+                        <button type="submit" class="btn btn-primary w-100 fw-bold" :disabled="submitting">
+                            {{ submitting ? 'Registrando...' : 'Registrar Transacción' }}
+                        </button>
+                    </div>
+
+                    <div class="full-width actions-row d-flex gap-2 mt-2">
+                        <a href="../php/payment-list.php" class="btn btn-secondary flex-grow-1">Ver Historial</a>
+                        <a href="./receptionist.html" class="btn btn-secondary flex-grow-1">Volver al Panel</a>
+                    </div>
+
+                </form>
+            </div>
+        </main>
+
+        <footer class="text-center py-3">
+            <p class="text-muted small">&copy; 2026 Fábula Dental - Odontopediatría Especializada.</p>
+        </footer>
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+    <script src="../js/payment-form.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tratamientos | Fábula Dental</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../css/treatment.css">
+</head>
+
+<body class="bg-light">
+
+    <header class="bg-primary text-white shadow-sm d-flex justify-content-between align-items-center flex-wrap gap-3">
+        <div class="logo-container">
+            <img src="https://fabuladental.com/wp-content/uploads/2023/08/LOGO.jpg" alt="Logo Fábula Dental"
+                class="logo-img rounded shadow-sm border border-2 border-white">
+            <div>
+                <h1 class="m-0 fs-3 fw-bold">Fábula Dental</h1>
+                <p class="m-0 small opacity-75">Especialistas en Sonrisas Infantiles</p>
+            </div>
+        </div>
+        <nav>
+            <a href="../../index.php"
+                class="btn btn-outline-light btn-sm fw-semibold rounded-pill px-3 py-2 shadow-sm transition">
+                <i class="bi bi-box-arrow-in-left me-1"></i> Volver al Login
+            </a>
+        </nav>
+    </header>
+
+    <main class="container my-5">
+        <section class="bg-white rounded shadow-sm p-4">
+            <div class="treatment-banner text-center mb-5">
+                <h2 class="banner-title">Nuestros Tratamientos Mágicos</h2>
+                <p class="banner-subtitle">Cuidamos los dientes de los más pequeños con mucho amor y sin dolor.</p>
+            </div>
+            <div class="treatment-carousel-container">
+
+                <button type="button" class="carousel-btn prev-btn" id="prevBtn" aria-label="Tratamiento Anterior">
+                    <i class="bi bi-chevron-left"></i>
+                </button>
+
+
+                <div class="treatment-carousel-track-wrapper">
+                    <div class="treatment-carousel-track" id="carouselTrack">
+
+
+                        <div class="treatment-card">
+                            <div class="card-img-wrapper">
+
+                                <img src="https://i.pinimg.com/originals/c4/6a/91/c46a912a6d06268555338b992d9e6eab.jpg"
+                                    alt="Profilaxis y Limpieza Dental" class="card-treatment-img">
+                            </div>
+                            <div class="card-content-wrapper">
+                                <div class="d-flex align-items-center gap-3 mb-3">
+                                    <div class="card-icon m-0">
+                                        <i class="bi bi-stars"></i>
+                                    </div>
+                                    <h3 class="treatment-title m-0">Profilaxis y Limpieza Dental</h3>
+                                </div>
+                                <p class="treatment-desc">Limpieza suave para eliminar la placa bacteriana y reforzar
+                                    técnicas correctas de cepillado.</p>
+                                <div class="treatment-tips">
+                                    <strong>Sugerencias Post-Tratamiento:</strong>
+                                    <p>Evitar alimentos muy azucarados el mismo día y mantener el cepillado después de
+                                        cada comida.</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="treatment-card">
+                            <div class="card-img-wrapper">
+
+                                <img src="https://2.bp.blogspot.com/-MqMaB7Spqqg/T2injGBLYvI/AAAAAAAAEoM/rHdjZ4Fi5ok/s1600/aplicacionfluorninos.jpg"
+                                    alt="Aplicación de Flúor" class="card-treatment-img">
+                            </div>
+                            <div class="card-content-wrapper">
+                                <div class="d-flex align-items-center gap-3 mb-3">
+                                    <div class="card-icon m-0">
+                                        <i class="bi bi-droplet-half"></i>
+                                    </div>
+                                    <h3 class="treatment-title m-0">Aplicación de Flúor (Barniz)</h3>
+                                </div>
+                                <p class="treatment-desc">Aplicación de barniz de flúor para fortalecer el esmalte y
+                                    prevenir la aparición de caries.</p>
+                                <div class="treatment-tips">
+                                    <strong>Sugerencias Post-Tratamiento:</strong>
+                                    <p>No comer ni beber nada por 30 minutos y evitar alimentos duros las primeras
+                                        horas.</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="treatment-card">
+                            <div class="card-img-wrapper">
+
+                                <img src="https://espaciodentaljaen.com/files/entradas/sellar-fisuras-dentales-en-ni-os-espaciodental-jaen.jpg"
+                                    alt="Sellantes de Fosas" class="card-treatment-img">
+                            </div>
+                            <div class="card-content-wrapper">
+                                <div class="d-flex align-items-center gap-3 mb-3">
+                                    <div class="card-icon m-0">
+                                        <i class="bi bi-shield-check"></i>
+                                    </div>
+                                    <h3 class="treatment-title m-0">Sellantes de Fosas y Fisuras</h3>
+                                </div>
+                                <p class="treatment-desc">Colocación de una capa protectora en los surcos de los molares
+                                    para evitar la acumulación de restos.</p>
+                                <div class="treatment-tips">
+                                    <strong>Sugerencias Post-Tratamiento:</strong>
+                                    <p>Evitar masticar cosas muy pegajosas el primer día y asistir al control semestral.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="treatment-card">
+                            <div class="card-img-wrapper">
+
+                                <img src="https://i.ytimg.com/vi/HsYITbKKpBI/maxresdefault.jpg"
+                                    alt="Restauraciones (Resinas)" class="card-treatment-img">
+                            </div>
+                            <div class="card-content-wrapper">
+                                <div class="d-flex align-items-center gap-3 mb-3">
+                                    <div class="card-icon m-0">
+                                        <i class="bi bi-heart-pulse"></i>
+                                    </div>
+                                    <h3 class="treatment-title m-0">Restauraciones (Resinas)</h3>
+                                </div>
+                                <p class="treatment-desc">Eliminación de caries y reconstrucción del diente con
+                                    materiales estéticos de alta calidad.</p>
+                                <div class="treatment-tips">
+                                    <strong>Sugerencias Post-Tratamiento:</strong>
+                                    <p>Evitar alimentos duros por 24 horas y reportar cualquier sensibilidad intensa o
+                                        dolor prolongado.</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="treatment-card">
+                            <div class="card-img-wrapper">
+
+                                <img src="https://tse2.mm.bing.net/th/id/OIP.6DgL0W-gIVhIdABLjSH5hwHaD4?r=0&cb=thfc1falcon&rs=1&pid=ImgDetMain&o=7&rm=3"
+                                    alt="Ortodoncia Interceptiva" class="card-treatment-img">
+                            </div>
+                            <div class="card-content-wrapper">
+                                <div class="d-flex align-items-center gap-3 mb-3">
+                                    <div class="card-icon m-0">
+                                        <i class="bi bi-activity"></i>
+                                    </div>
+                                    <h3 class="treatment-title m-0">Ortodoncia Interceptiva</h3>
+                                </div>
+                                <p class="treatment-desc">Corrección temprana de alteraciones en el crecimiento maxilar
+                                    o posición dental para guiar la mordida.</p>
+                                <div class="treatment-tips">
+                                    <strong>Sugerencias Post-Tratamiento:</strong>
+                                    <p>Cumplir con el uso del aparato según lo indicado, mantener higiene rigurosa y
+                                        asistir a los controles.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <button type="button" class="carousel-btn next-btn" id="nextBtn" aria-label="Tratamiento Siguiente">
+                    <i class="bi bi-chevron-right"></i>
+                </button>
+            </div>
+
+
+            <div class="carousel-dots-container" id="carouselDots"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="text-center py-4 border-top bg-white mt-auto">
+        <p class="text-muted small m-0">&copy; 2026 Fábula Dental - Odontopediatría Especializada.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const track = document.getElementById('carouselTrack');
+            const cards = document.querySelectorAll('.treatment-card');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const dotsContainer = document.getElementById('carouselDots');
+
+            let currentIndex = 0;
+            const totalCards = cards.length;
+
+
+            for (let i = 0; i < totalCards; i++) {
+                const dot = document.createElement('button');
+                dot.classList.add('carousel-dot');
+                if (i === 0) dot.classList.add('active');
+                dot.setAttribute('aria-label', `Ir a diapositiva ${i + 1}`);
+                dot.addEventListener('click', () => {
+                    goToSlide(i);
+                });
+                dotsContainer.appendChild(dot);
+            }
+
+            const dots = document.querySelectorAll('.carousel-dot');
+
+            function updateCarousel() {
+
+                track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+
+                prevBtn.disabled = currentIndex === 0;
+                nextBtn.disabled = currentIndex === totalCards - 1;
+
+
+                dots.forEach((dot, index) => {
+                    if (index === currentIndex) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+            }
+
+            function goToSlide(index) {
+                if (index < 0 || index >= totalCards) return;
+                currentIndex = index;
+                updateCarousel();
+            }
+
+            prevBtn.addEventListener('click', () => {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateCarousel();
+                }
+            });
+
+            nextBtn.addEventListener('click', () => {
+                if (currentIndex < totalCards - 1) {
+                    currentIndex++;
+                    updateCarousel();
+                }
+            });
+
+
+            updateCarousel();
+
+
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            track.addEventListener('touchstart', e => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            track.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, { passive: true });
+
+            function handleSwipe() {
+                const swipeDistance = touchStartX - touchEndX;
+                if (swipeDistance > 50) {
+                    if (currentIndex < totalCards - 1) {
+                        currentIndex++;
+                        updateCarousel();
+                    }
+                } else if (swipeDistance < -50) {
+                    if (currentIndex > 0) {
+                        currentIndex--;
+                        updateCarousel();
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
