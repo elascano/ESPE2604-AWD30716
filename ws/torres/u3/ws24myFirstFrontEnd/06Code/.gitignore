@@ -1,0 +1,22 @@
+# Environment
+.env
+.env.local
+
+# Dependencies
+backend/vendor/
+backend/composer.phar
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Logs
+*.log
+
+# IDE
+.vscode/
+.idea/
+
+# SSL certs
+cacert.pem
+certs/
