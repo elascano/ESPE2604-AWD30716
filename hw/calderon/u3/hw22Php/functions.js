@@ -1,0 +1,22 @@
+const searchInput = document.getElementById("search");
+const tableRows = document.querySelectorAll("#universitiesTable tbody tr");
+const noResults = document.getElementById("noResults");
+
+function applyFilter() {
+    const filter = searchInput.value.toLowerCase();
+    let visibleCount = 0;
+
+    tableRows.forEach(row => {
+        const text = row.innerText.toLowerCase();
+        if (text.includes(filter)) {
+            row.style.display = "";
+            visibleCount++;
+        } else {
+            row.style.display = "none";
+        }
+    });
+    noResults.style.display = visibleCount === 0 ? "block" : "none";
+}
+
+searchInput.addEventListener("input", applyFilter);
+applyFilter();
