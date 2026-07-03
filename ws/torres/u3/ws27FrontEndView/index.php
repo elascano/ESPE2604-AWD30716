@@ -15,7 +15,7 @@ $universities = $response ? json_decode($response, true) : [];
 <body>
 
 <div class="header">
-    <h1>Ecuador Universities</h1>
+    <h1>Ecuador Universities Torres</h1>
     <input type="text" id="search" placeholder="Search by domain, or web domain">
 </div>
 
