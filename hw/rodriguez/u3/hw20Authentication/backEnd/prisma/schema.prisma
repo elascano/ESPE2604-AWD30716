@@ -1,0 +1,143 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id               String         @id @default(uuid())
+  ruc              String         @unique
+  firstName        String
+  middleName       String?
+  lastName         String
+  secondLastName   String?
+  email            String         @unique
+  password         String?
+  birthDate        DateTime?
+  role             String         @default("user")
+  profileCompleted Boolean        @default(true)
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+  
+  invoices     Invoice[]
+  atsFiles     AtsFile[]
+  processSteps ProcessStep[]
+  auditEvents  AuditEvent[]
+  workspaces   Workspace[]
+  tickets      Ticket[]
+}
+
+model Workspace {
+  id                  String        @id @default(uuid())
+  name                String
+  description         String?
+  periodMonth         Int?
+  periodYear          Int
+  periodType          String        @default("monthly")
+  periodSemester      Int?
+  workspaceLocation   String
+  sriConnectionStatus String        @default("disconnected")
+  userId              String
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
+
+  user                User          @relation(fields: [userId], references: [id])
+  invoices            Invoice[]
+  atsFiles            AtsFile[]
+  processSteps        ProcessStep[]
+}
+
+model Invoice {
+  id                   String     @id @default(uuid())
+  issuerName           String
+  issuerCommercialName String?
+  issuerAddress        String?
+  issuerRuc            String
+  
+  number               String
+  authorizationNumber  String
+  emissionType         String     @default("Normal")
+  accessKey            String
+  
+  customerName         String
+  customerId           String
+  customerDate         String
+  customerAddress      String?
+  customerPhone        String?
+  customerEmail        String?
+  
+  products             Json
+  
+  subtotal             Float
+  iva                  Float
+  total                Float
+
+  type                 String     @default("COMPRA") // "VENTA" o "COMPRA"
+  format               String     @default("XML")
+  userId               String
+  workspaceId          String?
+  createdAt            DateTime   @default(now())
+  
+  user                 User       @relation(fields: [userId], references: [id])
+  workspace            Workspace? @relation(fields: [workspaceId], references: [id])
+}
+
+model AtsFile {
+  id               String     @id @default(uuid())
+  name             String
+  format           String
+  periodMonth      Int
+  periodYear       Int
+  invoiceCount     Int
+  validationErrors Int
+  userId           String
+  workspaceId      String?
+  createdAt        DateTime   @default(now())
+
+  user             User       @relation(fields: [userId], references: [id])
+  workspace        Workspace? @relation(fields: [workspaceId], references: [id])
+}
+
+model ProcessStep {
+  id          String     @id @default(uuid())
+  title       String
+  description String
+  status      String
+  module      String
+  completedAt DateTime?
+  userId      String
+  workspaceId String?
+  createdAt   DateTime   @default(now())
+
+  user        User       @relation(fields: [userId], references: [id])
+  workspace   Workspace? @relation(fields: [workspaceId], references: [id])
+}
+
+model AuditEvent {
+  id        String   @id @default(uuid())
+  action    String
+  module    String
+  details   String
+  timestamp DateTime @default(now())
+  userId    String
+
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+model Ticket {
+  id          String   @id @default(uuid())
+  subject     String
+  category    String
+  priority    String
+  description String
+  status      String   @default("open")
+  userId      String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user        User     @relation(fields: [userId], references: [id])
+}
