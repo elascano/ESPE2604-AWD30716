@@ -1,0 +1,30 @@
+{
+  "builds": [
+    {
+      "src": "index.php",
+      "use": "vercel-php@0.7.4"
+    },
+    {
+      "src": "css/style.css",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "js/functions.js",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/css/style.css",
+      "dest": "/css/style.css"
+    },
+    {
+      "src": "/js/functions.js",
+      "dest": "/js/functions.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.php"
+    }
+  ]
+}
