@@ -1,7 +1,6 @@
-const searchInput = document.getElementById("search_university");
+const searchInput = document.getElementById("search");
 const tableRows = document.querySelectorAll("#universitiesTable tbody tr");
-const noResults = document.getElementById("noResults");
-const universityCountBadge = document.getElementById("universityCount");
+const noResults = document.querySelector(".no-results");
 
 searchInput.addEventListener("keyup", function () {
     const filter = searchInput.value.toLowerCase();
@@ -16,16 +15,5 @@ searchInput.addEventListener("keyup", function () {
             row.style.display = "none";
         }
     });
-
-    if (universityCountBadge) {
-        universityCountBadge.textContent = `${visibleCount} found`;
-    }
     noResults.style.display = visibleCount === 0 ? "block" : "none";
-});
-
-// Prevent form submission on Enter key press inside the local filter input
-searchInput.addEventListener("keydown", function (event) {
-    if (event.key === "Enter") {
-        event.preventDefault();
-    }
 });
