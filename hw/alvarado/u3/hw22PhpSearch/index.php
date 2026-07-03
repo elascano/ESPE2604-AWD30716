@@ -8,10 +8,6 @@ $countries = [
     "Germany", "Italy", "United Kingdom", "Portugal", "Japan", "China"
 ];
 
-// La URI recibe el país mediante el parámetro GET "country".
-// Esto permite que cada búsqueda tenga su propia URL (?country=Ecuador, ?country=Peru, etc.),
-// lo que a su vez permite que el navegador pueda cachear cada una de esas peticiones GET
-// en lugar de repetir siempre la misma consulta.
 $selectedCountry = isset($_GET['country']) && in_array($_GET['country'], $countries, true)
     ? $_GET['country']
     : 'Ecuador';
