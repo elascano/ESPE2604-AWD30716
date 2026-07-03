@@ -1,0 +1,8 @@
+{
+    "name": "erazo/universities",
+    "description": "University Finder - PHP app with real-time filters",
+    "type": "project",
+    "require": {
+        "php": ">=8.0"
+    }
+}
