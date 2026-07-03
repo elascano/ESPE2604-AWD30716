@@ -1,0 +1,46 @@
+service: hw22phpsearch-api
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'us-east-1'}
+  memorySize: 128
+  timeout: 10
+  logRetentionInDays: 7
+  httpApi:
+    cors:
+      allowedOrigins:
+        - "*"
+      allowedHeaders:
+        - Content-Type
+      allowedMethods:
+        - GET
+
+functions:
+  universities:
+    handler: src/lambda/universities.handler
+    events:
+      - httpApi:
+          path: /
+          method: get
+      - httpApi:
+          path: /index.php
+          method: get
+      - httpApi:
+          path: /style.css
+          method: get
+      - httpApi:
+          path: /functions.js
+          method: get
+      - httpApi:
+          path: /universities
+          method: get
+
+package:
+  patterns:
+    - src/**
+    - index.php
+    - style.css
+    - functions.js

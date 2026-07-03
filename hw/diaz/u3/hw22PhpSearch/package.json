@@ -1,0 +1,14 @@
+{
+  "name": "hw22-php-search-aws",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "deploy": "bunx serverless deploy",
+    "remove": "bunx serverless remove",
+    "info": "bunx serverless info",
+    "logs": "bunx serverless logs -f universities -t"
+  },
+  "devDependencies": {
+    "serverless": "^3.39.0"
+  }
+}
