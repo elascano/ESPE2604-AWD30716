@@ -9,7 +9,7 @@ $universities = $response ? json_decode($response, true) : [];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Workshop 27 AWD Universidades del Ecuador MONGE</title>
+    <title>Workshop 27 AWD Universidades del Ecuador TORRES</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
