@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control de Facturas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="app-header">
+        <div class="container">
+            <h1>Control de Facturas</h1>
+        </div>
+    </header>
+
+    <main class="container app-content">
+        <section class="form-section">
+            <h2>Registrar Factura</h2>
+            <form id="invoice-form">
+                <div class="form-group">
+                    <label for="issuerName">Emisor</label>
+                    <input type="text" id="issuerName" required value="Corporación Favorita">
+                </div>
+                <div class="form-group">
+                    <label for="issuerRuc">RUC Emisor</label>
+                    <input type="text" id="issuerRuc" required value="1790012345001">
+                </div>
+                <div class="form-group">
+                    <label for="number">Número de Factura</label>
+                    <input type="text" id="number" required value="001-001-000000001">
+                </div>
+                <div class="form-group">
+                    <label for="customerName">Cliente</label>
+                    <input type="text" id="customerName" required value="Juan Rodriguez">
+                </div>
+                <div class="form-group">
+                    <label for="customerId">Identificación Cliente</label>
+                    <input type="text" id="customerId" required value="1720012345">
+                </div>
+                <div class="form-group">
+                    <label for="total">Total ($)</label>
+                    <input type="number" id="total" step="0.01" required value="15.50">
+                </div>
+                <div class="form-group">
+                    <label for="type">Tipo</label>
+                    <select id="type">
+                        <option value="COMPRA">Compra</option>
+                        <option value="VENTA">Venta</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="products">Productos (Formato JSON)</label>
+                    <textarea id="products" rows="5">[
+  {"item_id": "p-01", "name": "Arroz 1kg", "quantity": 5, "price": 1.50},
+  {"item_id": "p-02", "name": "Aceite 1L", "quantity": 1, "price": 8.00}
+]</textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar Factura</button>
+            </form>
+        </section>
+
+        <section class="list-section">
+            <h2>Listado de Facturas</h2>
+            <div id="invoices-list" class="invoices-list">
+                <p class="empty-msg">No hay facturas registradas.</p>
+            </div>
+        </section>
+    </main>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Detalle de Factura</h2>
+            <pre id="modal-details"></pre>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
