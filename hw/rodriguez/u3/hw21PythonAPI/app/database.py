@@ -4,7 +4,7 @@ from pydantic_settings import BaseSettings
 AsyncIOMotorClient.append_metadata = lambda *args, **kwargs: None
 
 class Settings(BaseSettings):
-    mongo_uri: str = "mongodb+srv://oop:oop@cluster0.9knxc.mongodb.net/oop?appName=Cluster0"
+    mongo_uri: str = ""
     mongo_db_name: str = "oop"
 
     model_config = {"env_file": ".env", "env_file_encoding": "utf-8"}
