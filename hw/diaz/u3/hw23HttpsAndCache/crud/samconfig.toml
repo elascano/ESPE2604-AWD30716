@@ -1,0 +1,28 @@
+# samconfig.toml — Fábula Dental CRUD
+# Generado para deploy con: bun run deploy
+# Perfil IAM: fabuladental-crud  (aws configure --profile fabuladental-crud)
+
+version = 0.1
+
+[default.global.parameters]
+region = "us-east-2"
+
+[default.build.parameters]
+cached = true
+parallel = true
+
+[default.deploy.parameters]
+stack_name        = "fabuladental-crud"
+resolve_s3        = true
+s3_prefix         = "fabuladental-crud"
+confirm_changeset = false
+capabilities      = "CAPABILITY_IAM"
+disable_rollback  = false
+profile           = "fabuladental-crud"
+
+# Parámetros de la plantilla — edita los valores reales aquí
+# o pásalos por variable de entorno en el script de deploy.
+parameter_overrides = [
+  "DatabaseUrl=\"\"",
+  "CrudApiKey=\"\""
+]

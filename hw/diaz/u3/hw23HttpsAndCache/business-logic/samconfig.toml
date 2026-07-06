@@ -1,0 +1,29 @@
+# samconfig.toml — Fábula Dental Business Logic
+# Generado para deploy con: bun run deploy
+# Perfil IAM: fabuladental-business  (aws configure --profile fabuladental-business)
+
+version = 0.1
+
+[default.global.parameters]
+region = "us-east-2"
+
+[default.build.parameters]
+cached = true
+parallel = true
+
+[default.deploy.parameters]
+stack_name        = "fabuladental-business"
+resolve_s3        = true
+s3_prefix         = "fabuladental-business"
+confirm_changeset = false
+capabilities      = "CAPABILITY_IAM"
+disable_rollback  = false
+profile           = "fabuladental-business"
+
+# Los valores reales se inyectan desde variables de entorno en el script de deploy.
+# Reemplaza los strings vacíos sólo si quieres valores por defecto hardcodeados (no recomendado).
+parameter_overrides = [
+  "CrudApiUrl=\"\"",
+  "CrudApiKey=\"\"",
+  "JwtSecret=\"\""
+]

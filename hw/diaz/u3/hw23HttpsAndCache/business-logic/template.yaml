@@ -1,0 +1,93 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+
+Description: >
+  Fábula Dental — Business Logic Service
+  Lambda + HTTP API Gateway para reglas de negocio, autenticación JWT y
+  proxy hacia el servicio CRUD.
+
+Globals:
+  Function:
+    Runtime: nodejs22.x
+    MemorySize: 512
+    Timeout: 30
+    Environment:
+      Variables:
+        CRUD_API_IP: !Ref CrudApiUrl
+        CRUD_API_KEY: !Ref CrudApiKey
+        JWT_SECRET: !Ref JwtSecret
+
+Parameters:
+  CrudApiUrl:
+    Type: String
+    Description: "URL base del CRUD HTTP API (sin trailing slash). Ej: https://abc123.execute-api.us-east-2.amazonaws.com/prod"
+
+  CrudApiKey:
+    Type: String
+    Description: "API Key interna compartida con el servicio CRUD"
+    NoEcho: true
+
+  JwtSecret:
+    Type: String
+    Description: "Secreto para firmar y verificar tokens JWT"
+    NoEcho: true
+
+Resources:
+  BusinessFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: fabuladental-business
+      CodeUri: .
+      Handler: dist/lambda.handler
+      Description: "Fábula Dental Business Logic — Express sobre Lambda"
+      Events:
+        ApiProxy:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref BusinessHttpApi
+            Path: /{proxy+}
+            Method: ANY
+        ApiRoot:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref BusinessHttpApi
+            Path: /
+            Method: ANY
+
+    Metadata:
+      BuildMethod: esbuild
+      BuildProperties:
+        EntryPoints:
+          - src/lambda.ts
+        Minify: false
+        Target: es2022
+        External:
+          - bcrypt   # módulo nativo — se incluye como layer o se empaqueta aparte
+
+  BusinessHttpApi:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      StageName: prod
+      CorsConfiguration:
+        AllowOrigins:
+          - "*"
+        AllowHeaders:
+          - Content-Type
+          - Authorization
+        AllowMethods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+
+Outputs:
+  BusinessApiUrl:
+    Description: "URL base del Business Logic HTTP API"
+    Value: !Sub "https://${BusinessHttpApi}.execute-api.${AWS::Region}.amazonaws.com/prod"
+    Export:
+      Name: FabulaDentalBusinessApiUrl
+
+  BusinessFunctionArn:
+    Description: "ARN de la Lambda Business Logic"
+    Value: !GetAtt BusinessFunction.Arn
