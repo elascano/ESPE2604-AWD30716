@@ -5,7 +5,7 @@ body {
 }
 
 h1 {
-    color: #000000;
+    color: #4f0c5b;
     margin-bottom: 10px;
 }
 
@@ -26,7 +26,7 @@ input[type="text"] {
 table {
     border-collapse: collapse;
     width: 100%;
-    background: #75bac15c;
+    background: #fff;
 }
 
 th,
@@ -37,7 +37,7 @@ td {
 }
 
 th {
-    background: #000000;
+    background: #003366;
     color: #fff;
 }
 
@@ -46,7 +46,7 @@ tr:nth-child(even) {
 }
 
 a {
-    color: #1b68af;
+    color: #0066cc;
     text-decoration: none;
 }
 
