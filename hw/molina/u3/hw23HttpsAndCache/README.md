@@ -1,0 +1,1 @@
+| Servicio | URL | |---------|-----| | **CRUD Service** | `http://57.156.56.37:3000` | | **Business Rules Service** | `http://57.156.58.213:3001` | | **Frontend** | `http://68.211.161.204` |
