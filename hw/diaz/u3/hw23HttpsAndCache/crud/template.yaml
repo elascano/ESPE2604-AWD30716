@@ -1,0 +1,89 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+
+Description: >
+  Fábula Dental — CRUD Service
+  Lambda + HTTP API Gateway para operaciones de base de datos (Supabase/PostgreSQL).
+
+Globals:
+  Function:
+    Runtime: nodejs22.x
+    MemorySize: 512
+    Timeout: 30
+    Environment:
+      Variables:
+        DATABASE_URL: !Ref DatabaseUrl
+        CRUD_API_KEY: !Ref CrudApiKey
+
+Parameters:
+  DatabaseUrl:
+    Type: String
+    Description: "PostgreSQL connection string (Supabase pooler URL)"
+    NoEcho: true
+
+  CrudApiKey:
+    Type: String
+    Description: "API Key interna usada por business-logic para autenticar peticiones al CRUD"
+    NoEcho: true
+
+Resources:
+  CrudFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: fabuladental-crud
+      CodeUri: .
+      Handler: dist/lambda.handler
+      Description: "Fábula Dental CRUD — Express sobre Lambda"
+      Events:
+        ApiProxy:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CrudHttpApi
+            Path: /{proxy+}
+            Method: ANY
+        ApiRoot:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CrudHttpApi
+            Path: /
+            Method: ANY
+
+    Metadata:
+      BuildMethod: esbuild
+      BuildProperties:
+        EntryPoints:
+          - src/lambda.ts
+        Minify: false
+        Target: es2020
+        External:
+          - "@prisma/client"
+          - "@prisma/adapter-pg"
+          - pg
+
+  CrudHttpApi:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      StageName: prod
+      CorsConfiguration:
+        AllowOrigins:
+          - "*"
+        AllowHeaders:
+          - Content-Type
+          - x-api-key
+        AllowMethods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+
+Outputs:
+  CrudApiUrl:
+    Description: "URL base del CRUD HTTP API"
+    Value: !Sub "https://${CrudHttpApi}.execute-api.${AWS::Region}.amazonaws.com/prod"
+    Export:
+      Name: FabulaDentalCrudApiUrl
+
+  CrudFunctionArn:
+    Description: "ARN de la Lambda CRUD"
+    Value: !GetAtt CrudFunction.Arn

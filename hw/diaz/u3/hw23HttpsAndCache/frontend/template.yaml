@@ -1,0 +1,126 @@
+AWSTemplateFormatVersion: '2010-09-09'
+
+Description: >
+  Fábula Dental — Frontend Service
+  S3 bucket para archivos estáticos + CloudFront distribution con OAC.
+  El build de Vite se sincroniza al bucket via AWS CLI (ver deploy-frontend.ps1).
+
+Parameters:
+  BucketName:
+    Type: String
+    Default: "fabuladental-frontend"
+    Description: "Nombre del S3 bucket (debe ser globalmente único)"
+
+  BusinessLogicUrl:
+    Type: String
+    Description: "URL base del Business Logic API Gateway (se escribe en .env.production antes del build)"
+
+Resources:
+
+  # -------------------------------------------------------------------------
+  # S3 Bucket — privado, sin acceso público directo
+  # -------------------------------------------------------------------------
+  FrontendBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref BucketName
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+
+  # -------------------------------------------------------------------------
+  # Origin Access Control para CloudFront → S3
+  # -------------------------------------------------------------------------
+  FrontendOAC:
+    Type: AWS::CloudFront::OriginAccessControl
+    Properties:
+      OriginAccessControlConfig:
+        Name: !Sub "${BucketName}-oac"
+        OriginAccessControlOriginType: s3
+        SigningBehavior: always
+        SigningProtocol: sigv4
+
+  # -------------------------------------------------------------------------
+  # Bucket Policy — sólo CloudFront puede leer
+  # -------------------------------------------------------------------------
+  FrontendBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref FrontendBucket
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: AllowCloudFrontServicePrincipal
+            Effect: Allow
+            Principal:
+              Service: cloudfront.amazonaws.com
+            Action: s3:GetObject
+            Resource: !Sub "${FrontendBucket.Arn}/*"
+            Condition:
+              StringEquals:
+                AWS:SourceArn: !Sub "arn:aws:cloudfront::${AWS::AccountId}:distribution/${FrontendDistribution}"
+
+  # -------------------------------------------------------------------------
+  # CloudFront Distribution
+  # -------------------------------------------------------------------------
+  FrontendDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Enabled: true
+        Comment: "Fábula Dental Frontend"
+        DefaultRootObject: index.html
+        HttpVersion: http2
+        PriceClass: PriceClass_100   # sólo US/EU/Canadá — más barato
+
+        Origins:
+          - Id: S3Origin
+            DomainName: !GetAtt FrontendBucket.RegionalDomainName
+            S3OriginConfig:
+              OriginAccessIdentity: ""   # requerido vacío cuando se usa OAC
+            OriginAccessControlId: !GetAtt FrontendOAC.Id
+
+        DefaultCacheBehavior:
+          TargetOriginId: S3Origin
+          ViewerProtocolPolicy: redirect-to-https
+          CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6   # CachingOptimized (managed)
+          AllowedMethods:
+            - GET
+            - HEAD
+          CachedMethods:
+            - GET
+            - HEAD
+          Compress: true
+
+        # SPA fallback: devuelve index.html en cualquier ruta desconocida
+        # para que vue-router maneje el routing del lado cliente
+        CustomErrorResponses:
+          - ErrorCode: 403
+            ResponseCode: 200
+            ResponsePagePath: /index.html
+            ErrorCachingMinTTL: 0
+          - ErrorCode: 404
+            ResponseCode: 200
+            ResponsePagePath: /index.html
+            ErrorCachingMinTTL: 0
+
+Outputs:
+  BucketName:
+    Description: "Nombre del S3 bucket"
+    Value: !Ref FrontendBucket
+    Export:
+      Name: FabulaDentalFrontendBucket
+
+  CloudFrontDomain:
+    Description: "Dominio CloudFront del frontend"
+    Value: !GetAtt FrontendDistribution.DomainName
+    Export:
+      Name: FabulaDentalFrontendUrl
+
+  DistributionId:
+    Description: "ID de la distribución CloudFront (para invalidaciones)"
+    Value: !Ref FrontendDistribution
+    Export:
+      Name: FabulaDentalFrontendDistributionId

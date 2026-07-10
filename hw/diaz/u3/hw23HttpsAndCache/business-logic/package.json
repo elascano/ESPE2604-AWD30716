@@ -1,0 +1,41 @@
+{
+  "name": "business-logic",
+  "version": "1.0.0",
+  "description": "Fábula Dental — Business Logic Service",
+  "license": "ISC",
+  "author": "codexplorers",
+  "type": "commonjs",
+  "main": "dist/index.js",
+
+  "scripts": {
+    "build":      "tsc --project tsconfig.json",
+    "start":      "node dist/index.js",
+    "dev":        "nodemon --exec ts-node src/index.ts",
+
+    "sam:build":  "sam build --profile fabuladental-business",
+    "sam:deploy": "sam deploy --profile fabuladental-business --parameter-overrides \"CrudApiUrl=$CRUD_API_URL\" \"CrudApiKey=$CRUD_API_KEY\" \"JwtSecret=$JWT_SECRET\"",
+    "deploy":     "bun run build && bun run sam:build && bun run sam:deploy",
+
+    "sam:delete": "sam delete --stack-name fabuladental-business --profile fabuladental-business --no-prompts"
+  },
+
+  "dependencies": {
+    "@codegenie/serverless-express": "^5.0.0",
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3"
+  },
+
+  "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^25.9.2",
+    "nodemon": "^3.1.14",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.3"
+  }
+}
