@@ -1,0 +1,17 @@
+.xml-format-preview {
+  background: var(--color-gray-900);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  width: 100%;
+  max-width: 480px;
+  overflow-x: auto;
+}
+
+.xml-format-preview pre {
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 0.8rem;
+  color: #a5f3fc;
+  line-height: 1.6;
+  margin: 0;
+  white-space: pre;
+}
