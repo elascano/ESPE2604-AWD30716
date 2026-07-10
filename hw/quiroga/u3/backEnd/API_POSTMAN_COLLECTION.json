@@ -1,0 +1,952 @@
+{
+  "info": {
+    "_postman_id": "8b5f36e8-23f2-4bc7-9a4f-ee56d11cd121",
+    "name": "Ecosistema de Facturacion Electrónica y ATS",
+    "description": "Colección completa para probar todos los endpoints del Servicio A (Reglas de Negocio en puerto 3001) y Servicio B (CRUD de Persistencia en puerto 3000).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string"
+    },
+    {
+      "key": "businessUrl",
+      "value": "http://localhost:3001",
+      "type": "string"
+    },
+    {
+      "key": "userId",
+      "value": "Reemplazar_con_UUID_de_usuario",
+      "type": "string"
+    },
+    {
+      "key": "ruc",
+      "value": "1790011223002",
+      "type": "string"
+    },
+    {
+      "key": "workspaceId",
+      "value": "Reemplazar_con_UUID_de_workspace",
+      "type": "string"
+    },
+    {
+      "key": "ticketId",
+      "value": "Reemplazar_con_UUID_de_ticket",
+      "type": "string"
+    },
+    {
+      "key": "stepId",
+      "value": "Reemplazar_con_UUID_de_step",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Servicio A - Reglas de Negocio",
+      "item": [
+        {
+          "name": "GET /health",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{businessUrl}}/health",
+              "host": ["{{businessUrl}}"],
+              "path": ["health"]
+            }
+          }
+        },
+        {
+          "name": "POST /business/generate-csv",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"invoices\": [\n    {\n      \"id\": \"1\",\n      \"type\": \"COMPRA\",\n      \"number\": \"001-001-000000001\",\n      \"issuerName\": \"EMPRESA PROVEEDORA S.A.\",\n      \"issuerCommercialName\": \"PROVEEDOR\",\n      \"issuerAddress\": \"Av. Amazonas, Quito\",\n      \"issuerRuc\": \"1790011223001\",\n      \"customerDate\": \"2026-06-11\",\n      \"authorizationNumber\": \"1106202601179001122300120010010000000011234567813\",\n      \"emissionType\": \"Normal\",\n      \"accessKey\": \"1106202601179001122300120010010000000011234567813\",\n      \"customerName\": \"JUAN PEREZ\",\n      \"customerId\": \"1720000001\",\n      \"customerAddress\": \"Quito\",\n      \"customerPhone\": \"0999999999\",\n      \"customerEmail\": \"juan.perez@example.com\",\n      \"subtotal\": 100.00,\n      \"iva\": 15.00,\n      \"total\": 115.00,\n      \"products\": \"[]\"\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{businessUrl}}/business/generate-csv",
+              "host": ["{{businessUrl}}"],
+              "path": ["business", "generate-csv"]
+            }
+          }
+        },
+        {
+          "name": "POST /business/validate-csv",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"csvContent\": \"id,type,number,issuerName,issuerCommercialName,issuerAddress,issuerRuc,customerDate,authorizationNumber,emissionType,accessKey,customerName,customerId,customerAddress,customerPhone,customerEmail,subtotal,iva,total,products\\n1,COMPRA,001-001-000000001,EMPRESA PROVEEDORA S.A.,PROVEEDOR,\\\"Av. Amazonas, Quito\\\",1790011223001,2026-06-11,1106202601179001122300120010010000000011234567813,Normal,1106202601179001122300120010010000000011234567813,JUAN PEREZ,1720000001,Quito,0999999999,juan.perez@example.com,100,15,115,[]\"\n}"
+            },
+            "url": {
+              "raw": "{{businessUrl}}/business/validate-csv",
+              "host": ["{{businessUrl}}"],
+              "path": ["business", "validate-csv"]
+            }
+          }
+        },
+        {
+          "name": "POST /business/convert-xml",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"csvContent\": \"id,type,number,issuerName,issuerCommercialName,issuerAddress,issuerRuc,customerDate,authorizationNumber,emissionType,accessKey,customerName,customerId,customerAddress,customerPhone,customerEmail,subtotal,iva,total,products\\n1,COMPRA,001-001-000000001,EMPRESA PROVEEDORA S.A.,PROVEEDOR,\\\"Av. Amazonas, Quito\\\",1790011223001,2026-06-11,1106202601179001122300120010010000000011234567813,Normal,1106202601179001122300120010010000000011234567813,JUAN PEREZ,1720000001,Quito,0999999999,juan.perez@example.com,100,15,115,[]\"\n}"
+            },
+            "url": {
+              "raw": "{{businessUrl}}/business/convert-xml",
+              "host": ["{{businessUrl}}"],
+              "path": ["business", "convert-xml"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Servicio B - Usuarios (Users)",
+      "item": [
+        {
+          "name": "POST /users/register",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ruc\": \"1790011223002\",\n  \"firstName\": \"Esteban\",\n  \"middleName\": \"Alejandro\",\n  \"lastName\": \"Quiroga\",\n  \"secondLastName\": \"Guzman\",\n  \"email\": \"esteban.quiroga@example.com\",\n  \"password\": \"mi_clave_segura\",\n  \"birthDate\": \"1995-03-24\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "register"]
+            }
+          }
+        },
+        {
+          "name": "POST /users/login",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"esteban.quiroga@example.com\",\n  \"password\": \"mi_clave_segura\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "login"]
+            }
+          }
+        },
+        {
+          "name": "GET /users",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users",
+              "host": ["{{baseUrl}}"],
+              "path": ["users"]
+            }
+          }
+        },
+        {
+          "name": "GET /users/:id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users/{{userId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "{{userId}}"]
+            }
+          }
+        },
+        {
+          "name": "POST /users/complete-profile",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"esteban.quiroga@example.com\",\n  \"ruc\": \"1790011223002\",\n  \"firstName\": \"Esteban\",\n  \"middleName\": \"Alejandro\",\n  \"lastName\": \"Quiroga\",\n  \"secondLastName\": \"Guzman\",\n  \"birthDate\": \"1995-03-24\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users/complete-profile",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "complete-profile"]
+            }
+          }
+        },
+        {
+          "name": "POST /users/reset-password",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"esteban.quiroga@example.com\",\n  \"newPassword\": \"nueva_clave_secreta\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users/reset-password",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "reset-password"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Servicio B - Contribuyentes (Taxpayers)",
+      "item": [
+        {
+          "name": "GET /taxpayer/profile/:userId",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/taxpayer/profile/{{userId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["taxpayer", "profile", "{{userId}}"]
+            }
+          }
+        },
+        {
+          "name": "GET /taxpayer/stats/:userId",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/taxpayer/stats/{{userId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["taxpayer", "stats", "{{userId}}"]
+            }
+          }
+        },
+        {
+          "name": "GET /taxpayer/validate-ruc/:ruc",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/taxpayer/validate-ruc/{{ruc}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["taxpayer", "validate-ruc", "{{ruc}}"]
+            }
+          }
+        },
+        {
+          "name": "PUT /taxpayer/profile/:userId",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Esteban Modificado\",\n  \"lastName\": \"Quiroga Guzman\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/taxpayer/profile/{{userId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["taxpayer", "profile", "{{userId}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Servicio B - Conexión SRI (SRI)",
+      "item": [
+        {
+          "name": "POST /sri/connect",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ruc\": \"{{ruc}}\",\n  \"password\": \"clave_sri_portal\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/sri/connect",
+              "host": ["{{baseUrl}}"],
+              "path": ["sri", "connect"]
+            }
+          }
+        },
+        {
+          "name": "GET /sri/status/:userId",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/sri/status/{{userId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["sri", "status", "{{userId}}"]
+            }
+          }
+        },
+        {
+          "name": "GET /sri/history/:userId",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/sri/history/{{userId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["sri", "history", "{{userId}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Servicio B - Áreas de Trabajo (Workspaces)",
+      "item": [
+        {
+          "name": "POST /workspaces",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "x-user-id", "value": "{{userId}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"period\": \"2026-06\",\n  \"workspaceLocation\": \"Quito\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/workspaces",
+              "host": ["{{baseUrl}}"],
+              "path": ["workspaces"]
+            }
+          }
+        },
+        {
+          "name": "GET /workspaces/user/:userId",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "x-user-id", "value": "{{userId}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/workspaces/user/{{userId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["workspaces", "user", "{{userId}}"]
+            }
+          }
+        },
+        {
+          "name": "GET /workspaces/:workspaceId",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "x-user-id", "value": "{{userId}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/workspaces/{{workspaceId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["workspaces", "{{workspaceId}}"]
+            }
+          }
+        },
+        {
+          "name": "GET /workspaces/:workspaceId/invoices",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "x-user-id", "value": "{{userId}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/workspaces/{{workspaceId}}/invoices",
+              "host": ["{{baseUrl}}"],
+              "path": ["workspaces", "{{workspaceId}}", "invoices"]
+            }
+          }
+        },
+        {
+          "name": "GET /workspaces/:workspaceId/ats",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "x-user-id", "value": "{{userId}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/workspaces/{{workspaceId}}/ats",
+              "host": ["{{baseUrl}}"],
+              "path": ["workspaces", "{{workspaceId}}", "ats"]
+            }
+          }
+        },
+        {
+          "name": "GET /workspaces/:workspaceId/summary",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "x-user-id", "value": "{{userId}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/workspaces/{{workspaceId}}/summary",
+              "host": ["{{baseUrl}}"],
+              "path": ["workspaces", "{{workspaceId}}", "summary"]
+            }
+          }
+        },
+        {
+          "name": "GET /workspaces/:workspaceId/process-status",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "x-user-id", "value": "{{userId}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/workspaces/{{workspaceId}}/process-status",
+              "host": ["{{baseUrl}}"],
+              "path": ["workspaces", "{{workspaceId}}", "process-status"]
+            }
+          }
+        },
+        {
+          "name": "GET /workspaces/:workspaceId/process-steps",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "x-user-id", "value": "{{userId}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/workspaces/{{workspaceId}}/process-steps",
+              "host": ["{{baseUrl}}"],
+              "path": ["workspaces", "{{workspaceId}}", "process-steps"]
+            }
+          }
+        },
+        {
+          "name": "GET /workspaces/:workspaceId/invoices/export",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "x-user-id", "value": "{{userId}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/workspaces/{{workspaceId}}/invoices/export",
+              "host": ["{{baseUrl}}"],
+              "path": ["workspaces", "{{workspaceId}}", "invoices", "export"]
+            }
+          }
+        },
+        {
+          "name": "POST /workspaces/:workspaceId/invoices/download",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "x-user-id", "value": "{{userId}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/workspaces/{{workspaceId}}/invoices/download",
+              "host": ["{{baseUrl}}"],
+              "path": ["workspaces", "{{workspaceId}}", "invoices", "download"]
+            }
+          }
+        },
+        {
+          "name": "GET /workspaces/:workspaceId/ats/download-xml",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "x-user-id", "value": "{{userId}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/workspaces/{{workspaceId}}/ats/download-xml",
+              "host": ["{{baseUrl}}"],
+              "path": ["workspaces", "{{workspaceId}}", "ats", "download-xml"]
+            }
+          }
+        },
+        {
+          "name": "GET /workspaces/:workspaceId/ats/download-xlsm",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "x-user-id", "value": "{{userId}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/workspaces/{{workspaceId}}/ats/download-xlsm",
+              "host": ["{{baseUrl}}"],
+              "path": ["workspaces", "{{workspaceId}}", "ats", "download-xlsm"]
+            }
+          }
+        },
+        {
+          "name": "POST /workspaces/:workspaceId/ats/generate",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "x-user-id", "value": "{{userId}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/workspaces/{{workspaceId}}/ats/generate",
+              "host": ["{{baseUrl}}"],
+              "path": ["workspaces", "{{workspaceId}}", "ats", "generate"]
+            }
+          }
+        },
+        {
+          "name": "GET /workspaces/:workspaceId/logs",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "x-user-id", "value": "{{userId}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/workspaces/{{workspaceId}}/logs",
+              "host": ["{{baseUrl}}"],
+              "path": ["workspaces", "{{workspaceId}}", "logs"]
+            }
+          }
+        },
+        {
+          "name": "DELETE /workspaces/:workspaceId",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "x-user-id", "value": "{{userId}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/workspaces/{{workspaceId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["workspaces", "{{workspaceId}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Servicio B - Facturas (Invoices)",
+      "item": [
+        {
+          "name": "POST /invoices/user/:userId",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "x-user-id", "value": "{{userId}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"invoices\": [\n    {\n      \"issuerName\": \"TIENDAS INDUSTRIALES ASOCIADAS TIA\",\n      \"issuerRuc\": \"0990017122001\",\n      \"number\": \"002-005-000342111\",\n      \"authorizationNumber\": \"1106202601099001712200120020050003421111234567814\",\n      \"accessKey\": \"1106202601099001712200120020050003421111234567814\",\n      \"customerName\": \"JUAN PEREZ\",\n      \"customerId\": \"{{ruc}}\",\n      \"customerDate\": \"2026-06-11\",\n      \"subtotal\": 10.00,\n      \"iva\": 1.50,\n      \"total\": 11.50,\n      \"type\": \"COMPRA\",\n      \"format\": \"XML\",\n      \"workspaceId\": \"{{workspaceId}}\",\n      \"products\": []\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/invoices/user/{{userId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["invoices", "user", "{{userId}}"]
+            }
+          }
+        },
+        {
+          "name": "GET /invoices/user/:userId",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "x-user-id", "value": "{{userId}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/invoices/user/{{userId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["invoices", "user", "{{userId}}"]
+            }
+          }
+        },
+        {
+          "name": "GET /invoices/download/:ruc",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "x-user-id", "value": "{{userId}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/invoices/download/{{ruc}}?periodType=monthly&year=2026&month=06",
+              "host": ["{{baseUrl}}"],
+              "path": ["invoices", "download", "{{ruc}}"],
+              "query": [
+                { "key": "periodType", "value": "monthly" },
+                { "key": "year", "value": "2026" },
+                { "key": "month", "value": "06" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "GET /invoices/user/:userId/summary",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "x-user-id", "value": "{{userId}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/invoices/user/{{userId}}/summary",
+              "host": ["{{baseUrl}}"],
+              "path": ["invoices", "user", "{{userId}}", "summary"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Servicio B - ATS Anexos (ATS)",
+      "item": [
+        {
+          "name": "POST /ats/user/:userId",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "x-user-id", "value": "{{userId}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"ATS_{{ruc}}_06_2026.xml\",\n  \"format\": \"XML\",\n  \"periodMonth\": 6,\n  \"periodYear\": 2026,\n  \"invoiceCount\": 24,\n  \"validationErrors\": 0,\n  \"workspaceId\": \"{{workspaceId}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/ats/user/{{userId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["ats", "user", "{{userId}}"]
+            }
+          }
+        },
+        {
+          "name": "GET /ats/user/:userId",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "x-user-id", "value": "{{userId}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/ats/user/{{userId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["ats", "user", "{{userId}}"]
+            }
+          }
+        },
+        {
+          "name": "GET /ats/user/:userId/export-csv",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "x-user-id", "value": "{{userId}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/ats/user/{{userId}}/export-csv",
+              "host": ["{{baseUrl}}"],
+              "path": ["ats", "user", "{{userId}}", "export-csv"]
+            }
+          }
+        },
+        {
+          "name": "POST /ats/user/:userId/validate-csv",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "x-user-id", "value": "{{userId}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"csvContent\": \"id,type,number,issuerName,issuerCommercialName,issuerAddress,issuerRuc,customerDate,authorizationNumber,emissionType,accessKey,customerName,customerId,customerAddress,customerPhone,customerEmail,subtotal,iva,total,products\\n1,COMPRA,001-001-000000001,EMPRESA PROVEEDORA S.A.,PROVEEDOR,\\\"Av. Amazonas, Quito\\\",1790011223001,2026-06-11,1106202601179001122300120010010000000011234567813,Normal,1106202601179001122300120010010000000011234567813,JUAN PEREZ,1720000001,Quito,0999999999,juan.perez@example.com,100,15,115,[]\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/ats/user/{{userId}}/validate-csv",
+              "host": ["{{baseUrl}}"],
+              "path": ["ats", "user", "{{userId}}", "validate-csv"]
+            }
+          }
+        },
+        {
+          "name": "POST /ats/user/:userId/convert-xml",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "x-user-id", "value": "{{userId}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"csvContent\": \"id,type,number,issuerName,issuerCommercialName,issuerAddress,issuerRuc,customerDate,authorizationNumber,emissionType,accessKey,customerName,customerId,customerAddress,customerPhone,customerEmail,subtotal,iva,total,products\\n1,COMPRA,001-001-000000001,EMPRESA PROVEEDORA S.A.,PROVEEDOR,\\\"Av. Amazonas, Quito\\\",1790011223001,2026-06-11,1106202601179001122300120010010000000011234567813,Normal,1106202601179001122300120010010000000011234567813,JUAN PEREZ,1720000001,Quito,0999999999,juan.perez@example.com,100,15,115,[]\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/ats/user/{{userId}}/convert-xml",
+              "host": ["{{baseUrl}}"],
+              "path": ["ats", "user", "{{userId}}", "convert-xml"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Servicio B - Dashboard",
+      "item": [
+        {
+          "name": "GET /dashboard/:userId",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "x-user-id", "value": "{{userId}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/dashboard/{{userId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["dashboard", "{{userId}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Servicio B - Traceability & Audit",
+      "item": [
+        {
+          "name": "GET /traceability/audit",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "x-user-id", "value": "{{userId}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/traceability/audit",
+              "host": ["{{baseUrl}}"],
+              "path": ["traceability", "audit"]
+            }
+          }
+        },
+        {
+          "name": "POST /traceability/audit",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "x-user-id", "value": "{{userId}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action\": \"ATS_EXPORT\",\n  \"module\": \"ATS\",\n  \"details\": \"Exportado ATS XML del periodo 2026-06\",\n  \"userId\": \"{{userId}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/traceability/audit",
+              "host": ["{{baseUrl}}"],
+              "path": ["traceability", "audit"]
+            }
+          }
+        },
+        {
+          "name": "GET /traceability/process/:userId",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "x-user-id", "value": "{{userId}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/traceability/process/{{userId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["traceability", "process", "{{userId}}"]
+            }
+          }
+        },
+        {
+          "name": "PUT /traceability/process/:stepId",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "x-user-id", "value": "{{userId}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"completed\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/traceability/process/{{stepId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["traceability", "process", "{{stepId}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Servicio B - Soporte Técnico (Support)",
+      "item": [
+        {
+          "name": "POST /support/tickets",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "x-user-id", "value": "{{userId}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"subject\": \"Fallo en descarga automática\",\n  \"category\": \"sri_download\",\n  \"priority\": \"high\",\n  \"description\": \"El sistema se cuelga en el paso de descarga asíncrona de facturas recibidas\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/support/tickets",
+              "host": ["{{baseUrl}}"],
+              "path": ["support", "tickets"]
+            }
+          }
+        },
+        {
+          "name": "GET /support/tickets",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "x-user-id", "value": "{{userId}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/support/tickets",
+              "host": ["{{baseUrl}}"],
+              "path": ["support", "tickets"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Servicio B - Administración (Admin)",
+      "item": [
+        {
+          "name": "GET /admin/users",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "x-user-id", "value": "{{userId}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/users",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "users"]
+            }
+          }
+        },
+        {
+          "name": "PATCH /admin/users/:userId/status",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "x-user-id", "value": "{{userId}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"inactive\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/admin/users/{{userId}}/status",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "users", "{{userId}}", "status"]
+            }
+          }
+        },
+        {
+          "name": "GET /admin/audit",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "x-user-id", "value": "{{userId}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/audit",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "audit"]
+            }
+          }
+        },
+        {
+          "name": "PUT /admin/settings",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "x-user-id", "value": "{{userId}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sriTargetUrl\": \"https://sri.gob.ec/portal-receptor\",\n  \"maxDownloadThreads\": 5\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/admin/settings",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "settings"]
+            }
+          }
+        },
+        {
+          "name": "GET /admin/tickets",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "x-user-id", "value": "{{userId}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/tickets",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "tickets"]
+            }
+          }
+        },
+        {
+          "name": "PATCH /admin/tickets/:ticketId/status",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "x-user-id", "value": "{{userId}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"closed\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/admin/tickets/{{ticketId}}/status",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "tickets", "{{ticketId}}", "status"]
+            }
+          }
+        },
+        {
+          "name": "DELETE /admin/users/:userId",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "x-user-id", "value": "{{userId}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/users/{{userId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "users", "{{userId}}"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
