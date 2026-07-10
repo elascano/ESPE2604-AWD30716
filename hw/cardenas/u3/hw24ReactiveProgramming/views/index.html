@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="https://fabuladental.com/wp-content/uploads/2023/08/LOGO.jpg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Fábula Dental — Sistema de gestión para clínica odontológica pediátrica." />
+  <title>Fábula Dental - Inventario</title>
+  <link rel="stylesheet" href="./css/common.css" />
+  <link rel="stylesheet" href="./css/catalog.css" />
+</head>
+<body>
+
+  <div class="admin-layout">
+    
+    <header class="admin-navbar">
+      <div class="admin-navbar__inner">
+        <div class="d-flex align-items-center gap-2">
+          <button
+            id="sidebar-toggle-btn"
+            class="btn btn-link text-white p-0 me-2 d-lg-none"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#adminSidebarOffcanvas"
+            aria-controls="adminSidebarOffcanvas"
+          >
+            <i class="bi bi-list fs-3"></i>
+          </button>
+          <i class="bi bi-tooth text-white fs-3"></i>
+          <span class="fs-5 fw-bold text-white text-nowrap">Fábula Dental</span>
+        </div>
+        <span class="admin-navbar__greeting d-none d-sm-inline">Bienvenido, Administrador</span>
+      </div>
+    </header>
+
+    <aside class="admin-sidebar d-none d-lg-block">
+      <nav class="admin-sidebar__nav">
+        <a href="index.html" class="admin-sidebar__link active" id="link-inventory">
+          <span class="admin-sidebar__link-icon">
+            <i class="bi bi-box-seam fs-5"></i>
+          </span>
+          <span class="admin-sidebar__link-label">Catálogo de Inventario</span>
+        </a>
+        <a href="register.html" class="admin-sidebar__link" id="link-register">
+          <span class="admin-sidebar__link-icon">
+            <i class="bi bi-plus-circle fs-5"></i>
+          </span>
+          <span class="admin-sidebar__link-label">Registrar Insumo</span>
+        </a>
+      </nav>
+    </aside>
+
+    <div
+      id="adminSidebarOffcanvas"
+      class="offcanvas offcanvas-start d-lg-none"
+      tabindex="-1"
+      aria-labelledby="adminSidebarOffcanvasLabel"
+    >
+      <div class="offcanvas-header gradient-header">
+        <div class="d-flex align-items-center gap-2">
+          <i class="bi bi-tooth text-white fs-4"></i>
+          <h5 id="adminSidebarOffcanvasLabel" class="text-white fw-bold m-0">Fábula Dental</h5>
+        </div>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+      </div>
+      <div class="offcanvas-body p-0">
+        <nav class="admin-sidebar__nav">
+          <a href="index.html" class="admin-sidebar__link active" id="mobile-link-inventory">
+            <span class="admin-sidebar__link-icon"><i class="bi bi-box-seam fs-5"></i></span>
+            <span class="admin-sidebar__link-label">Catálogo de Inventario</span>
+          </a>
+          <a href="register.html" class="admin-sidebar__link" id="mobile-link-register">
+            <span class="admin-sidebar__link-icon"><i class="bi bi-plus-circle fs-5"></i></span>
+            <span class="admin-sidebar__link-label">Registrar Insumo</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <main class="admin-layout__content">
+      
+      <section id="view-inventory" class="admin-view">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3 mb-4">
+          <div>
+            <h1>Catálogo de Inventario</h1>
+            <p class="admin-view__subtitle">Listado completo de insumos registrados en el sistema.</p>
+          </div>
+          <a href="register.html" class="btn-primary-gradient w-100 w-md-auto text-center flex-shrink-0">
+            <i class="bi bi-plus-lg"></i> Registrar Insumo
+          </a>
+        </div>
+
+        <div id="search-bar-container" class="mb-3">
+          <div class="input-group">
+            <span class="input-group-text bg-transparent border-end-0">
+              <i class="bi bi-search text-muted"></i>
+            </span>
+            <input
+              type="text"
+              id="search-input"
+              class="form-control border-start-0"
+              placeholder="Buscar insumo por nombre..."
+            />
+          </div>
+        </div>
+
+        <div class="card-surface p-0 overflow-hidden">
+          
+          <div id="catalog-loading" class="d-flex justify-content-center align-items-center py-5">
+            <div class="spinner-border text-primary" role="status">
+              <span class="visually-hidden">Cargando...</span>
+            </div>
+            <span class="ms-3 text-secondary fw-semibold">Cargando insumos...</span>
+          </div>
+
+          <div id="catalog-empty" class="text-center py-5 px-3 d-none">
+            <i class="bi bi-box-seam empty-catalog-icon"></i>
+            <h5 class="mt-3 fw-bold empty-catalog-title">No hay insumos registrados</h5>
+            <p class="text-muted">El catálogo está vacío. Comienza registrando tu primer insumo.</p>
+            <a href="register.html" class="btn-primary-gradient mt-2">
+              <i class="bi bi-plus-lg"></i> Registrar Insumo
+            </a>
+          </div>
+
+          <div id="catalog-table-wrapper" class="table-responsive d-none">
+            <table class="table table-hover align-middle mb-0">
+              <thead class="table-dark">
+                <tr>
+                  <th class="text-white py-3 ps-4 fw-700">Nombre</th>
+                  <th class="text-white py-3 text-end fw-700">Cantidad</th>
+                  <th class="text-white py-3 text-end fw-700">Costo Unitario</th>
+                  <th class="text-white py-3 fw-700">Fecha Pedido</th>
+                  <th class="text-white py-3 fw-700">Fecha Caducidad</th>
+                  <th class="text-white py-3 fw-700">Estado</th>
+                  <th class="text-white py-3 pe-4 fw-700">Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="supplies-table-body">
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <script type="module" src="../js/readController.js"></script>
+  <script type="module" src="../js/deleteController.js"></script>
+</body>
+</html>

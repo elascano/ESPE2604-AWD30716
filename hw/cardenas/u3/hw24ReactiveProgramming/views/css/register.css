@@ -1,0 +1,28 @@
+.form-label-styled {
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 0.4rem;
+  font-size: 0.9rem;
+}
+
+.form-input-styled {
+  width: 100%;
+  padding: 0.65rem 1rem;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--border-radius-sm);
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.95rem;
+  color: var(--color-text-primary);
+  background: var(--color-surface);
+  transition: border-color var(--transition-base), box-shadow var(--transition-base);
+  outline: none;
+}
+
+.form-input-styled:focus {
+  border-color: var(--color-primary-start);
+  box-shadow: 0 0 0 3px rgba(0, 82, 204, 0.12);
+}
+
+.form-input-styled::placeholder {
+  color: var(--color-text-secondary);
+}
