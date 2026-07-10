@@ -1,0 +1,2 @@
+## The Problem
+A backend inventory management system for an audio equipment import company processes large batches of incoming merchandise. The web client requires an urgent, specific report: obtain an alphabetically sorted list of the names of all "Line Array" or "Subwoofer" equipment currently in stock with an import cost exceeding $1,000, and calculate the total investment for that specific subset.
