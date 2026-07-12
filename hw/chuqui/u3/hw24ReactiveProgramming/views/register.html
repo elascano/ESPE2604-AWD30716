@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="https://fabuladental.com/wp-content/uploads/2023/08/LOGO.jpg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Fábula Dental — Sistema de gestión para clínica odontológica pediátrica." />
+  <title>Fábula Dental - Registrar Insumo</title>
+  <link rel="stylesheet" href="./css/common.css" />
+  <link rel="stylesheet" href="./css/register.css" />
+</head>
+<body>
+
+  <div class="admin-layout">
+    
+    <header class="admin-navbar">
+      <div class="admin-navbar__inner">
+        <div class="d-flex align-items-center gap-2">
+          <button
+            id="sidebar-toggle-btn"
+            class="btn btn-link text-white p-0 me-2 d-lg-none"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#adminSidebarOffcanvas"
+            aria-controls="adminSidebarOffcanvas"
+          >
+            <i class="bi bi-list fs-3"></i>
+          </button>
+          <i class="bi bi-tooth text-white fs-3"></i>
+          <span class="fs-5 fw-bold text-white text-nowrap">Fábula Dental</span>
+        </div>
+        <span class="admin-navbar__greeting d-none d-sm-inline">Bienvenido, Administrador</span>
+      </div>
+    </header>
+
+    <aside class="admin-sidebar d-none d-lg-block">
+      <nav class="admin-sidebar__nav">
+        <a href="index.html" class="admin-sidebar__link" id="link-inventory">
+          <span class="admin-sidebar__link-icon">
+            <i class="bi bi-box-seam fs-5"></i>
+          </span>
+          <span class="admin-sidebar__link-label">Catálogo de Inventario</span>
+        </a>
+        <a href="register.html" class="admin-sidebar__link active" id="link-register">
+          <span class="admin-sidebar__link-icon">
+            <i class="bi bi-plus-circle fs-5"></i>
+          </span>
+          <span class="admin-sidebar__link-label">Registrar Insumo</span>
+        </a>
+      </nav>
+    </aside>
+
+    <div
+      id="adminSidebarOffcanvas"
+      class="offcanvas offcanvas-start d-lg-none"
+      tabindex="-1"
+      aria-labelledby="adminSidebarOffcanvasLabel"
+    >
+      <div class="offcanvas-header gradient-header">
+        <div class="d-flex align-items-center gap-2">
+          <i class="bi bi-tooth text-white fs-4"></i>
+          <h5 id="adminSidebarOffcanvasLabel" class="text-white fw-bold m-0">Fábula Dental</h5>
+        </div>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+      </div>
+      <div class="offcanvas-body p-0">
+        <nav class="admin-sidebar__nav">
+          <a href="index.html" class="admin-sidebar__link" id="mobile-link-inventory">
+            <span class="admin-sidebar__link-icon"><i class="bi bi-box-seam fs-5"></i></span>
+            <span class="admin-sidebar__link-label">Catálogo de Inventario</span>
+          </a>
+          <a href="register.html" class="admin-sidebar__link active" id="mobile-link-register">
+            <span class="admin-sidebar__link-icon"><i class="bi bi-plus-circle fs-5"></i></span>
+            <span class="admin-sidebar__link-label">Registrar Insumo</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <main class="admin-layout__content">
+      
+      <section id="view-register" class="admin-view">
+        <div class="mb-4">
+          <h1 id="form-title">Registrar Insumo</h1>
+          <p class="admin-view__subtitle" id="form-subtitle">Formulario para agregar un nuevo insumo al catálogo.</p>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col-12 col-lg-8 col-xl-7">
+
+            <div class="card-surface p-4 p-md-5">
+              <form id="register-supply-form">
+                
+                <div class="mb-4">
+                  <label for="supplyName" class="form-label-styled">Nombre del Insumo</label>
+                  <input
+                    id="supplyName"
+                    type="text"
+                    class="form-input-styled"
+                    placeholder="Ej. Guantes de látex"
+                    required
+                  />
+                </div>
+
+                <div class="row g-3 mb-4">
+                  <div class="col-sm-6">
+                    <label for="quantity" class="form-label-styled">Cantidad</label>
+                    <input
+                      id="quantity"
+                      type="number"
+                      min="1"
+                      class="form-input-styled"
+                      placeholder="Ej. 100"
+                      required
+                    />
+                  </div>
+                  <div class="col-sm-6">
+                    <label for="unitCost" class="form-label-styled">Costo Unitario ($)</label>
+                    <input
+                      id="unitCost"
+                      type="number"
+                      min="0"
+                      step="0.01"
+                      class="form-input-styled"
+                      placeholder="Ej. 25.50"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="row g-3 mb-5">
+                  <div class="col-sm-6">
+                    <label for="orderDate" class="form-label-styled">Fecha de Pedido</label>
+                    <input
+                      id="orderDate"
+                      type="date"
+                      class="form-input-styled"
+                      required
+                    />
+                  </div>
+                  <div class="col-sm-6">
+                    <label for="expirationDate" class="form-label-styled">Fecha de Caducidad</label>
+                    <input
+                      id="expirationDate"
+                      type="date"
+                      class="form-input-styled"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="d-flex flex-column flex-md-row gap-3">
+                  <button type="submit" id="btn-submit-register" class="btn-primary-gradient w-100 text-center">
+                    <i id="btn-submit-icon" class="bi bi-floppy me-1"></i>
+                    <span id="btn-submit-text">Registrar Insumo</span>
+                  </button>
+                  <button type="button" id="btn-clear-register" class="btn btn-outline-secondary w-100">
+                    Limpiar Formulario
+                  </button>
+                </div>
+
+              </form>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <script type="module" src="../js/createController.js"></script>
+  <script type="module" src="../js/updateController.js"></script>
+</body>
+</html>
