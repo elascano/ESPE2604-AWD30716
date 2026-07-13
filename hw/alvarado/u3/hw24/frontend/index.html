@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Biconoirs Restaurant - Non-Blocking / Functional Demo</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Biconoirs Restaurant</h1>
+    <p class="subtitle">Demo: Non-blocking programming &amp; Functional programming</p>
+  </header>
+
+  <main>
+    <!-- PASO 1: Non-Blocking Execution -->
+    <section class="card">
+      <h2>1. View Menu &mdash; Non-blocking execution</h2>
+      <p>
+        The client requests the menu from the backend with an asynchronous query (Promise).
+        To verify that the server remains free while it "queries the database",
+        we fire 3 "pings" at almost the same time. Compare the response times.
+      </p>
+      <div class="button-row">
+        <button id="btn-blocking">Load menu (blocking)</button>
+        <button id="btn-nonblocking">Load menu (non-blocking)</button>
+      </div>
+      <div id="log" class="log"></div>
+    </section>
+
+    <!-- Resultado del menu -->
+    <section class="card">
+      <h3>Available Menu</h3>
+      <div id="menu" class="menu-grid">
+        <p class="hint">Press one of the buttons above to load the menu.</p>
+      </div>
+    </section>
+
+    <!-- PASO 2: State Immutability -->
+    <section class="card">
+      <h2>2. Cart &mdash; State immutability</h2>
+      <p>
+        When adding a product, <code>cart.push(item)</code> is never used.
+        A new copy of the array is generated with the spread operator
+        (<code>cart = [...cart, item]</code>), avoiding direct mutations.
+      </p>
+      <ul id="cart-list" class="cart-list">
+        <li class="hint">Empty cart</li>
+      </ul>
+    </section>
+
+    <!-- PASO 3: Deterministic Pure Function -->
+    <section class="card">
+      <h2>3. Order total &mdash; Pure function</h2>
+      <p>
+        The total is calculated with <code>reduce()</code>: a higher-order,
+        pure, and deterministic function. Same input data, same result always;
+        it does not depend on or modify anything outside of it.
+      </p>
+      <div class="total">Total: <span id="total">$0.00</span></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Before deploying, edit <code>API_BASE_URL</code> in <code>app.js</code> with the IP/domain of your backend.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
