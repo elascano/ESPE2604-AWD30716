@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spring WebFlux Presentation</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Progress Bar -->
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+
+        <!-- Slide 1: Title -->
+        <section class="slide active" id="slide-1">
+            <div class="content center-content">
+                <div class="badge fade-in">Advanced Backend Architecture</div>
+                <h1 class="slide-up">Spring WebFlux</h1>
+                <h2 class="slide-up delay-1">Mastering Non-Blocking Reactive Web Frameworks</h2>
+                <p class="slide-up delay-2 subtitle-text">Designing resilient, highly scalable systems capable of handling massive concurrency with optimal resource utilization.</p>
+                <div class="instruction bounce delay-3">Press Right Arrow ➔ to begin</div>
+            </div>
+        </section>
+
+        <!-- Slide 2: Context & Paradigm Shift -->
+        <section class="slide" id="slide-2">
+            <div class="content">
+                <header>
+                    <h2>1. The Paradigm Shift in Thread Management</h2>
+                    <span class="context-pill" data-hover="Building seamlessly upon Reactive Programming foundations to implement asynchronous data streams.">Core Concept: Reactive Streams</span>
+                </header>
+                <div class="two-column">
+                    <div class="col card hover-3d">
+                        <h3>Spring MVC (Synchronous / Blocking)</h3>
+                        <p>Relies on the traditional Servlet API and a <strong>thread-per-request</strong> model. When a request arrives, a thread from the container's pool (e.g., Tomcat's default of 200 threads) is dedicated entirely to it. If the application queries a database or calls a REST API, the thread enters a `WAITING` state.</p>
+                        <ul class="details-list">
+                            <li class="tooltip-trigger" data-tooltip="A standard Java thread consumes roughly 1MB of stack memory. 10,000 concurrent requests would require 10GB of RAM just for thread allocation, severely limiting horizontal scalability.">Severe Memory Footprint scaling</li>
+                            <li class="tooltip-trigger" data-tooltip="When thousands of threads are blocked and unblocked, the OS CPU scheduler spends more time context-switching than executing actual business logic.">High OS Context-Switching overhead</li>
+                        </ul>
+                    </div>
+                    <div class="col card hover-3d highlight-card">
+                        <h3>Spring WebFlux (Asynchronous / Non-Blocking)</h3>
+                        <p>Operates on an <strong>Event-Loop</strong> execution model, typically powered by Netty. A very small, fixed number of worker threads (usually matching the number of CPU cores) handles all incoming requests. Instead of waiting for I/O operations, the thread registers a callback and immediately moves on to the next request.</p>
+                        <ul class="details-list">
+                            <li class="tooltip-trigger" data-tooltip="Fully implements the Reactive Streams specification (Publisher, Subscriber, Subscription, Processor) to standardize asynchronous stream processing.">Reactive Streams API Implementation</li>
+                            <li class="tooltip-trigger" data-tooltip="The subscriber can dynamically request data processing based on its current capacity, preventing system overload and OutOfMemory errors from fast data producers.">Native Backpressure Support</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 3: Core Architecture -->
+        <section class="slide" id="slide-3">
+            <div class="content">
+                <header>
+                    <h2>2. Core Architecture: Project Reactor</h2>
+                    <span class="context-pill" data-hover="Project Reactor is the default reactive library for Spring, offering a rich vocabulary of operators (map, flatMap, filter) to transform data streams.">Engine: Reactor Core</span>
+                </header>
+                <p class="subtitle-text">The foundational engine powering Spring WebFlux. It shifts development from imperative logic to declarative, functional data pipelines.</p>
+                <div class="reactor-container">
+                    <div class="reactor-box mono fade-in">
+                        <h3>Mono &lt;T&gt;</h3>
+                        <p>A specialized <code>Publisher</code> that emits at most <strong>ONE</strong> item, then gracefully completes (or fails with an error). It mathematically represents a computational result that will resolve to 0 or 1 element in the future.</p>
+                        <div class="code-block">
+                            <code>Mono&lt;User&gt; user = userRepository.findById(id)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.switchIfEmpty(Mono.error(new NotFoundException()))<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.doOnSuccess(u -> log.info("Fetched: {}", u.getName()));</code>
+                        </div>
+                        <div class="hidden-data">Implementation Detail: Highly utilized for standard HTTP Request-Response cycles, finding a unique database record, or orchestrating asynchronous tasks that do not return a payload (using Mono&lt;Void&gt;).</div>
+                    </div>
+                    <div class="reactor-box flux fade-in delay-1">
+                        <h3>Flux &lt;T&gt;</h3>
+                        <p>A continuous <code>Publisher</code> that emits a sequence of <strong>0 to N</strong> items, which can be finite or potentially infinite, followed by a completion or error signal. It is the core representation of a data stream.</p>
+                        <div class="code-block">
+                            <code>Flux&lt;Order&gt; orders = orderRepository.findByUserId(id)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.filter(order -> order.getTotal() > 100)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.delayElements(Duration.ofMillis(100));</code>
+                        </div>
+                        <div class="hidden-data">Implementation Detail: Essential for handling large database result sets, Server-Sent Events (SSE) streaming real-time updates to the UI, or managing continuous WebSocket communication channels.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 4: Programming Models -->
+        <section class="slide" id="slide-4">
+            <div class="content">
+                <header>
+                    <h2>3. Dual Routing and Processing Models</h2>
+                    <span class="context-pill" data-hover="The Functional paradigm relies entirely on Lambda Expressions to define lightweight, highly decoupled route handling.">Paradigm: Functional Routing</span>
+                </header>
+                <p class="subtitle-text">Spring WebFlux guarantees backward compatibility with legacy knowledge while introducing a modern, highly programmatic routing approach.</p>
+
+                <div class="accordion-container">
+                    <div class="accordion-item" tabindex="0">
+                        <div class="accordion-title">Model A: Annotated Controllers (The Familiar Approach)</div>
+                        <div class="accordion-content">
+                            <p>Retains the exact same annotation-driven programming model as Spring MVC (`@RestController`, `@GetMapping`, `@PostMapping`). The critical difference lies exclusively in the return types: instead of returning domain objects (e.g., `User` or `List<User>`), the controller returns Reactor types (`Mono<User>` or `Flux<User>`). This allows developers to migrate to reactive paradigms without learning a new routing syntax.</p>
+                            <pre><code>@RestController
+@RequestMapping("/api/v1/inventory")
+public class InventoryController {
+    @GetMapping(value = "/stream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    public Flux&lt;Item&gt; streamInventoryUpdates() {
+        return inventoryService.getContinuousUpdates();
+    }
+}</code></pre>
+                        </div>
+                    </div>
+                    <div class="accordion-item" tabindex="0">
+                        <div class="accordion-title">Model B: Functional Endpoints (The Modern Approach)</div>
+                        <div class="accordion-content">
+                            <p>Introduces a lightweight, lambda-based functional routing mechanism. It strictly separates the routing configuration (`RouterFunction`) from the actual request execution logic (`HandlerFunction`). This model avoids the overhead of Java reflection used in annotations, offers explicit programmatic routing, and seamlessly integrates with functional programming paradigms.</p>
+                            <pre><code>@Configuration
+public class RoutingConfig {
+    @Bean
+    public RouterFunction&lt;ServerResponse&gt; orderRoutes(OrderHandler handler) {
+        return RouterFunctions.route()
+            .path("/api/orders", builder -> builder
+                .GET("/{id}", accept(APPLICATION_JSON), handler::getOrder)
+                .POST("/", contentType(APPLICATION_JSON), handler::createOrder))
+            .build();
+    }
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 5: The Reactive WebClient -->
+        <section class="slide" id="slide-5">
+            <div class="content">
+                <header>
+                    <h2>4. WebClient: The Non-Blocking HTTP Client</h2>
+                    <span class="context-pill" data-hover="RestTemplate is officially in maintenance mode. WebClient is the modern standard for all Spring HTTP communication.">Deprecation Notice: RestTemplate</span>
+                </header>
+                <p class="subtitle-text">A modern, functional, and fully reactive HTTP client designed to replace the legacy, blocking `RestTemplate`.</p>
+
+                <div class="webclient-diagram">
+                    <div class="step tooltip-trigger" data-tooltip="Created via WebClient.builder(). Supports global configurations for timeouts, connection pooling strategies, base URLs, and default headers. Highly reusable and thread-safe.">
+                        <div class="circle">1</div>
+                        <p>Instantiation</p>
+                    </div>
+                    <div class="step tooltip-trigger" data-tooltip="Leverages a fluent API to dynamically define the HTTP method (GET, POST), URI variables, Accept headers, and inject the request body reactively.">
+                        <div class="circle">2</div>
+                        <p>Composition</p>
+                    </div>
+                    <div class="step tooltip-trigger" data-tooltip=".retrieve() handles standard responses, while .exchangeToMono() provides deeper access to HTTP Status codes and raw headers for advanced error handling.">
+                        <div class="circle">3</div>
+                        <p>Execution</p>
+                    </div>
+                    <div class="step tooltip-trigger" data-tooltip="Automatically deserializes JSON/XML responses using Jackson directly into Mono<T> or Flux<T>, seamlessly integrating external APIs into the reactive pipeline.">
+                        <div class="circle">4</div>
+                        <p>Stream Mapping</p>
+                    </div>
+                </div>
+
+                <div class="code-block dark slide-up">
+                    <code>
+WebClient webClient = WebClient.builder().baseUrl("https://api.enterprise.com").build();<br><br>
+Mono&lt;ProductDetails&gt; result = webClient.get()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.uri(uriBuilder -> uriBuilder.path("/products/{id}").queryParam("region", "LATAM").build(1045))<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.accept(MediaType.APPLICATION_JSON)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.retrieve()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.onStatus(HttpStatusCode::is4xxClientError, response -> Mono.error(new InvalidRequestException()))<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.bodyToMono(ProductDetails.class);
+                    </code>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 6: Ecosystem & Servers -->
+        <section class="slide" id="slide-6">
+            <div class="content">
+                <header>
+                    <h2>5. Embedded Servers & The Reactive Ecosystem</h2>
+                </header>
+                <p class="subtitle-text">For WebFlux to deliver its performance benefits, the entire execution stack—from the web server down to the database driver—must be non-blocking.</p>
+
+                <div class="grid-layout">
+                    <div class="grid-card tooltip-trigger" data-tooltip="Reactor Netty uses non-blocking I/O (NIO) with a deeply optimized byte-buffer management system to reduce memory allocations.">
+                        <div class="icon">🚀</div>
+                        <h3>Netty (Default Server)</h3>
+                        <p>Unlike Spring MVC's Tomcat default, WebFlux ships with Reactor Netty. Netty is an asynchronous, event-driven network application framework designed specifically for high-throughput, low-latency protocol servers.</p>
+                    </div>
+                    <div class="grid-card tooltip-trigger" data-tooltip="Reactive Relational Database Connectivity (R2DBC) is completely distinct from JDBC. JDBC fundamentally blocks the thread during SQL execution.">
+                        <div class="icon">🗄️</div>
+                        <h3>Reactive Persistence (R2DBC)</h3>
+                        <p>Using standard JDBC drivers (PostgreSQL, MySQL) will break the non-blocking paradigm. Applications must use R2DBC drivers or reactive NoSQL drivers (Reactive MongoDB, Reactive Redis) to maintain the event-loop integrity.</p>
+                    </div>
+                    <div class="grid-card full-width tooltip-trigger" data-tooltip="Because there is no dedicated thread per request, the traditional ThreadLocal cannot store user sessions. Spring Security Context is instead propagated through the Reactor Context.">
+                        <div class="icon">🛡️</div>
+                        <h3>Spring WebFlux Security Integration</h3>
+                        <p>Security rules must also operate asynchronously. `SecurityWebFilterChain` replaces traditional Servlet Filters. Authentication providers (like JWT parsers or OAuth2 validators) return `Mono<Authentication>`, ensuring that verifying user credentials against a database does not stall the server's main event loop.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 7: Conclusion -->
+        <section class="slide" id="slide-7">
+            <div class="content center-content">
+                <h1>Architectural Summary</h1>
+                <ul class="summary-list">
+                    <li class="slide-up delay-1"><strong>Not about single-request speed:</strong> WebFlux does not make a single HTTP request execute faster. It ensures the server <strong>survives and remains responsive</strong> under massive concurrent load.</li>
+                    <li class="slide-up delay-2"><strong>The Stack Constraint:</strong> A reactive chain is only as strong as its weakest (blocking) link. A single blocking `Thread.sleep()` or legacy JDBC call can crash the entire Event Loop.</li>
+                    <li class="slide-up delay-3"><strong>Debugging Complexity:</strong> Stack traces in reactive programming are notoriously difficult to read because execution jumps between different threads in the event loop over time.</li>
+                </ul>
+                <div class="badge finish-badge slide-up delay-4">Thank You</div>
+            </div>
+        </section>
+
+        <!-- Navigation Controls -->
+        <div class="controls">
+            <button id="prev-btn" class="nav-btn" disabled>◄ Prev</button>
+            <span id="slide-counter">1 / 7</span>
+            <button id="next-btn" class="nav-btn">Next ►</button>
+        </div>
+
+        <!-- Global Tooltip Element -->
+        <div id="global-tooltip" class="global-tooltip"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
