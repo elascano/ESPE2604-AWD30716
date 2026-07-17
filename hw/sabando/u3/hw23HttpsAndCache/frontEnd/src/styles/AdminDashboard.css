@@ -1,0 +1,88 @@
+.admin-header-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, var(--color-primary-600), var(--color-primary-800));
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  margin-bottom: 12px;
+}
+
+.admin-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.admin-stat-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 20px;
+  border-radius: var(--radius-lg);
+  border: 1px solid transparent;
+}
+
+.admin-stat-blue { background: var(--color-primary-50); border-color: var(--color-primary-100); }
+.admin-stat-green { background: var(--color-success-50); border-color: var(--color-success-100); }
+.admin-stat-orange { background: var(--color-warning-50); border-color: var(--color-warning-100); }
+.admin-stat-purple { background: #faf5ff; border-color: #ede9fe; }
+
+.admin-stat-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.admin-stat-icon-blue { background: var(--color-primary-100); color: var(--color-primary-600); }
+.admin-stat-icon-green { background: var(--color-success-100); color: var(--color-success-600); }
+.admin-stat-icon-orange { background: var(--color-warning-100); color: var(--color-warning-600); }
+.admin-stat-icon-purple { background: #ede9fe; color: #7c3aed; }
+
+.admin-stat-body { display: flex; flex-direction: column; gap: 2px; }
+
+.admin-stat-value {
+  font-size: 1.625rem;
+  font-weight: 800;
+  color: var(--color-gray-900);
+  line-height: 1;
+}
+
+.admin-stat-label {
+  font-size: 0.825rem;
+  font-weight: 500;
+  color: var(--color-gray-700);
+}
+
+.admin-stat-change {
+  font-size: 0.75rem;
+  color: var(--color-gray-500);
+}
+
+.admin-bottom-grid {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 24px;
+}
+
+.module-status-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--color-gray-100);
+}
+
+.module-status-row:last-child { border-bottom: none; }
+
+@media (max-width: 1200px) {
+  .admin-stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .admin-bottom-grid { grid-template-columns: 1fr; }
+}

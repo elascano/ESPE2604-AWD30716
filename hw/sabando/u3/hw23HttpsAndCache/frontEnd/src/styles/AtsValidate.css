@@ -1,0 +1,104 @@
+.upload-xlsm-zone {
+  border: 2px dashed var(--color-gray-300);
+  border-radius: var(--radius-lg);
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  text-align: center;
+  transition: all var(--transition-normal);
+}
+
+.upload-xlsm-zone:hover {
+  border-color: var(--color-primary-400);
+  background: var(--color-primary-50);
+}
+
+.upload-xlsm-icon {
+  width: 64px;
+  height: 64px;
+  background: var(--color-gray-100);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-gray-400);
+  margin-bottom: 6px;
+}
+
+.xlsm-loaded-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  background: var(--color-success-50);
+  border: 1px solid var(--color-success-200);
+  border-radius: var(--radius-md);
+}
+
+.xlsm-loaded-banner .font-medium { flex: 1; }
+
+.log-entry {
+  display: flex;
+  gap: 12px;
+  padding: 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+}
+
+.log-entry-error { background: var(--color-danger-50); border-color: var(--color-danger-100); }
+.log-entry-warning { background: var(--color-warning-50); border-color: var(--color-warning-100); }
+.log-entry-info { background: var(--color-primary-50); border-color: var(--color-primary-100); }
+
+.log-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.log-icon-error { background: var(--color-danger-100); color: var(--color-danger-600); }
+.log-icon-warning { background: var(--color-warning-100); color: var(--color-warning-600); }
+.log-icon-info { background: var(--color-primary-100); color: var(--color-primary-600); }
+
+.log-content { flex: 1; }
+
+.log-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.log-field {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-gray-800);
+}
+
+.log-row {
+  font-size: 0.7rem;
+  background: white;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  color: var(--color-gray-500);
+  border: 1px solid var(--color-gray-200);
+}
+
+.log-message {
+  font-size: 0.825rem;
+  color: var(--color-gray-600);
+  line-height: 1.5;
+}
+
+.guide-item {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 1rem;
+}
