@@ -1,0 +1,145 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Taxpayer {
+  id               String         @id @default(uuid())
+  ruc              String         @unique
+  firstName        String
+  middleName       String?
+  lastName         String
+  secondLastName   String?  
+  email            String         @unique
+  password         String?
+  birthDate        DateTime?
+  role             String         @default("user")
+  profileCompleted Boolean        @default(true)
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+  
+  invoices     Invoice[]
+  atsFiles     AtsFile[]
+  processSteps ProcessStep[]
+  auditEvents  AuditEvent[]
+  workspaces   Workspace[]
+  tickets      Ticket[]
+
+  @@map("Taxpayer")
+}
+
+model Workspace {
+  id                  String        @id @default(uuid())
+  name                String
+  description         String?
+  periodMonth         Int?
+  periodYear          Int
+  periodType          String        @default("monthly")
+  periodSemester      Int?
+  workspaceLocation   String
+  sriConnectionStatus String        @default("disconnected")
+  taxpayerId          String
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
+
+  taxpayer            Taxpayer      @relation(fields: [taxpayerId], references: [id])
+  invoices            Invoice[]
+  atsFiles            AtsFile[]
+  processSteps        ProcessStep[]
+}
+
+model Invoice {
+  id                   String     @id @default(uuid())
+  issuerName           String
+  issuerCommercialName String?
+  issuerAddress        String?
+  issuerRuc            String
+  
+  number               String
+  authorizationNumber  String
+  emissionType         String     @default("Normal")
+  accessKey            String
+  
+  customerName         String
+  customerId           String
+  customerDate         String
+  customerAddress      String?
+  customerPhone        String?
+  customerEmail        String?
+  
+  products             Json
+  
+  subtotal             Float
+  iva                  Float
+  total                Float
+
+  type                 String     @default("COMPRA") // "VENTA" o "COMPRA"
+  format               String     @default("XML")
+  taxpayerId           String
+  workspaceId          String?
+  createdAt            DateTime   @default(now())
+  
+  taxpayer             Taxpayer   @relation(fields: [taxpayerId], references: [id])
+  workspace            Workspace? @relation(fields: [workspaceId], references: [id])
+}
+
+model AtsFile {
+  id               String     @id @default(uuid())
+  name             String
+  format           String
+  periodMonth      Int
+  periodYear       Int
+  invoiceCount     Int
+  validationErrors Int
+  taxpayerId       String
+  workspaceId      String?
+  createdAt        DateTime   @default(now())
+
+  taxpayer         Taxpayer   @relation(fields: [taxpayerId], references: [id])
+  workspace        Workspace? @relation(fields: [workspaceId], references: [id])
+}
+
+model ProcessStep {
+  id          String     @id @default(uuid())
+  title       String
+  description String
+  status      String
+  module      String
+  completedAt DateTime?
+  taxpayerId  String
+  workspaceId String?
+  createdAt   DateTime   @default(now())
+
+  taxpayer    Taxpayer   @relation(fields: [taxpayerId], references: [id])
+  workspace   Workspace? @relation(fields: [workspaceId], references: [id])
+}
+
+model AuditEvent {
+  id         String   @id @default(uuid())
+  action     String
+  module     String
+  details    String
+  timestamp  DateTime @default(now())
+  taxpayerId String
+
+  taxpayer   Taxpayer @relation(fields: [taxpayerId], references: [id])
+}
+
+model Ticket {
+  id          String   @id @default(uuid())
+  subject     String
+  category    String
+  priority    String
+  description String
+  status      String   @default("open")
+  taxpayerId  String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  taxpayer    Taxpayer @relation(fields: [taxpayerId], references: [id])
+}
