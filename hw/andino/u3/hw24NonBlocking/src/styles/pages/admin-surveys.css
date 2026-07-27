@@ -1,0 +1,24 @@
+.admin-surveys {
+	padding: 2.5rem 0 3rem;
+	min-height: 100vh;
+}
+
+.admin-survey-card,
+.admin-surveys-card {
+	background: rgba(255, 255, 255, 0.96);
+	border: 1px solid var(--border);
+	border-radius: 22px;
+	box-shadow: 0 16px 30px rgba(17, 24, 39, 0.08);
+}
+
+.admin-surveys h1,
+.admin-surveys h2,
+.admin-surveys h3 {
+	color: var(--color-primary-dark);
+}
+
+@media (max-width: 768px) {
+	.admin-surveys {
+		padding: 1.5rem 0 2rem;
+	}
+}

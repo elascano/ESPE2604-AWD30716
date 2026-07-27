@@ -1,0 +1,31 @@
+.admin-dashboard {
+	padding: 2.5rem 0 3rem;
+	min-height: 100vh;
+}
+
+.admin-panel,
+.admin-card,
+.stats-card,
+.metric-card {
+	background: rgba(255, 255, 255, 0.96);
+	border: 1px solid var(--border);
+	border-radius: 22px;
+	box-shadow: 0 16px 30px rgba(17, 24, 39, 0.08);
+}
+
+.admin-header,
+.admin-panel h1,
+.admin-panel h2,
+.admin-card h3 {
+	color: var(--color-primary-dark);
+}
+
+.admin-accent {
+	color: var(--color-primary);
+}
+
+@media (max-width: 768px) {
+	.admin-dashboard {
+		padding: 1.5rem 0 2rem;
+	}
+}
