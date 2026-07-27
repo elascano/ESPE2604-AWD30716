@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Coca-Cola 500ml",
+    "price": 1.50,
+    "dateExpiration": "2026-03-15",
+    "daysExpiration": null
+  },
+  {
+    "name": "Pepsi 600ml",
+    "price": 1.45,
+    "dateExpiration": "2026-02-28",
+    "daysExpiration": null
+  },
+  {
+    "name": "Sprite 500ml",
+    "price": 1.40,
+    "dateExpiration": "2026-04-10",
+    "daysExpiration": null
+  },
+  {
+    "name": "Fanta Naranja 500ml",
+    "price": 1.35,
+    "dateExpiration": "2026-02-20",
+    "daysExpiration": null
+  },
+  {
+    "name": "7UP 600ml",
+    "price": 1.30,
+    "dateExpiration": "2026-05-01",
+    "daysExpiration": null
+  }
+]
