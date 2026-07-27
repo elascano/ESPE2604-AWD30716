@@ -1,0 +1,30 @@
+.admin-orders {
+	padding: 2.5rem 0 3rem;
+	min-height: 100vh;
+}
+
+.admin-orders-card,
+.admin-order-card {
+	background: rgba(255, 255, 255, 0.96);
+	border: 1px solid var(--border);
+	border-radius: 22px;
+	box-shadow: 0 16px 30px rgba(17, 24, 39, 0.08);
+}
+
+.admin-orders h1,
+.admin-orders h2,
+.admin-orders h3 {
+	color: var(--text-primary);
+}
+
+.status {
+	border-radius: 999px;
+	padding: 0.25rem 0.75rem;
+	font-weight: 700;
+}
+
+@media (max-width: 768px) {
+	.admin-orders {
+		padding: 1.5rem 0 2rem;
+	}
+}
