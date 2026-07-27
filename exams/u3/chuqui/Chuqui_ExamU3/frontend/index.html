@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Calculator</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="page-shell">
+        <header class="hero">
+            <p class="eyebrow">U3 Exam</p>
+            <h1>Product Calculator</h1>
+            <p class="subtitle">Calculate the total of five products, the VAT of one product, and the expiration time.</p>
+        </header>
+
+        <main class="layout">
+            <section class="panel catalog-panel">
+                <div class="section-head">
+                    <div>
+                        <h2>Available Products</h2>
+                        <p>Local catalog loaded from the backend.</p>
+                    </div>
+                    <button id="reloadCatalogBtn" class="btn btn-ghost" type="button">Refresh catalog</button>
+                </div>
+                <div id="catalogGrid" class="catalog-grid"></div>
+            </section>
+
+            <section class="panel">
+                <div class="section-head">
+                    <div>
+                        <h2>Add product</h2>
+                        <p>Save a new product to MongoDB and make it available for calculations.</p>
+                    </div>
+                </div>
+                <form id="createProductForm" class="create-form">
+                    <label class="field field-wide">
+                        <span>Name</span>
+                        <input id="newProductName" type="text" placeholder="Product name" required>
+                    </label>
+                    <label class="field">
+                        <span>Price</span>
+                        <input id="newProductPrice" type="number" min="0" step="0.01" placeholder="0.00" required>
+                    </label>
+                    <label class="field">
+                        <span>Expiration date</span>
+                        <input id="newProductExpiration" type="date" required>
+                    </label>
+                    <button class="btn btn-primary create-button" type="submit">Save product</button>
+                </form>
+                <div id="createProductResult" class="result-box empty">Save a product to add it to the catalog.</div>
+            </section>
+
+            <section class="grid-two">
+                <article class="panel">
+                    <div class="section-head">
+                        <div>
+                            <h2>1. Cart total</h2>
+                            <p>Enter five products and their prices.</p>
+                        </div>
+                    </div>
+                    <form id="cartForm" class="stack">
+                        <div id="cartRows" class="cart-rows"></div>
+                        <button class="btn btn-primary" type="submit">Calculate total</button>
+                    </form>
+                    <div id="cartResult" class="result-box empty">Enter five products to calculate the total.</div>
+                </article>
+
+                <article class="panel">
+                    <div class="section-head">
+                        <div>
+                            <h2>2. VAT</h2>
+                            <p>Find a product and calculate only the VAT.</p>
+                        </div>
+                    </div>
+                    <form id="ivaForm" class="stack">
+                        <label class="field">
+                            <span>Product</span>
+                            <input id="ivaName" list="productNames" type="text" placeholder="Type or select a product" required>
+                        </label>
+                        <button class="btn btn-secondary" type="submit">Calculate VAT</button>
+                    </form>
+                    <div id="ivaResult" class="result-box empty">Select a product to see the VAT.</div>
+                </article>
+            </section>
+
+            <section class="panel">
+                <div class="section-head">
+                    <div>
+                        <h2>3. Expiration</h2>
+                        <p>Enter the product and its expiration date.</p>
+                    </div>
+                </div>
+                <form id="expirationForm" class="expiration-form">
+                    <label class="field field-wide">
+                        <span>Product</span>
+                        <input id="expirationName" list="productNames" type="text" placeholder="Type or select a product" required>
+                    </label>
+                    <label class="field">
+                        <span>Day</span>
+                        <input id="dayInput" type="number" min="1" max="31" placeholder="1" required>
+                    </label>
+                    <label class="field">
+                        <span>Month</span>
+                        <input id="monthInput" type="number" min="1" max="12" placeholder="1" required>
+                    </label>
+                    <label class="field">
+                        <span>Year</span>
+                        <input id="yearInput" type="number" min="2026" max="2100" placeholder="2026" required>
+                    </label>
+                    <button class="btn btn-accent" type="submit">Calculate expiration</button>
+                </form>
+                <div id="expirationResult" class="result-box empty">Enter a valid date to calculate the remaining days.</div>
+            </section>
+
+            <datalist id="productNames"></datalist>
+        </main>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
