@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Supplies Control - Fabula Dental</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Fabula Dental - Supplies</h1>
+      <a href="form.html" class="btn">New Supply</a>
+    </header>
+
+    <section class="filters">
+      <input type="text" id="searchName" placeholder="Search by name...">
+      
+      <select id="filterStatus">
+        <option value="">All statuses</option>
+        <option value="Current">Current</option>
+        <option value="NextExpiration">Next Expiration</option>
+        <option value="Expired">Expired</option>
+      </select>
+
+      <input type="number" id="filterQuantity" min="0" placeholder="Max quantity...">
+      
+      <button id="clearFiltersBtn" class="btn btn-secondary">Clear filters</button>
+    </section>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Quantity</th>
+          <th>Unit Cost</th>
+          <th>Order Date</th>
+          <th>Expiration Date</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="suppliesTableBody">
+        <!-- populated by list.js -->
+      </tbody>
+    </table>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/list.js"></script>
+</body>
+</html>
