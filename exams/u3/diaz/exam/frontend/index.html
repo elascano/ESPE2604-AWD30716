@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ShopCart — Product Catalog</title>
+<link rel="stylesheet" href="css/styles.css">
+
+</head>
+
+<body>
+
+<div class="top-accent"></div>
+
+<header class="navbar">
+    <div class="brand">
+        <span class="brand-mark" aria-hidden="true">
+            <span></span><span></span><span></span><span></span>
+        </span>
+        <span class="brand-name">ShopCart</span>
+    </div>
+    <div class="progress-indicator" id="progressIndicator">0/5 products</div>
+</header>
+
+<nav class="tabs" role="tablist">
+    <button class="tab active" data-tab="catalog" role="tab" aria-selected="true">01 — PRODUCT CATALOG</button>
+    <button class="tab" data-tab="vat" role="tab" aria-selected="false">02 — VAT CALCULATOR</button>
+    <button class="tab" data-tab="expiration" role="tab" aria-selected="false">03 — EXPIRATION TRACKER</button>
+</nav>
+
+<main class="page">
+
+    <!-- ===================== TAB 1: PRODUCT CATALOG ===================== -->
+    <section class="panel" id="panel-catalog">
+
+        <h1>Product Catalog</h1>
+        <p class="subtitle">Enter all 5 products to calculate the total price.</p>
+
+        <form id="catalogForm">
+
+            <div class="cards" id="productCards"></div>
+
+            <div class="summary-box">
+                <div class="summary-header" id="summaryHeader">SUMMARY — 0 OF 5 PRODUCTS ENTERED</div>
+                <div class="summary-body" id="summaryBody">
+                    <p class="empty">No products entered yet.</p>
+                </div>
+            </div>
+
+            <div class="actions">
+                <button type="submit" class="btn-primary" id="saveBtn">Save products</button>
+                <span class="save-status" id="saveStatus"></span>
+            </div>
+
+        </form>
+
+    </section>
+
+    <!-- ===================== TAB 2: VAT CALCULATOR ===================== -->
+    <section class="panel hidden" id="panel-vat">
+
+        <h1>VAT Calculator</h1>
+        <p class="subtitle">Breakdown of VAT for every saved product.</p>
+
+        <div class="cards" id="vatCards">
+            <p class="empty">No saved products yet. Save products in the catalog tab first.</p>
+        </div>
+
+        <div class="summary-box">
+            <div class="summary-header">TOTAL — PRICE + VAT</div>
+            <div class="summary-body" id="vatTotals">
+                <p class="empty">Nothing to calculate yet.</p>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- ===================== TAB 3: EXPIRATION TRACKER ===================== -->
+    <section class="panel hidden" id="panel-expiration">
+
+        <h1>Expiration Tracker</h1>
+        <p class="subtitle">Days remaining before each product expires.</p>
+
+        <div class="cards" id="expirationCards">
+            <p class="empty">No saved products yet. Save products in the catalog tab first.</p>
+        </div>
+
+    </section>
+
+</main>
+
+<script src="js/app.js"></script>
+
+</body>
+
+</html>
