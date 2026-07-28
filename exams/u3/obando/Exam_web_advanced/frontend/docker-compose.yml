@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: .
+    container_name: panda_frontend
+    ports:
+      - "8080:80"
+    restart: always
