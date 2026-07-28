@@ -1,0 +1,12 @@
+{
+  "name": "local-store-frontend",
+  "version": "1.0.0",
+  "description": "Static file server for the Local Store front end.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

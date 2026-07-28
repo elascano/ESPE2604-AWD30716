@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Local Store</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="store-header">
+    <h1>Local Store</h1>
+  </header>
+
+  <div class="layout">
+    <section id="products" class="products"></section>
+
+    <aside class="cart">
+      <div class="cart-header">
+        <h3>Total</h3>
+        <button id="clear-cart" class="clear-link" type="button">Clear</button>
+      </div>
+      <ul id="cart-list"></ul>
+      <div class="total">$<span id="total">0.00</span></div>
+    </aside>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

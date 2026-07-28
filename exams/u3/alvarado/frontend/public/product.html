@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Detail</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="detail">
+    <a class="back-link" href="index.html">&larr; Back</a>
+
+    <div class="detail-top">
+      <div class="detail-image-block">
+        <h2>Product</h2>
+        <img id="product-image" src="" alt="Product">
+      </div>
+      <div class="description-block">
+        <h3>Description</h3>
+        <p id="product-description">Loading...</p>
+      </div>
+    </div>
+
+    <div class="info-row">
+      <span class="info-label">IVA:</span>
+      <span id="vat-amount">-</span>
+    </div>
+
+    <div class="expiration-block">
+      <h4>Expiration time</h4>
+      <form id="expiration-form">
+        <input type="number" id="day" placeholder="DD" min="1" max="31" required>
+        <input type="number" id="month" placeholder="MM" min="1" max="12" required>
+        <input type="number" id="year" placeholder="YYYY" min="2024" required>
+        <button type="submit">Calculate</button>
+      </form>
+      <p id="expiration-result"></p>
+    </div>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/product.js"></script>
+</body>
+</html>
