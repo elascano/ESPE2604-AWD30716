@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A premium MVC web application that manages products, computes shopping cart totals, calculates IVA tax, and tracks expiration dates using a Node.js backend.">
+  <title>Product Computation Hub</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="app-header">
+    <div class="container header-container">
+      <div class="logo-area">
+        <span class="logo-icon">⚡</span>
+        <div>
+          <h1>Product Computation Hub</h1>
+          <p class="subtitle">Secure MVC Architecture &bull; Supabase Engine</p>
+        </div>
+      </div>
+      <div class="api-status-badge">
+        <span class="status-dot green" id="status-dot"></span>
+        <span class="status-text" id="status-text">Connecting to Backend...</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container app-grid">
+    
+    <!-- FEATURE 1: ADD PRODUCT & CART TOTAL -->
+    <section class="card feature-card col-span-2" aria-labelledby="title-cart">
+      <div class="card-header">
+        <span class="card-number">01</span>
+        <h2 id="title-cart">Shopping Cart &amp; Totals</h2>
+      </div>
+      
+      <div class="cart-layout">
+        <!-- Add Product Form -->
+        <form id="add-product-form" class="add-form">
+          <h3>Add Product to Cart</h3>
+          
+          <div class="form-group">
+            <label for="add-name">Product Name</label>
+            <input type="text" id="add-name" name="name" placeholder="e.g. Milk, Bread, Coffee" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="add-price">Price ($)</label>
+            <input type="number" id="add-price" name="price" placeholder="0.00" step="0.01" min="0" required>
+          </div>
+          
+          <div class="form-group">
+            <label>Expiration Date</label>
+            <div class="date-inputs">
+              <div>
+                <label for="add-day" class="sr-only">Day</label>
+                <input type="number" id="add-day" name="day" placeholder="DD" min="1" max="31" required>
+              </div>
+              <div>
+                <label for="add-month" class="sr-only">Month</label>
+                <input type="number" id="add-month" name="month" placeholder="MM" min="1" max="12" required>
+              </div>
+              <div>
+                <label for="add-year" class="sr-only">Year</label>
+                <input type="number" id="add-year" name="year" placeholder="YYYY" min="2026" max="2100" required>
+              </div>
+            </div>
+          </div>
+          
+          <button type="submit" id="btn-add" class="btn btn-primary">Add Product</button>
+        </form>
+        
+        <!-- Cart Output -->
+        <div class="cart-details">
+          <div class="cart-title-row">
+            <h3>Current Products (<span id="product-count">0</span>/5)</h3>
+            <button type="button" id="btn-clear" class="btn btn-secondary btn-sm">Clear Cart</button>
+          </div>
+          
+          <div class="table-container">
+            <table class="products-table">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Price</th>
+                  <th>Expiration (DD/MM/YYYY)</th>
+                </tr>
+              </thead>
+              <tbody id="cart-list">
+                <tr>
+                  <td colspan="3" class="empty-state">No products added. Add products on the left.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <div class="total-bar">
+            <span>Total Cart Price:</span>
+            <span class="total-price" id="total-price">$0.00</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Right Column Layout for Feature 2 and Feature 3 -->
+    <div class="right-column app-grid-sub">
+
+      <!-- FEATURE 2: FIND PRODUCT & COMPUTE IVA -->
+      <section class="card feature-card" aria-labelledby="title-iva">
+        <div class="card-header">
+          <span class="card-number">02</span>
+          <h2 id="title-iva">Calculate IVA</h2>
+        </div>
+        
+        <form id="iva-form" class="query-form">
+          <div class="form-group">
+            <label for="iva-search-name">Product Name to Find</label>
+            <div class="search-input-group">
+              <input type="text" id="iva-search-name" placeholder="Search product name..." required>
+              <button type="submit" id="btn-iva" class="btn btn-primary">Calculate</button>
+            </div>
+          </div>
+        </form>
+
+        <div class="result-box" id="iva-result-box">
+          <span class="result-placeholder">Enter a product name above to calculate its IVA.</span>
+        </div>
+      </section>
+
+      <!-- FEATURE 3: FIND PRODUCT & COMPUTE EXPIRATION DAYS -->
+      <section class="card feature-card" aria-labelledby="title-expiration">
+        <div class="card-header">
+          <span class="card-number">03</span>
+          <h2 id="title-expiration">Remaining Days to Sell</h2>
+        </div>
+        
+        <form id="expiration-form" class="query-form">
+          <div class="form-group">
+            <label for="expiration-search-name">Product Name to Find</label>
+            <div class="search-input-group">
+              <input type="text" id="expiration-search-name" placeholder="Search product name..." required>
+              <button type="submit" id="btn-expiration" class="btn btn-primary">Compute</button>
+            </div>
+          </div>
+        </form>
+
+        <div class="result-box" id="expiration-result-box">
+          <span class="result-placeholder">Enter a product name above to verify expiration details.</span>
+        </div>
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- Script -->
+  <script src="app.js"></script>
+</body>
+</html>

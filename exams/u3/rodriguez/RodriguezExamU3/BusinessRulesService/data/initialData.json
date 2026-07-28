@@ -1,0 +1,102 @@
+[
+  {
+    "id": 1,
+    "name": "Organic Milk 1L",
+    "price": 3.50,
+    "expiration_day": 15,
+    "expiration_month": 8,
+    "expiration_year": 2026,
+    "iva_amount": 0,
+    "days_left": 0
+  },
+  {
+    "id": 2,
+    "name": "Whole Wheat Bread",
+    "price": 2.20,
+    "expiration_day": 30,
+    "expiration_month": 7,
+    "expiration_year": 2026,
+    "iva_amount": 0,
+    "days_left": 0
+  },
+  {
+    "id": 3,
+    "name": "Greek Yogurt 500g",
+    "price": 4.80,
+    "expiration_day": 20,
+    "expiration_month": 7,
+    "expiration_year": 2026,
+    "iva_amount": 0,
+    "days_left": 0
+  },
+  {
+    "id": 4,
+    "name": "Cereal Box",
+    "price": 5.90,
+    "expiration_day": 10,
+    "expiration_month": 12,
+    "expiration_year": 2026,
+    "iva_amount": 0,
+    "days_left": 0
+  },
+  {
+    "id": 5,
+    "name": "Fresh Apples 1kg",
+    "price": 3.00,
+    "expiration_day": 5,
+    "expiration_month": 8,
+    "expiration_year": 2026,
+    "iva_amount": 0,
+    "days_left": 0
+  },
+  {
+    "id": 6,
+    "name": "Chocolate Bar",
+    "price": 1.80,
+    "expiration_day": 25,
+    "expiration_month": 6,
+    "expiration_year": 2026,
+    "iva_amount": 0,
+    "days_left": 0
+  },
+  {
+    "id": 7,
+    "name": "Orange Juice 1L",
+    "price": 3.20,
+    "expiration_day": 1,
+    "expiration_month": 9,
+    "expiration_year": 2026,
+    "iva_amount": 0,
+    "days_left": 0
+  },
+  {
+    "id": 8,
+    "name": "Potato Chips",
+    "price": 2.50,
+    "expiration_day": 14,
+    "expiration_month": 10,
+    "expiration_year": 2026,
+    "iva_amount": 0,
+    "days_left": 0
+  },
+  {
+    "id": 9,
+    "name": "Fresh Salmon 300g",
+    "price": 12.99,
+    "expiration_day": 29,
+    "expiration_month": 7,
+    "expiration_year": 2026,
+    "iva_amount": 0,
+    "days_left": 0
+  },
+  {
+    "id": 10,
+    "name": "Cheddar Cheese 200g",
+    "price": 4.50,
+    "expiration_day": 5,
+    "expiration_month": 9,
+    "expiration_year": 2026,
+    "iva_amount": 0,
+    "days_left": 0
+  }
+]

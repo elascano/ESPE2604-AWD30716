@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modify Record - Product</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="application-container" style="max-width: 680px;">
+    <header class="navigation-header">
+      <h1 class="brand-title">Modify Product Record</h1>
+      <a href="/" class="button-secondary">Return to Dashboard</a>
+    </header>
+
+    <% if (errorMessage) { %>
+      <div class="alert-message alert-error">
+        <span><%= errorMessage %></span>
+      </div>
+    <% } %>
+
+    <section class="panel-section">
+      <div class="panel-header">
+        <h2 class="panel-title">Updating Record Identifier: <%= record.id || record._id %></h2>
+      </div>
+      <div class="panel-body">
+        <form action="/update/<%= record.id || record._id %>" method="POST">
+          
+          <div class="form-field-group">
+            <label class="form-label" for="name">Product Name</label>
+            <input class="form-input" type="text" id="name" name="name" value="<%= record.name !== undefined ? record.name : '' %>" required>
+          </div>
+
+          <div class="form-field-group">
+            <label class="form-label" for="price">Unit Price ($)</label>
+            <input class="form-input" type="number" id="price" name="price" value="<%= record.price !== undefined ? record.price : '' %>" step="0.01" min="0" required>
+          </div>
+
+          <div class="form-row-three">
+            <div class="form-field-group">
+              <label class="form-label" for="expiration_day">Exp. Day (1-31)</label>
+              <input class="form-input" type="number" id="expiration_day" name="expiration_day" min="1" max="31" value="<%= record.expiration_day !== undefined ? record.expiration_day : '' %>" required>
+            </div>
+            <div class="form-field-group">
+              <label class="form-label" for="expiration_month">Exp. Month (1-12)</label>
+              <input class="form-input" type="number" id="expiration_month" name="expiration_month" min="1" max="12" value="<%= record.expiration_month !== undefined ? record.expiration_month : '' %>" required>
+            </div>
+            <div class="form-field-group">
+              <label class="form-label" for="expiration_year">Exp. Year</label>
+              <input class="form-input" type="number" id="expiration_year" name="expiration_year" min="2020" max="2050" value="<%= record.expiration_year !== undefined ? record.expiration_year : '' %>" required>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 12px; margin-top: 24px;">
+            <button type="submit" class="button-primary" style="flex: 1;">Save Modifications</button>
+            <a href="/" class="button-secondary" style="flex: 1; text-align: center;">Cancel Operation</a>
+          </div>
+        </form>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

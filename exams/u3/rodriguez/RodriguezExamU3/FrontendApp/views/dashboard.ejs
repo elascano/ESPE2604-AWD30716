@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Dashboard</title>
+  <!-- Modern typography from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="application-container">
+    <header class="navigation-header">
+      <div class="header-brand-group">
+        <h1 class="brand-title">Product Dashboard</h1>
+      </div>
+    </header>
+
+    <% if (errorMessage) { %>
+      <div class="alert-message alert-error">
+        <span><%= errorMessage %></span>
+        <a href="/" class="alert-close">Dismiss</a>
+      </div>
+    <% } %>
+
+    <% if (successMessage) { %>
+      <div class="alert-message alert-success">
+        <span><%= successMessage %></span>
+        <a href="/" class="alert-close">Dismiss</a>
+      </div>
+    <% } %>
+
+    <!-- Main Statistics Summary Banner -->
+    <section class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-details">
+          <div class="metric-label">Total Products</div>
+          <div class="metric-value"><%= statistics.totalRecords %></div>
+        </div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-details">
+          <div class="metric-label">Active Items</div>
+          <div class="metric-value"><%= statistics.activeProducts %></div>
+        </div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-details">
+          <div class="metric-label">Expired Items</div>
+          <div class="metric-value"><%= statistics.expiredProducts %></div>
+        </div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-details">
+          <div class="metric-label">Average Price</div>
+          <div class="metric-value">$<%= statistics.averagePriceValue.toFixed(2) %></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Features Layout Grid -->
+    <section class="features-layout">
+      <!-- Feature 2 & Feature 3 Interactive Calculators -->
+      <div class="calculator-panel">
+        <div class="glass-card flex-card">
+          <div class="panel-header">
+            <h2 class="panel-title">Product Calculator Hub</h2>
+            <p class="panel-subtitle">Select a product to inspect specific financial and time metrics</p>
+          </div>
+          <div class="panel-body">
+            <div class="form-field-group">
+              <label class="form-label" for="calculator-product-select">Select Target Product</label>
+              <select id="calculator-product-select" class="form-select">
+                <option value="">-- Choose a Product --</option>
+                <% records.forEach(function(product) { %>
+                  <option value="<%= product.id || product._id %>">
+                    <%= product.name %> ($<%= Number(product.price).toFixed(2) %>)
+                  </option>
+                <% }); %>
+              </select>
+            </div>
+
+            <div class="calculator-widgets-grid">
+              <!-- Feature 2 Card: IVA Calculation -->
+              <div class="widget-card" id="iva-widget">
+                <div class="widget-header">
+                  <span class="widget-badge">Feature 2</span>
+                  <h3 class="widget-title">Computed IVA (19%)</h3>
+                </div>
+                <div class="widget-body">
+                  <div class="calculator-placeholder" id="iva-placeholder">Select a product to view IVA</div>
+                  <div class="calculator-result hidden" id="iva-result-container">
+                    <span class="result-label">IVA Amount:</span>
+                    <span class="result-value" id="iva-value">$0.00</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Feature 3 Card: Expiration Time Calculation -->
+              <div class="widget-card" id="expiration-widget">
+                <div class="widget-header">
+                  <span class="widget-badge">Feature 3</span>
+                  <h3 class="widget-title">Days Left to Sell</h3>
+                </div>
+                <div class="widget-body">
+                  <div class="calculator-placeholder" id="exp-placeholder">Select a product to check date</div>
+                  <div class="calculator-result hidden" id="exp-result-container">
+                    <span class="result-label">Expiration status:</span>
+                    <span class="result-badge" id="exp-days-badge">0 Days</span>
+                    <span class="result-date-info" id="exp-date-info">Date: --/--/----</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 1: Shopping Cart Integration -->
+      <div class="cart-panel">
+        <div class="glass-card full-height">
+          <div class="panel-header flex-header">
+            <div>
+              <h2 class="panel-title">Shopping Cart</h2>
+              <p class="panel-subtitle">Feature 1: Interactive Total Price Counter</p>
+            </div>
+            <div id="cart-counter-badge" class="cart-pill">0 Items</div>
+          </div>
+          <div class="panel-body flex-column">
+            <!-- Alert for exactly 5 products or cart capacity -->
+            <div id="cart-target-alert" class="cart-info-alert hidden">
+              <span>Exactly 5 products in cart computed!</span>
+            </div>
+
+            <div class="cart-items-list" id="cart-items-container">
+              <div class="cart-empty-state">
+                <p>Your shopping cart is empty.</p>
+                <span>Click "Add to Cart" on any product from the catalog below.</span>
+              </div>
+            </div>
+
+            <div class="cart-footer">
+              <div class="cart-totals-summary">
+                <div class="total-row">
+                  <span class="total-label">Subtotal</span>
+                  <span class="total-value" id="cart-subtotal">$0.00</span>
+                </div>
+                <div class="total-row">
+                  <span class="total-label font-bold">Total Price (incl. IVA)</span>
+                  <span class="total-value text-accent font-bold" id="cart-total">$0.00</span>
+                </div>
+              </div>
+              <button id="clear-cart-btn" class="button-outline" style="width: 100%; margin-top: 12px;">Clear Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <main class="content-layout">
+      <!-- Register Form Section -->
+      <section class="panel-section">
+        <div class="glass-card">
+          <div class="panel-header">
+            <h2 class="panel-title">Register New Product</h2>
+            <p class="panel-subtitle">Create a new item in the database with customized expiration inputs</p>
+          </div>
+          <div class="panel-body">
+            <form action="/create" method="POST">
+              <div class="form-field-group">
+                <label class="form-label" for="product-name-input">Product Name</label>
+                <input class="form-input" type="text" id="product-name-input" name="name" required placeholder="e.g. Organic Strawberries 500g">
+              </div>
+
+              <div class="form-field-group">
+                <label class="form-label" for="product-price-input">Unit Price ($)</label>
+                <input class="form-input" type="number" id="product-price-input" name="price" step="0.01" min="0" required placeholder="0.00">
+              </div>
+
+              <div class="form-row-three">
+                <div class="form-field-group">
+                  <label class="form-label" for="product-exp-day">Exp. Day (1-31)</label>
+                  <input class="form-input" type="number" id="product-exp-day" name="expiration_day" min="1" max="31" required placeholder="Day">
+                </div>
+                <div class="form-field-group">
+                  <label class="form-label" for="product-exp-month">Exp. Month (1-12)</label>
+                  <input class="form-input" type="number" id="product-exp-month" name="expiration_month" min="1" max="12" required placeholder="Month">
+                </div>
+                <div class="form-field-group">
+                  <label class="form-label" for="product-exp-year">Exp. Year</label>
+                  <input class="form-input" type="number" id="product-exp-year" name="expiration_year" min="2020" max="2050" required placeholder="Year" value="2026">
+                </div>
+              </div>
+
+              <button type="submit" class="button-primary" style="width: 100%; margin-top: 24px;">Register Product</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- Data Table Portfolio Section -->
+      <section class="panel-section wide-panel">
+        <div class="glass-card">
+          <div class="panel-header flex-header">
+            <div>
+              <h2 class="panel-title">Registered Products Catalog</h2>
+              <p class="panel-subtitle">Browse and filter products currently active in the database</p>
+            </div>
+            <div class="filter-bar-container">
+              <form class="filter-form" action="/" method="GET">
+                <select class="form-select" name="attribute" style="width: 160px;">
+                  <option value="name" <%= filterAttribute === 'name' ? 'selected' : '' %>>Product Name</option>
+                  <option value="price" <%= filterAttribute === 'price' ? 'selected' : '' %>>Price</option>
+                  <option value="expiration_year" <%= filterAttribute === 'expiration_year' ? 'selected' : '' %>>Exp. Year</option>
+                </select>
+                <input class="form-input" type="text" name="query" placeholder="Filter parameter..." value="<%= filterQuery %>" style="width: 180px;">
+                <button type="submit" class="button-primary">Filter</button>
+                <% if (filterQuery) { %>
+                  <a href="/" class="button-secondary">Reset</a>
+                <% } %>
+              </form>
+            </div>
+          </div>
+
+          <div class="table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Product Name</th>
+                  <th>Price</th>
+                  <th>Expiration Date</th>
+                  <th>Computed IVA</th>
+                  <th>Days Left</th>
+                  <th>Management & Sales Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% if (records && records.length > 0) { %>
+                  <% records.forEach(function(product) { %>
+                    <tr class="product-row">
+                      <td class="cell-bold"><%= product.id || product._id %></td>
+                      <td>
+                        <div class="product-name-cell">
+                          <span class="product-title-text"><%= product.name %></span>
+                        </div>
+                      </td>
+                      <td class="cell-price">$<%= Number(product.price || 0).toFixed(2) %></td>
+                      <td>
+                        <span class="date-badge">
+                          <%= String(product.expiration_day).padStart(2, '0') %>/<%= String(product.expiration_month).padStart(2, '0') %>/<%= product.expiration_year %>
+                        </span>
+                      </td>
+                      <td class="cell-iva">$<%= Number(product.iva_amount || 0).toFixed(2) %></td>
+                      <td>
+                        <% if (product.days_left <= 0) { %>
+                          Expired (<%= product.days_left %>d)
+                        <% } else if (product.days_left <= 10) { %>
+                          Expiring Soon (<%= product.days_left %>d)
+                        <% } else { %>
+                          <%= product.days_left %> Days Left
+                        <% } %>
+                      </td>
+                      <td>
+                        <div class="table-actions-cell">
+                          <button type="button" class="button-primary btn-add-to-cart" data-id="<%= product.id || product._id %>">Add to Cart</button>
+                          <a href="/edit/<%= product.id || product._id %>" class="button-secondary">Modify</a>
+                          <form action="/delete/<%= product.id || product._id %>" method="POST" style="display:inline;" onsubmit="return confirm('Confirm deletion of this product?');">
+                            <button type="submit" class="button-danger">Remove</button>
+                          </form>
+                        </div>
+                      </td>
+                    </tr>
+                  <% }); %>
+                <% } else { %>
+                  <tr>
+                    <td colspan="7" class="table-empty-message">
+                      No products matched the current search filter or catalog criteria.
+                    </td>
+                  </tr>
+                <% } %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Client-Side Reactive Logic for Cart and Calculators -->
+  <script>
+    // Expose database records to browser context
+    const dbProducts = <%- JSON.stringify(records) %>;
+
+    // Element selectors
+    const productSelect = document.getElementById('calculator-product-select');
+    
+    // IVA Widget elements
+    const ivaPlaceholder = document.getElementById('iva-placeholder');
+    const ivaResultContainer = document.getElementById('iva-result-container');
+    const ivaValue = document.getElementById('iva-value');
+
+    // Expiration Widget elements
+    const expPlaceholder = document.getElementById('exp-placeholder');
+    const expResultContainer = document.getElementById('exp-result-container');
+    const expDaysBadge = document.getElementById('exp-days-badge');
+    const expDateInfo = document.getElementById('exp-date-info');
+
+    // Cart Elements
+    const cartItemsContainer = document.getElementById('cart-items-container');
+    const cartCounterBadge = document.getElementById('cart-counter-badge');
+    const cartSubtotal = document.getElementById('cart-subtotal');
+    const cartTotal = document.getElementById('cart-total');
+    const cartTargetAlert = document.getElementById('cart-target-alert');
+    const clearCartBtn = document.getElementById('clear-cart-btn');
+
+    // Shopping Cart State
+    let shoppingCart = [];
+
+    // Initialize Cart from localStorage if available
+    try {
+      const storedCart = localStorage.getItem('shopping_cart_v1');
+      if (storedCart) {
+        shoppingCart = JSON.parse(storedCart);
+        // Validate items still exist in dbProducts (in case they were deleted)
+        shoppingCart = shoppingCart.filter(cartItem => 
+          dbProducts.some(dbProd => String(dbProd.id || dbProd._id) === String(cartItem.id))
+        );
+      }
+    } catch (e) {
+      console.error("Failed to load cart from storage", e);
+    }
+
+    // 1. Calculator selection handler (Features 2 and 3)
+    productSelect.addEventListener('change', (e) => {
+      const productId = e.target.value;
+      if (!productId) {
+        resetCalculatorWidgets();
+        return;
+      }
+
+      const product = dbProducts.find(p => String(p.id || p._id) === String(productId));
+      if (!product) {
+        resetCalculatorWidgets();
+        return;
+      }
+
+      // Feature 2: Render Computed IVA (19%)
+      const price = Number(product.price) || 0;
+      const iva = price * 0.19;
+      ivaPlaceholder.classList.add('hidden');
+      ivaResultContainer.classList.remove('hidden');
+      ivaValue.textContent = `$${iva.toFixed(2)}`;
+
+      // Feature 3: Render Expiration Days Left
+      const days = Number(product.days_left);
+      expPlaceholder.classList.add('hidden');
+      expResultContainer.classList.remove('hidden');
+      
+      const dayStr = String(product.expiration_day).padStart(2, '0');
+      const monthStr = String(product.expiration_month).padStart(2, '0');
+      expDateInfo.textContent = `Date: ${dayStr}/${monthStr}/${product.expiration_year}`;
+
+      // Style badge according to urgency
+      expDaysBadge.className = 'result-badge'; // Reset classes
+      if (days <= 0) {
+        expDaysBadge.classList.add('badge-expired');
+        expDaysBadge.textContent = `Expired (${days} days ago)`;
+      } else if (days <= 10) {
+        expDaysBadge.classList.add('badge-warning');
+        expDaysBadge.textContent = `${days} Days (Expiring!)`;
+      } else {
+        expDaysBadge.classList.add('badge-active');
+        expDaysBadge.textContent = `${days} Days Left`;
+      }
+    });
+
+    function resetCalculatorWidgets() {
+      ivaPlaceholder.classList.remove('hidden');
+      ivaResultContainer.classList.add('hidden');
+      
+      expPlaceholder.classList.remove('hidden');
+      expResultContainer.classList.add('hidden');
+    }
+
+    // 2. Shopping Cart Actions (Feature 1)
+    document.querySelectorAll('.btn-add-to-cart').forEach(button => {
+      button.addEventListener('click', (e) => {
+        const id = button.getAttribute('data-id');
+        addToCart(id);
+      });
+    });
+
+    clearCartBtn.addEventListener('click', () => {
+      shoppingCart = [];
+      updateCartUI();
+    });
+
+    function addToCart(productId) {
+      const product = dbProducts.find(p => String(p.id || p._id) === String(productId));
+      if (!product) return;
+
+      const existingItem = shoppingCart.find(item => String(item.id) === String(productId));
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        shoppingCart.push({
+          id: productId,
+          name: product.name,
+          price: Number(product.price),
+          quantity: 1
+        });
+      }
+      updateCartUI();
+      triggerMicroAnimation(productId);
+    }
+
+    function removeFromCart(productId) {
+      shoppingCart = shoppingCart.filter(item => String(item.id) !== String(productId));
+      updateCartUI();
+    }
+
+    function updateQuantity(productId, delta) {
+      const item = shoppingCart.find(item => String(item.id) === String(productId));
+      if (!item) return;
+
+      item.quantity += delta;
+      if (item.quantity <= 0) {
+        removeFromCart(productId);
+      } else {
+        updateCartUI();
+      }
+    }
+
+    function updateCartUI() {
+      // Save cart state
+      localStorage.setItem('shopping_cart_v1', JSON.stringify(shoppingCart));
+
+      // Calculate totals
+      let totalItemCount = 0;
+      let subtotalSum = 0;
+
+      shoppingCart.forEach(item => {
+        totalItemCount += item.quantity;
+        subtotalSum += item.price * item.quantity;
+      });
+
+      // Update badge count
+      cartCounterBadge.textContent = `${totalItemCount} Item${totalItemCount !== 1 ? 's' : ''}`;
+
+      // Render cart items list
+      if (shoppingCart.length === 0) {
+        cartItemsContainer.innerHTML = `
+          <div class="cart-empty-state">
+            <p>Your shopping cart is empty.</p>
+            <span>Click "Add to Cart" on any product from the catalog below.</span>
+          </div>
+        `;
+      } else {
+        cartItemsContainer.innerHTML = shoppingCart.map(item => `
+          <div class="cart-item-row">
+            <div class="cart-item-details">
+              <span class="cart-item-name">${item.name}</span>
+              <span class="cart-item-price">$${item.price.toFixed(2)} each</span>
+            </div>
+            <div class="cart-item-actions">
+              <div class="quantity-controller">
+                <button type="button" class="qty-btn" onclick="updateQuantity('${item.id}', -1)">-</button>
+                <span class="qty-val">${item.quantity}</span>
+                <button type="button" class="qty-btn" onclick="updateQuantity('${item.id}', 1)">+</button>
+              </div>
+              <button type="button" class="cart-remove-btn" onclick="removeFromCart('${item.id}')">Remove</button>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      // Render Totals
+      const totalSum = subtotalSum;
+      cartSubtotal.textContent = `$${(subtotalSum * 0.81).toFixed(2)}`;
+      cartTotal.textContent = `$${subtotalSum.toFixed(2)}`;
+
+      // Alert when capacity matches exactly 5 products
+      if (totalItemCount === 5) {
+        cartTargetAlert.classList.remove('hidden');
+      } else {
+        cartTargetAlert.classList.add('hidden');
+      }
+    }
+
+    function triggerMicroAnimation(productId) {
+      // Find row in table and add animation class
+      const btn = document.querySelector(`.btn-add-to-cart[data-id="${productId}"]`);
+      if (btn) {
+        btn.classList.add('btn-clicked');
+        setTimeout(() => btn.classList.remove('btn-clicked'), 400);
+      }
+    }
+
+    // Run UI update on startup
+    updateCartUI();
+  </script>
+</body>
+</html>
