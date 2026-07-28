@@ -1,0 +1,14 @@
+{
+  "name": "reglas-negocio-generica",
+  "version": "1.0.0",
+  "description": "Business Rules and API Gateway Microservice",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1"
+  }
+}
