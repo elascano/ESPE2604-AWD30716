@@ -2,13 +2,11 @@ import asyncio
 from prisma import Prisma
 
 async def main():
-    prisma = Prisma()
-    await prisma.connect()
+    prisma_client = Prisma()
+    await prisma_client.connect()
+    await prisma_client.product.delete_many()
 
-    # Eliminar datos anteriores si se desea
-    await prisma.product.delete_many()
-
-    productos = [
+    products = [
         {
             "name": "Bread",
             "description": "Pan fresco recién horneado.",
@@ -39,13 +37,13 @@ async def main():
         }
     ]
 
-    print("Insertando productos generales...")
-    for p in productos:
-        prod = await prisma.product.create(data=p)
-        print(f"Producto creado: {prod.name} (ID: {prod.id})")
+    print("Inserting general products...")
+    for product_data in products:
+        product = await prisma_client.product.create(data=product_data)
+        print(f"Product created: {product.name} (ID: {product.id})")
 
-    print("Datos insertados correctamente.")
-    await prisma.disconnect()
+    print("Data inserted successfully.")
+    await prisma_client.disconnect()
 
 if __name__ == '__main__':
     asyncio.run(main())

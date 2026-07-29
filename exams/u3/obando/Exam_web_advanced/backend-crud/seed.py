@@ -29,17 +29,14 @@ async def main():
         }
     ]
 
-    print("Insertando productos...")
+    print("Inserting products...")
     
-    for p_data in products_data:
-        # Create product
-        product = await db.product.create(
-            data=p_data
-        )
-        print(f"Producto creado: {product.name} (ID: {product.id})")
+    for product_data in products_data:
+        product = await db.product.create(data=product_data)
+        print(f"Product created: {product.name} (ID: {product.id})")
 
     await db.disconnect()
-    print("Datos insertados correctamente.")
+    print("Data inserted successfully.")
 
 if __name__ == '__main__':
     asyncio.run(main())

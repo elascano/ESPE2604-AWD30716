@@ -1,8 +1,10 @@
+from typing import List, Optional
+
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from prisma import Prisma
 from pydantic import BaseModel
-from typing import List, Optional
+from prisma import Prisma
+import traceback
 
 app = FastAPI(title="Project CRUD API", port=3000)
 
@@ -24,7 +26,6 @@ async def startup():
 async def shutdown():
     await prisma.disconnect()
 
-
 class OrderItemCreate(BaseModel):
     product_id: str
     quantity: int
@@ -35,6 +36,7 @@ class OrderCreate(BaseModel):
     notes: Optional[str] = None
     items: List[OrderItemCreate]
     total: float
+
 class ProductCreate(BaseModel):
     name: str
     description: str
@@ -42,28 +44,22 @@ class ProductCreate(BaseModel):
     stock: int
     image_url: str
 
-
 @app.get("/products")
 async def get_products(search: Optional[str] = None):
     try:
         if search:
-            products = await prisma.product.find_many(
-                where={
-                    'name': {
-                        'contains': search
-                    }
-                }
+            return await prisma.product.find_many(
+                where={'name': {'contains': search}}
             )
-        else:
-            products = await prisma.product.find_many()
-        return products
+        return await prisma.product.find_many()
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        traceback.print_exc()
+        raise HTTPException(status_code=500, detail=repr(e))
 
 @app.get("/products/{product_id}")
-async def get_product(id: str):
+async def get_product(product_id: str):
     try:
-        product = await prisma.product.find_unique(where={'id': id})
+        product = await prisma.product.find_unique(where={'id': product_id})
         if not product:
             raise HTTPException(status_code=404, detail="Product not found")
         return product
@@ -73,7 +69,6 @@ async def get_product(id: str):
 @app.post("/orders")
 async def create_order(order: OrderCreate):
     try:
-    
         new_order = await prisma.order.create(
             data={
                 'delivery_address': order.delivery_address,
@@ -98,15 +93,13 @@ async def create_order(order: OrderCreate):
 @app.put("/products/{product_id}")
 async def update_product(product_id: str, product: ProductCreate):
     try:
-        updated_product = await prisma.product.update(
+        return await prisma.product.update(
             where={'id': product_id},
             data=product.dict()
         )
-        return updated_product
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-# Seed some mock data for testing
 @app.post("/seed")
 async def seed_data():
     count = await prisma.product.count()
