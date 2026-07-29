@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inventory & Expiration Manager</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+  <div id="app">
+    <header class="bg-blue-600 text-white shadow-lg">
+      <div class="max-w-6xl mx-auto px-4 py-4">
+        <h1 class="text-2xl font-bold">Inventory & Expiration Manager David</h1>
+      </div>
+    </header>
+
+    <nav class="max-w-6xl mx-auto px-4 mt-4">
+      <div class="flex gap-2 flex-wrap">
+        <button v-for="tab in tabs" :key="tab.id"
+          @click="activeTab = tab.id; clearMessages()"
+          :class="['px-4 py-2 rounded-lg font-medium transition', activeTab === tab.id ? 'bg-blue-600 text-white' : 'bg-white text-gray-700 hover:bg-gray-200']">
+          {{ tab.label }}
+        </button>
+      </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-4 py-6">
+
+      <section v-if="activeTab === 'products'">
+        <div class="bg-white rounded-lg shadow p-6 mb-6">
+          <h2 class="text-xl font-bold mb-4">{{ editingProduct ? 'Edit Product' : 'Add Product' }}</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <input v-model="prodForm.name" placeholder="Name" class="border rounded px-3 py-2" />
+            <input v-model="prodForm.description" placeholder="Description" class="border rounded px-3 py-2" />
+            <input v-model.number="prodForm.price" type="number" step="0.01" placeholder="Price" class="border rounded px-3 py-2" />
+            <select v-model="prodForm.category" class="border rounded px-3 py-2">
+              <option value="">-- Select Category --</option>
+              <option v-for="c in categoryOptions" :key="c" :value="c">{{ c }}</option>
+            </select>
+            <div class="grid grid-cols-3 gap-2">
+              <input v-model.number="prodForm.expirationDay" type="number" min="1" max="31" placeholder="DD" class="border rounded px-3 py-2" />
+              <input v-model.number="prodForm.expirationMonth" type="number" min="1" max="12" placeholder="MM" class="border rounded px-3 py-2" />
+              <input v-model.number="prodForm.expirationYear" type="number" min="2024" placeholder="YYYY" class="border rounded px-3 py-2" />
+            </div>
+            <div class="flex gap-2">
+              <button @click="saveProduct" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                {{ editingProduct ? 'Update' : 'Create' }}
+              </button>
+              <button v-if="editingProduct" @click="cancelEditProduct" class="bg-gray-400 text-white px-4 py-2 rounded hover:bg-gray-500">Cancel</button>
+            </div>
+          </div>
+          <p v-if="prodMsg" :class="prodMsgType === 'error' ? 'text-red-500' : 'text-green-600'" class="mt-2 text-sm">{{ prodMsg }}</p>
+        </div>
+
+        <div class="bg-white rounded-lg shadow overflow-x-auto">
+          <table class="w-full min-w-[700px]">
+            <thead class="bg-gray-50">
+              <tr>
+                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-600">Name</th>
+                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-600">Price</th>
+                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-600">Category</th>
+                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-600">Expiration</th>
+                <th class="px-4 py-3 text-right text-sm font-semibold text-gray-600">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="p in products" :key="p._id" class="border-t hover:bg-gray-50">
+                <td class="px-4 py-3 font-medium">{{ p.name }}</td>
+                <td class="px-4 py-3">${{ p.price.toFixed(2) }}</td>
+                <td class="px-4 py-3">
+                  <span class="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded">{{ p.category }}</span>
+                </td>
+                <td class="px-4 py-3">{{ p.expirationDay }}/{{ p.expirationMonth }}/{{ p.expirationYear }}</td>
+                <td class="px-4 py-3 text-right">
+                  <button @click="editProduct(p)" class="text-blue-600 hover:underline mr-3">Edit</button>
+                  <button @click="deleteProduct(p._id)" class="text-red-600 hover:underline">Delete</button>
+                </td>
+              </tr>
+              <tr v-if="products.length === 0">
+                <td colspan="5" class="px-4 py-6 text-center text-gray-400">No products yet</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section v-if="activeTab === 'cart'">
+        <div class="bg-white rounded-lg shadow p-6">
+          <h2 class="text-xl font-bold mb-4">Cart Total Calculator</h2>
+          <p class="text-gray-500 mb-4">Select products to calculate the total price.</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mb-4">
+            <label v-for="p in products" :key="p._id" class="flex items-center gap-2 border rounded px-3 py-2 hover:bg-gray-50 cursor-pointer">
+              <input type="checkbox" :value="p._id" v-model="cartSelected" class="w-4 h-4" />
+              <span>{{ p.name }} — <strong>${{ p.price.toFixed(2) }}</strong></span>
+            </label>
+          </div>
+          <button @click="calculateCartTotal" :disabled="cartSelected.length === 0" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 disabled:opacity-50">
+            Calculate Total ({{ cartSelected.length }} selected)
+          </button>
+
+          <div v-if="cartResult" class="mt-4 p-4 bg-green-50 border border-green-200 rounded">
+            <h3 class="font-bold text-green-800 mb-2">Result</h3>
+            <div v-for="item in cartResult.products" :key="item.id" class="text-sm text-gray-700">
+              {{ item.name }}: ${{ item.price.toFixed(2) }}
+            </div>
+            <hr class="my-2" />
+            <p class="text-lg font-bold text-green-700">Total: ${{ cartResult.total.toFixed(2) }}</p>
+          </div>
+          <p v-if="cartMsg" class="text-red-500 mt-2 text-sm">{{ cartMsg }}</p>
+        </div>
+      </section>
+
+      <section v-if="activeTab === 'iva'">
+        <div class="bg-white rounded-lg shadow p-6">
+          <h2 class="text-xl font-bold mb-4">Product IVA Viewer</h2>
+          <div class="flex gap-3 mb-4">
+            <select v-model="ivaProductId" class="border rounded px-3 py-2 flex-1">
+              <option :value="null">-- Select a Product --</option>
+              <option v-for="p in products" :key="p._id" :value="p._id">{{ p.name }} (${{ p.price.toFixed(2) }})</option>
+            </select>
+            <button @click="calculateIVA" :disabled="!ivaProductId" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 disabled:opacity-50">
+              Calculate IVA
+            </button>
+          </div>
+          <div v-if="ivaResult" class="p-4 bg-blue-50 border border-blue-200 rounded">
+            <p><strong>Product:</strong> {{ ivaResult.productName }}</p>
+            <p><strong>Price:</strong> ${{ ivaResult.price.toFixed(2) }}</p>
+            <p><strong>IVA ({{ ivaResult.ivaPercentage }}%):</strong> ${{ ivaResult.ivaAmount.toFixed(2) }}</p>
+            <p class="mt-2 text-lg font-bold text-blue-700">Total with IVA: ${{ (ivaResult.price + ivaResult.ivaAmount).toFixed(2) }}</p>
+          </div>
+          <p v-if="ivaMsg" class="text-red-500 mt-2 text-sm">{{ ivaMsg }}</p>
+        </div>
+      </section>
+
+      <section v-if="activeTab === 'expiration'">
+        <div class="bg-white rounded-lg shadow p-6">
+          <h2 class="text-xl font-bold mb-4">Expiration Checker</h2>
+
+          <div class="mb-6">
+            <h3 class="font-semibold text-gray-700 mb-2">Option 1: Select a Product</h3>
+            <div class="flex gap-3">
+              <select v-model="expProductId" class="border rounded px-3 py-2 flex-1">
+                <option :value="null">-- Select a Product --</option>
+                <option v-for="p in products" :key="p._id" :value="p._id">
+                  {{ p.name }} (Exp: {{ p.expirationDay }}/{{ p.expirationMonth }}/{{ p.expirationYear }})
+                </option>
+              </select>
+              <button @click="checkExpFromProduct" :disabled="!expProductId" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 disabled:opacity-50">Check</button>
+            </div>
+          </div>
+
+          <div class="mb-6">
+            <h3 class="font-semibold text-gray-700 mb-2">Option 2: Enter Date Manually</h3>
+            <div class="flex gap-3 items-end flex-wrap">
+              <div>
+                <label class="text-sm text-gray-500">Day</label>
+                <input v-model.number="expManual.day" type="number" min="1" max="31" placeholder="DD" class="border rounded px-3 py-2 w-20 block" />
+              </div>
+              <div>
+                <label class="text-sm text-gray-500">Month</label>
+                <input v-model.number="expManual.month" type="number" min="1" max="12" placeholder="MM" class="border rounded px-3 py-2 w-20 block" />
+              </div>
+              <div>
+                <label class="text-sm text-gray-500">Year</label>
+                <input v-model.number="expManual.year" type="number" min="2024" placeholder="YYYY" class="border rounded px-3 py-2 w-28 block" />
+              </div>
+              <button @click="checkExpManual" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Check</button>
+            </div>
+          </div>
+
+          <div v-if="expResult" class="p-4 rounded" :class="expResult.expired ? 'bg-red-50 border border-red-200' : 'bg-green-50 border border-green-200'">
+            <p><strong>Today:</strong> {{ expResult.today }}</p>
+            <p><strong>Expiration:</strong> {{ expResult.expirationDate }}</p>
+            <p class="text-lg font-bold mt-2" :class="expResult.expired ? 'text-red-700' : 'text-green-700'">
+              <span v-if="expResult.expired">Expired {{ Math.abs(expResult.daysRemaining) }} day(s) ago</span>
+              <span v-else>{{ expResult.daysRemaining }} day(s) remaining</span>
+            </p>
+          </div>
+          <p v-if="expMsg" class="text-red-500 mt-2 text-sm">{{ expMsg }}</p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script>
+const CRUD_API = 'http://3.14.29.252:3000/shopDavid';
+const OPS_API  = 'http://3.14.29.252:3001/shopDavid';
+
+    const { createApp, ref, onMounted } = Vue;
+
+    createApp({
+      setup() {
+        const categoryOptions = [
+          'Food', 'Clothing', 'Technology', 'Appliances',
+          'Sports', 'Hygiene', 'Furniture', 'Toys',
+        ];
+
+        const tabs = [
+          { id: 'products',    label: 'Products CRUD' },
+          { id: 'cart',        label: 'Cart Total' },
+          { id: 'iva',         label: 'IVA Viewer' },
+          { id: 'expiration',  label: 'Expiration' },
+        ];
+        const activeTab = ref('products');
+
+        const products = ref([]);
+
+        function clearMessages() {
+          prodMsg.value = ''; cartMsg.value = ''; ivaMsg.value = ''; expMsg.value = '';
+          cartResult.value = null; ivaResult.value = null; expResult.value = null;
+        }
+
+        async function loadProducts() {
+          const { data } = await axios.get(`${CRUD_API}/products`);
+          products.value = data;
+        }
+
+        const prodForm = ref({ name: '', description: '', price: null, category: '', expirationDay: null, expirationMonth: null, expirationYear: null });
+        const editingProduct = ref(null);
+        const prodMsg = ref('');
+        const prodMsgType = ref('success');
+
+        function editProduct(p) {
+          editingProduct.value = p._id;
+          prodForm.value = {
+            name: p.name, description: p.description, price: p.price, category: p.category,
+            expirationDay: p.expirationDay, expirationMonth: p.expirationMonth, expirationYear: p.expirationYear,
+          };
+        }
+
+        function cancelEditProduct() {
+          editingProduct.value = null;
+          prodForm.value = { name: '', description: '', price: null, category: '', expirationDay: null, expirationMonth: null, expirationYear: null };
+          prodMsg.value = '';
+        }
+
+        async function saveProduct() {
+          try {
+            prodMsg.value = '';
+            const body = { ...prodForm.value };
+            if (editingProduct.value) {
+              await axios.put(`${CRUD_API}/products/${editingProduct.value}`, body);
+              prodMsg.value = 'Product updated!';
+            } else {
+              await axios.post(`${CRUD_API}/products`, body);
+              prodMsg.value = 'Product created!';
+            }
+            prodMsgType.value = 'success';
+            prodForm.value = { name: '', description: '', price: null, category: '', expirationDay: null, expirationMonth: null, expirationYear: null };
+            editingProduct.value = null;
+            await loadProducts();
+          } catch (e) {
+            prodMsg.value = e.response?.data?.error || 'Error saving product';
+            prodMsgType.value = 'error';
+          }
+        }
+
+        async function deleteProduct(id) {
+          if (!confirm('Delete this product?')) return;
+          await axios.delete(`${CRUD_API}/products/${id}`);
+          await loadProducts();
+        }
+
+        const cartSelected = ref([]);
+        const cartResult = ref(null);
+        const cartMsg = ref('');
+
+        async function calculateCartTotal() {
+          try {
+            cartMsg.value = ''; cartResult.value = null;
+            const { data } = await axios.post(`${OPS_API}/computations/cart-total`, { productIds: cartSelected.value });
+            cartResult.value = data;
+          } catch (e) {
+            cartMsg.value = e.response?.data?.error || 'Error calculating cart total';
+          }
+        }
+
+        const ivaProductId = ref(null);
+        const ivaResult = ref(null);
+        const ivaMsg = ref('');
+
+        async function calculateIVA() {
+          try {
+            ivaMsg.value = ''; ivaResult.value = null;
+            const { data } = await axios.get(`${OPS_API}/computations/product-iva/${ivaProductId.value}`);
+            ivaResult.value = data;
+          } catch (e) {
+            ivaMsg.value = e.response?.data?.error || 'Error calculating IVA';
+          }
+        }
+
+        const expProductId = ref(null);
+        const expManual = ref({ day: null, month: null, year: null });
+        const expResult = ref(null);
+        const expMsg = ref('');
+
+        async function checkExpFromProduct() {
+          try {
+            expMsg.value = ''; expResult.value = null;
+            const { data } = await axios.post(`${OPS_API}/computations/days-to-expire`, { productId: expProductId.value });
+            expResult.value = data;
+          } catch (e) {
+            expMsg.value = e.response?.data?.error || 'Error checking expiration';
+          }
+        }
+
+        async function checkExpManual() {
+          try {
+            expMsg.value = ''; expResult.value = null;
+            const { data } = await axios.post(`${OPS_API}/computations/days-to-expire`, {
+              day: expManual.value.day, month: expManual.value.month, year: expManual.value.year,
+            });
+            expResult.value = data;
+          } catch (e) {
+            expMsg.value = e.response?.data?.error || 'Error checking expiration';
+          }
+        }
+
+        onMounted(loadProducts);
+
+        return {
+          categoryOptions, tabs, activeTab, clearMessages, products,
+          prodForm, editingProduct, prodMsg, prodMsgType,
+          editProduct, cancelEditProduct, saveProduct, deleteProduct,
+          cartSelected, cartResult, cartMsg, calculateCartTotal,
+          ivaProductId, ivaResult, ivaMsg, calculateIVA,
+          expProductId, expManual, expResult, expMsg,
+          checkExpFromProduct, checkExpManual,
+        };
+      },
+    }).mount('#app');
+  </script>
+</body>
+</html>
