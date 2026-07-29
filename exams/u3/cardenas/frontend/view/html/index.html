@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products Control</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Products Control</h1>
+      <a href="form.html" class="btn">New Product</a>
+    </header>
+
+    <section class="filters">
+      <input type="text" id="searchName" placeholder="Search by name...">
+    </section>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Expiration Date</th>
+          <th>IVA (12%)</th>
+          <th>Left Days</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="suppliesTableBody">
+      </tbody>
+    </table>
+
+    <div class="feature-section">
+      <h2>Shopping Cart</h2>
+      <div class="margin-top-sm margin-bottom-sm">
+        <ul id="cartItemsList" class="cart-list">
+          <li class="empty-cart-text">No products in cart.</li>
+        </ul>
+        <div class="margin-top-sm">
+          <strong>Cart Total:</strong> <span id="cartTotalValue">$0.00</span>
+        </div>
+      </div>
+      <div class="flex-gap">
+        <button id="calculateCartTotalBtn" class="btn">Calculate Total</button>
+        <button id="clearCartBtn" class="btn btn-secondary">Clear Cart</button>
+      </div>
+    </div>
+
+    <div class="feature-section">
+      <h2>Product Calculations Lookup</h2>
+      
+      <div class="lookup-container">
+        <div class="lookup-card">
+          <h3 class="card-title">Find Product IVA</h3>
+          <input type="text" id="ivaSearchName" placeholder="Enter product name..." class="input-field-sm margin-bottom-sm">
+          <button id="getIvaBtn" class="btn">Get IVA</button>
+          <div class="margin-top-sm">
+            <strong>Calculated IVA:</strong> <span id="ivaValue">N/A</span>
+          </div>
+        </div>
+
+        <div class="lookup-card">
+          <h3 class="card-title">Find Product Expiration Left Days</h3>
+          <p class="card-subtitle">Enter name and custom expiration date (3 inputs):</p>
+          <input type="text" id="expSearchName" placeholder="Enter product name..." class="input-field-sm margin-bottom-sm">
+          <div class="flex-gap-xs margin-bottom-sm">
+            <input type="number" id="expDay" placeholder="Day (DD)" min="1" max="31" class="input-field-sm">
+            <input type="number" id="expMonth" placeholder="Month (MM)" min="1" max="12" class="input-field-sm">
+            <input type="number" id="expYear" placeholder="Year (YYYY)" min="2020" max="2100" class="input-field-sm">
+          </div>
+          <button id="getDaysLeftBtn" class="btn">Calculate Days Left</button>
+          <div class="margin-top-sm">
+            <strong>Days Left:</strong> <span id="daysLeftValue">N/A</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="../../model/js/ProductModel.js"></script>
+  <script src="../js/ProductListView.js"></script>
+  <script src="../../controller/js/ProductController.js"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Product</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1 id="formTitle">New Product</h1>
+      <a href="index.html" class="btn btn-secondary">Back</a>
+    </header>
+
+    <form id="supplyForm">
+
+      <div class="form-group">
+        <label for="price">Price</label>
+        <input type="number" id="price" min="0.01" step="0.01" required>
+      </div>
+
+      <div class="form-group">
+        <label>Expiration Date</label>
+        <div class="date-input-row">
+          <div class="date-input-field-wrapper">
+            <label for="expDay">Day</label>
+            <input type="number" id="expDay" min="1" max="31" placeholder="DD" required>
+          </div>
+          <div class="date-input-field-wrapper">
+            <label for="expMonth">Month</label>
+            <input type="number" id="expMonth" min="1" max="12" placeholder="MM" required>
+          </div>
+          <div class="date-input-field-wrapper">
+            <label for="expYear">Year</label>
+            <input type="number" id="expYear" min="2020" max="2100" placeholder="YYYY" required>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" required>
+      </div>
+
+      <div class="form-actions">
+        <a href="index.html" class="btn btn-secondary">Cancel</a>
+        <button type="submit" class="btn">Save Product</button>
+      </div>
+
+    </form>
+  </div>
+
+  <script src="../../model/js/ProductModel.js"></script>
+  <script src="../js/ProductFormView.js"></script>
+  <script src="../../controller/js/ProductFormController.js"></script>
+</body>
+</html>
