@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:4005/api/products';
+const API_URL = '/api/products';
 
 const money = new Intl.NumberFormat('en-US', {
     style: 'currency',
