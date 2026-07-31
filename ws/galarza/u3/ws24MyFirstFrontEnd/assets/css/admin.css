@@ -1,0 +1,288 @@
+.foto-usuario {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1.5px solid #ccc;
+}
+
+.photo-section img#edit-product-photo-preview {
+  display: block;
+  margin: 0 auto;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.welcome-header {
+  display: flex;
+  align-items: center;     
+  gap: 30px;                
+  padding: 30px 70px;       
+}
+.welcome-icon {
+  width: 60px;
+  height: 60px;
+}
+
+/* Modal fondo y centrado */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+/* Contenido modal más grande y estilizado */
+.modal-content {
+    background: #fff;
+    border-radius: 12px;
+    width: 400px;
+    max-width: 90%;
+    max-height: 80vh;
+    /* altura máxima relativa a la ventana */
+    padding: 25px 30px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    font-family: 'Inter', sans-serif;
+    overflow-y: auto;
+    /* permite scroll vertical si se excede */
+}
+
+
+/* Botón cerrar en la esquina */
+.close-modal {
+    position: absolute;
+    right: 18px;
+    top: 18px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #555;
+    transition: color 0.3s ease;
+}
+
+.close-modal:hover {
+    color: #e91e63;
+}
+
+#edit-product-photo-preview {
+    max-width: 200px;
+    /* ancho máximo */
+    max-height: 150px;
+    /* alto máximo */
+    width: auto;
+    height: auto;
+    display: block;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    object-fit: contain;
+}
+
+#add-product-photo-preview {
+    max-width: 200px;
+    max-height: 150px;
+    width: auto;
+    height: auto;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    object-fit: contain;
+}
+
+/* Título */
+.modal-content h3 {
+    margin-bottom: 20px;
+    font-weight: 600;
+    text-align: center;
+    color: #333;
+}
+
+/* Formulario */
+.edit-user-form label {
+    display: block;
+    margin-top: 15px;
+    font-weight: 500;
+    color: #444;
+}
+
+.edit-user-form input[type="text"],
+.edit-user-form input[type="email"],
+.edit-user-form input[type="tel"],
+.edit-user-form input[type="file"] {
+    width: 100%;
+    padding: 10px 12px;
+    margin-top: 6px;
+    border: 1.5px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.edit-user-form input[type="text"]:focus,
+.edit-user-form input[type="email"]:focus,
+.edit-user-form input[type="tel"]:focus,
+.edit-user-form input[type="file"]:focus {
+    border-color: #e91e63;
+    outline: none;
+}
+
+/* Sección foto */
+.photo-section {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.photo-section label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #555;
+}
+
+#edit-user-photo-preview {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #e91e63;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 8px rgba(233, 30, 99, 0.3);
+}
+
+/* Botón guardar */
+.save-btn {
+    margin-top: 25px;
+    width: 100%;
+    padding: 12px 0;
+    background-color: #e91e63;
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.save-btn:hover {
+    background-color: #c2185b;
+}
+
+/* DataTable personalizado */
+#myTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto;                 /* centra la tabla en su contenedor */
+  font-family: 'Inter', sans-serif;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Cabecera */
+#myTable thead {
+  background: var(--primary-dark);
+  color: var(--white);
+}
+
+#myTable thead th {
+  text-align: center;
+  padding: 12px 8px;
+  font-weight: 600;
+  border-bottom: 2px solid rgba(255,255,255,0.2);
+}
+
+/* Filas */
+#myTable tbody tr:nth-child(even) {
+  background: var(--primary-light);
+}
+#myTable tbody tr:hover {
+  background: rgba(188, 58, 97, 0.1);
+}
+
+/* Celdas */
+#myTable tbody td {
+  text-align: center;             /* centra todos los datos */
+  padding: 10px 8px;
+  vertical-align: middle;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* Inputs y selects de DataTables (si los usas) */
+#myTable_length select,
+#myTable_filter input {
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  background: var(--white);
+  color: var(--primary-dark);
+}
+
+/* Botones y enlaces de paginación */
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  background: var(--accent-pink);
+  color: #fff !important;
+  border: none;
+  border-radius: 4px;
+  margin: 0 2px;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+  background: var(--accent-yellow);
+  color: #000 !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  background: var(--accent-blue);
+  color: #fff !important;
+}
+
+/* Ajustes de responsividad */
+@media (max-width: 768px) {
+  #myTable thead {
+    display: none; /* oculta cabeceras en móvil */
+  }
+  #myTable tbody td {
+    display: block;
+    text-align: right;
+    position: relative;
+    padding-left: 50%;
+  }
+  #myTable tbody td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 8px;
+    width: calc(50% - 16px);
+    font-weight: 600;
+    text-align: left;
+  }
+}
+
+.editar-btn,.eliminar-btn {
+    background: var(--accent-pink);
+  color: var(--white);
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.editar-btn:hover,.eliminar-btn:hover {
+   background: #a0325a;
+}
